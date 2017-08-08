@@ -4,7 +4,7 @@
 \alias{get_citations}
 \title{Get citations for packages}
 \usage{
-get_citations(pkgs, filename = NULL)
+get_citations(pkgs, filename = "pkg-refs.bib")
 }
 \arguments{
 \item{pkgs}{Character vector of package names, e.g. as produced by \code{scan_packages}.}
