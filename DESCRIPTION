@@ -1,12 +1,16 @@
 Package: grateful
-Title: What the Package Does (one line, title case)
+Title: Facilitate Citation of R Packages
 Version: 0.0.0.9000
 Authors@R: person('Francisco', 'Rodriguez-Sanchez', email='f.rodriguez.sanc@gmail.com', role = c('aut', 'cre'))
-Description: What the package does (one paragraph).
+Description: Facilitates citation of R packages used in analysis projects. 
+    Scans project for packages used, get their preferred citation, and produces
+    a document with citations in the preferred bibliography format, ready to be 
+    pasted into reports or manuscripts bibliography list.
 Depends: R (>= 3.4.1)
-License: What license is it under?
+License: MIT
 Encoding: UTF-8
 LazyData: true
 Suggests: testthat
 URL: https://github.com/Pakillo/grateful
 BugReports: https://github.com/Pakillo/grateful/issues
+RoxygenNote: 6.0.1
