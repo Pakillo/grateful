@@ -11,12 +11,21 @@
 #' library(grateful)
 #' pkgs <- scan_packages()
 #' cites <- get_citations(pkgs)
-get_citations <- function(pkgs, filename = NULL) {
+get_citations <- function(pkgs, filename = "pkg-refs.bib") {
 
   cites <- lapply(pkgs, utils::citation)
   cites.bib <- lapply(cites, utils::toBibtex)
 
-  if (!is.null(filename)) writeLines(unlist(cites.bib), con = filename)
+  # generate reference key
+  for (i in seq_len(length(cites.bib))) {
+    cites.bib[[i]] <- sub(pattern = "\\{,$", replacement = paste0("{", pkgs[i], ","), x = cites.bib[[i]])
+  }
 
+  ## write bibtex references to file
+  writeLines(enc2utf8(unlist(cites.bib)), con = filename, useBytes = TRUE)
+
+  ## return named list of bibtex references
+  names(cites.bib) <- pkgs
   invisible(cites.bib)
+
 }
