@@ -8,3 +8,5 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Suggests: testthat
+URL: https://github.com/Pakillo/grateful
+BugReports: https://github.com/Pakillo/grateful/issues
