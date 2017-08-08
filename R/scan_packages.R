@@ -6,6 +6,8 @@
 #'
 #' @return a character vector of package names
 #' @export
+#' @importFrom checkpoint scanForPackages
+#' @import utils
 #'
 #' @examples
 #' library(grateful)
