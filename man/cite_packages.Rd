@@ -14,7 +14,7 @@ cite_packages(all.pkg = TRUE, include.rmd = TRUE, style = NULL,
 
 \item{style}{Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.}
 
-\item{out.format}{Output format, either "word", "pdf", "html", or "md" (markdown).}
+\item{out.format}{Output format, either "docx" (Word), "pdf", "html", or "md" (markdown).}
 
 \item{...}{Other parameters passed to \code{\link[checkpoint]{scanForPackages}}.}
 }
@@ -27,5 +27,5 @@ This is a wrapper function.
 \examples{
 library(grateful)
 cite_packages()
-
+cite_packages(style = "ecology", out.format = "word")
 }
