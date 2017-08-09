@@ -18,6 +18,9 @@ create_rmd <- function(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
 
   use.csl <- ifelse(is.null(csl), "#csl: null", "csl: ")
 
+  # ensure CSL file is available, otherwise download
+  if (!file.exists(file.path(getwd(), csl))) get_csl("ecology")
+
   yaml.header <- c(
     "---",
     "title: R packages used",
