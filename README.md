@@ -22,6 +22,8 @@ library(grateful)
 cite_packages()
 ```
 
+![](example-output.PNG)
+
 This document can also be a Word document, or PDF, or markdown. And use the citation style of a particular journal:
 
 ``` r
@@ -33,25 +35,25 @@ Workflow
 
 `cite_packages` is a wrapper function which internally performs the following steps:
 
-1.  Scan the project for packages
+1 Scan the project for packages
 
 ``` r
 pkgs <- scan_packages()
 ```
 
-1.  Get citations for each package
+2 Get citations for each package
 
 ``` r
 cites <- get_citations(pkgs)
 ```
 
-1.  Create an rmarkdown document citing all these packages
+3 Create an rmarkdown document citing all these packages
 
 ``` r
 rmd <- create_rmd(cites)
 ```
 
-1.  Rendering the rmarkdown document to the desired output format
+4 Rendering the rmarkdown document to the desired output format
 
 ``` r
 render_citations(rmd, output = "html")
