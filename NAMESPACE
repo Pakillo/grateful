@@ -2,6 +2,7 @@
 
 export(create_rmd)
 export(get_citations)
+export(get_csl)
 export(render_citations)
 export(scan_packages)
 import(rmarkdown)
