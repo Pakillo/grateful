@@ -8,9 +8,11 @@
 #' @import utils
 #'
 #' @examples
+#' \dontrun{
 #' library(grateful)
 #' pkgs <- scan_packages()
 #' cites <- get_citations(pkgs)
+#' }
 get_citations <- function(pkgs, filename = "pkg-refs.bib") {
 
   cites <- lapply(pkgs, utils::citation)

@@ -18,7 +18,9 @@ Nothing by default. If assigned a name, a list with package citations in BibTeX 
 Get citations for packages
 }
 \examples{
+\dontrun{
 library(grateful)
 pkgs <- scan_packages()
 cites <- get_citations(pkgs)
+}
 }

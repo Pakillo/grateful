@@ -8,11 +8,13 @@
 #' @import rmarkdown
 #'
 #' @examples
+#' \dontrun{
 #' library(grateful)
 #' pkgs <- scan_packages()
 #' cites <- get_citations(pkgs)
 #' rmd <- create_rmd(cites)
 #' render_citations(rmd, output = "html")
+#' }
 render_citations <- function(rmd, output = "html") {
 
   if (output == "docx") out.format = "word_document"

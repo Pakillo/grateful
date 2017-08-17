@@ -12,9 +12,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(grateful)
 #' cite_packages()
-#' cite_packages(style = "ecology", out.format = "word")
+#' cite_packages(style = "ecology", out.format = "docx")
+#' }
 cite_packages <- function(all.pkg = TRUE, include.rmd = TRUE, style = NULL,
                           out.format = "html", ...) {
 

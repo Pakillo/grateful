@@ -9,10 +9,12 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(grateful)
 #' pkgs <- scan_packages()
 #' cites <- get_citations(pkgs)
 #' rmd <- create_rmd(cites)
+#' }
 create_rmd <- function(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
                        filename = "refs.Rmd") {
 

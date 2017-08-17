@@ -23,8 +23,10 @@ An rmarkdown file
 Create template rmarkdown file with package citations
 }
 \examples{
+\dontrun{
 library(grateful)
 pkgs <- scan_packages()
 cites <- get_citations(pkgs)
 rmd <- create_rmd(cites)
+}
 }

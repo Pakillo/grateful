@@ -18,9 +18,11 @@ A document in the format specified by \code{output}.
 Render package citations
 }
 \examples{
+\dontrun{
 library(grateful)
 pkgs <- scan_packages()
 cites <- get_citations(pkgs)
 rmd <- create_rmd(cites)
 render_citations(rmd, output = "html")
+}
 }

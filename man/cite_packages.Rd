@@ -25,7 +25,9 @@ A document with rendered citations in the desired format, plus a file ("pkg-refs
 This is a wrapper function.
 }
 \examples{
+\dontrun{
 library(grateful)
 cite_packages()
-cite_packages(style = "ecology", out.format = "word")
+cite_packages(style = "ecology", out.format = "docx")
+}
 }
