@@ -7,3 +7,4 @@ example-output.PNG
 
 ^analyses$
 ^manuscript$
+^\.travis\.yml$
