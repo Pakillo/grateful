@@ -16,13 +16,19 @@
 #' rmd <- create_rmd(cites)
 #' }
 create_rmd <- function(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
-                       filename = "refs.Rmd") {
+                       filename = "refs.Rmd", out.dir = getwd()) {
 
   use.csl <- ifelse(is.null(csl), "#csl: null", "csl: ")
 
   # ensure CSL file is available, otherwise download
   if (!is.null(csl))
-    if (!file.exists(file.path(getwd(), paste0(csl, ".csl")))) get_csl(csl)
+    if (!file.exists(file.path(out.dir, paste0(csl, ".csl")))) get_csl(csl)
+
+  if (out.dir != getwd()) {
+    bibfile = file.path(out.dir, bibfile)
+    csl = file.path(out.dir, csl)
+    filename = file.path(out.dir, filename)
+  }
 
   yaml.header <- c(
     "---",

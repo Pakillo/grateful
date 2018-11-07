@@ -13,7 +13,7 @@
 #' pkgs <- scan_packages()
 #' cites <- get_citations(pkgs)
 #' }
-get_citations <- function(pkgs, filename = "pkg-refs.bib") {
+get_citations <- function(pkgs, filename = "pkg-refs.bib", out.dir = getwd()) {
 
   cites <- lapply(pkgs, utils::citation)
   cites.bib <- lapply(cites, utils::toBibtex)
@@ -24,7 +24,7 @@ get_citations <- function(pkgs, filename = "pkg-refs.bib") {
   }
 
   ## write bibtex references to file
-  writeLines(enc2utf8(unlist(cites.bib)), con = filename, useBytes = TRUE)
+  writeLines(enc2utf8(unlist(cites.bib)), con = file.path(out.dir, filename), useBytes = TRUE)
 
   ## return named list of bibtex references
   names(cites.bib) <- pkgs
