@@ -4,6 +4,7 @@
 #' @param bibfile Name of the file containing references in BibTeX format, as produced by \code{get_citations}.
 #' @param csl Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.
 #' @param filename Name of the rmarkdown file
+#' @param out.dir Directory to save the output document. Defaults to working directory.
 #'
 #' @return An rmarkdown file
 #' @export

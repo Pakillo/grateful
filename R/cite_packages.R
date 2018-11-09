@@ -6,6 +6,7 @@
 #' @param include.rmd Logical. Include packages used in Rmarkdown documents? (default is TRUE, requires \code{knitr} package).
 #' @param style Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.
 #' @param out.format Output format, either "docx" (Word), "pdf", "html", or "md" (markdown).
+#' @param out.dir Directory to save the output document and a BibTeX file with the references. Defaults to working directory.
 #' @param ... Other parameters passed to \code{\link[checkpoint]{scanForPackages}}.
 #'
 #' @return A document with rendered citations in the desired format, plus a file ("pkg-refs.bib") containing references in BibTeX format.
@@ -15,7 +16,7 @@
 #' \dontrun{
 #' library(grateful)
 #' cite_packages()
-#' cite_packages(style = "ecology", out.format = "docx", out.dir = getwd())
+#' cite_packages(style = "ecology", out.format = "docx")
 #' }
 cite_packages <- function(all.pkg = TRUE, include.rmd = TRUE, style = NULL,
                           out.format = "html", out.dir = getwd(), ...) {

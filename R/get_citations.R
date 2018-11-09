@@ -2,6 +2,7 @@
 #'
 #' @param pkgs Character vector of package names, e.g. as produced by \code{scan_packages}.
 #' @param filename Optional. Name of BibTeX file containing packages references.
+#' @param out.dir Directory to save the BibTeX file with the references. Defaults to working directory.
 #'
 #' @return Nothing by default. If assigned a name, a list with package citations in BibTeX format. Optionally, a file with references in BibTeX format.
 #' @export
