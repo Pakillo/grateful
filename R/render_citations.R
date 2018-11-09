@@ -13,16 +13,17 @@
 #' pkgs <- scan_packages()
 #' cites <- get_citations(pkgs)
 #' rmd <- create_rmd(cites)
-#' render_citations(rmd, output = "html")
+#' render_citations(rmd, output = "html", out.dir = getwd())
 #' }
-render_citations <- function(rmd, output = "html") {
+render_citations <- function(rmd, output = "html", out.dir = getwd()) {
+  if (output == "docx") out.format <- "word_document"
+  if (output == "pdf") out.format <- "pdf_document"
+  if (output == "html") out.format <- "html_document"
+  if (output == "md") out.format <- "md_document"
 
-  if (output == "docx") out.format = "word_document"
-  if (output == "pdf") out.format = "pdf_document"
-  if (output == "html") out.format = "html_document"
-  if (output == "md") out.format = "md_document"
-
-  rmarkdown::render(input = rmd, output_format = out.format,
-                    output_file = paste0("citations.", output),
-                    output_dir = getwd())
+  rmarkdown::render(
+    input = rmd, output_format = out.format,
+    output_file = paste0("citations.", output),
+    output_dir = out.dir
+  )
 }

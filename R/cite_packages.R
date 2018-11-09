@@ -15,16 +15,19 @@
 #' \dontrun{
 #' library(grateful)
 #' cite_packages()
-#' cite_packages(style = "ecology", out.format = "docx")
+#' cite_packages(style = "ecology", out.format = "docx", out.dir = getwd())
 #' }
 cite_packages <- function(all.pkg = TRUE, include.rmd = TRUE, style = NULL,
-                          out.format = "html", ...) {
-
+                          out.format = "html", out.dir = getwd(), ...) {
   pkgs <- scan_packages(all.pkgs = all.pkg, include.Rmd = include.rmd, ...)
-  cites <- get_citations(pkgs) # produces "pkg-refs.bib" file
-  rmd <- create_rmd(cites, csl = style)  # produces "refs.Rmd"
-  render_citations(rmd, output = out.format)
+  cites <- get_citations(pkgs, out.dir = out.dir) # produces "pkg-refs.bib" file
+  rmd <- create_rmd(cites, csl = style, out.dir = out.dir) # produces "refs.Rmd"
 
-  file.remove(rmd)
-
+  if (out.format == "rmd" | out.format == "Rmd") {
+    return(rmd) # Keep the rmarkdown file and return the file object
+  }
+  else {
+    render_citations(rmd, output = out.format, out.dir = out.dir)
+    file.remove(rmd)
+  }
 }
