@@ -19,4 +19,4 @@ Imports:
 Suggests: testthat
 URL: https://github.com/Pakillo/grateful
 BugReports: https://github.com/Pakillo/grateful/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0

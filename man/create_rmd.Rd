@@ -5,7 +5,7 @@
 \title{Create template rmarkdown file with package citations}
 \usage{
 create_rmd(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
-  filename = "refs.Rmd")
+  filename = "refs.Rmd", out.dir = getwd())
 }
 \arguments{
 \item{bib.list}{List of package citations in BibTeX format, as produced by \code{get_citations}.}
@@ -15,6 +15,8 @@ create_rmd(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
 \item{csl}{Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.}
 
 \item{filename}{Name of the rmarkdown file}
+
+\item{out.dir}{Directory to save the output document. Defaults to working directory.}
 }
 \value{
 An rmarkdown file

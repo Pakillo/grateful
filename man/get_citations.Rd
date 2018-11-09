@@ -4,12 +4,14 @@
 \alias{get_citations}
 \title{Get citations for packages}
 \usage{
-get_citations(pkgs, filename = "pkg-refs.bib")
+get_citations(pkgs, filename = "pkg-refs.bib", out.dir = getwd())
 }
 \arguments{
 \item{pkgs}{Character vector of package names, e.g. as produced by \code{scan_packages}.}
 
 \item{filename}{Optional. Name of BibTeX file containing packages references.}
+
+\item{out.dir}{Directory to save the BibTeX file with the references. Defaults to working directory.}
 }
 \value{
 Nothing by default. If assigned a name, a list with package citations in BibTeX format. Optionally, a file with references in BibTeX format.
