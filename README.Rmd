@@ -39,10 +39,17 @@ cite_packages()
 
 ![](example-output.PNG)
 
-This document can also be a Word document, or PDF, or markdown. And use the citation style of a particular journal:
+This document can also be a Word document, PDF file, markdown file, or Rmarkdown file. And use the citation style of a particular journal:
 
 ```{r eval = FALSE}
 cite_packages(style = "ecology", out.format = "docx")
+```
+
+You can also save the output of `cite_packages` to a specified directory.
+
+```{r eval = FALSE}
+# Save the output in Rmarkdown format only and to a docs folder.
+cite_packages(out.format = "rmd", out.dir = file.path(getwd(), "docs"))
 ```
 
 
@@ -73,7 +80,3 @@ rmd <- create_rmd(cites)
 ```{r}
 render_citations(rmd, output = "html")
 ```
-
-
-
-
