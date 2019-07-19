@@ -1,5 +1,6 @@
-# for a name and a bibtex citation, cretae unique citekey for each citation
-add_citekey <- function(pkg_name, citation_bibtex) {
+# for a name and citation, cretae unique citekey for each citation
+add_citekey <- function(pkg_name, citation) {
+  citation_bibtex <- utils::toBibtex(citation)
   refbeginnings <- grep(pattern = "\\{,$", x = citation_bibtex)
   for (i in 1:length(refbeginnings)) {
     if (length(refbeginnings) == 1) {
@@ -13,8 +14,7 @@ add_citekey <- function(pkg_name, citation_bibtex) {
   return(citation_bibtex)
 }
 
-# For a package, get the bibtex citation, then pass along the name and the bibtex
-bibtex_and_name <- function(pkg_name) {
-  refs <- utils::toBibtex(utils::citation(pkg_name))
-  return(add_name(pkg_name, refs))
+# For a package, get the citation, then pass along the name and citation
+get_citation_and_citekey <- function(pkg_name) {
+  return(add_name(pkg_name, utils::citation(pkg_name)))
 }
