@@ -6,7 +6,6 @@
 #'
 #' @return Nothing by default. If assigned a name, a list with package citations in BibTeX format. Optionally, a file with references in BibTeX format.
 #' @export
-#' @import utils
 #'
 #' @examples
 #' \dontrun{
