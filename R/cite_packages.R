@@ -7,6 +7,8 @@
 #' @param style Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.
 #' @param out.format Output format, either "docx" (Word), "pdf", "html", or "md" (markdown).
 #' @param out.dir Directory to save the output document and a BibTeX file with the references. Defaults to working directory.
+#' @param include.RStudio Logical. If TRUE, adds a citation for the current version of RStudio, if run within RStudio interactively.
+#'
 #' @param ... Other parameters passed to \code{\link[checkpoint]{scanForPackages}}.
 #'
 #' @return A document with rendered citations in the desired format, plus a file ("pkg-refs.bib") containing references in BibTeX format.
@@ -19,12 +21,12 @@
 #' cite_packages(style = "ecology", out.format = "docx")
 #' }
 cite_packages <- function(all.pkg = TRUE, include.rmd = TRUE, style = NULL,
-                          out.format = "html", out.dir = getwd(), ...) {
+                          out.format = "html", out.dir = getwd(), include.RStudio = FALSE, ...) {
   pkgs <- scan_packages(all.pkgs = all.pkg, include.Rmd = include.rmd, ...)
-  cites <- get_citations(pkgs, out.dir = out.dir) # produces "pkg-refs.bib" file
+  cites <- get_citations(pkgs, out.dir = out.dir, includeRStudio = include.RStudio) # produces "pkg-refs.bib" file
   rmd <- create_rmd(cites, csl = style, out.dir = out.dir) # produces "refs.Rmd"
 
-  if (out.format == "rmd" | out.format == "Rmd") {
+  if (tolower(out.format) == "rmd") {
     return(rmd) # Keep the rmarkdown file and return the file object
   }
   else {
