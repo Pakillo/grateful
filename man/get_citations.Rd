@@ -4,7 +4,8 @@
 \alias{get_citations}
 \title{Get citations for packages}
 \usage{
-get_citations(pkgs, filename = "pkg-refs.bib", out.dir = getwd())
+get_citations(pkgs, filename = "pkg-refs.bib", out.dir = getwd(),
+  includeRStudio = FALSE)
 }
 \arguments{
 \item{pkgs}{Character vector of package names, e.g. as produced by \code{scan_packages}.}
@@ -12,9 +13,11 @@ get_citations(pkgs, filename = "pkg-refs.bib", out.dir = getwd())
 \item{filename}{Optional. Name of BibTeX file containing packages references.}
 
 \item{out.dir}{Directory to save the BibTeX file with the references. Defaults to working directory.}
+
+\item{includeRStudio}{Logical. If TRUE, adds a citation for the current version of RStudio, if run within RStudio interactively.}
 }
 \value{
-Nothing by default. If assigned a name, a list with package citations in BibTeX format. Optionally, a file with references in BibTeX format.
+Nothing by default. If assigned a name, a list with citation keys for each citation (without). Optionally, a file with references in BibTeX format.
 }
 \description{
 Get citations for packages

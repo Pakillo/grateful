@@ -8,7 +8,7 @@ create_rmd(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
   filename = "refs.Rmd", out.dir = getwd())
 }
 \arguments{
-\item{bib.list}{List of package citations in BibTeX format, as produced by \code{get_citations}.}
+\item{bib.list}{List of package citation keys, as produced by \code{get_citations}.}
 
 \item{bibfile}{Name of the file containing references in BibTeX format, as produced by \code{get_citations}.}
 

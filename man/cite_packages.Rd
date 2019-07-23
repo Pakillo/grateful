@@ -5,7 +5,8 @@
 \title{Cite R packages used in a project}
 \usage{
 cite_packages(all.pkg = TRUE, include.rmd = TRUE, style = NULL,
-  out.format = "html", out.dir = getwd(), ...)
+  out.format = "html", out.dir = getwd(), include.RStudio = FALSE,
+  ...)
 }
 \arguments{
 \item{all.pkg}{Logical. Include all packages used in scripts within the project/folder (the default), or only packages used in the current session? If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses \code{\link[utils]{sessionInfo}}.}
@@ -17,6 +18,8 @@ cite_packages(all.pkg = TRUE, include.rmd = TRUE, style = NULL,
 \item{out.format}{Output format, either "docx" (Word), "pdf", "html", or "md" (markdown).}
 
 \item{out.dir}{Directory to save the output document and a BibTeX file with the references. Defaults to working directory.}
+
+\item{include.RStudio}{Logical. If TRUE, adds a citation for the current version of RStudio, if run within RStudio interactively.}
 
 \item{...}{Other parameters passed to \code{\link[checkpoint]{scanForPackages}}.}
 }
