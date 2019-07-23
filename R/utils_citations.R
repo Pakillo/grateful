@@ -5,15 +5,15 @@ add_citekey <- function(pkg_name, citation) {
   for (i in 1:length(refbeginnings)) {
     if (length(refbeginnings) == 1) {
       # only one citation, citekey = package name
-      replaceString <- paste0("{", pkg_name, ",")
+      replace_string <- paste0("{", pkg_name, ",")
     } else if (length(unique(unlist(citation$year))) == length(unlist(citation$year))) {
       # multiple citations, unique years. citekey = packagename + year
-      replaceString <- paste0("{", pkg_name, citation[[i]]$year, ",")
+      replace_string <- paste0("{", pkg_name, citation[[i]]$year, ",")
     } else {
       # multiple citations, duplicate years. citekey = packagename + year + letter
-      replaceString <- paste0("{", pkg_name, citation[[i]]$year, letters[i], ",")
+      replace_string <- paste0("{", pkg_name, citation[[i]]$year, letters[i], ",")
     }
-    citation_bibtex[refbeginnings[i]] <- sub(pattern = "\\{,$", replacement = replaceString,
+    citation_bibtex[refbeginnings[i]] <- sub(pattern = "\\{,$", replacement = replace_string,
                                              x = citation_bibtex[refbeginnings[i]])
   }
   return(citation_bibtex)

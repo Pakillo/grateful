@@ -26,9 +26,9 @@ create_rmd <- function(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
     if (!file.exists(file.path(out.dir, paste0(csl, ".csl")))) get_csl(csl)
 
   if (out.dir != getwd()) {
-    bibfile = file.path(out.dir, bibfile)
-    csl = file.path(out.dir, csl)
-    filename = file.path(out.dir, filename)
+    bibfile <- file.path(out.dir, bibfile)
+    csl <- file.path(out.dir, csl)
+    filename <- file.path(out.dir, filename)
   }
 
   yaml.header <- c(

@@ -15,11 +15,11 @@
 #' cites <- get_citations(pkgs)
 #' }
 get_citations <- function(pkgs, filename = "pkg-refs.bib",
-                          out.dir = getwd(), includeRStudio = FALSE) {
+                          out.dir = getwd(), include_rstudio = FALSE) {
 
   cites.bib <- lapply(pkgs, get_citation_and_citekey)
 
-  if (includeRStudio == TRUE) {
+  if (include_rstudio == TRUE) {
     # Put an RStudio citation on the end
     rstudio_cit <- tryCatch(RStudio.Version()$citation,
                             error = function(e) NULL)
@@ -29,7 +29,8 @@ get_citations <- function(pkgs, filename = "pkg-refs.bib",
   }
 
   ## write bibtex references to file
-  writeLines(enc2utf8(unlist(cites.bib)), con = file.path(out.dir, filename), useBytes = TRUE)
+  writeLines(enc2utf8(unlist(cites.bib)), con = file.path(out.dir, filename),
+             useBytes = TRUE)
 
   # get the citekeys and format them appropriately before returning them
   citekeys <- unname(grep("\\{[[:alnum:]]+,$", unlist(cites.bib), value = TRUE))

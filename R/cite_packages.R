@@ -21,9 +21,11 @@
 #' cite_packages(style = "ecology", out.format = "docx")
 #' }
 cite_packages <- function(all.pkg = TRUE, include.rmd = TRUE, style = NULL,
-                          out.format = "html", out.dir = getwd(), include.RStudio = FALSE, ...) {
+                          out.format = "html", out.dir = getwd(),
+                          include.RStudio = FALSE, ...) {
   pkgs <- scan_packages(all.pkgs = all.pkg, include.Rmd = include.rmd, ...)
-  cites <- get_citations(pkgs, out.dir = out.dir, includeRStudio = include.RStudio) # produces "pkg-refs.bib" file
+  cites <- get_citations(pkgs, out.dir = out.dir,
+                         include_rstudio = include.RStudio) # produces "pkg-refs.bib" file
   rmd <- create_rmd(cites, csl = style, out.dir = out.dir) # produces "refs.Rmd"
 
   if (tolower(out.format) == "rmd") {
