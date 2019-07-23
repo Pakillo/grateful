@@ -1,4 +1,4 @@
-#' grateful.
+#' Grateful
 #'
 #' @name grateful
 #' @docType package

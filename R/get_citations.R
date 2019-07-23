@@ -3,9 +3,9 @@
 #' @param pkgs Character vector of package names, e.g. as produced by \code{scan_packages}.
 #' @param filename Optional. Name of BibTeX file containing packages references.
 #' @param out.dir Directory to save the BibTeX file with the references. Defaults to working directory.
-#' @param includeRStudio Logical. If TRUE, adds a citation for the current version of RStudio, if run within RStudio interactively.
+#' @param include_rstudio Logical. If TRUE, adds a citation for the current version of RStudio, if run within RStudio interactively.
 #'
-#' @return Nothing by default. If assigned a name, a list with citation keys for each citation (without). Optionally, a file with references in BibTeX format.
+#' @return Nothing by default. If assigned a name, a list with citation keys for each citation (without @@). Optionally, a file with references in BibTeX format.
 #' @export
 #'
 #' @examples
