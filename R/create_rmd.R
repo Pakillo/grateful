@@ -1,6 +1,6 @@
 #' Create template rmarkdown file with package citations
 #'
-#' @param bib.list List of package citations in BibTeX format, as produced by \code{get_citations}.
+#' @param bib.list List of package citation keys, as produced by \code{get_citations}.
 #' @param bibfile Name of the file containing references in BibTeX format, as produced by \code{get_citations}.
 #' @param csl Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.
 #' @param filename Name of the rmarkdown file
@@ -41,7 +41,7 @@ create_rmd <- function(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
 
 
   ## list package citations
-  plist <- paste("- ", names(bib.list), " [@", names(bib.list), "]", sep = "")
+  plist <- paste("- ", bib.list, " [@", bib.list, "]", sep = "")
 
 
   ## write Rmd to disk
