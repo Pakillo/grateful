@@ -4,14 +4,14 @@
 \alias{cite_packages}
 \title{Cite R packages used in a project}
 \usage{
-cite_packages(generate.document = TRUE, all.pkg = TRUE,
+cite_packages(generate.document = TRUE, all.pkgs = TRUE,
   include.rmd = TRUE, style = NULL, out.format = "html",
   out.dir = getwd(), include.RStudio = FALSE, ...)
 }
 \arguments{
 \item{generate.document}{Logical. If TRUE (default), generate a .Rmd file with the citations. Otherwise, simply build the .bib file and return the list of package citation keys.}
 
-\item{all.pkg}{Logical. Include all packages used in scripts within the project/folder (the default), or only packages used in the current session? If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses \code{\link[utils]{sessionInfo}}.}
+\item{all.pkgs}{Logical. Include all packages used in scripts within the project/folder (the default), or only packages used in the current session? If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses \code{\link[utils]{sessionInfo}}.}
 
 \item{include.rmd}{Logical. Include packages used in Rmarkdown documents? (default is TRUE, requires \code{knitr} package).}
 

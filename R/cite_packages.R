@@ -3,7 +3,7 @@
 #' This is a wrapper function.
 #'
 #' @param generate.document Logical. If TRUE (default), generate a .Rmd file with the citations. Otherwise, simply build the .bib file and return the list of package citation keys.
-#' @param all.pkg Logical. Include all packages used in scripts within the project/folder (the default), or only packages used in the current session? If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses \code{\link[utils]{sessionInfo}}.
+#' @param all.pkgs Logical. Include all packages used in scripts within the project/folder (the default), or only packages used in the current session? If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses \code{\link[utils]{sessionInfo}}.
 #' @param include.rmd Logical. Include packages used in Rmarkdown documents? (default is TRUE, requires \code{knitr} package).
 #' @param style Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.
 #' @param out.format Output format, either "docx" (Word), "pdf", "html", or "md" (markdown).
@@ -21,11 +21,11 @@
 #' cite_packages()
 #' cite_packages(style = "ecology", out.format = "docx")
 #' }
-cite_packages <- function(generate.document = TRUE, all.pkg = TRUE,
+cite_packages <- function(generate.document = TRUE, all.pkgs = TRUE,
                           include.rmd = TRUE, style = NULL,
                           out.format = "html", out.dir = getwd(),
                           include.RStudio = FALSE, ...) {
-  pkgs <- scan_packages(all.pkgs = all.pkg, include.Rmd = include.rmd, ...)
+  pkgs <- scan_packages(all.pkgs = all.pkgs, include.Rmd = include.rmd, ...)
   cites <- get_citations(pkgs, out.dir = out.dir,
                          include_rstudio = include.RStudio) # produces "pkg-refs.bib" file
   if (generate.document == TRUE) {

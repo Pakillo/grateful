@@ -12,7 +12,7 @@
 #' scan_packages()
 scan_packages <- function(all.pkgs = TRUE, include.Rmd = FALSE, ...) {
 
-  if (all.pkgs) {
+  if (all.pkgs == TRUE) {
     pkgs <- checkpoint::scanForPackages(use.knitr = include.Rmd, ...)$pkgs
   } else {
     pkgs <- names(utils::sessionInfo()$otherPkgs)
