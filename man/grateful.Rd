@@ -4,7 +4,7 @@
 \name{grateful}
 \alias{grateful}
 \alias{grateful-package}
-\title{grateful.}
+\title{Grateful}
 \description{
-grateful.
+Grateful
 }
