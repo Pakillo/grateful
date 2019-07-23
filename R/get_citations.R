@@ -17,11 +17,15 @@
 get_citations <- function(pkgs, filename = "pkg-refs.bib",
                           out.dir = getwd(), includeRStudio = FALSE) {
 
-  cites.bib <- lapply(cit.list, get_citation_and_citekey)
+  cites.bib <- lapply(pkgs, get_citation_and_citekey)
 
   if (includeRStudio == TRUE) {
     # Put an RStudio citation on the end
-    cites.bib[[length(cites.bib) + 1]] <- add_citekey("rstudio", RStudio.Version()$citation)
+    rstudio_cit <- tryCatch(RStudio.Version()$citation,
+                            error = function(e) NULL)
+    if (!is.null(rstudio_cit)) {
+      cites.bib[[length(cites.bib) + 1]] <- add_citekey("rstudio", rstudio_cit)
+    }
   }
 
   ## write bibtex references to file
