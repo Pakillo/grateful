@@ -2,6 +2,7 @@
 #'
 #' This is a wrapper function.
 #'
+#' @param generate.document Logical. If TRUE (default), generate a .Rmd file with the citations. Otherwise, simply build the .bib file and return the list of package citation keys.
 #' @param all.pkg Logical. Include all packages used in scripts within the project/folder (the default), or only packages used in the current session? If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses \code{\link[utils]{sessionInfo}}.
 #' @param include.rmd Logical. Include packages used in Rmarkdown documents? (default is TRUE, requires \code{knitr} package).
 #' @param style Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.
@@ -20,19 +21,24 @@
 #' cite_packages()
 #' cite_packages(style = "ecology", out.format = "docx")
 #' }
-cite_packages <- function(all.pkg = TRUE, include.rmd = TRUE, style = NULL,
+cite_packages <- function(generate.document = TRUE, all.pkg = TRUE,
+                          include.rmd = TRUE, style = NULL,
                           out.format = "html", out.dir = getwd(),
                           include.RStudio = FALSE, ...) {
   pkgs <- scan_packages(all.pkgs = all.pkg, include.Rmd = include.rmd, ...)
   cites <- get_citations(pkgs, out.dir = out.dir,
                          include_rstudio = include.RStudio) # produces "pkg-refs.bib" file
-  rmd <- create_rmd(cites, csl = style, out.dir = out.dir) # produces "refs.Rmd"
+  if (generate.document == TRUE) {
+    rmd <- create_rmd(cites, csl = style, out.dir = out.dir)
 
-  if (tolower(out.format) == "rmd") {
-    return(rmd) # Keep the rmarkdown file and return the file object
-  }
-  else {
-    render_citations(rmd, output = out.format, out.dir = out.dir)
-    file.remove(rmd)
+    if (tolower(out.format) == "rmd") {
+      return(rmd) # Keep the rmarkdown file and return the file object
+    }
+    else {
+      render_citations(rmd, output = out.format, out.dir = out.dir)
+      file.remove(rmd)
+    }
+  } else {
+    return(cites)
   }
 }
