@@ -10,9 +10,8 @@
 #' explicitly state \code{results = 'asis'}.
 #'
 #' This function is intended to cite R packages with citation keys passed from
-#' \code{\link{get_citations}}, but can accept an arbitrary vector of
-#' citation keys (without @@) found in a BibTeX file referenced in the YAML
-#' header.
+#' \code{\link{get_citations}}, but can accept an arbitrary vector of citation
+#' keys (without @@) found in a BibTeX file referenced in the YAML header.
 #'
 #' @param citekeys Vector of citation keys in reference to a relevant BibTex
 #'   file.
@@ -38,5 +37,5 @@
 nocite_references <- function(citekeys) {
   nocites <- paste0("@", citekeys, collapse = ", ")
   nocite_block <- c("---\nnocite: |\n\t", nocites, "\n...")
-  asis_output(nocite_block)
+  knitr::asis_output(nocite_block)
 }
