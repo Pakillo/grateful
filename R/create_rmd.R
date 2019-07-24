@@ -4,6 +4,7 @@
 #' @param bibfile Name of the file containing references in BibTeX format, as produced by \code{get_citations}.
 #' @param csl Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.
 #' @param filename Name of the rmarkdown file
+#' @param out.format Output format. One of: "docx" (Word), "pdf", "html", "Rmd", or "md" (markdown).
 #' @param out.dir Directory to save the output document. Defaults to working directory.
 #'
 #' @return An rmarkdown file
@@ -17,7 +18,8 @@
 #' rmd <- create_rmd(cites)
 #' }
 create_rmd <- function(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
-                       filename = "refs.Rmd", out.dir = getwd()) {
+                       out.format = "html", filename = "refs.Rmd",
+                       out.dir = getwd()) {
 
   use.csl <- ifelse(is.null(csl), "#csl: null", "csl: ")
 
@@ -39,15 +41,17 @@ create_rmd <- function(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
     "---",
     "")
 
-
   ## list package citations
   plist <- paste("- ", bib.list, " [@", bib.list, "]", sep = "")
-
 
   ## write Rmd to disk
   writeLines(c(yaml.header, plist, "", "## References"), con = filename)
 
-  ## Return Rmd filename
-  filename
-
+  if (tolower(out.format) == "rmd") {
+    return(filename)
+  }
+  else {
+    render_citations(filename, output = out.format, out.dir = out.dir)
+    file.remove(filename)
+  }
 }

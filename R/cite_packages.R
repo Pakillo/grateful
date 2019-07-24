@@ -95,15 +95,8 @@ cite_packages <- function(generate.document = TRUE, all.pkgs = TRUE,
   cites <- get_citations(pkgs, out.dir = out.dir, filename = filename,
                          include_rstudio = include.RStudio)
   if (generate.document == TRUE) {
-    rmd <- create_rmd(cites, csl = style, out.dir = out.dir)
-
-    if (tolower(out.format) == "rmd") {
-      return(rmd) # Keep the rmarkdown file and return the file object
-    }
-    else {
-      render_citations(rmd, output = out.format, out.dir = out.dir)
-      file.remove(rmd)
-    }
+    rmd <- create_rmd(cites, csl = style, out.dir = out.dir,
+                      out.format = out.format)
   } else {
     return(cites)
   }
