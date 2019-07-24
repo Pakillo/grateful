@@ -33,6 +33,12 @@
 #'   function \code{RStudio.Version()} is only defined in RStudio interactive
 #'   sessions.
 #'
+#'   Citation keys are not guaranteed to be preserved when regenerated,
+#'   particularly when packages are updated. This instability is not an issue
+#'   when citations are used programmatically, as in the example below. But if
+#'   references are put into the text manually, they may need to be updated
+#'   periodically.
+#'
 #' @param generate.document Logical. If \code{TRUE} (default), generate a .Rmd
 #'   file with the citations. Otherwise, simply build the .bib file and return
 #'   the list of package citation keys.
@@ -74,8 +80,8 @@
 #' # get the citations for all packages currently loaded when knitting the .Rmd
 #' citerefs <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
 #'
-#' # To include citations in your references list, include this YAML block in
-#' the text of your RMarkdown document (not in a code chunk):
+#' # To include citations in your references list, include this metadata block
+#' in the text of your RMarkdown document (not in a code chunk):
 #' ---
 #' nocite: |
 #'   `r paste0("@", citerefs, collapse = ", ")`
