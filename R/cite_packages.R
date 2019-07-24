@@ -13,6 +13,8 @@
 #' @param ... Other parameters passed to \code{\link[checkpoint]{scanForPackages}}.
 #'
 #' @return A document with rendered citations in the desired format, plus a file ("pkg-refs.bib") containing references in BibTeX format.
+#' @param filename Optional. Name of BibTeX file containing packages references.
+#'   Defaults to \code{pkg-refs.bib}
 #' @export
 #'
 #' @examples
@@ -22,12 +24,12 @@
 #' cite_packages(style = "ecology", out.format = "docx")
 #' }
 cite_packages <- function(generate.document = TRUE, all.pkgs = TRUE,
-                          include.rmd = TRUE, style = NULL,
-                          out.format = "html", out.dir = getwd(),
+                          include.rmd = TRUE, filename = "pkg-refs.bib",
+                          style = NULL, out.format = "html", out.dir = getwd(),
                           include.RStudio = FALSE, ...) {
   pkgs <- scan_packages(all.pkgs = all.pkgs, include.Rmd = include.rmd, ...)
-  cites <- get_citations(pkgs, out.dir = out.dir,
-                         include_rstudio = include.RStudio) # produces "pkg-refs.bib" file
+  cites <- get_citations(pkgs, out.dir = out.dir, filename = filename,
+                         include_rstudio = include.RStudio)
   if (generate.document == TRUE) {
     rmd <- create_rmd(cites, csl = style, out.dir = out.dir)
 
