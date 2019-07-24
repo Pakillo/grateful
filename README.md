@@ -12,9 +12,9 @@ scan the project for R packages used and generate a BibTeX file
 containing all citations for those packages. `grateful` can then either
 generate a new document with citations in the desired output format
 (Word, PDF, HTML, Markdown), or list citation keys to incorporate into
-an existing RMarkdown document. Importantly, these references can be
-formatted for a specific journal so that we can just paste them directly
-into the bibliography list of our manuscript or report.
+an existing RMarkdown document. These references can be formatted for a
+specific journal so that we can just paste them directly into the
+bibliography list of our manuscript or report.
 
 ## Installation
 
