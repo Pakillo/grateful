@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -87,12 +85,13 @@ citationkeys <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
 
 These citation keys can then be referenced within the document, or to just include citations in the References section, concatenate them into a list (with `@` before each key) and place them in a [metadata block](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#unused_references_(nocite)) to include them without an in-text citation. 
 
-```
+````
 ---
 nocite: |
-  `r paste0("@", citationkeys, collapse = ", ")`
+  `r "\u0060r  paste0(\"@\", citationkeys, collapse = \", \")\u0060"`
 ...
-```
+````
+<!-- That inline R expression is a big yikes but it's tough to render verbatim inline R code INSIDE a verbatim chunk -->
 
 Note that `all.pkgs = TRUE` does not work when being knitted within an RMarkdown document, due to a limitation of `checkpoint::scanForPackages()`. 
 
