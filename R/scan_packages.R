@@ -1,8 +1,13 @@
 #' Scan a project or folder for packages used
 #'
-#' @param all.pkgs Logical. Include all packages used in scripts within the project/folder (the default), or only packages used in the current session? If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses \code{\link[utils]{sessionInfo}}.
-#' @param include.Rmd Logical. Include packages used in Rmarkdown documents? (default is TRUE, requires \code{knitr} package).
-#' @param ... Other parameters passed to \code{\link[checkpoint]{scanForPackages}}.
+#' @param all.pkgs Logical. Include all packages used in scripts within the
+#'   project/folder (the default), or only packages used in the current session?
+#'   If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses
+#'   \code{\link[utils]{sessionInfo}}.
+#' @param include.Rmd Logical. Include packages used in Rmarkdown documents?
+#'   (default is TRUE, requires \code{knitr} package).
+#' @param ... Other parameters passed to
+#'   \code{\link[checkpoint]{scanForPackages}}.
 #'
 #' @return a character vector of package names
 #' @export
