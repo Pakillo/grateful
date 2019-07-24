@@ -86,22 +86,22 @@ keys.
 citationkeys <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
 ```
 
-These citation keys can then be referenced within the document, or to
-just include citations in the References section, concatenate them into
-a list (with `@` before each key) and place them in a [metadata
-block](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#unused_references_\(nocite\))
-to include them without an in-text citation.
-
-    ---
-    nocite: |
-      `r  paste0("@", citationkeys, collapse = ", ")`
-    ...
-
-<!-- That inline R expression is a big yikes but it's tough to render verbatim inline R code INSIDE a verbatim chunk -->
-
 Note that `all.pkgs = TRUE` does not work when being knitted within an
 RMarkdown document, due to a limitation of
 `checkpoint::scanForPackages()`.
+
+These citation keys can then be referenced within the document, or to
+just include citations in the References section, use
+`nocite_references()` to place them in a [metadata
+block](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#unused_references_\(nocite\))
+for inclusion in the References section without an in-text citation.
+`nocite_references()` can be called either inline or in a code chunk
+(with `echo = FALSE`) in the body of your document, and returns the text
+“as-is”, so a chunk with `results = 'asis'` is not required.
+
+``` r
+nocite_references(citationkeys)
+```
 
 ## Workflow
 
@@ -132,6 +132,13 @@ cites <- get_citations(pkgs)
 ``` r
 rmd <- create_rmd(cites)
 render_citations(rmd, output = "html")
+```
+
+Otherwise, use the citation keys in text, or include them in the
+References file.
+
+``` r
+nocite_references(citationkeys)
 ```
 
 ## Limitations
