@@ -4,7 +4,7 @@
 # grateful
 
 [![Travis-CI Build
-Status](https://travis-ci.org/pakillo/grateful.svg?branch=master)](https://travis-ci.org/pakillo/grateful)
+Status](https://travis-ci.org/Pakillo/grateful.svg?branch=master)](https://travis-ci.org/Pakillo/grateful)
 
 The goal of **grateful** is to make it very easy to cite the R packages
 used in any report or publication. By calling a single function, it will
@@ -20,7 +20,7 @@ bibliography list of our manuscript or report.
 
 ``` r
 library(devtools)
-install_github("pakillo/grateful")
+install_github("Pakillo/grateful")
 ```
 
 ## Basic Usage
