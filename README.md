@@ -161,6 +161,6 @@ is only defined in RStudio interactive sessions.
 
 Citation keys are not guaranteed to be preserved when regenerated,
 particularly when packages are updated. This instability is not an issue
-when citations are used programmatically, as in the example below. But
+when citations are used programmatically, as in the example above. But
 if references are put into the text manually, they may need to be
 updated periodically.
