@@ -6,14 +6,14 @@
 [![Travis-CI Build
 Status](https://travis-ci.org/connorp/grateful.svg?branch=master)](https://travis-ci.org/connorp/grateful)
 
-The goal of `grateful` is to make it very easy to cite the R packages
+The goal of **grateful** is to make it very easy to cite the R packages
 used in any report or publication. By calling a single function, it will
 scan the project for R packages used and generate a BibTeX file
-containing all citations for those packages. `grateful` can then either
-generate a new document with citations in the desired output format
-(Word, PDF, HTML, Markdown), or list citation keys to incorporate into
-an existing RMarkdown document. These references can be formatted for a
-specific journal so that we can just paste them directly into the
+containing all citations for those packages. **grateful** can then
+either generate a new document with citations in the desired output
+format (Word, PDF, HTML, Markdown), or list citation keys to incorporate
+into an existing RMarkdown document. These references can be formatted
+for a specific journal so that we can just paste them directly into the
 bibliography list of our manuscript or report.
 
 ## Installation
@@ -25,15 +25,15 @@ install_github("connorp/grateful")
 
 ## Basic Usage
 
-`grateful` can be used in one of two ways: to generate a new document
+**grateful** can be used in one of two ways: to generate a new document
 listing each package and its citation, as well as a references list, or
 to build citation keys to incorporate into an existing RMarkdown
 document.
 
-Imagine a project where we are using the following packages: readr,
-dplyr, vegan, lme4, and ggplot2. We want to collect all the citations
-listed for these packages, as well as a citation for base R (and for
-RStudio, if applicable).
+Imagine a project where we are using the following packages: **readr**,
+**dplyr**, **vegan**, **lme4**, and **ggplot2**, We want to collect all
+the citations listed for these packages, as well as a citation for base
+R (and for RStudio, if applicable).
 
 ### Generate a New References Document
 
@@ -55,7 +55,7 @@ citation style for a particular journal using `style`.
 cite_packages(style = "ecology", out.format = "docx")
 ```
 
-You can also save the output of `cite_packages` to a specified
+You can also save the output of `cite_packages()` to a specified
 directory.
 
 ``` r
@@ -66,7 +66,7 @@ cite_packages(out.format = "rmd", out.dir = file.path(getwd(), "docs"))
 ### Add Citations to an Existing Document
 
 If you are building a document in RMarkdown and want to cite R packages,
-`grateful` can generate a BibTeX file and return the citation keys.
+**grateful** can generate a BibTeX file and return the citation keys.
 
 First, include a reference to the BibTeX file in your YAML header.
 
@@ -93,13 +93,13 @@ RMarkdown document, due to a limitation of
 These citation keys can then be referenced within the document, or to
 just include citations in the References section, use
 `nocite_references()`. Depending on whether citations are processed with
-`pandoc-citeproc` or a LaTeX package like natbib or biblatex, pass the
-`style` parameter to `nocite_references()`.
+**pandoc-citeproc** or a LaTeX package like **natbib** or **biblatex**,
+pass the `style` parameter to `nocite_references()`.
 
 Use `nocite_references(..., style = 'pandoc')` to place them in a
 [metadata
 block](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#unused_references_\(nocite\)),
-or `nocite_references(..., style = 'latex')` to put the `nocite{}`
+or `nocite_references(..., style = 'latex')` to put the `\nocite{}`
 command directly into the document.
 
 `nocite_references()` can be called either inline or in a code chunk
@@ -112,7 +112,7 @@ nocite_references(citationkeys, style = 'pandoc')
 
 ## Workflow
 
-`cite_packages` is a wrapper function which internally performs the
+`cite_packages()` is a wrapper function which internally performs the
 following steps:
 
 1.  Scan the project for packages
@@ -150,9 +150,9 @@ nocite_references(citationkeys, style = 'pandoc')
 
 ## Limitations
 
-`all.pkgs = TRUE` fails if run within `knitr` when compiling an
-RMarkdown document. `checkpoint::scanForPackages` is unable to search
-for packages within the temporary directory used by `knitr::knit`.
+`all.pkgs = TRUE` fails if run within **knitr** when compiling an
+RMarkdown document. `checkpoint::scanForPackages()` is unable to search
+for packages within the temporary directory used by `knitr::knit()`.
 
 `include.RStudio = TRUE` fails if run from an R session that is not in
 an RStudio interactive session, including being run by `knitr`, even
