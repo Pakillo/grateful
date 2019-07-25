@@ -100,7 +100,9 @@ Use `nocite_references(..., citation_processor = 'pandoc')` to place
 them in a [metadata
 block](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#unused_references_\(nocite\)),
 or `nocite_references(..., citation_processor = 'latex')` to put the
-`\nocite{}` command directly into the document.
+`\nocite{}` command directly into the document. `citation_processor =
+'pandoc'` is assumed for all non-LaTeX output formats, and the value of
+the parameter is ignored except when knitting to LaTeX.
 
 `nocite_references()` can be called either inline or in a code chunk
 (with `echo = FALSE`) in the body of your document, and returns the text

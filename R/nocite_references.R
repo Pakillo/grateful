@@ -19,11 +19,13 @@
 #'
 #' @param citekeys Vector of citation keys in reference to a relevant BibTex
 #'   file.
-#' @param citation_processor Mechanism for citation processing, implying
-#'   formatting of the nocite command. Either "pandoc" or "latex". If processing
-#'   with pandoc-citeproc, use the nocite metadata block. If processing via a
-#'   LaTeX processor such as natbib or biblatex, put in the LaTeX
-#'   \code{\\nocite\{\}} command directly.
+#' @param citation_processor Mechanism for citation processing when knitting to
+#'   PDF or otherwise using LaTeX. Selects the appropriate formatting of the
+#'   nocite command. Either "pandoc" or "latex". If processing with
+#'   pandoc-citeproc, use the nocite metadata block. If processing via a LaTeX
+#'   processor such as natbib or biblatex, put in the LaTeX \code{\\nocite\{\}}
+#'   command directly. If knitting to any non-LaTeX format, this parameter is
+#'   ignored, and a pandoc-citeproc style block is used.
 #'
 #' @return "As is" text of metadata block, with comma-separated list of citation
 #'   keys.
@@ -44,6 +46,10 @@
 #' `r nocite_references(citekeys, citation_processor = 'pandoc')`
 #' }
 nocite_references <- function(citekeys, citation_processor = c('pandoc', 'latex')) {
+  # The citation processor only matters if LaTeX might be processing the
+  # citations. Otherwise, just use pandoc-citeproc style nocite block
+  if (knitr::is_latex_output() == FALSE) citation_processor <- 'pandoc'
+
   if (tolower(citation_processor) == 'pandoc') {
     nocites <- paste0("@", citekeys, collapse = ", ")
     nocite_command <- c("---\nnocite: |\n\t", nocites, "\n...")
