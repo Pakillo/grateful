@@ -5,8 +5,6 @@
 #' @param out.dir Directory to save the output document. Defaults to working directory.
 #'
 #' @return A document in the format specified by \code{output}.
-#' @export
-#' @import rmarkdown
 #'
 #' @examples
 #' \dontrun{

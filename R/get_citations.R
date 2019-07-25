@@ -1,12 +1,17 @@
 #' Get citations for packages
 #'
-#' @param pkgs Character vector of package names, e.g. as produced by \code{scan_packages}.
+#' @param pkgs Character vector of package names, e.g. as produced by
+#'   \code{scan_packages}.
 #' @param filename Optional. Name of BibTeX file containing packages references.
-#' @param out.dir Directory to save the BibTeX file with the references. Defaults to working directory.
+#' @param out.dir Directory to save the BibTeX file with the references.
+#'   Defaults to working directory.
+#' @param include_rstudio Logical. If TRUE, adds a citation for the current
+#'   version of RStudio, if run within RStudio interactively.
 #'
-#' @return Nothing by default. If assigned a name, a list with package citations in BibTeX format. Optionally, a file with references in BibTeX format.
+#' @return Nothing by default. If assigned a name, a list with citation keys for
+#'   each citation (without @@). Optionally, a file with references in BibTeX
+#'   format.
 #' @export
-#' @import utils
 #'
 #' @examples
 #' \dontrun{
@@ -14,21 +19,26 @@
 #' pkgs <- scan_packages()
 #' cites <- get_citations(pkgs)
 #' }
-get_citations <- function(pkgs, filename = "pkg-refs.bib", out.dir = getwd()) {
+get_citations <- function(pkgs, filename = "pkg-refs.bib",
+                          out.dir = getwd(), include_rstudio = FALSE) {
 
-  cites <- lapply(pkgs, utils::citation)
-  cites.bib <- lapply(cites, utils::toBibtex)
+  cites.bib <- lapply(pkgs, get_citation_and_citekey)
 
-  # generate reference key
-  for (i in seq_len(length(cites.bib))) {
-    cites.bib[[i]] <- sub(pattern = "\\{,$", replacement = paste0("{", pkgs[i], ","), x = cites.bib[[i]])
+  if (include_rstudio == TRUE) {
+    # Put an RStudio citation on the end
+    rstudio_cit <- tryCatch(RStudio.Version()$citation,
+                            error = function(e) NULL)
+    if (!is.null(rstudio_cit)) {
+      cites.bib[[length(cites.bib) + 1]] <- add_citekey("rstudio", rstudio_cit)
+    }
   }
 
   ## write bibtex references to file
-  writeLines(enc2utf8(unlist(cites.bib)), con = file.path(out.dir, filename), useBytes = TRUE)
+  writeLines(enc2utf8(unlist(cites.bib)), con = file.path(out.dir, filename),
+             useBytes = TRUE)
 
-  ## return named list of bibtex references
-  names(cites.bib) <- pkgs
-  invisible(cites.bib)
-
+  # get the citekeys and format them appropriately before returning them
+  citekeys <- unname(grep("\\{[[:alnum:]]+,$", unlist(cites.bib), value = TRUE))
+  citekeys <- gsub(".*\\{([[:alnum:]]+),$", "\\1", citekeys)
+  invisible(citekeys)
 }
