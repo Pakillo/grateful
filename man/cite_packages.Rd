@@ -101,11 +101,10 @@ cite_packages(citation_style = "ecology", out.format = "docx")
 # get the citations for all packages currently loaded when knitting the .Rmd
 citerefs <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
 
-# To include citations in your references list, include this metadata block
-in the text of your RMarkdown document (not in a code chunk):
----
-nocite: |
-  `r paste0("@", citerefs, collapse = ", ")`
-...
+# To include citations in your references list, run either inline or in a
+# chunk with echo = FALSE. Specify with citation_processor whether the
+# citations are processed with pandoc-citeproc or a LaTeX package like
+# biblatex or natbib.
+nocite_references(citerefs, citation_processor = 'pandoc')
 }
 }
