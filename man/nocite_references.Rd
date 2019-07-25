@@ -4,11 +4,17 @@
 \alias{nocite_references}
 \title{Generate Nocite Block}
 \usage{
-nocite_references(citekeys)
+nocite_references(citekeys, style = c("pandoc", "latex"))
 }
 \arguments{
 \item{citekeys}{Vector of citation keys in reference to a relevant BibTex
 file.}
+
+\item{style}{Mechanism for citation processing, implying formatting of the
+nocite command. Either "pandoc" or "latex". If processing with
+pandoc-citeproc, use the nocite metadata block. If processing via a LaTeX
+processor such as natbib or biblatex, put in the LaTeX \code{\\nocite\{\}}
+command directly.}
 }
 \value{
 "As is" text of metadata block, with comma-separated list of citation
@@ -25,6 +31,10 @@ inline or within a code chunk (with \code{echo = FALSE}) to include this
 metadata block within an RMarkdown document. The code chunk need not
 explicitly state \code{results = 'asis'}.
 
+Call \code{nocite_references} with either \code{style = 'pandoc'} or
+\code{style = 'latex'} depending on whether you are processing citations with
+pandoc-citeproc or a LaTeX citation processor such as biblatex or natbib.
+
 This function is intended to cite R packages with citation keys passed from
 \code{\link{get_citations}}, but can accept an arbitrary vector of citation
 keys (without @) found in a BibTeX file referenced in the YAML header.
@@ -40,7 +50,7 @@ bibliography: pkg-refs.bib
 # (run after all packages have been loaded).
 citekeys <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
 
-# Include in RMarkdown body:
-`r nocite_references(citekeys)`
+# Include in RMarkdown body for use with pandoc-citeproc:
+`r nocite_references(citekeys, style = 'pandoc')`
 }
 }

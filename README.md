@@ -92,15 +92,22 @@ RMarkdown document, due to a limitation of
 
 These citation keys can then be referenced within the document, or to
 just include citations in the References section, use
-`nocite_references()` to place them in a [metadata
-block](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#unused_references_\(nocite\))
-for inclusion in the References section without an in-text citation.
+`nocite_references()`. Depending on whether citations are processed with
+`pandoc-citeproc` or a LaTeX package like natbib or biblatex, pass the
+`style` parameter to `nocite_references()`.
+
+Use `nocite_references(..., style = 'pandoc')` to place them in a
+[metadata
+block](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#unused_references_\(nocite\)),
+or `nocite_references(..., style = 'latex')` to put the `nocite{}`
+command directly into the document.
+
 `nocite_references()` can be called either inline or in a code chunk
 (with `echo = FALSE`) in the body of your document, and returns the text
 “as-is”, so a chunk with `results = 'asis'` is not required.
 
 ``` r
-nocite_references(citationkeys)
+nocite_references(citationkeys, style = 'pandoc')
 ```
 
 ## Workflow
@@ -138,7 +145,7 @@ Otherwise, use the citation keys in text, or include them in the
 References file.
 
 ``` r
-nocite_references(citationkeys)
+nocite_references(citationkeys, style = 'pandoc')
 ```
 
 ## Limitations

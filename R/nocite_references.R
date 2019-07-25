@@ -9,12 +9,21 @@
 #' metadata block within an RMarkdown document. The code chunk need not
 #' explicitly state \code{results = 'asis'}.
 #'
+#' Call \code{nocite_references} with either \code{style = 'pandoc'} or
+#' \code{style = 'latex'} depending on whether you are processing citations with
+#' pandoc-citeproc or a LaTeX citation processor such as biblatex or natbib.
+#'
 #' This function is intended to cite R packages with citation keys passed from
 #' \code{\link{get_citations}}, but can accept an arbitrary vector of citation
 #' keys (without @@) found in a BibTeX file referenced in the YAML header.
 #'
 #' @param citekeys Vector of citation keys in reference to a relevant BibTex
 #'   file.
+#' @param style Mechanism for citation processing, implying formatting of the
+#'   nocite command. Either "pandoc" or "latex". If processing with
+#'   pandoc-citeproc, use the nocite metadata block. If processing via a LaTeX
+#'   processor such as natbib or biblatex, put in the LaTeX \code{\\nocite\{\}}
+#'   command directly.
 #'
 #' @return "As is" text of metadata block, with comma-separated list of citation
 #'   keys.
@@ -31,11 +40,16 @@
 #' # (run after all packages have been loaded).
 #' citekeys <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
 #'
-#' # Include in RMarkdown body:
-#' `r nocite_references(citekeys)`
+#' # Include in RMarkdown body for use with pandoc-citeproc:
+#' `r nocite_references(citekeys, style = 'pandoc')`
 #' }
-nocite_references <- function(citekeys) {
-  nocites <- paste0("@", citekeys, collapse = ", ")
-  nocite_block <- c("---\nnocite: |\n\t", nocites, "\n...")
-  knitr::asis_output(nocite_block)
+nocite_references <- function(citekeys, style = c('pandoc', 'latex')) {
+  if (tolower(style) == 'pandoc') {
+    nocites <- paste0("@", citekeys, collapse = ", ")
+    nocite_command <- c("---\nnocite: |\n\t", nocites, "\n...")
+  } else if (tolower(style) == 'latex') {
+    nocites <- paste0(citekeys, collapse = ", ")
+    nocite_command <- c("\\nocite{", nocites, "}")
+  } else stop("Invalid citation processing style.")
+  knitr::asis_output(nocite_command)
 }
