@@ -19,11 +19,11 @@
 #'
 #' @param citekeys Vector of citation keys in reference to a relevant BibTex
 #'   file.
-#' @param style Mechanism for citation processing, implying formatting of the
-#'   nocite command. Either "pandoc" or "latex". If processing with
-#'   pandoc-citeproc, use the nocite metadata block. If processing via a LaTeX
-#'   processor such as natbib or biblatex, put in the LaTeX \code{\\nocite\{\}}
-#'   command directly.
+#' @param citation_processor Mechanism for citation processing, implying
+#'   formatting of the nocite command. Either "pandoc" or "latex". If processing
+#'   with pandoc-citeproc, use the nocite metadata block. If processing via a
+#'   LaTeX processor such as natbib or biblatex, put in the LaTeX
+#'   \code{\\nocite\{\}} command directly.
 #'
 #' @return "As is" text of metadata block, with comma-separated list of citation
 #'   keys.
@@ -41,13 +41,13 @@
 #' citekeys <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
 #'
 #' # Include in RMarkdown body for use with pandoc-citeproc:
-#' `r nocite_references(citekeys, style = 'pandoc')`
+#' `r nocite_references(citekeys, citation_processor = 'pandoc')`
 #' }
-nocite_references <- function(citekeys, style = c('pandoc', 'latex')) {
-  if (tolower(style) == 'pandoc') {
+nocite_references <- function(citekeys, citation_processor = c('pandoc', 'latex')) {
+  if (tolower(citation_processor) == 'pandoc') {
     nocites <- paste0("@", citekeys, collapse = ", ")
     nocite_command <- c("---\nnocite: |\n\t", nocites, "\n...")
-  } else if (tolower(style) == 'latex') {
+  } else if (tolower(citation_processor) == 'latex') {
     nocites <- paste0(citekeys, collapse = ", ")
     nocite_command <- c("\\nocite{", nocites, "}")
   } else stop("Invalid citation processing style.")

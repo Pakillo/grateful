@@ -5,9 +5,9 @@
 \title{Cite R packages used in a project}
 \usage{
 cite_packages(generate.document = TRUE, all.pkgs = TRUE,
-  include.rmd = TRUE, filename = "pkg-refs.bib", style = NULL,
-  out.format = "html", out.dir = getwd(), include.RStudio = FALSE,
-  ...)
+  include.rmd = TRUE, filename = "pkg-refs.bib",
+  citation_style = NULL, out.format = "html", out.dir = getwd(),
+  include.RStudio = FALSE, ...)
 }
 \arguments{
 \item{generate.document}{Logical. If \code{TRUE} (default), generate a .Rmd
@@ -25,7 +25,7 @@ uses \code{\link[utils]{sessionInfo}}.}
 \item{filename}{Optional. Name of BibTeX file containing packages references.
 Defaults to \code{pkg-refs.bib}}
 
-\item{style}{Optional. Citation style to format references. See
+\item{citation_style}{Optional. Citation style to format references. See
 \url{http://citationstyles.org/styles/}.}
 
 \item{out.format}{Output format, either "docx" (Word), "pdf", "html", or "md"
@@ -93,7 +93,7 @@ library(grateful)
 
 ## To build a standalone document for citations:
 cite_packages()
-cite_packages(style = "ecology", out.format = "docx")
+cite_packages(citation_style = "ecology", out.format = "docx")
 
 ## To include citations in an RMarkdown file:
 # include in YAML header: bibliography: pkg-refs.bib

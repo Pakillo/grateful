@@ -4,17 +4,17 @@
 \alias{nocite_references}
 \title{Generate Nocite Block}
 \usage{
-nocite_references(citekeys, style = c("pandoc", "latex"))
+nocite_references(citekeys, citation_processor = c("pandoc", "latex"))
 }
 \arguments{
 \item{citekeys}{Vector of citation keys in reference to a relevant BibTex
 file.}
 
-\item{style}{Mechanism for citation processing, implying formatting of the
-nocite command. Either "pandoc" or "latex". If processing with
-pandoc-citeproc, use the nocite metadata block. If processing via a LaTeX
-processor such as natbib or biblatex, put in the LaTeX \code{\\nocite\{\}}
-command directly.}
+\item{citation_processor}{Mechanism for citation processing, implying
+formatting of the nocite command. Either "pandoc" or "latex". If processing
+with pandoc-citeproc, use the nocite metadata block. If processing via a
+LaTeX processor such as natbib or biblatex, put in the LaTeX
+\code{\\nocite\{\}} command directly.}
 }
 \value{
 "As is" text of metadata block, with comma-separated list of citation
@@ -51,6 +51,6 @@ bibliography: pkg-refs.bib
 citekeys <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
 
 # Include in RMarkdown body for use with pandoc-citeproc:
-`r nocite_references(citekeys, style = 'pandoc')`
+`r nocite_references(citekeys, citation_processor = 'pandoc')`
 }
 }

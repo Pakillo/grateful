@@ -50,7 +50,7 @@
 #'   Defaults to \code{pkg-refs.bib}
 #' @param include.rmd Logical. Include packages used in Rmarkdown documents?
 #'   (default is \code{TRUE}, requires \code{knitr} package).
-#' @param style Optional. Citation style to format references. See
+#' @param citation_style Optional. Citation style to format references. See
 #'   \url{http://citationstyles.org/styles/}.
 #' @param out.format Output format, either "docx" (Word), "pdf", "html", or "md"
 #'   (markdown).
@@ -72,7 +72,7 @@
 #'
 #' ## To build a standalone document for citations:
 #' cite_packages()
-#' cite_packages(style = "ecology", out.format = "docx")
+#' cite_packages(citation_style = "ecology", out.format = "docx")
 #'
 #' ## To include citations in an RMarkdown file:
 #' # include in YAML header: bibliography: pkg-refs.bib
@@ -89,13 +89,13 @@
 #' }
 cite_packages <- function(generate.document = TRUE, all.pkgs = TRUE,
                           include.rmd = TRUE, filename = "pkg-refs.bib",
-                          style = NULL, out.format = "html", out.dir = getwd(),
-                          include.RStudio = FALSE, ...) {
+                          citation_style = NULL, out.format = "html",
+                          out.dir = getwd(), include.RStudio = FALSE, ...) {
   pkgs <- scan_packages(all.pkgs = all.pkgs, include.Rmd = include.rmd, ...)
   cites <- get_citations(pkgs, out.dir = out.dir, filename = filename,
                          include_rstudio = include.RStudio)
   if (generate.document == TRUE) {
-    rmd <- create_rmd(cites, csl = style, out.dir = out.dir,
+    rmd <- create_rmd(cites, csl = citation_style, out.dir = out.dir,
                       out.format = out.format)
   } else {
     return(cites)

@@ -49,10 +49,10 @@ cite_packages(generate.document = TRUE)
 
 This document can also be a Word document, PDF file, markdown file, or
 left as the source Rmarkdown file using `out.format`. We can specify the
-citation style for a particular journal using `style`.
+citation style for a particular journal using `citation_style`.
 
 ``` r
-cite_packages(style = "ecology", out.format = "docx")
+cite_packages(citation_style = "ecology", out.format = "docx")
 ```
 
 You can also save the output of `cite_packages()` to a specified
@@ -94,20 +94,20 @@ These citation keys can then be referenced within the document, or to
 just include citations in the References section, use
 `nocite_references()`. Depending on whether citations are processed with
 **pandoc-citeproc** or a LaTeX package like **natbib** or **biblatex**,
-pass the `style` parameter to `nocite_references()`.
+pass the `citation_processor` parameter to `nocite_references()`.
 
-Use `nocite_references(..., style = 'pandoc')` to place them in a
-[metadata
+Use `nocite_references(..., citation_processor = 'pandoc')` to place
+them in a [metadata
 block](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#unused_references_\(nocite\)),
-or `nocite_references(..., style = 'latex')` to put the `\nocite{}`
-command directly into the document.
+or `nocite_references(..., citation_processor = 'latex')` to put the
+`\nocite{}` command directly into the document.
 
 `nocite_references()` can be called either inline or in a code chunk
 (with `echo = FALSE`) in the body of your document, and returns the text
 “as-is”, so a chunk with `results = 'asis'` is not required.
 
 ``` r
-nocite_references(citationkeys, style = 'pandoc')
+nocite_references(citationkeys, citation_processor = 'pandoc')
 ```
 
 ## Workflow
@@ -145,7 +145,7 @@ Otherwise, use the citation keys in text, or include them in the
 References file.
 
 ``` r
-nocite_references(citationkeys, style = 'pandoc')
+nocite_references(citationkeys, citation_processor = 'pandoc')
 ```
 
 ## Limitations
