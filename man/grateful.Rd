@@ -4,7 +4,11 @@
 \name{grateful}
 \alias{grateful}
 \alias{grateful-package}
-\title{Grateful}
+\title{Grateful: Citing R and R Packages}
 \description{
-Grateful
+Find R packages used in a project, create a BibTeX file of citations, and
+cite them in either a new or existing document. See the primary function
+\code{\link{cite_packages}} for full details and usage instructions, and
+\code{\link{nocite_references}} for including package citations in the
+bibliography of an RMarkdown document.
 }
