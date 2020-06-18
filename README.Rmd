@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -18,15 +16,15 @@ knitr::opts_chunk$set(
 # grateful
 
 [![Travis-CI Build Status](https://travis-ci.org/Pakillo/grateful.svg?branch=master)](https://travis-ci.org/Pakillo/grateful)
+[![HitCount](http://hits.dwyl.com/Pakillo/grateful.svg)](http://hits.dwyl.com/Pakillo/grateful)
 
-The goal of `grateful` is to make it very easy to cite the R packages used in any report or publication. By calling a single function, it will scan the project for R packages used and generate a document with citations in the desired output format (Word, PDF, HTML, Markdown). Importantly, these references can be formatted for a specific journal so that we can just paste them directly into the bibliography list of our manuscript or report.
+The goal of `grateful` is to make it very easy to cite the R packages used in any report or publication. By calling a single function, it will scan the project for R packages used and generate a document with citations in the desired output format (Word, PDF, HTML, Markdown). Importantly, these references can be formatted for a specific journal so that we can just paste them directly into the bibliography list of our manuscript or report. If you prefer to get just a BibTeX file with all package citations, it can also be done (see examples below).
 
 
 ## Installation
 
 ```{r eval=FALSE}
-library(devtools)
-install_github("Pakillo/grateful")
+remotes::install_github("Pakillo/grateful")
 ```
 
 
@@ -53,6 +51,12 @@ You can also save the output of `cite_packages` to a specified directory.
 ```{r eval = FALSE}
 # Save the output in Rmarkdown format only and to a docs folder.
 cite_packages(out.format = "rmd", out.dir = file.path(getwd(), "docs"))
+```
+
+If you just want a BibTeX (.bib) file with all package citations:
+
+```{r eval=FALSE}
+get_citations(scan_packages())
 ```
 
 
