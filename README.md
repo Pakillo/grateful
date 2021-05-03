@@ -3,18 +3,22 @@
 
 # grateful
 
-[![Travis-CI Build
-Status](https://travis-ci.org/Pakillo/grateful.svg?branch=master)](https://travis-ci.org/Pakillo/grateful)
-[![HitCount](http://hits.dwyl.com/Pakillo/grateful.svg)](http://hits.dwyl.com/Pakillo/grateful)
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/Pakillo/grateful/workflows/R-CMD-check/badge.svg)](https://github.com/Pakillo/grateful/actions)
+<!-- badges: end -->
 
 The goal of `grateful` is to make it very easy to cite the R packages
 used in any report or publication. By calling a single function, it will
-scan the project for R packages used and generate a document with
+scan the project for R packages used, and generate a document with
 citations in the desired output format (Word, PDF, HTML, Markdown).
+
 Importantly, these references can be formatted for a specific journal so
 that we can just paste them directly into the bibliography list of our
-manuscript or report. If you prefer to get just a BibTeX file with all
-package citations, it can also be done (see examples below).
+manuscript or report.
+
+If you prefer to get just a BibTeX file with all package citations, it
+can also be done (see examples below).
 
 ## Installation
 
