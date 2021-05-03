@@ -4,8 +4,13 @@
 \alias{create_rmd}
 \title{Create template rmarkdown file with package citations}
 \usage{
-create_rmd(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
-  filename = "refs.Rmd", out.dir = getwd())
+create_rmd(
+  bib.list,
+  bibfile = "pkg-refs.bib",
+  csl = NULL,
+  filename = "refs.Rmd",
+  out.dir = getwd()
+)
 }
 \arguments{
 \item{bib.list}{List of package citations in BibTeX format, as produced by \code{get_citations}.}

@@ -4,15 +4,21 @@
 \alias{cite_packages}
 \title{Cite R packages used in a project}
 \usage{
-cite_packages(all.pkg = TRUE, include.rmd = TRUE, style = NULL,
-  out.format = "html", out.dir = getwd(), ...)
+cite_packages(
+  all.pkg = TRUE,
+  include.rmd = TRUE,
+  style = NULL,
+  out.format = "html",
+  out.dir = getwd(),
+  ...
+)
 }
 \arguments{
 \item{all.pkg}{Logical. Include all packages used in scripts within the project/folder (the default), or only packages used in the current session? If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses \code{\link[utils]{sessionInfo}}.}
 
 \item{include.rmd}{Logical. Include packages used in Rmarkdown documents? (default is TRUE, requires \code{knitr} package).}
 
-\item{style}{Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.}
+\item{style}{Optional. Citation style to format references. See \url{https://www.zotero.org/styles}.}
 
 \item{out.format}{Output format, either "docx" (Word), "pdf", "html", or "md" (markdown).}
 

@@ -3,8 +3,4 @@
 \docType{package}
 \name{grateful}
 \alias{grateful}
-\alias{grateful-package}
 \title{grateful.}
-\description{
-grateful.
-}
