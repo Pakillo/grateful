@@ -4,14 +4,15 @@
 \alias{scan_packages}
 \title{Scan a project or folder for packages used}
 \usage{
-scan_packages(all.pkgs = TRUE, include.Rmd = FALSE, ...)
+scan_packages(all.pkgs = TRUE, ...)
 }
 \arguments{
-\item{all.pkgs}{Logical. Include all packages used in scripts within the project/folder (the default), or only packages used in the current session? If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses \code{\link[utils]{sessionInfo}}.}
+\item{all.pkgs}{Logical. Include all packages used in scripts within
+the project/folder (the default), or only packages used in the current session?
+If TRUE, uses \code{\link[renv]{dependencies}},
+otherwise uses \code{\link[utils]{sessionInfo}}.}
 
-\item{include.Rmd}{Logical. Include packages used in Rmarkdown documents? (default is TRUE, requires \code{knitr} package).}
-
-\item{...}{Other parameters passed to \code{\link[checkpoint]{scanForPackages}}.}
+\item{...}{Other parameters passed to \code{\link[renv]{dependencies}}.}
 }
 \value{
 a character vector of package names

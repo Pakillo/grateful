@@ -6,7 +6,6 @@
 \usage{
 cite_packages(
   all.pkg = TRUE,
-  include.rmd = TRUE,
   style = NULL,
   out.format = "html",
   out.dir = getwd(),
@@ -14,20 +13,23 @@ cite_packages(
 )
 }
 \arguments{
-\item{all.pkg}{Logical. Include all packages used in scripts within the project/folder (the default), or only packages used in the current session? If TRUE, uses \code{\link[checkpoint]{scanForPackages}}, otherwise uses \code{\link[utils]{sessionInfo}}.}
-
-\item{include.rmd}{Logical. Include packages used in Rmarkdown documents? (default is TRUE, requires \code{knitr} package).}
+\item{all.pkg}{Logical. Include all packages used in scripts within the
+project/folder (the default), or only packages used in the current session?
+If TRUE, uses \code{\link[renv]{dependencies}},
+otherwise uses \code{\link[utils]{sessionInfo}}.}
 
 \item{style}{Optional. Citation style to format references. See \url{https://www.zotero.org/styles}.}
 
-\item{out.format}{Output format, either "docx" (Word), "pdf", "html", or "md" (markdown).}
+\item{out.format}{Output format, either "docx", "pdf", "html", or "Rmd" (Rmarkdown).}
 
-\item{out.dir}{Directory to save the output document and a BibTeX file with the references. Defaults to working directory.}
+\item{out.dir}{Directory to save the output document and a BibTeX file with the references.
+Defaults to working directory.}
 
-\item{...}{Other parameters passed to \code{\link[checkpoint]{scanForPackages}}.}
+\item{...}{Other parameters passed to \code{\link[renv]{dependencies}}.}
 }
 \value{
-A document with rendered citations in the desired format, plus a file ("pkg-refs.bib") containing references in BibTeX format.
+A document with rendered citations in the desired format,
+plus a file ("pkg-refs.bib") containing references in BibTeX format.
 }
 \description{
 This is a wrapper function.
