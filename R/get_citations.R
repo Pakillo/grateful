@@ -2,9 +2,9 @@
 #'
 #' @param pkgs Character vector of package names, e.g. as produced by
 #'   \code{scan_packages}.
-#' @param filename Optional. Name of BibTeX file containing packages references.
 #' @param out.dir Directory to save the BibTeX file with the references.
 #'   Defaults to working directory.
+#' @param bibfile Name of the file to save the package BibTeX references.
 #' @param include.RStudio Logical. If TRUE, adds a citation for the current
 #'   version of RStudio, if run within RStudio interactively.
 #'
@@ -19,8 +19,10 @@
 #' pkgs <- scan_packages()
 #' cites <- get_citations(pkgs)
 #' }
-get_citations <- function(pkgs, filename = "pkg-refs.bib",
-                          out.dir = getwd(), include.RStudio = FALSE) {
+get_citations <- function(pkgs,
+                          out.dir = getwd(),
+                          bibfile = "pkg-refs.bib",
+                          include.RStudio = FALSE) {
 
   cites.bib <- lapply(pkgs, get_citation_and_citekey)
 
@@ -34,7 +36,7 @@ get_citations <- function(pkgs, filename = "pkg-refs.bib",
   }
 
   ## write bibtex references to file
-  writeLines(enc2utf8(unlist(cites.bib)), con = file.path(out.dir, filename),
+  writeLines(enc2utf8(unlist(cites.bib)), con = file.path(out.dir, bibfile),
              useBytes = TRUE)
 
   # get the citekeys and format them appropriately before returning them
