@@ -19,7 +19,7 @@
 #' \code{generate.document = FALSE} returns a list of citation keys from the
 #' BibTeX file. These citation keys can then be used programmatically or
 #' manually to cite packages, including in a \code{nocite} block in an RMarkdown
-#' document. To do so, include a reference to the generated \code{filename}
+#' document. To do so, include a reference to the generated \code{bibfile}
 #' bibliography file in the YAML header of the RMarkdown document.
 #'
 #' @section Limitations: \code{all.pkgs = TRUE} fails if run within
@@ -46,7 +46,7 @@
 #'   project/folder (the default), or only packages used in the current session?
 #'   If \code{TRUE}, uses \code{\link[renv]{dependencies}}, otherwise
 #'   uses \code{\link[utils]{sessionInfo}}.
-#' @param filename Optional. Name of BibTeX file containing packages references.
+#' @param bibfile Name of BibTeX file containing packages references.
 #'   Defaults to \code{pkg-refs.bib}
 #' @param citation_style Optional. Citation style to format references. See
 #'   \url{https://www.zotero.org/styles}.
@@ -85,13 +85,20 @@
 #' nocite_references(citerefs, citation_processor = 'pandoc')
 #' }
 
-cite_packages <- function(generate.document = TRUE, all.pkgs = TRUE,
-                          filename = "pkg-refs.bib",
-                          citation_style = NULL, out.format = "html",
-                          out.dir = getwd(), include.RStudio = FALSE, ...) {
+cite_packages <- function(generate.document = TRUE,
+                          out.format = "html",
+                          citation_style = NULL,
+                          all.pkgs = TRUE,
+                          include.RStudio = FALSE,
+                          out.dir = getwd(),
+                          bibfile = "pkg-refs.bib",
+                          ...) {
+
   pkgs <- scan_packages(all.pkgs = all.pkgs, ...)
-  cites <- get_citations(pkgs, out.dir = out.dir, filename = filename,
-                         include_rstudio = include.RStudio)
+
+  cites <- get_citations(pkgs, out.dir = out.dir, bibfile = bibfile,
+                         include.RStudio = include.RStudio)
+
   if (generate.document == TRUE) {
     rmd <- create_rmd(cites, csl = citation_style, out.dir = out.dir,
                       out.format = out.format)
