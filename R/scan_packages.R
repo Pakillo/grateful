@@ -24,5 +24,6 @@ scan_packages <- function(all.pkgs = TRUE, ...) {
   # Only cite base R once
   base_pkgs <- utils::sessionInfo()$basePkgs
   pkgs <- c("base", setdiff(pkgs, base_pkgs))
+  pkgs <- sort(pkgs)
 
 }
