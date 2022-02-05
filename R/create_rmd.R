@@ -2,8 +2,8 @@
 #'
 #' @param bib.list List of package citation keys, as produced by \code{get_citations}.
 #' @param bibfile Name of the file containing references in BibTeX format, as produced by \code{get_citations}.
-#' @param csl Optional. Citation style to format references. See \url{http://citationstyles.org/styles/}.
-#' @param filename Name of the rmarkdown file
+#' @param csl Optional. Citation style to format references. See \url{https://www.zotero.org/styles}.
+#' @param filename Name of the Rmarkdown file
 #' @param out.format Output format. One of: "docx" (Word), "pdf", "html", "Rmd", or "md" (markdown).
 #' @param out.dir Directory to save the output document. Defaults to working directory.
 #'
@@ -17,8 +17,11 @@
 #' cites <- get_citations(pkgs)
 #' rmd <- create_rmd(cites)
 #' }
-create_rmd <- function(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
-                       out.format = "html", filename = "refs.Rmd",
+create_rmd <- function(bib.list,
+                       bibfile = "pkg-refs.bib",
+                       csl = NULL,
+                       filename = "refs.Rmd",
+                       out.format = "html",
                        out.dir = getwd()) {
 
   use.csl <- ifelse(is.null(csl), "#csl: null", "csl: ")
@@ -42,6 +45,7 @@ create_rmd <- function(bib.list, bibfile = "pkg-refs.bib", csl = NULL,
     "")
 
   ## list package citations
+  bib.list <- sort(bib.list)
   plist <- paste("- ", bib.list, " [@", bib.list, "]", sep = "")
 
   ## write Rmd to disk
