@@ -1,14 +1,14 @@
 Package: grateful
 Title: Facilitate Citation of R Packages
-Version: 0.0.3
-Date: 2021-06-26
-Authors@R: c(person('Francisco', 'Rodriguez-Sanchez', email='f.rodriguez.sanc@gmail.com', role = c('aut', 'cre')),
-    person('Shaurita D.', 'Hutchins', role = c('ctb')))
+Version: 0.0.4
+Date: 2022-02-05
+Authors@R: c(person('Francisco', 'Rodriguez-Sanchez', email = 'f.rodriguez.sanc@gmail.com', role = c('aut', 'cre')),
+             person('Shaurita D.', 'Hutchins', role = c('ctb')),
+             person('Connor P.', 'Jackson', email = 'cpjackson@berkeley.edu', role = 'ctb'))
 Description: Facilitates citation of R packages used in analysis projects. 
-    grateful will scan the project for packages used, 
-    get their preferred citations, 
-    and produce a document with all citations in the preferred bibliography format, 
-    ready to be pasted into a report or manuscript bibliography list.
+    Scans project for packages used, gets their citations, and produces 
+    a document with citations in the preferred bibliography format, ready to be 
+    pasted into reports or manuscripts bibliography list.
 Depends: R (>= 3.0.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -16,8 +16,10 @@ LazyData: true
 Imports:
   renv,
   rmarkdown,
+  knitr,
   utils
 Suggests: testthat
 URL: https://github.com/Pakillo/grateful
 BugReports: https://github.com/Pakillo/grateful/issues
 RoxygenNote: 7.1.1
+

@@ -20,6 +20,8 @@ scan_packages <- function(all.pkgs = TRUE, ...) {
     pkgs <- names(utils::sessionInfo()$otherPkgs)
   }
 
-  pkgs <- c("base", pkgs)
+  # Only cite base R once
+  base_pkgs <- utils::sessionInfo()$basePkgs
+  pkgs <- c("base", setdiff(pkgs, base_pkgs))
 
 }

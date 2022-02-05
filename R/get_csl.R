@@ -11,9 +11,8 @@
 #' get_csl("ecosistemas")
 #' }
 get_csl <- function(name) {
-
   styles.repo <- "https://raw.githubusercontent.com/citation-style-language/styles/master/"
 
-  download.file(paste0(styles.repo, name, ".csl"), mode = "wb",
-                destfile = file.path(getwd(), paste0(name, ".csl")))
+  utils::download.file(paste0(styles.repo, name, ".csl"), mode = "wb",
+                       destfile = file.path(getwd(), paste0(name, ".csl")))
 }
