@@ -18,7 +18,9 @@ Imports:
   rmarkdown,
   knitr,
   utils
-Suggests: testthat
+Suggests: 
+  testthat,
+  rstudioapi
 URL: https://github.com/Pakillo/grateful
 BugReports: https://github.com/Pakillo/grateful/issues
 RoxygenNote: 7.1.2

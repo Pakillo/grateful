@@ -28,11 +28,17 @@ get_citations <- function(pkgs,
 
   if (include.RStudio == TRUE) {
     # Put an RStudio citation on the end
-    rstudio_cit <- tryCatch(RStudio.Version()$citation,
-                            error = function(e) NULL)
-    if (!is.null(rstudio_cit)) {
-      cites.bib[[length(cites.bib) + 1]] <- add_citekey("rstudio", rstudio_cit)
+
+    if (!require(rstudioapi)) {
+      stop("Please install the {rstudioapi} package to cite RStudio.")
+    } else {
+      rstudio_cit <- tryCatch(rstudioapi::versionInfo()$citation,
+                              error = function(e) NULL)
+      if (!is.null(rstudio_cit)) {
+        cites.bib[[length(cites.bib) + 1]] <- add_citekey("rstudio", rstudio_cit)
+      }
     }
+
   }
 
   ## write bibtex references to file

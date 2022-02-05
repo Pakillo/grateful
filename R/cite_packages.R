@@ -22,16 +22,11 @@
 #' document. To do so, include a reference to the generated \code{bibfile}
 #' bibliography file in the YAML header of the RMarkdown document.
 #'
-#' @section Limitations: \code{all.pkgs = TRUE} fails if run within
-#'   \code{\link[knitr]{knit}} when compiling an RMarkdown document.
-#'   \code{\link[checkpoint]{scanForPackages}} is unable to search for packages
-#'   within the temporary directory used by \code{\link[knitr]{knit}}.
+#' @section Limitations:
 #'
 #'   \code{include.RStudio = TRUE} fails if run from an R session that is not in
 #'   an RStudio interactive session, including being run by
-#'   \code{\link[knitr]{knit}}, even when initiated by knitting in RStudio. The
-#'   function \code{RStudio.Version()} is only defined in RStudio interactive
-#'   sessions.
+#'   \code{\link[knitr]{knit}}, even when initiated by knitting in RStudio.
 #'
 #'   Citation keys are not guaranteed to be preserved when regenerated,
 #'   particularly when packages are updated. This instability is not an issue
