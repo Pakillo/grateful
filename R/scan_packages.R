@@ -16,6 +16,7 @@ scan_packages <- function(all.pkgs = TRUE, ...) {
 
   if (all.pkgs) {
     pkgs <- unique(renv::dependencies(...)$Package)
+    pkgs <- pkgs[pkgs != "R"]
   } else {
     pkgs <- names(utils::sessionInfo()$otherPkgs)
   }
