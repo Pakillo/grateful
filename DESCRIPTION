@@ -3,8 +3,8 @@ Title: Facilitate Citation of R Packages
 Version: 0.0.4
 Date: 2022-02-05
 Authors@R: c(person('Francisco', 'Rodriguez-Sanchez', email = 'f.rodriguez.sanc@gmail.com', role = c('aut', 'cre')),
-             person('Shaurita D.', 'Hutchins', role = c('ctb')),
-             person('Connor P.', 'Jackson', email = 'cpjackson@berkeley.edu', role = 'ctb'))
+             person('Connor P.', 'Jackson', email = 'cpjackson@berkeley.edu', role = 'aut'),
+             person('Shaurita D.', 'Hutchins', role = c('ctb')))
 Description: Facilitates citation of R packages used in analysis projects. 
     Scans project for packages used, gets their citations, and produces 
     a document with citations in the preferred bibliography format, ready to be 

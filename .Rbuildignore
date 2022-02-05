@@ -9,3 +9,4 @@ example-output.PNG
 ^manuscript$
 
 ^\.github$
+^LICENSE\.md$
