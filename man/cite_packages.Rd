@@ -4,6 +4,7 @@
 \alias{cite_packages}
 \title{Cite R packages used in a project}
 \usage{
+
 cite_packages(generate.document = TRUE, all.pkgs = TRUE,
   include.rmd = TRUE, filename = "pkg-refs.bib",
   citation_style = NULL, out.format = "html", out.dir = getwd(),
@@ -43,6 +44,7 @@ current version of RStudio, if run within RStudio interactively.}
 \value{
 A document with rendered citations in the desired format, plus a file
   ("pkg-refs.bib") containing references in BibTeX format.
+
 }
 \description{
 Find R packages used in a project, create a BibTeX file of citations, and

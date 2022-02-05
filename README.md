@@ -3,25 +3,30 @@
 
 # grateful
 
-[![Travis-CI Build
-Status](https://travis-ci.org/Pakillo/grateful.svg?branch=master)](https://travis-ci.org/Pakillo/grateful)
+<!-- badges: start -->
 
-The goal of **grateful** is to make it very easy to cite the R packages
+[![R-CMD-check](https://github.com/Pakillo/grateful/workflows/R-CMD-check/badge.svg)](https://github.com/Pakillo/grateful/actions)
+<!-- badges: end -->
+
+The goal of `grateful` is to make it very easy to cite the R packages
 used in any report or publication. By calling a single function, it will
-scan the project for R packages used and generate a BibTeX file
-containing all citations for those packages. **grateful** can then
-either generate a new document with citations in the desired output
-format (Word, PDF, HTML, Markdown), or list citation keys to incorporate
-into an existing RMarkdown document. These references can be formatted
-for a specific journal so that we can just paste them directly into the
-bibliography list of our manuscript or report.
+scan the project for R packages used, and generate a document with
+citations in the desired output format (Word, PDF, HTML, Markdown).
+
+Importantly, these references can be formatted for a specific journal so
+that we can just paste them directly into the bibliography list of our
+manuscript or report.
+
+If you prefer to get just a BibTeX file with all package citations, it
+can also be done (see examples below).
+
 
 ## Installation
 
 ``` r
-library(devtools)
-install_github("Pakillo/grateful")
+remotes::install_github("Pakillo/grateful")
 ```
+
 
 ## Basic Usage
 
@@ -40,6 +45,14 @@ R (and for RStudio, if applicable).
 Calling `cite_packages(generate.document = TRUE)` will scan the project,
 find these packages, and generate a document with formatted citations.
 
+## Basic usage
+
+Imagine a project where we are using the following packages: readr,
+dplyr, vegan, lme4, and ggplot2. Calling `cite_packages` will scan the
+project, find these packages, and generate a document with formatted
+citations.
+
+
 ``` r
 library(grateful)
 cite_packages(generate.document = TRUE)
@@ -50,6 +63,7 @@ cite_packages(generate.document = TRUE)
 This document can also be a Word document, PDF file, markdown file, or
 left as the source Rmarkdown file using `out.format`. We can specify the
 citation style for a particular journal using `citation_style`.
+
 
 ``` r
 cite_packages(citation_style = "ecology", out.format = "docx")
@@ -62,6 +76,7 @@ directory.
 # Save the output in RMarkdown format only and to a docs subfolder.
 cite_packages(out.format = "rmd", out.dir = file.path(getwd(), "docs"))
 ```
+
 
 ### Add Citations to an Existing Document
 
@@ -103,6 +118,17 @@ or `nocite_references(..., citation_processor = 'latex')` to put the
 `\nocite{}` command directly into the document. `citation_processor =
 'pandoc'` is assumed for all non-LaTeX output formats, and the value of
 the parameter is ignored except when knitting to LaTeX.
+
+If you just want a BibTeX (.bib) file with all package citations:
+
+``` r
+get_citations(scan_packages())
+```
+
+## Workflow
+
+`cite_packages` is a wrapper function which internally performs the
+following steps:
 
 `nocite_references()` can be called either inline or in a code chunk
 (with `echo = FALSE`) in the body of your document, and returns the text

@@ -44,14 +44,12 @@
 #'   the list of package citation keys.
 #' @param all.pkgs Logical. Include all packages used in scripts within the
 #'   project/folder (the default), or only packages used in the current session?
-#'   If \code{TRUE}, uses \code{\link[checkpoint]{scanForPackages}}, otherwise
+#'   If \code{TRUE}, uses \code{\link[renv]{dependencies}}, otherwise
 #'   uses \code{\link[utils]{sessionInfo}}.
 #' @param filename Optional. Name of BibTeX file containing packages references.
 #'   Defaults to \code{pkg-refs.bib}
-#' @param include.rmd Logical. Include packages used in Rmarkdown documents?
-#'   (default is \code{TRUE}, requires \code{knitr} package).
 #' @param citation_style Optional. Citation style to format references. See
-#'   \url{http://citationstyles.org/styles/}.
+#'   \url{https://www.zotero.org/styles}.
 #' @param out.format Output format, either "docx" (Word), "pdf", "html", or "md"
 #'   (markdown).
 #' @param out.dir Directory to save the output document and a BibTeX file with
@@ -60,7 +58,7 @@
 #'   current version of RStudio, if run within RStudio interactively.
 #'
 #' @param ... Other parameters passed to
-#'   \code{\link[checkpoint]{scanForPackages}}.
+#'   \code{\link[renv]{dependencies}}.
 #'
 #' @return A document with rendered citations in the desired format, plus a file
 #'   ("pkg-refs.bib") containing references in BibTeX format.
@@ -86,11 +84,12 @@
 #' # biblatex or natbib.
 #' nocite_references(citerefs, citation_processor = 'pandoc')
 #' }
+
 cite_packages <- function(generate.document = TRUE, all.pkgs = TRUE,
-                          include.rmd = TRUE, filename = "pkg-refs.bib",
+                          filename = "pkg-refs.bib",
                           citation_style = NULL, out.format = "html",
                           out.dir = getwd(), include.RStudio = FALSE, ...) {
-  pkgs <- scan_packages(all.pkgs = all.pkgs, include.Rmd = include.rmd, ...)
+  pkgs <- scan_packages(all.pkgs = all.pkgs, ...)
   cites <- get_citations(pkgs, out.dir = out.dir, filename = filename,
                          include_rstudio = include.RStudio)
   if (generate.document == TRUE) {
