@@ -5,12 +5,12 @@
 #' @param filename Optional. Name of BibTeX file containing packages references.
 #' @param out.dir Directory to save the BibTeX file with the references.
 #'   Defaults to working directory.
-#' @param include_rstudio Logical. If TRUE, adds a citation for the current
+#' @param include.RStudio Logical. If TRUE, adds a citation for the current
 #'   version of RStudio, if run within RStudio interactively.
 #'
-#' @return Nothing by default. If assigned a name, a list with citation keys for
-#'   each citation (without @@). Optionally, a file with references in BibTeX
-#'   format.
+#' @return A file on the specified \code{out.dir} containing the package references in BibTeX
+#'   format. If assigned a name, \code{get_citations} will also return a list with citation keys for
+#'   each citation (without @@).
 #' @export
 #'
 #' @examples
@@ -20,11 +20,11 @@
 #' cites <- get_citations(pkgs)
 #' }
 get_citations <- function(pkgs, filename = "pkg-refs.bib",
-                          out.dir = getwd(), include_rstudio = FALSE) {
+                          out.dir = getwd(), include.RStudio = FALSE) {
 
   cites.bib <- lapply(pkgs, get_citation_and_citekey)
 
-  if (include_rstudio == TRUE) {
+  if (include.RStudio == TRUE) {
     # Put an RStudio citation on the end
     rstudio_cit <- tryCatch(RStudio.Version()$citation,
                             error = function(e) NULL)
