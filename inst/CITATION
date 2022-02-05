@@ -2,14 +2,16 @@ citHeader("To cite grateful in publications use:")
 
 citEntry(entry = "Manual",
   title        = "grateful: Facilitate citation of R packages",
-  author       = personList(as.person("Francisco Rodríguez-Sánchez"),
-                   as.person("Shaurita D. Hutchins")),
-  note = "R package version 0.0.2",
-  year         = "2020",
+  author       = personList(
+                as.person("Francisco Rodríguez-Sánchez"),
+                as.person("Connor P. Jackson"),
+                as.person("Shaurita D. Hutchins")),
+  note = "R package version 0.0.4",
+  year         = "2022",
   url          = "https://github.com/Pakillo/grateful",
   textVersion  =
-  paste("Francisco Rodríguez-Sánchez, Shaurita D. Hutchins (2020).",
+  paste("Francisco Rodríguez-Sánchez, Connor P. Jackson, Shaurita D. Hutchins (2022).",
         "grateful: Facilitate citation of R packages.",
-        "R package version 0.0.2.",
+        "R package version 0.0.4.",
         "Available at https://github.com/Pakillo/grateful.")
 )
