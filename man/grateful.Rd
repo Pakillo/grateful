@@ -3,8 +3,7 @@
 \docType{package}
 \name{grateful}
 \alias{grateful}
-\alias{grateful-package}
-\title{Grateful: Citing R and R Packages}
+\title{Grateful: Facilitate citation of R Packages}
 \description{
 Find R packages used in a project, create a BibTeX file of citations, and
 cite them in either a new or existing document. See the primary function

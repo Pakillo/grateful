@@ -6,4 +6,3 @@ export(get_citations)
 export(get_csl)
 export(nocite_references)
 export(scan_packages)
-

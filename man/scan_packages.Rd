@@ -7,14 +7,12 @@
 scan_packages(all.pkgs = TRUE, ...)
 }
 \arguments{
-
 \item{all.pkgs}{Logical. Include all packages used in scripts within
 the project/folder (the default), or only packages used in the current session?
 If TRUE, uses \code{\link[renv]{dependencies}},
 otherwise uses \code{\link[utils]{sessionInfo}}.}
 
 \item{...}{Other parameters passed to \code{\link[renv]{dependencies}}.}
-
 }
 \value{
 a character vector of package names

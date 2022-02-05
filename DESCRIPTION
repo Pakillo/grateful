@@ -21,5 +21,4 @@ Imports:
 Suggests: testthat
 URL: https://github.com/Pakillo/grateful
 BugReports: https://github.com/Pakillo/grateful/issues
-RoxygenNote: 7.1.1
-
+RoxygenNote: 7.1.2

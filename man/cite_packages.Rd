@@ -4,47 +4,48 @@
 \alias{cite_packages}
 \title{Cite R packages used in a project}
 \usage{
-
-cite_packages(generate.document = TRUE, all.pkgs = TRUE,
-  include.rmd = TRUE, filename = "pkg-refs.bib",
-  citation_style = NULL, out.format = "html", out.dir = getwd(),
-  include.RStudio = FALSE, ...)
+cite_packages(
+  generate.document = TRUE,
+  out.format = "html",
+  citation_style = NULL,
+  all.pkgs = TRUE,
+  include.RStudio = FALSE,
+  out.dir = getwd(),
+  bibfile = "pkg-refs.bib",
+  ...
+)
 }
 \arguments{
 \item{generate.document}{Logical. If \code{TRUE} (default), generate a .Rmd
 file with the citations. Otherwise, simply build the .bib file and return
 the list of package citation keys.}
 
-\item{all.pkgs}{Logical. Include all packages used in scripts within the
-project/folder (the default), or only packages used in the current session?
-If \code{TRUE}, uses \code{\link[checkpoint]{scanForPackages}}, otherwise
-uses \code{\link[utils]{sessionInfo}}.}
-
-\item{include.rmd}{Logical. Include packages used in Rmarkdown documents?
-(default is \code{TRUE}, requires \code{knitr} package).}
-
-\item{filename}{Optional. Name of BibTeX file containing packages references.
-Defaults to \code{pkg-refs.bib}}
-
-\item{citation_style}{Optional. Citation style to format references. See
-\url{http://citationstyles.org/styles/}.}
-
 \item{out.format}{Output format, either "docx" (Word), "pdf", "html", or "md"
 (markdown).}
 
-\item{out.dir}{Directory to save the output document and a BibTeX file with
-the references. Defaults to working directory.}
+\item{citation_style}{Optional. Citation style to format references. See
+\url{https://www.zotero.org/styles}.}
+
+\item{all.pkgs}{Logical. Include all packages used in scripts within the
+project/folder (the default), or only packages used in the current session?
+If \code{TRUE}, uses \code{\link[renv]{dependencies}}, otherwise
+uses \code{\link[utils]{sessionInfo}}.}
 
 \item{include.RStudio}{Logical. If \code{TRUE}, adds a citation for the
 current version of RStudio, if run within RStudio interactively.}
 
+\item{out.dir}{Directory to save the output document and a BibTeX file with
+the references. Defaults to working directory.}
+
+\item{bibfile}{Name of BibTeX file containing packages references.
+Defaults to \code{pkg-refs.bib}}
+
 \item{...}{Other parameters passed to
-\code{\link[checkpoint]{scanForPackages}}.}
+\code{\link[renv]{dependencies}}.}
 }
 \value{
 A document with rendered citations in the desired format, plus a file
   ("pkg-refs.bib") containing references in BibTeX format.
-
 }
 \description{
 Find R packages used in a project, create a BibTeX file of citations, and
@@ -67,7 +68,7 @@ just cut and paste citations.
 \code{generate.document = FALSE} returns a list of citation keys from the
 BibTeX file. These citation keys can then be used programmatically or
 manually to cite packages, including in a \code{nocite} block in an RMarkdown
-document. To do so, include a reference to the generated \code{filename}
+document. To do so, include a reference to the generated \code{bibfile}
 bibliography file in the YAML header of the RMarkdown document.
 }
 \section{Limitations}{
