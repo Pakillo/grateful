@@ -7,7 +7,7 @@
 get_citations(
   pkgs,
   out.dir = getwd(),
-  bibfile = "pkg-refs.bib",
+  bib.file = "grateful-refs.bib",
   include.RStudio = FALSE
 )
 }
@@ -18,10 +18,10 @@ get_citations(
 \item{out.dir}{Directory to save the BibTeX file with the references.
 Defaults to working directory.}
 
-\item{bibfile}{Name of the file to save the package BibTeX references.}
+\item{bib.file}{Name of the file to save the BibTeX references.}
 
 \item{include.RStudio}{Logical. If TRUE, adds a citation for the current
-version of RStudio, if run within RStudio interactively.}
+version of RStudio.}
 }
 \value{
 A file on the specified \code{out.dir} containing the package references in BibTeX
@@ -35,6 +35,6 @@ Get citations for packages
 \dontrun{
 library(grateful)
 pkgs <- scan_packages()
-cites <- get_citations(pkgs)
+citekeys <- get_citations(pkgs)
 }
 }

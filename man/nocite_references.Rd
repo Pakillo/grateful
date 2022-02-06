@@ -38,21 +38,25 @@ Call \code{nocite_references} with either \code{style = 'pandoc'} or
 pandoc-citeproc or a LaTeX citation processor such as biblatex or natbib.
 
 This function is intended to cite R packages with citation keys passed from
-\code{\link{get_citations}}, but can accept an arbitrary vector of citation
-keys (without @) found in a BibTeX file referenced in the YAML header.
+\code{\link{get_citations}} or \code{cite_packages(output = "citekeys")},
+but can accept an arbitrary vector of citation keys (without @)
+found in a BibTeX file referenced in the YAML header.
 }
 \examples{
 \dontrun{
 library(grateful)
 
 # include in YAML header:
-bibliography: pkg-refs.bib
+bibliography: grateful-refs.bib
 
 # Get citation keys for the current RMarkdown document
 # (run after all packages have been loaded).
-citekeys <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
+citekeys <- cite_packages(output = "citekeys", all.pkgs = FALSE)
 
 # Include in RMarkdown body for use with pandoc-citeproc:
 `r nocite_references(citekeys, citation_processor = 'pandoc')`
 }
+}
+\author{
+Connor P. Jackson
 }

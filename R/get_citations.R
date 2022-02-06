@@ -28,7 +28,7 @@ get_citations <- function(pkgs,
 
   if (include.RStudio == TRUE) {
     # Put an RStudio citation on the end
-    if (!require(rstudioapi)) {
+    if (!requireNamespace("rstudioapi")) {
       stop("Please install the {rstudioapi} package to cite RStudio.")
     } else {
       rstudio_cit <- tryCatch(rstudioapi::versionInfo()$citation,

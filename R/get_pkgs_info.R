@@ -27,7 +27,7 @@ get_pkgs_info <- function(all.pkgs = TRUE,
 
   citekeys <- get_citations(pkgs.df$pkg,
                             out.dir = out.dir,
-                            bibfile = bib.file,
+                            bib.file = bib.file,
                             include.RStudio = include.RStudio)
 
   # Group all citations from same package

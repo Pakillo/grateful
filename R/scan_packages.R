@@ -27,7 +27,7 @@ scan_packages <- function(all.pkgs = TRUE, ...) {
   pkgs <- sort(pkgs)
 
   # Get package versions
-  pkgVersion <- Vectorize(packageVersion, SIMPLIFY = FALSE)
+  pkgVersion <- Vectorize(utils::packageVersion, SIMPLIFY = FALSE)
   versions <- pkgVersion(pkgs)
   versions <- unlist(lapply(versions, as.character))
 

@@ -26,7 +26,7 @@
 #' bibliography file in the YAML header of the Rmarkdown document.
 #'
 #' Finally, you can use \code{output = "citekeys"} to obtain a vector of citation keys,
-#' and then call \code{\link{nocite_references()}} within an Rmarkdown document
+#' and then call \code{\link{nocite_references}} within an Rmarkdown document
 #' to cite these packages in the reference list without mentioning them in the text.
 #'
 #'
@@ -38,7 +38,7 @@
 #'   references are put into the text manually, they may need to be updated
 #'   periodically.
 #'
-#' @param output. Either "file" to generate a separate document with formatted citations
+#' @param output Either "file" to generate a separate document with formatted citations
 #' for all packages; "paragraph" to return a paragraph with in-text citations of
 #' used packages, suitable to be used within an Rmarkdown document;
 #' or "citekeys" to return a vector with citation keys.
@@ -145,7 +145,7 @@ cite_packages <- function(output = c("file", "paragraph", "citekeys"),
   }
 
   if (output == "citekeys") {
-    return(citekeys)
+    return(unlist(pkgs.df$citekeys))
   }
 
 }

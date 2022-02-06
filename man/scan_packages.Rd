@@ -15,7 +15,7 @@ otherwise uses \code{\link[utils]{sessionInfo}}.}
 \item{...}{Other parameters passed to \code{\link[renv]{dependencies}}.}
 }
 \value{
-a character vector of package names
+a data.frame with package names and versions
 }
 \description{
 Scan a project or folder for packages used

@@ -9,6 +9,7 @@
 #' @param out.format Output format. One of: "docx" (Word), "pdf", "html", "Rmd", or "md" (markdown).
 #' @param Rmd.file Name of the Rmarkdown file to be created.
 #' @param out.dir Directory to save the output document. Default is the working directory.
+#' @param ... Further arguments for \code{\link{render_citations}}.
 #'
 #' @return An Rmarkdown file, if out.format = "Rmd", or a rendered document otherwise.
 #' @noRd
@@ -23,7 +24,8 @@ create_rmd <- function(pkgs.df = NULL,
                        csl = NULL,
                        Rmd.file = "grateful-report.Rmd",
                        out.format = "html",
-                       out.dir = getwd()) {
+                       out.dir = getwd(),
+                       ...) {
 
   use.csl <- ifelse(is.null(csl), "#csl: null", "csl: ")
 
@@ -64,7 +66,7 @@ create_rmd <- function(pkgs.df = NULL,
   if (tolower(out.format) == "rmd") {
     return(Rmd.file)
   } else {
-    render_citations(Rmd.file, out.format = out.format, out.dir = out.dir)
+    render_citations(Rmd.file, out.format = out.format, out.dir = out.dir, ...)
     file.remove(Rmd.file)
   }
 
