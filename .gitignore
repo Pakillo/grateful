@@ -1,7 +1,10 @@
 .Rproj.user
 .Rhistory
 .RData
-examplescript.R
 citations.html
 refs.Rmd
-pkg-refs.bib
+grateful-refs.bib
+grateful-report.Rmd
+grateful-citations.html
+test.Rmd
+test_nocite.Rmd

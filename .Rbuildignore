@@ -3,10 +3,9 @@
 ^README\.Rmd$
 ^README-.*\.png$
 example-output.PNG
-^data-raw$
-
-^analyses$
-^manuscript$
 
 ^\.github$
 ^LICENSE\.md$
+
+test.Rmd
+test_nocite.Rmd
