@@ -1,32 +1,36 @@
 #' Cite R packages used in a project
 #'
-#' Find R packages used in a project, create a BibTeX file of citations, and
-#' optionally generate an RMarkdown document of references.
+#' Find R packages used in a project, create a BibTeX file of citations,
+#' and optionally generate a document with formatted package references
+#' or a paragraph citing all packages used, suitable to be used directly within
+#' an Rmarkdown document (see examples).
 #'
-#' \code{cite_packages} is a wrapper function that collects package names
-#' (\code{\link{scan_packages}}), gathers their citations
-#' (\code{\link{get_citations}}), and generates a BibTeX file of those citations
-#' (\code{\link{create_rmd}}). The function is designed to handle two different
-#' use cases. In both cases, a BibTeX file is generated and saved to
-#' \code{out.dir}.
+#' \code{cite_packages} is a wrapper function that collects package names and versions
+#' and saves their citation information in a BibTeX file
+#' (using \code{\link{get_pkgs_info}}).
 #'
-#' \code{generate.document = TRUE} generates an RMarkdown file which includes a
-#' list of in-text citations for each package, as well as a references list.
-#' This document can be knitted to various formats or left as a \code{.Rmd} file
-#' via \code{out.format}. Best for creating a final document separate from R, to
-#' just cut and paste citations.
+#' Then, the function is designed to handle three different use cases:
 #'
-#' \code{generate.document = FALSE} returns a list of citation keys from the
-#' BibTeX file. These citation keys can then be used programmatically or
-#' manually to cite packages, including in a \code{nocite} block in an RMarkdown
-#' document. To do so, include a reference to the generated \code{bibfile}
-#' bibliography file in the YAML header of the RMarkdown document.
+#' If \code{output = "file"}, \code{cite_packages()} will generate an RMarkdown file
+#' which includes a paragraph with in-text citations of all packages,
+#' as well as a references list.
+#' This document can be knitted to various formats via \code{out.format}.
+#' References can be formatted for a particular journal using \code{citation.style}.
+#' Thus, \code{output = "file"} is best for obtaining a document separate from R,
+#' to just cut and paste citations.
+#'
+#' If \code{output = "paragraph"}, \code{cite_packages()} will return
+#' a paragraph with in-text citations of all packages,
+#' suitable to be used directly in an Rmarkdown document (see README).
+#' To do so, include a reference to the generated \code{bib.file}
+#' bibliography file in the YAML header of the Rmarkdown document.
+#'
+#' Finally, you can use \code{output = "citekeys"} to obtain a vector of citation keys,
+#' and then call \code{\link{nocite_references()}} within an Rmarkdown document
+#' to cite these packages in the reference list without mentioning them in the text.
+#'
 #'
 #' @section Limitations:
-#'
-#'   \code{include.RStudio = TRUE} fails if run from an R session that is not in
-#'   an RStudio interactive session, including being run by
-#'   \code{\link[knitr]{knit}}, even when initiated by knitting in RStudio.
 #'
 #'   Citation keys are not guaranteed to be preserved when regenerated,
 #'   particularly when packages are updated. This instability is not an issue
@@ -34,70 +38,114 @@
 #'   references are put into the text manually, they may need to be updated
 #'   periodically.
 #'
-#' @param generate.document Logical. If \code{TRUE} (default), generate a .Rmd
-#'   file with the citations. Otherwise, simply build the .bib file and return
-#'   the list of package citation keys.
+#' @param output. Either "file" to generate a separate document with formatted citations
+#' for all packages; "paragraph" to return a paragraph with in-text citations of
+#' used packages, suitable to be used within an Rmarkdown document;
+#' or "citekeys" to return a vector with citation keys.
+#' In all cases, a BibTeX file with package references is saved on disk
+#' (see \code{bib.file}).
+#'
+#' @param out.format Output format when \code{output = "file"}:
+#' either "html" (the default), docx" (Word), "pdf", or "md" (markdown).
+#' (Note that choosing "pdf" requires a working installation of LaTeX).
+#'
+#' @param citation.style Optional. Citation style to format references for a
+#' particular journal. See \url{https://www.zotero.org/styles}.
+#'
 #' @param all.pkgs Logical. Include all packages used in scripts within the
 #'   project/folder (the default), or only packages used in the current session?
 #'   If \code{TRUE}, uses \code{\link[renv]{dependencies}}, otherwise
 #'   uses \code{\link[utils]{sessionInfo}}.
-#' @param bibfile Name of BibTeX file containing packages references.
-#'   Defaults to \code{pkg-refs.bib}
-#' @param citation_style Optional. Citation style to format references. See
-#'   \url{https://www.zotero.org/styles}.
-#' @param out.format Output format, either "docx" (Word), "pdf", "html", or "md"
-#'   (markdown).
-#' @param out.dir Directory to save the output document and a BibTeX file with
-#'   the references. Defaults to working directory.
+#'
 #' @param include.RStudio Logical. If \code{TRUE}, adds a citation for the
-#'   current version of RStudio, if run within RStudio interactively.
+#'   current version of RStudio.
 #'
-#' @param ... Other parameters passed to
-#'   \code{\link[renv]{dependencies}}.
+#' @param out.dir Directory to save the output document and a BibTeX file with
+#'   the references. Default is the working directory.
 #'
-#' @return A document with rendered citations in the desired format, plus a file
-#'   ("pkg-refs.bib") containing references in BibTeX format.
+#' @param bib.file Desired name for the BibTeX file containing packages references
+#' ("grateful-refs.bib" by default).
+#'
+#' @param Rmd.file Desired name of the Rmarkdown document to be created if
+#' \code{output = "file"}. Default is "grateful-report.Rmd".
+#'
+#' @param out.name Desired name of the output file containing the formatted
+#' references ("grateful-citations" by default).
+#'
+#' @param ... Other parameters passed to \code{\link[renv]{dependencies}}.
+#'
+#' @return A file containing package references in BibTeX format, plus
+#' a file with formatted citations, or a paragraph with in-text citations of all packages,
+#' suitable to be used within Rmarkdown documents.
+#'
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' library(grateful)
 #'
-#' ## To build a standalone document for citations:
+#' #### To build a standalone document for citations ####
 #' cite_packages()
-#' cite_packages(citation_style = "ecology", out.format = "docx")
 #'
-#' ## To include citations in an RMarkdown file:
-#' # include in YAML header: bibliography: pkg-refs.bib
+#' # Formatting for a particular journal:
+#' cite_packages(citation_style = "peerj")
 #'
-#' # get the citations for all packages currently loaded when knitting the .Rmd
-#' citerefs <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
+#' # Choosing different output format:
+#' cite_packages(out.format = "docx")
 #'
-#' # To include citations in your references list, run either inline or in a
-#' # chunk with echo = FALSE. Specify with citation_processor whether the
-#' # citations are processed with pandoc-citeproc or a LaTeX package like
-#' # biblatex or natbib.
-#' nocite_references(citerefs, citation_processor = 'pandoc')
+#' # Citing only packages currently loaded
+#' cite_packages(all.pkgs = FALSE)
+#'
+#'
+#' #### To include citations in an RMarkdown file ####
+#'
+#' # include this in YAML header: bibliography: grateful-refs.bib
+#'
+#' # then call cite_packages within a chunk with chunk option results = "asis"
+#' cite_packages(output = "paragraph")
+#'
+#'
+#' # To include package citations in the reference list of an Rmarkdown document
+#' without citing them in the text, include this in a chunk:
+#' nocite_references(cite_packages(output = "citekeys"))
 #' }
 
-cite_packages <- function(generate.document = TRUE,
+cite_packages <- function(output = c("file", "paragraph", "citekeys"),
                           out.format = "html",
-                          citation_style = NULL,
+                          citation.style = NULL,
                           all.pkgs = TRUE,
                           include.RStudio = FALSE,
                           out.dir = getwd(),
-                          bibfile = "pkg-refs.bib",
+                          bib.file = "grateful-refs.bib",
+                          Rmd.file = "grateful-report.Rmd",
+                          out.name = "grateful-citations",
                           ...) {
 
-  pkgs <- scan_packages(all.pkgs = all.pkgs, ...)
+  output <- match.arg(output)
 
-  cites <- get_citations(pkgs, out.dir = out.dir, bibfile = bibfile,
-                         include.RStudio = include.RStudio)
+  pkgs.df <- get_pkgs_info(all.pkgs = all.pkgs,
+                           out.dir = out.dir,
+                           bib.file = bib.file,
+                           include.RStudio = include.RStudio,
+                           ...)
 
-  if (generate.document == TRUE) {
-    rmd <- create_rmd(cites, csl = citation_style, out.dir = out.dir,
-                      out.format = out.format)
-  } else {
-    return(cites)
+
+  if (output == "file") {
+    rmd <- create_rmd(pkgs.df,
+                      bib.file = bib.file,
+                      csl = citation.style,
+                      Rmd.file = Rmd.file,
+                      out.dir = out.dir,
+                      out.format = out.format,
+                      out.name = out.name)
   }
+
+  if (output == "paragraph") {
+    cat(write_citation_paragraph(pkgs.df, include.RStudio = include.RStudio))
+  }
+
+  if (output == "citekeys") {
+    return(citekeys)
+  }
+
 }
