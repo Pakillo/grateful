@@ -6,7 +6,7 @@
 #' otherwise uses \code{\link[utils]{sessionInfo}}.
 #' @param ... Other parameters passed to \code{\link[renv]{dependencies}}.
 #'
-#' @return a character vector of package names
+#' @return a data.frame with package names and versions
 #' @export
 #'
 #' @examples
@@ -25,5 +25,14 @@ scan_packages <- function(all.pkgs = TRUE, ...) {
   base_pkgs <- utils::sessionInfo()$basePkgs
   pkgs <- c("base", setdiff(pkgs, base_pkgs))
   pkgs <- sort(pkgs)
+
+  # Get package versions
+  pkgVersion <- Vectorize(packageVersion, SIMPLIFY = FALSE)
+  versions <- pkgVersion(pkgs)
+  versions <- unlist(lapply(versions, as.character))
+
+  pkgs.df <- data.frame(pkg = pkgs, version = versions, row.names = NULL)
+
+  pkgs.df
 
 }
