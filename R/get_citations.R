@@ -4,7 +4,7 @@
 #'   \code{scan_packages}.
 #' @param out.dir Directory to save the BibTeX file with the references.
 #'   Defaults to working directory.
-#' @param bibfile Name of the file to save the BibTeX references.
+#' @param bib.file Name of the file to save the BibTeX references.
 #' @param include.RStudio Logical. If TRUE, adds a citation for the current
 #'   version of RStudio.
 #'
@@ -21,7 +21,7 @@
 #' }
 get_citations <- function(pkgs,
                           out.dir = getwd(),
-                          bibfile = "grateful-refs.bib",
+                          bib.file = "grateful-refs.bib",
                           include.RStudio = FALSE) {
 
   cites.bib <- lapply(pkgs, get_citation_and_citekey)
@@ -40,7 +40,7 @@ get_citations <- function(pkgs,
   }
 
   ## write bibtex references to file
-  writeLines(enc2utf8(unlist(cites.bib)), con = file.path(out.dir, bibfile),
+  writeLines(enc2utf8(unlist(cites.bib)), con = file.path(out.dir, bib.file),
              useBytes = TRUE)
 
   # get the citekeys and format them appropriately before returning them

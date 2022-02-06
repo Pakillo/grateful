@@ -19,7 +19,7 @@
 
 get_pkgs_info <- function(all.pkgs = TRUE,
                           out.dir = getwd(),
-                          bibfile = "grateful-refs.bib",
+                          bib.file = "grateful-refs.bib",
                           include.RStudio = FALSE,
                           ...) {
 
@@ -27,7 +27,7 @@ get_pkgs_info <- function(all.pkgs = TRUE,
 
   citekeys <- get_citations(pkgs.df$pkg,
                             out.dir = out.dir,
-                            bibfile = bibfile,
+                            bibfile = bib.file,
                             include.RStudio = include.RStudio)
 
   # Group all citations from same package
