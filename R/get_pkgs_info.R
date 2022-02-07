@@ -19,12 +19,13 @@
 #' }
 
 get_pkgs_info <- function(pkgs = "All",
+                          dependencies = FALSE,
                           out.dir = getwd(),
                           bib.file = "grateful-refs.bib",
                           include.RStudio = FALSE,
                           ...) {
 
-  pkgs.df <- scan_packages(pkgs = pkgs, ...)
+  pkgs.df <- scan_packages(pkgs = pkgs, dependencies = dependencies, ...)
 
   citekeys <- get_citations(pkgs.df$pkg,
                             out.dir = out.dir,

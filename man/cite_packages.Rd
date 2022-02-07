@@ -9,6 +9,7 @@ cite_packages(
   out.format = "html",
   citation.style = NULL,
   pkgs = "All",
+  dependencies = FALSE,
   include.RStudio = FALSE,
   out.dir = getwd(),
   bib.file = "grateful-refs.bib",
@@ -37,6 +38,9 @@ the project/folder (the default), or "Session" to include only packages
 used in the current session.
 \code{pkgs} can also be a character vector of package names to get citations for
 (see examples).}
+
+\item{dependencies}{Logical. Include the dependencies of your used packages?
+If \code{TRUE}, will include all the packages that your used packages depend on.}
 
 \item{include.RStudio}{Logical. If \code{TRUE}, adds a citation for the
 current version of RStudio.}

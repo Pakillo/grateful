@@ -5,6 +5,10 @@
 #' used in the current session.
 #' \code{pkgs} can also be a character vector of package names to get citations for
 #' (see examples).
+#'
+#' @param dependencies Logical. Include the dependencies of your used packages?
+#' If \code{TRUE}, will include all the packages that your used packages depend on.
+#'
 #' @param ... Other parameters passed to \code{\link[renv]{dependencies}}.
 #'
 #' @return a data.frame with package names and versions
@@ -15,7 +19,7 @@
 #' scan_packages(pkgs = "Session")
 #' scan_packages(pkgs = c("lme4", "vegan", "mgcv"))
 
-scan_packages <- function(pkgs = "All", ...) {
+scan_packages <- function(pkgs = "All", dependencies = FALSE, ...) {
 
   if (length(pkgs) == 1 && pkgs == "All") {
     pkgs <- unique(renv::dependencies(progress = FALSE, ...)$Package)
@@ -27,6 +31,11 @@ scan_packages <- function(pkgs = "All", ...) {
   }
 
   # If pkgs != "All" nor "Session", use them directly as vector of pkg names
+
+  # Include dependencies
+  if (dependencies) {
+    pkgs <- remotes::package_deps(pkgs)$package
+  }
 
   # Only cite base R once
   base_pkgs <- utils::sessionInfo()$basePkgs

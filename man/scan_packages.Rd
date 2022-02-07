@@ -4,7 +4,7 @@
 \alias{scan_packages}
 \title{Scan a project or folder for packages used}
 \usage{
-scan_packages(pkgs = "All", ...)
+scan_packages(pkgs = "All", dependencies = FALSE, ...)
 }
 \arguments{
 \item{pkgs}{Character. Either "All" to include all packages used in scripts within
@@ -12,6 +12,9 @@ the project/folder (the default), or "Session" to include only packages
 used in the current session.
 \code{pkgs} can also be a character vector of package names to get citations for
 (see examples).}
+
+\item{dependencies}{Logical. Include the dependencies of your used packages?
+If \code{TRUE}, will include all the packages that your used packages depend on.}
 
 \item{...}{Other parameters passed to \code{\link[renv]{dependencies}}.}
 }

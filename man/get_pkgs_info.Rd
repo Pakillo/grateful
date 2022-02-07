@@ -6,6 +6,7 @@
 \usage{
 get_pkgs_info(
   pkgs = "All",
+  dependencies = FALSE,
   out.dir = getwd(),
   bib.file = "grateful-refs.bib",
   include.RStudio = FALSE,
@@ -18,6 +19,9 @@ the project/folder (the default), or "Session" to include only packages
 used in the current session.
 \code{pkgs} can also be a character vector of package names to get citations for
 (see examples).}
+
+\item{dependencies}{Logical. Include the dependencies of your used packages?
+If \code{TRUE}, will include all the packages that your used packages depend on.}
 
 \item{out.dir}{Directory to save the BibTeX file with the references.
 Defaults to working directory.}

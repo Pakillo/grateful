@@ -58,6 +58,9 @@
 #' \code{pkgs} can also be a character vector of package names to get citations for
 #' (see examples).
 #'
+#' @param dependencies Logical. Include the dependencies of your used packages?
+#' If \code{TRUE}, will include all the packages that your used packages depend on.
+#'
 #' @param include.RStudio Logical. If \code{TRUE}, adds a citation for the
 #'   current version of RStudio.
 #'
@@ -118,6 +121,7 @@ cite_packages <- function(output = c("file", "paragraph", "citekeys"),
                           out.format = "html",
                           citation.style = NULL,
                           pkgs = "All",
+                          dependencies = FALSE,
                           include.RStudio = FALSE,
                           out.dir = getwd(),
                           bib.file = "grateful-refs.bib",
@@ -128,6 +132,7 @@ cite_packages <- function(output = c("file", "paragraph", "citekeys"),
   output <- match.arg(output)
 
   pkgs.df <- get_pkgs_info(pkgs = pkgs,
+                           dependencies = dependencies,
                            out.dir = out.dir,
                            bib.file = bib.file,
                            include.RStudio = include.RStudio,
