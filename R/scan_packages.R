@@ -24,6 +24,10 @@ scan_packages <- function(all.pkgs = TRUE, ...) {
   # Only cite base R once
   base_pkgs <- utils::sessionInfo()$basePkgs
   pkgs <- c("base", setdiff(pkgs, base_pkgs))
+  # add grateful
+  if (!"grateful" %in% pkgs) {
+    pkgs <- c(pkgs, "grateful")
+  }
   pkgs <- sort(pkgs)
 
   # Get package versions
