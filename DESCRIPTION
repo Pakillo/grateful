@@ -24,6 +24,6 @@ Imports:
 Suggests: 
   rstudioapi,
   testthat
-URL: https://github.com/Pakillo/grateful
+URL: https://pakillo.github.io/grateful
 BugReports: https://github.com/Pakillo/grateful/issues
 RoxygenNote: 7.1.2

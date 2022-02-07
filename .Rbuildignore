@@ -9,4 +9,6 @@
 test.Rmd
 test_nocite.Rmd
 
-docs
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
