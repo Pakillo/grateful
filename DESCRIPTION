@@ -2,13 +2,16 @@ Package: grateful
 Title: Facilitate Citation of R Packages
 Version: 0.1.5
 Date: 2022-02-05
-Authors@R: c(person('Francisco', 'Rodriguez-Sanchez', email = 'f.rodriguez.sanc@gmail.com', role = c('aut', 'cre')),
-             person('Connor P.', 'Jackson', email = 'cpjackson@berkeley.edu', role = 'aut'),
-             person('Shaurita D.', 'Hutchins', role = c('ctb')))
+Authors@R: c(
+    person('Francisco', 'Rodriguez-Sanchez', email = 'f.rodriguez.sanc@gmail.com', 
+            role = c('aut', 'cre'), comment = c(ORCID = "0000-0002-7981-1599")),
+    person('Connor P.', 'Jackson', email = 'cpjackson@berkeley.edu', role = 'aut'),
+    person('Shaurita D.', 'Hutchins', role = c('ctb')))
 Description: Facilitates citation of R packages used in analysis projects. 
     Scans project for packages used, gets their citations, and produces 
     a document with citations in the preferred bibliography format, ready to be 
-    pasted into reports or manuscripts bibliography list.
+    pasted into reports or manuscripts bibliography list. Alternatively,
+    grateful can be used directly within an RMarkdown document.
 Depends: R (>= 3.0.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
