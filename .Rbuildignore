@@ -2,10 +2,11 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^README-.*\.png$
-example-output.PNG
 
 ^\.github$
 ^LICENSE\.md$
 
 test.Rmd
 test_nocite.Rmd
+
+docs
