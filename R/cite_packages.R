@@ -58,6 +58,9 @@
 #' \code{pkgs} can also be a character vector of package names to get citations for
 #' (see examples).
 #'
+#' @param cite.tidyverse Logical. If \code{TRUE}, all tidyverse packages (dplyr, ggplot2, etc)
+#' will be collapsed into a single citation of the 'tidyverse'.
+#'
 #' @param dependencies Logical. Include the dependencies of your used packages?
 #' If \code{TRUE}, will include all the packages that your used packages depend on.
 #'
@@ -125,6 +128,7 @@ cite_packages <- function(output = c("file", "paragraph", "citekeys"),
                           out.format = "html",
                           citation.style = NULL,
                           pkgs = "All",
+                          cite.tidyverse = FALSE,
                           dependencies = FALSE,
                           include.RStudio = FALSE,
                           out.dir = getwd(),
@@ -136,6 +140,7 @@ cite_packages <- function(output = c("file", "paragraph", "citekeys"),
   output <- match.arg(output)
 
   pkgs.df <- get_pkgs_info(pkgs = pkgs,
+                           cite.tidyverse = cite.tidyverse,
                            dependencies = dependencies,
                            out.dir = out.dir,
                            bib.file = bib.file,

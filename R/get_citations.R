@@ -25,7 +25,16 @@ get_citations <- function(pkgs,
                           bib.file = "grateful-refs.bib",
                           include.RStudio = FALSE) {
 
-  cites.bib <- lapply(pkgs, get_citation_and_citekey)
+  # Some people may not have the tidyverse pkg installed locally,
+  # so giving tidyverse citation directly
+  # (tidyverse citation included in grateful package)
+
+  pkgs.notidy <- pkgs[pkgs != "tidyverse"]
+  cites.bib <- lapply(pkgs.notidy, get_citation_and_citekey)
+
+  if ("tidyverse" %in% pkgs) {
+    cites.bib[[length(cites.bib) + 1]] <- add_citekey("tidyverse", tidyverse.citation)
+  }
 
   if (include.RStudio == TRUE) {
     # Put an RStudio citation on the end
