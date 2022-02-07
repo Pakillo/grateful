@@ -15,9 +15,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(grateful)
+#' citekeys <- get_citations(c("lme4", "mgcv"))
+#'
 #' pkgs <- scan_packages()
-#' citekeys <- get_citations(pkgs)
+#' citekeys <- get_citations(pkgs$pkg)
 #' }
 get_citations <- function(pkgs,
                           out.dir = getwd(),

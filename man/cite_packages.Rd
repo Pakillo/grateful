@@ -8,7 +8,7 @@ cite_packages(
   output = c("file", "paragraph", "citekeys"),
   out.format = "html",
   citation.style = NULL,
-  all.pkgs = TRUE,
+  pkgs = "All",
   include.RStudio = FALSE,
   out.dir = getwd(),
   bib.file = "grateful-refs.bib",
@@ -32,10 +32,11 @@ either "html" (the default), docx" (Word), "pdf", or "md" (markdown).
 \item{citation.style}{Optional. Citation style to format references for a
 particular journal. See \url{https://www.zotero.org/styles}.}
 
-\item{all.pkgs}{Logical. Include all packages used in scripts within the
-project/folder (the default), or only packages used in the current session?
-If \code{TRUE}, uses \code{\link[renv]{dependencies}}, otherwise
-uses \code{\link[utils]{sessionInfo}}.}
+\item{pkgs}{Character. Either "All" to include all packages used in scripts within
+the project/folder (the default), or "Session" to include only packages
+used in the current session.
+\code{pkgs} can also be a character vector of package names to get citations for
+(see examples).}
 
 \item{include.RStudio}{Logical. If \code{TRUE}, adds a citation for the
 current version of RStudio.}
@@ -114,7 +115,10 @@ cite_packages(citation_style = "peerj")
 cite_packages(out.format = "docx")
 
 # Citing only packages currently loaded
-cite_packages(all.pkgs = FALSE)
+cite_packages(pkgs = "Session")
+
+# Citing only user-provided packages
+cite_packages(pkgs = c("lme4", "vegan", "mgcv"))
 
 
 #### To include citations in an RMarkdown file ####

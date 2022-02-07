@@ -15,15 +15,16 @@
 #' @examples
 #' \dontrun{
 #' get_pkgs_info()
+#' get_pkgs_info(pkgs = c("lme4", "mgcv"))
 #' }
 
-get_pkgs_info <- function(all.pkgs = TRUE,
+get_pkgs_info <- function(pkgs = "All",
                           out.dir = getwd(),
                           bib.file = "grateful-refs.bib",
                           include.RStudio = FALSE,
                           ...) {
 
-  pkgs.df <- scan_packages(all.pkgs = all.pkgs, ...)
+  pkgs.df <- scan_packages(pkgs = pkgs, ...)
 
   citekeys <- get_citations(pkgs.df$pkg,
                             out.dir = out.dir,

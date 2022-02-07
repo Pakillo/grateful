@@ -5,7 +5,7 @@
 \title{Get information about packages used in a project}
 \usage{
 get_pkgs_info(
-  all.pkgs = TRUE,
+  pkgs = "All",
   out.dir = getwd(),
   bib.file = "grateful-refs.bib",
   include.RStudio = FALSE,
@@ -13,10 +13,11 @@ get_pkgs_info(
 )
 }
 \arguments{
-\item{all.pkgs}{Logical. Include all packages used in scripts within
-the project/folder (the default), or only packages used in the current session?
-If TRUE, uses \code{\link[renv]{dependencies}},
-otherwise uses \code{\link[utils]{sessionInfo}}.}
+\item{pkgs}{Character. Either "All" to include all packages used in scripts within
+the project/folder (the default), or "Session" to include only packages
+used in the current session.
+\code{pkgs} can also be a character vector of package names to get citations for
+(see examples).}
 
 \item{out.dir}{Directory to save the BibTeX file with the references.
 Defaults to working directory.}
@@ -43,5 +44,6 @@ with package names, version, and citation keys.
 \examples{
 \dontrun{
 get_pkgs_info()
+get_pkgs_info(pkgs = c("lme4", "mgcv"))
 }
 }

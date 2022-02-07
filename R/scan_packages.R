@@ -1,29 +1,37 @@
 #' Scan a project or folder for packages used
 #'
-#' @param all.pkgs Logical. Include all packages used in scripts within
-#' the project/folder (the default), or only packages used in the current session?
-#' If TRUE, uses \code{\link[renv]{dependencies}},
-#' otherwise uses \code{\link[utils]{sessionInfo}}.
+#' @param pkgs Character. Either "All" to include all packages used in scripts within
+#' the project/folder (the default), or "Session" to include only packages
+#' used in the current session.
+#' \code{pkgs} can also be a character vector of package names to get citations for
+#' (see examples).
 #' @param ... Other parameters passed to \code{\link[renv]{dependencies}}.
 #'
 #' @return a data.frame with package names and versions
 #' @export
 #'
 #' @examples
-#' library(grateful)
 #' scan_packages()
-scan_packages <- function(all.pkgs = TRUE, ...) {
+#' scan_packages(pkgs = "Session")
+#' scan_packages(pkgs = c("lme4", "vegan", "mgcv"))
 
-  if (all.pkgs) {
+scan_packages <- function(pkgs = "All", ...) {
+
+  if (length(pkgs) == 1 && pkgs == "All") {
     pkgs <- unique(renv::dependencies(progress = FALSE, ...)$Package)
     pkgs <- pkgs[pkgs != "R"]
-  } else {
+  }
+
+  if (length(pkgs) == 1 && pkgs == "Session") {
     pkgs <- names(utils::sessionInfo()$otherPkgs)
   }
+
+  # If pkgs != "All" nor "Session", use them directly as vector of pkg names
 
   # Only cite base R once
   base_pkgs <- utils::sessionInfo()$basePkgs
   pkgs <- c("base", setdiff(pkgs, base_pkgs))
+
   # add grateful
   if (!"grateful" %in% pkgs) {
     pkgs <- c(pkgs, "grateful")

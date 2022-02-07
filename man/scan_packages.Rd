@@ -4,13 +4,14 @@
 \alias{scan_packages}
 \title{Scan a project or folder for packages used}
 \usage{
-scan_packages(all.pkgs = TRUE, ...)
+scan_packages(pkgs = "All", ...)
 }
 \arguments{
-\item{all.pkgs}{Logical. Include all packages used in scripts within
-the project/folder (the default), or only packages used in the current session?
-If TRUE, uses \code{\link[renv]{dependencies}},
-otherwise uses \code{\link[utils]{sessionInfo}}.}
+\item{pkgs}{Character. Either "All" to include all packages used in scripts within
+the project/folder (the default), or "Session" to include only packages
+used in the current session.
+\code{pkgs} can also be a character vector of package names to get citations for
+(see examples).}
 
 \item{...}{Other parameters passed to \code{\link[renv]{dependencies}}.}
 }
@@ -21,6 +22,7 @@ a data.frame with package names and versions
 Scan a project or folder for packages used
 }
 \examples{
-library(grateful)
 scan_packages()
+scan_packages(pkgs = "Session")
+scan_packages(pkgs = c("lme4", "vegan", "mgcv"))
 }
