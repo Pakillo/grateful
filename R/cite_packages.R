@@ -153,7 +153,8 @@ cite_packages <- function(output = c("file", "paragraph", "citekeys"),
                       Rmd.file = Rmd.file,
                       out.dir = out.dir,
                       out.format = out.format,
-                      out.name = out.name)
+                      out.name = out.name,
+                      include.RStudio = include.RStudio)
   }
 
   if (output == "paragraph") {

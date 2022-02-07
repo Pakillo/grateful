@@ -9,6 +9,7 @@
 #' @param out.format Output format. One of: "docx" (Word), "pdf", "html", "Rmd", or "md" (markdown).
 #' @param Rmd.file Name of the Rmarkdown file to be created.
 #' @param out.dir Directory to save the output document. Default is the working directory.
+#' @param include.RStudio Include RStudio?
 #' @param ... Further arguments for \code{\link{render_citations}}.
 #'
 #' @return An Rmarkdown file, if out.format = "Rmd", or a rendered document otherwise.
@@ -25,6 +26,7 @@ create_rmd <- function(pkgs.df = NULL,
                        Rmd.file = "grateful-report.Rmd",
                        out.format = "html",
                        out.dir = getwd(),
+                       include.RStudio = FALSE,
                        ...) {
 
   use.csl <- ifelse(is.null(csl), "#csl: null", "csl: ")
@@ -50,7 +52,7 @@ create_rmd <- function(pkgs.df = NULL,
     "---",
     "")
 
-  parag <- write_citation_paragraph(pkgs.df)
+  parag <- write_citation_paragraph(pkgs.df, include.RStudio = include.RStudio)
 
   ## write Rmd to disk
   writeLines(c(yaml.header,
