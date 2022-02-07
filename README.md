@@ -113,6 +113,26 @@ include citations in the References section, using the function
 cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html)
 for more details.
 
+#### Using grateful with the tidyverse
+
+If you use one or several packages from the
+[tidyverse](https://www.tidyverse.org), you can choose to cite the
+‘tidyverse’ rather than the individual packages:
+
+``` r
+cite_packages(cite.tidyverse = TRUE)
+```
+
+#### Including package dependencies
+
+Most packages also depend on other packages. To include those package
+dependencies in your citations, rather than just the packages you called
+directly, use `dependencies = TRUE`:
+
+``` r
+cite_packages(dependencies = TRUE)
+```
+
 ## Limitations
 
 Citation keys are not guaranteed to be preserved when regenerated,
