@@ -95,6 +95,11 @@ Finally, you can use \code{output = "citekeys"} to obtain a vector of citation k
 and then call \code{\link{nocite_references}} within an Rmarkdown document
 to cite these packages in the reference list without mentioning them in the text.
 }
+\note{
+Before running \code{grateful} you might want to run
+\code{\link[funchir]{stale_package_check}} on your scripts to check for unused packages
+before citing them.
+}
 \section{Limitations}{
 
 

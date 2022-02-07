@@ -82,6 +82,10 @@
 #' a file with formatted citations, or a paragraph with in-text citations of all packages,
 #' suitable to be used within Rmarkdown documents.
 #'
+#' @note Before running \code{grateful} you might want to run
+#' \code{\link[funchir]{stale_package_check}} on your scripts to check for unused packages
+#' before citing them.
+#'
 #' @export
 #'
 #' @examples
