@@ -1,191 +1,105 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# grateful
+# grateful: Facilitate citation of R packages
 
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/Pakillo/grateful/workflows/R-CMD-check/badge.svg)](https://github.com/Pakillo/grateful/actions)
 <!-- badges: end -->
 
-The goal of `grateful` is to make it very easy to cite the R packages
-used in any report or publication. By calling a single function, it will
-scan the project for R packages used, and generate a document with
-citations in the desired output format (Word, PDF, HTML, Markdown).
+The goal of **grateful** is to make it very easy to cite R and the R
+packages used in any analyses, so that package authors receive their
+deserved credit. By calling a single function, it will scan the project
+for R packages used, and generate a BibTeX file containing all citations
+for those packages.
 
-Importantly, these references can be formatted for a specific journal so
-that we can just paste them directly into the bibliography list of our
-manuscript or report.
+**grateful** can then generate a new document with citations in the
+desired output format (Word, PDF, HTML, Markdown). These references can
+be formatted for a specific journal so that we can just paste them
+directly into our manuscript or report.
 
-If you prefer to get just a BibTeX file with all package citations, it
-can also be done (see examples below).
-
+Alternatively, we can use **grateful** directly within an Rmarkdown
+document. In this case, a paragraph containing in-text citations of all
+used R packages will (optionally) be inserted into the Rmarkdown
+document, and these packages will be included in the reference list when
+rendering.
 
 ## Installation
 
 ``` r
+# install.packages("remotes")
 remotes::install_github("Pakillo/grateful")
 ```
 
-
-## Basic Usage
+## Usage
 
 **grateful** can be used in one of two ways: to generate a new document
 listing each package and its citation, as well as a references list, or
 to build citation keys to incorporate into an existing RMarkdown
 document.
 
-Imagine a project where we are using the following packages: **readr**,
-**dplyr**, **vegan**, **lme4**, and **ggplot2**, We want to collect all
-the citations listed for these packages, as well as a citation for base
-R (and for RStudio, if applicable).
+Imagine a project where we are using the packages: *lme4* and *mgcv*. We
+want to collect all the citations listed for these packages, as well as
+a citation for base R (and for RStudio, if applicable).
 
 ### Generate a New References Document
 
-Calling `cite_packages(generate.document = TRUE)` will scan the project,
-find these packages, and generate a document with formatted citations.
-
-## Basic usage
-
-Imagine a project where we are using the following packages: readr,
-dplyr, vegan, lme4, and ggplot2. Calling `cite_packages` will scan the
-project, find these packages, and generate a document with formatted
-citations.
-
+Calling `cite_packages(output = "file")`, or simply `cite_packages()`,
+will scan the project, find these packages, and generate a document with
+formatted citations.
 
 ``` r
 library(grateful)
-cite_packages(generate.document = TRUE)
+cite_packages(output = "file")
 ```
 
-![](example-output.PNG)
+![](example-output.png)
 
 This document can also be a Word document, PDF file, markdown file, or
 left as the source Rmarkdown file using `out.format`. We can specify the
-citation style for a particular journal using `citation_style`.
-
-
-``` r
-cite_packages(citation_style = "ecology", out.format = "docx")
-```
-
-You can also save the output of `cite_packages()` to a specified
-directory.
+citation style for a particular journal using `citation.style`.
 
 ``` r
-# Save the output in RMarkdown format only and to a docs subfolder.
-cite_packages(out.format = "rmd", out.dir = file.path(getwd(), "docs"))
+cite_packages(citation.style = "peerj", out.format = "docx")
 ```
 
+In all cases a BibTeX (.bib) file with all package citations will be
+saved to disk. If
 
-### Add Citations to an Existing Document
+### Using grateful within Rmarkdown
 
 If you are building a document in RMarkdown and want to cite R packages,
-**grateful** can generate a BibTeX file and return the citation keys.
+**grateful** can automatically generate a BibTeX file and ensure these
+packages are cited in the appropriate format.
 
 First, include a reference to the BibTeX file in your YAML header.
 
-    bibliography: pkg-refs.bib
+    bibliography: grateful-refs.bib
 
 RMarkdown lets you reference multiple BibTeX files, if needed.
 
     bibliography: 
     - document_citations.bib
-    - pkg-refs.bib
+    - grateful-refs.bib
 
-Then call `cite_packages(generate.document = FALSE)` to return a vector
-of citation
-keys.
-
-``` r
-citationkeys <- cite_packages(generate.document = FALSE, all.pkgs = FALSE)
-```
-
-Note that `all.pkgs = TRUE` does not work when being knitted within an
-RMarkdown document, due to a limitation of
-`checkpoint::scanForPackages()`.
-
-These citation keys can then be referenced within the document, or to
-just include citations in the References section, use
-`nocite_references()`. Depending on whether citations are processed with
-**pandoc-citeproc** or a LaTeX package like **natbib** or **biblatex**,
-pass the `citation_processor` parameter to `nocite_references()`.
-
-Use `nocite_references(..., citation_processor = 'pandoc')` to place
-them in a [metadata
-block](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#unused_references_\(nocite\)),
-or `nocite_references(..., citation_processor = 'latex')` to put the
-`\nocite{}` command directly into the document. `citation_processor =
-'pandoc'` is assumed for all non-LaTeX output formats, and the value of
-the parameter is ignored except when knitting to LaTeX.
-
-If you just want a BibTeX (.bib) file with all package citations:
+Then call `cite_packages(output = "paragraph")` within a code chunk
+(specifying chunk option: results = “asis”) to automatically include a
+paragraph mentioning all the used packages and include their references
+in the bibliography list.
 
 ``` r
-get_citations(scan_packages())
+cite_packages(output = "paragraph")
 ```
 
-## Workflow
+`We used R version 4.1.2 [@base] and the following R packages: lme4 v. 1.1.27.1 [@lme4], mgcv v. 1.8.38 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017].`
 
-`cite_packages` is a wrapper function which internally performs the
-following steps:
-
-`nocite_references()` can be called either inline or in a code chunk
-(with `echo = FALSE`) in the body of your document, and returns the text
-“as-is”, so a chunk with `results = 'asis'` is not required.
-
-``` r
-nocite_references(citationkeys, citation_processor = 'pandoc')
-```
-
-## Workflow
-
-`cite_packages()` is a wrapper function which internally performs the
-following steps:
-
-1.  Scan the project for packages
-
-<!-- end list -->
-
-``` r
-pkgs <- scan_packages()
-```
-
-2.  Get citations for each package
-
-<!-- end list -->
-
-``` r
-cites <- get_citations(pkgs)
-```
-
-3.  If an output file is requested (`generate.document = TRUE`),
-    generate and render the file.
-
-<!-- end list -->
-
-``` r
-rmd <- create_rmd(cites)
-render_citations(rmd, output = "html")
-```
-
-Otherwise, use the citation keys in text, or include them in the
-References file.
-
-``` r
-nocite_references(citationkeys, citation_processor = 'pandoc')
-```
+Alternatively, you can cite particular packages using the citation keys
+generated by **grateful** as with any other BibTeX reference, or just
+include citations in the References section, using the function
+`nocite_references()`.
 
 ## Limitations
-
-`all.pkgs = TRUE` fails if run within **knitr** when compiling an
-RMarkdown document. `checkpoint::scanForPackages()` is unable to search
-for packages within the temporary directory used by `knitr::knit()`.
-
-`include.RStudio = TRUE` fails if run from an R session that is not in
-an RStudio interactive session, including being run by `knitr`, even
-when initiated by knitting in RStudio. The function `RStudio.Version()`
-is only defined in RStudio interactive sessions.
 
 Citation keys are not guaranteed to be preserved when regenerated,
 particularly when packages are updated. This instability is not an issue
