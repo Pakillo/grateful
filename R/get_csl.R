@@ -7,8 +7,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(grateful)
-#' get_csl("ecosistemas")
+#' get_csl("peerj")
 #' }
 get_csl <- function(name) {
   styles.repo <- "https://raw.githubusercontent.com/citation-style-language/styles/master/"

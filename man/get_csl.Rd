@@ -17,7 +17,6 @@ Get a journal citation style from internet repository
 }
 \examples{
 \dontrun{
-library(grateful)
-get_csl("ecosistemas")
+get_csl("peerj")
 }
 }

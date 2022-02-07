@@ -1,8 +1,8 @@
 #' Cite R packages used in a project
 #'
 #' Find R packages used in a project, create a BibTeX file of citations,
-#' and optionally generate a document with formatted package references
-#' or a paragraph citing all packages used, suitable to be used directly within
+#' and generate a document with formatted package references,
+#' or a paragraph citing all packages used to be used directly within
 #' an Rmarkdown document (see examples).
 #'
 #' \code{cite_packages} is a wrapper function that collects package names and versions
@@ -50,7 +50,7 @@
 #' (Note that choosing "pdf" requires a working installation of LaTeX).
 #'
 #' @param citation.style Optional. Citation style to format references for a
-#' particular journal. See \url{https://www.zotero.org/styles}.
+#' particular journal. See \url{https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html}.
 #'
 #' @param pkgs Character. Either "All" to include all packages used in scripts within
 #' the project/folder (the default), or "Session" to include only packages
@@ -93,9 +93,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(grateful)
-#'
-#' #### To build a standalone document for citations ####
+#' #### To build a standalone document for citations
 #' cite_packages()
 #'
 #' # Formatting for a particular journal:
@@ -111,7 +109,7 @@
 #' cite_packages(pkgs = c("lme4", "vegan", "mgcv"))
 #'
 #'
-#' #### To include citations in an RMarkdown file ####
+#' #### To include citations in an RMarkdown file
 #'
 #' # include this in YAML header: bibliography: grateful-refs.bib
 #'
