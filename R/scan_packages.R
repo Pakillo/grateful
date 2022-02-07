@@ -29,61 +29,73 @@ scan_packages <- function(pkgs = "All",
                           dependencies = FALSE,
                           ...) {
 
+  # If pkgs != "All" nor "Session", use them directly as vector of pkg names
+  pkgnames <- pkgs
+
   if (length(pkgs) == 1 && pkgs == "All") {
-    pkgs <- unique(renv::dependencies(progress = FALSE, ...)$Package)
-    pkgs <- pkgs[pkgs != "R"]
+    pkgnames <- unique(renv::dependencies(progress = FALSE, ...)$Package)
+    pkgnames <- pkgnames[pkgnames != "R"]
   }
 
   if (length(pkgs) == 1 && pkgs == "Session") {
-    pkgs <- names(utils::sessionInfo()$otherPkgs)
+    pkgnames <- names(utils::sessionInfo()$otherPkgs)
   }
 
-  # If pkgs != "All" nor "Session", use them directly as vector of pkg names
 
   # Collapse tidyverse packages into single citation?
-  if (cite.tidyverse && any(pkgs %in% tidy.pkgs)) {
-    pkgs <- pkgs[!pkgs %in% tidy.pkgs]
-    pkgs <- c(pkgs, "tidyverse")
+  # tidy.pkgs list provided in grateful pkg
+  if (cite.tidyverse && any(pkgnames %in% tidy.pkgs)) {
+    pkgnames <- pkgnames[!pkgnames %in% tidy.pkgs]
+    pkgnames <- pkgnames[pkgnames != "tidyverse"]
+    pkgnames <- c(pkgnames, "tidyverse")
   }
 
 
   # Include dependencies
   if (dependencies) {
-    pkgs <- remotes::package_deps(pkgs)$package
+    pkgnames <- remotes::package_deps(pkgnames)$package
   }
 
 
-  # Only cite base R once
-  base_pkgs <- utils::sessionInfo()$basePkgs
-  pkgs <- c("base", setdiff(pkgs, base_pkgs))
+  # If scanning pkgs (ie. not using provided pkg names):
+  if (length(pkgs) == 1) {
+    if (pkgs == "All" | pkgs == "Session") {
 
-  # add grateful
-  if (!"grateful" %in% pkgs) {
-    pkgs <- c(pkgs, "grateful")
+      # Only cite base R once
+      base_pkgs <- utils::sessionInfo()$basePkgs
+      pkgnames <- c("base", setdiff(pkgnames, base_pkgs))
+
+      # add grateful
+      if (!"grateful" %in% pkgnames) {
+        pkgnames <- c(pkgnames, "grateful")
+      }
+    }
   }
 
-  # Important to sort pkgs to match versions later
-  pkgs <- sort(pkgs)
+
+  # Important to sort pkgnames to match versions later
+  pkgnames <- sort(pkgnames)
+
 
   # Get package versions
 
   # Some people may not have the 'tidyverse' package installed locally
   # First, get versions for all packages except 'tidyverse'
-  pkgs.notidy <- pkgs[pkgs != "tidyverse"]
+  pkgs.notidy <- pkgnames[pkgnames != "tidyverse"]
   versions <- pkgVersion(pkgs.notidy)
   versions <- unlist(lapply(versions, as.character))
 
   # Then add 'tidyverse' version
   # If not installed, assume version "1.3.1" (last in CRAN)
-  if ("tidyverse" %in% pkgs) {
-    tidy.version <- tryCatch(utils::packageVersion("tidyverse"),
+  if ("tidyverse" %in% pkgnames) {
+    tidy.version <- tryCatch(as.character(utils::packageVersion("tidyverse")),
                              error = function(e) {'1.3.1'})
     names(tidy.version) <- "tidyverse"
     versions <- c(versions, tidy.version)
     versions <- versions[sort(names(versions))]
   }
 
-  pkgs.df <- data.frame(pkg = pkgs, version = versions, row.names = NULL)
+  pkgs.df <- data.frame(pkg = pkgnames, version = versions, row.names = NULL)
 
   pkgs.df
 
