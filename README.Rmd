@@ -127,10 +127,11 @@ Alternatively, you can cite particular packages using the citation keys generate
 
 ### Getting just a table with used packages and versions
 
-```{r eval=TRUE, comment = NA}
-cite_packages(output = "table")
-```
+Use `scan_packages`
 
+```{r eval=TRUE, comment = NA}
+scan_packages()
+```
 
 
 ### Producing a BibTeX file with package references

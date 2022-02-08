@@ -20,7 +20,7 @@ an Rmarkdown document (see examples)."><!-- mathjax --><script src="https://cdnj
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grateful</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.7</span>
       </span>
     </div>
 
@@ -60,7 +60,7 @@ an Rmarkdown document (see examples).</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cite_packages</span><span class="op">(</span>
-  output <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"file"</span>, <span class="st">"paragraph"</span>, <span class="st">"citekeys"</span><span class="op">)</span>,
+  output <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"file"</span>, <span class="st">"paragraph"</span>, <span class="st">"table"</span>, <span class="st">"citekeys"</span><span class="op">)</span>,
   out.format <span class="op">=</span> <span class="st">"html"</span>,
   citation.style <span class="op">=</span> <span class="cn">NULL</span>,
   pkgs <span class="op">=</span> <span class="st">"All"</span>,
@@ -81,6 +81,8 @@ an Rmarkdown document (see examples).</p>
 <dd><p>Either "file" to generate a separate document with formatted citations
 for all packages; "paragraph" to return a paragraph with in-text citations of
 used packages, suitable to be used within an Rmarkdown document;
+"table" to return a table with package name, version, and citations, to be used
+in Rmarkdown;
 or "citekeys" to return a vector with citation keys.
 In all cases, a BibTeX file with package references is saved on disk
 (see <code>bib.file</code>).</p></dd>
@@ -124,15 +126,15 @@ references ("grateful-citations" by default).</p></dd>
     <div id="value">
     <h2>Value</h2>
     <p>A file containing package references in BibTeX format, plus
-a file with formatted citations, or a paragraph with in-text citations of all packages,
-suitable to be used within Rmarkdown documents.</p>
+a file with formatted citations, or a table or paragraph with in-text citations
+of all packages, suitable to be used within Rmarkdown documents.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
     <p><code>cite_packages</code> is a wrapper function that collects package names and versions
 and saves their citation information in a BibTeX file
 (using <code><a href="get_pkgs_info.html">get_pkgs_info</a></code>).</p>
-<p>Then, the function is designed to handle three different use cases:</p>
+<p>Then, the function is designed to handle different use cases:</p>
 <p>If <code>output = "file"</code>, <code>cite_packages()</code> will generate an RMarkdown file
 which includes a paragraph with in-text citations of all packages,
 as well as a references list.
@@ -145,6 +147,9 @@ a paragraph with in-text citations of all packages,
 suitable to be used directly in an Rmarkdown document (see README).
 To do so, include a reference to the generated <code>bib.file</code>
 bibliography file in the YAML header of the Rmarkdown document.</p>
+<p>Alternatively, if <code>output = "table"</code>, <code>cite_packages()</code> will return
+a table with package names, versions, and citations. Thus, if using Rmarkdown,
+you can choose between getting a table or a text paragraph citing all packages.</p>
 <p>Finally, you can use <code>output = "citekeys"</code> to obtain a vector of citation keys,
 and then call <code><a href="nocite_references.html">nocite_references</a></code> within an Rmarkdown document
 to cite these packages in the reference list without mentioning them in the text.</p>

@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">grateful</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.7</span>
       </span>
     </div>
 
@@ -94,14 +94,15 @@
 </h3>
 <p>Calling <code>cite_packages(output = "file")</code>, or simply <code><a href="reference/cite_packages.html">cite_packages()</a></code>, will scan the project, find these packages, and generate a document with formatted citations.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Pakillo/grateful" class="external-link">grateful</a></span><span class="op">)</span>
-<span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"file"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pakillo.github.io/grateful" class="external-link">grateful</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"file"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/example-output.png"></p>
 <p>This document can also be a Word document, PDF file, markdown file, or left as the source Rmarkdown file using <code>out.format</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>out.format <span class="op">=</span> <span class="st">"docx"</span><span class="op">)</span></code></pre></div>
 <p>We can specify the citation style for a particular journal using <code>citation.style</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>citation.style <span class="op">=</span> <span class="st">"peerj"</span><span class="op">)</span></code></pre></div>
 <p>In all cases a BibTeX (.bib) file with all package citations will be saved to disk.</p>
 </div>
@@ -110,19 +111,26 @@
 </h3>
 <p>If you are building a document in <a href="https://rmarkdown.rstudio.com/" class="external-link">RMarkdown</a> and want to cite R packages, <strong>grateful</strong> can automatically generate a BibTeX file and ensure these packages are cited in the appropriate format.</p>
 <p>First, include a reference to the BibTeX file in your YAML header.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bibliography<span class="sc">:</span> grateful<span class="sc">-</span>refs.bib</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bibliography<span class="sc">:</span> grateful<span class="sc">-</span>refs.bib</span></code></pre></div>
 <p>(Note: RMarkdown lets you reference multiple BibTeX files, if needed)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bibliography<span class="sc">:</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> document_citations.bib</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> grateful<span class="sc">-</span>refs.bib</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bibliography<span class="sc">:</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> document_citations.bib</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> grateful<span class="sc">-</span>refs.bib</span></code></pre></div>
 <p>Then call <code>cite_packages(output = "paragraph")</code> within a code chunk (specifying chunk option: <code>results = "asis"</code>) to automatically include a paragraph mentioning all the used packages, and include their references in the bibliography list.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r results = 'asis', echo = FALSE}</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">cite_packages(output = "paragraph")</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r results = 'asis'}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">cite_packages(output = "paragraph")</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
 <p><code>We used R version 4.1.2 [@base] and the following R packages: lme4 v. 1.1.27.1 [@lme4], mgcv v. 1.8.38 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017].</code></p>
+<p>Alternatively, you can get a table with package name, version, and citations, using <code>output = 'table'</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r }</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">library(knitr)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">pkgs &lt;- cite_packages(output = "table")</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">kable(pkgs)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p><img src="reference/figures/table.png" width="1271"></p>
 <p>If you want the references to appear in a particular format, you can specify the citation style in the YAML header:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bibliography<span class="sc">:</span> grateful<span class="sc">-</span>refs.bib</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>csl<span class="sc">:</span> peerj.csl</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bibliography<span class="sc">:</span> grateful<span class="sc">-</span>refs.bib</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>csl<span class="sc">:</span> peerj.csl</span></code></pre></div>
 <p>Alternatively, you can cite particular packages using the citation keys generated by <strong>grateful</strong>, as with any other BibTeX reference, or just include citations in the References section, using the function <code><a href="reference/nocite_references.html">nocite_references()</a></code>. See the package help and the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html" class="external-link">RMarkdown cookbook</a> for more details.</p>
 </div>
 </div>
@@ -130,25 +138,51 @@
 <h2 id="frequently-asked-questions">Frequently Asked Questions<a class="anchor" aria-label="anchor" href="#frequently-asked-questions"></a>
 </h2>
 <div class="section level3">
+<h3 id="getting-just-a-table-with-used-packages-and-versions">Getting just a table with used packages and versions<a class="anchor" aria-label="anchor" href="#getting-just-a-table-with-used-packages-and-versions"></a>
+</h3>
+<p>Use <code>scan_packages</code></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_packages</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>         pkg version</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>       base   <span class="dv">4</span>.<span class="fl">1.2</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>   grateful   <span class="dv">0</span>.<span class="fl">1.7</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>      knitr    <span class="fl">1.37</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>    remotes   <span class="dv">2</span>.<span class="fl">4.2</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>       renv  <span class="dv">0</span>.<span class="fl">15.2</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  rmarkdown    <span class="fl">2.11</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> rstudioapi    <span class="fl">0.13</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>   testthat   <span class="dv">3</span>.<span class="fl">1.2</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="producing-a-bibtex-file-with-package-references">Producing a BibTeX file with package references<a class="anchor" aria-label="anchor" href="#producing-a-bibtex-file-with-package-references"></a>
+</h3>
+<p>If you just want to get all package references in a BiBTeX file, you can call <code><a href="reference/get_pkgs_info.html">get_pkgs_info()</a></code>. Besides printing a table with package info, it will also save a BibTeX file with references. By default, the file will be called <code>grateful-refs.bib</code>, but you can change that (see function help).</p>
+<p>If you want to get the BibTeX references for a few specific packages:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/get_pkgs_info.html">get_pkgs_info</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lme4"</span>, <span class="st">"vegan"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;     pkg  version citekeys</span>
+<span class="co">#&gt; 1  lme4 1.1.27.1     lme4</span>
+<span class="co">#&gt; 2 vegan    2.5.7    vegan</span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="using-grateful-with-the-tidyverse">Using grateful with the tidyverse<a class="anchor" aria-label="anchor" href="#using-grateful-with-the-tidyverse"></a>
 </h3>
 <p>If you use one or several packages from the <a href="https://www.tidyverse.org" class="external-link">tidyverse</a>, you can choose to <a href="https://www.tidyverse.org/blog/2019/11/tidyverse-1-3-0/#citing-the-tidyverse" class="external-link">cite the ‘tidyverse’</a> rather than the individual packages:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>cite.tidyverse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="including-package-dependencies">Including package dependencies<a class="anchor" aria-label="anchor" href="#including-package-dependencies"></a>
 </h3>
 <p>Most R packages also depend on other packages. To include those package dependencies in your citations, rather than just the packages you called directly, use <code>dependencies = TRUE</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="what-about-external-software-dependencies">What about external software dependencies?<a class="anchor" aria-label="anchor" href="#what-about-external-software-dependencies"></a>
 </h3>
 <p>Some R packages wrap core external software that should perhaps be cited too. For example, <a href="https://cran.r-project.org/package=rjags" class="external-link"><code>rjags</code></a> is an R wrapper to the <a href="https://mcmc-jags.sourceforge.io/" class="external-link">JAGS</a> software written in C++. Ideally, R packages wrapping core external software will include them in their CITATION file. But otherwise, we can investigate external software requirements of our used packages, e.g. using <code>remotes</code>:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/system_requirements.html" class="external-link">system_requirements</a></span><span class="op">(</span>os <span class="op">=</span> <span class="st">"ubuntu-20.04"</span>, package <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rjags"</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/system_requirements.html" class="external-link">system_requirements</a></span><span class="op">(</span>package <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rjags"</span><span class="op">)</span>, os <span class="op">=</span> <span class="st">"ubuntu-20.04"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "apt-get install -y jags"</span></code></pre></div>
 </div>
 <div class="section level3">

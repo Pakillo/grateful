@@ -131,17 +131,19 @@ for more details.
 
 ### Getting just a table with used packages and versions
 
+Use `scan_packages`
+
 ``` r
-cite_packages(output = "table")
-     Package Version                                       Citation
-1       base   4.1.2                                          @base
-2   grateful   0.1.7                                      @grateful
-3      knitr    1.37             @knitr2014; @knitr2015; @knitr2021
-4    remotes   2.4.2                                       @remotes
-5       renv  0.15.2                                          @renv
-6  rmarkdown    2.11 @rmarkdown2018; @rmarkdown2020; @rmarkdown2021
-7 rstudioapi    0.13                                    @rstudioapi
-8   testthat   3.1.2                                      @testthat
+scan_packages()
+         pkg version
+1       base   4.1.2
+2   grateful   0.1.7
+3      knitr    1.37
+4    remotes   2.4.2
+5       renv  0.15.2
+6  rmarkdown    2.11
+7 rstudioapi    0.13
+8   testthat   3.1.2
 ```
 
 ### Producing a BibTeX file with package references
