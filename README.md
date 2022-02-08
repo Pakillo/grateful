@@ -113,25 +113,102 @@ include citations in the References section, using the function
 cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html)
 for more details.
 
-#### Using grateful with the tidyverse
+## Frequently Asked Questions
+
+### Using grateful with the tidyverse
 
 If you use one or several packages from the
-[tidyverse](https://www.tidyverse.org), you can choose to cite the
-‘tidyverse’ rather than the individual packages:
+[tidyverse](https://www.tidyverse.org), you can choose to [cite the
+‘tidyverse’](https://www.tidyverse.org/blog/2019/11/tidyverse-1-3-0/#citing-the-tidyverse)
+rather than the individual packages:
 
 ``` r
 cite_packages(cite.tidyverse = TRUE)
 ```
 
-#### Including package dependencies
+### Including package dependencies
 
-Most packages also depend on other packages. To include those package
+Most R packages also depend on other packages. To include those package
 dependencies in your citations, rather than just the packages you called
 directly, use `dependencies = TRUE`:
 
 ``` r
 cite_packages(dependencies = TRUE)
 ```
+
+### What about external software dependencies?
+
+Some R packages wrap core external software that should perhaps be cited
+too. For example, [`rjags`](https://cran.r-project.org/package=rjags) is
+an R wrapper to the [JAGS](https://mcmc-jags.sourceforge.io/) software
+written in C++. Ideally, R packages wrapping core external software will
+include them in their CITATION file. But otherwise, we can investigate
+external software requirements of our used packages, e.g. using
+`remotes`:
+
+``` r
+remotes::system_requirements(os = "ubuntu-20.04", package = c("rjags"))
+#> [1] "apt-get install -y jags"
+```
+
+### What software to cite?
+
+Citing software is pretty much like citing papers. Authors have to
+decide what to cite in each case, which depends on research context.
+
+As written in the Software Citation Principles paper ([Smith et
+al. 2016)](https://doi.org/10.7717/peerj-cs.86):
+
+> The software citation principles do not define what software should be
+> cited, but rather how software should be cited. What software should
+> be cited is the decision of the author(s) of the research work in the
+> context of community norms and practices, and in most research
+> communities, these are currently in flux. In general, we believe that
+> software should be cited on the same basis as any other research
+> product such as a paper or book; that is, authors should cite the
+> appropriate set of software products just as they cite the appropriate
+> set of papers, perhaps following the FORCE11 Data Citation Working
+> Group principles, which state, “In scholarly literature, whenever and
+> wherever a claim relies upon data, the corresponding data should be
+> cited”
+
+And these are the guidelines from the [Software Citation
+Checklist](https://doi.org/10.5281/zenodo.3479198):
+
+> You should cite software that has a significant impact on the research
+> outcome presented in your work, or on the way the research has been
+> conducted. If the research you are presenting is not repeatable
+> without a piece of software, then you should cite the software. Note
+> that the license or copyright of the software has no bearing on
+> whether you should cite it.
+
+> This might include:
+
+> Software (including scripts) you have written yourself to conduct the
+> research presented. A software framework / platform upon which the
+> software you wrote to conduct the research relies. Software packages,
+> plugins, modules and libraries you used to conduct your research and
+> that perform a critical role in your results. Software you have used
+> to simulate or model phenomena/systems. Specialist software (which is
+> not considered commonplace in your field) used to prepare, manage,
+> analyse or visualise data. Software being evaluated or compared as
+> part of the research presented Software that has produced analytic
+> results or other output, especially if used through an interface.
+
+> In general, you do not need to cite:
+
+> Software packages or libraries that are not fundamental to your work
+> and that are a normal part of the computational and scientific
+> environment used. These dependencies do not need to be cited outright
+> but should be documented as part of the computational workflow for
+> complete reproducibility. Software that was used during the course of
+> the research but had no impact on research results, e.g. word
+> processing software, backup software.
+
+Apart from citing the software most relevant to the particular
+research/analysis performed, I think it is good idea to record the
+entire computational environment elsewhere, e.g. using `sessionInfo()`
+or `sessioninfo::session_info()`.
 
 ## Limitations
 
