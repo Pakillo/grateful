@@ -41,8 +41,12 @@ Imagine a project where we are using the packages: *lme4* and *mgcv*. We want to
 
 Calling `cite_packages(output = "file")`, or simply `cite_packages()`, will scan the project, find these packages, and generate a document with formatted citations.
 
-```{r example, eval = FALSE}
+```{r eval=TRUE}
 library(grateful)
+```
+
+
+```{r example, eval = FALSE}
 cite_packages(output = "file")
 ```
 
@@ -85,12 +89,28 @@ bibliography:
 Then call `cite_packages(output = "paragraph")` within a code chunk (specifying chunk option: `results = "asis"`) to automatically include a paragraph mentioning all the used packages, and include their references in the bibliography list. 
 
 ````
-```{r results = 'asis', echo = FALSE}`r ''`
+```{r results = 'asis'}`r ''`
 cite_packages(output = "paragraph")
 ```
 ````
 
 `We used R version 4.1.2 [@base] and the following R packages: lme4 v. 1.1.27.1 [@lme4], mgcv v. 1.8.38 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017].`
+
+Alternatively, you can get a table with package name, version, and citations, using `output = 'table'`:
+
+````
+```{r }`r ''`
+library(knitr)
+pkgs <- cite_packages(output = "table")
+kable(pkgs)
+```
+````
+
+```{r echo=FALSE, eval = TRUE}
+knitr::include_graphics("man/figures/table.png")
+```
+
+
 
 If you want the references to appear in a particular format, you can specify the citation style in the YAML header:
 
@@ -103,6 +123,26 @@ Alternatively, you can cite particular packages using the citation keys generate
 
 
 ## Frequently Asked Questions
+
+
+### Getting just a table with used packages and versions
+
+```{r eval=TRUE, comment = NA}
+cite_packages(output = "table")
+```
+
+
+
+### Producing a BibTeX file with package references
+
+If you just want to get all package references in a BiBTeX file, you can call `get_pkgs_info()`. Besides printing a table with package info, it will also save a BibTeX file with references. By default, the file will be called `grateful-refs.bib`, but you can change that (see function help).
+
+If you want to get the BibTeX references for a few specific packages:
+
+```{r eval = TRUE}
+get_pkgs_info(pkgs = c("lme4", "vegan"))
+```
+
 
 ### Using grateful with the tidyverse
 
@@ -128,7 +168,7 @@ Some R packages wrap core external software that should perhaps be cited too. Fo
 
 
 ```{r eval=TRUE}
-remotes::system_requirements(os = "ubuntu-20.04", package = c("rjags"))
+remotes::system_requirements(package = c("rjags"), os = "ubuntu-20.04")
 ```
 
 

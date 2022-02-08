@@ -9,7 +9,7 @@
 #' and saves their citation information in a BibTeX file
 #' (using \code{\link{get_pkgs_info}}).
 #'
-#' Then, the function is designed to handle three different use cases:
+#' Then, the function is designed to handle different use cases:
 #'
 #' If \code{output = "file"}, \code{cite_packages()} will generate an RMarkdown file
 #' which includes a paragraph with in-text citations of all packages,
@@ -24,6 +24,10 @@
 #' suitable to be used directly in an Rmarkdown document (see README).
 #' To do so, include a reference to the generated \code{bib.file}
 #' bibliography file in the YAML header of the Rmarkdown document.
+#'
+#' Alternatively, if \code{output = "table"}, \code{cite_packages()} will return
+#' a table with package names, versions, and citations. Thus, if using Rmarkdown,
+#' you can choose between getting a table or a text paragraph citing all packages.
 #'
 #' Finally, you can use \code{output = "citekeys"} to obtain a vector of citation keys,
 #' and then call \code{\link{nocite_references}} within an Rmarkdown document
@@ -41,6 +45,8 @@
 #' @param output Either "file" to generate a separate document with formatted citations
 #' for all packages; "paragraph" to return a paragraph with in-text citations of
 #' used packages, suitable to be used within an Rmarkdown document;
+#' "table" to return a table with package name, version, and citations, to be used
+#' in Rmarkdown;
 #' or "citekeys" to return a vector with citation keys.
 #' In all cases, a BibTeX file with package references is saved on disk
 #' (see \code{bib.file}).
@@ -82,8 +88,8 @@
 #' @param ... Other parameters passed to \code{\link[renv]{dependencies}}.
 #'
 #' @return A file containing package references in BibTeX format, plus
-#' a file with formatted citations, or a paragraph with in-text citations of all packages,
-#' suitable to be used within Rmarkdown documents.
+#' a file with formatted citations, or a table or paragraph with in-text citations
+#' of all packages, suitable to be used within Rmarkdown documents.
 #'
 #' @note Before running \code{grateful} you might want to run
 #' \code{\link[funchir]{stale_package_check}} on your scripts to check for unused packages
@@ -122,7 +128,7 @@
 #' nocite_references(cite_packages(output = "citekeys"))
 #' }
 
-cite_packages <- function(output = c("file", "paragraph", "citekeys"),
+cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           out.format = "html",
                           citation.style = NULL,
                           pkgs = "All",
@@ -159,6 +165,20 @@ cite_packages <- function(output = c("file", "paragraph", "citekeys"),
 
   if (output == "paragraph") {
     cat(write_citation_paragraph(pkgs.df, include.RStudio = include.RStudio))
+  }
+
+  if (output == "table") {
+    pkgs.df$Citation <- lapply(pkgs.df$citekeys,
+                               function(x) {
+                                 x <- sort(x)
+                                 ck <- paste0("@", x)
+                                 ck <- paste(ck, collapse = "; ")
+                                 ck})
+
+    pkgs.df <- pkgs.df[, c("pkg", "version", "Citation")]
+    names(pkgs.df) <- c("Package", "Version", "Citation")
+    return(pkgs.df)
+
   }
 
   if (output == "citekeys") {

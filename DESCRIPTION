@@ -1,7 +1,7 @@
 Package: grateful
 Title: Facilitate Citation of R Packages
-Version: 0.1.6
-Date: 2022-02-05
+Version: 0.1.7
+Date: 2022-02-08
 Authors@R: c(
     person('Francisco', 'Rodriguez-Sanchez', email = 'f.rodriguez.sanc@gmail.com', 
             role = c('aut', 'cre'), comment = c(ORCID = "0000-0002-7981-1599")),

@@ -50,6 +50,9 @@ formatted citations.
 
 ``` r
 library(grateful)
+```
+
+``` r
 cite_packages(output = "file")
 ```
 
@@ -94,11 +97,22 @@ Then call `cite_packages(output = "paragraph")` within a code chunk
 paragraph mentioning all the used packages, and include their references
 in the bibliography list.
 
-    ```{r results = 'asis', echo = FALSE}
+    ```{r results = 'asis'}
     cite_packages(output = "paragraph")
     ```
 
 `We used R version 4.1.2 [@base] and the following R packages: lme4 v. 1.1.27.1 [@lme4], mgcv v. 1.8.38 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017].`
+
+Alternatively, you can get a table with package name, version, and
+citations, using `output = 'table'`:
+
+    ```{r }
+    library(knitr)
+    pkgs <- cite_packages(output = "table")
+    kable(pkgs)
+    ```
+
+<img src="man/figures/table.png" width="1271" />
 
 If you want the references to appear in a particular format, you can
 specify the citation style in the YAML header:
@@ -114,6 +128,38 @@ cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html)
 for more details.
 
 ## Frequently Asked Questions
+
+### Getting just a table with used packages and versions
+
+``` r
+cite_packages(output = "table")
+     Package Version                                       Citation
+1       base   4.1.2                                          @base
+2   grateful   0.1.7                                      @grateful
+3      knitr    1.37             @knitr2014; @knitr2015; @knitr2021
+4    remotes   2.4.2                                       @remotes
+5       renv  0.15.2                                          @renv
+6  rmarkdown    2.11 @rmarkdown2018; @rmarkdown2020; @rmarkdown2021
+7 rstudioapi    0.13                                    @rstudioapi
+8   testthat   3.1.2                                      @testthat
+```
+
+### Producing a BibTeX file with package references
+
+If you just want to get all package references in a BiBTeX file, you can
+call `get_pkgs_info()`. Besides printing a table with package info, it
+will also save a BibTeX file with references. By default, the file will
+be called `grateful-refs.bib`, but you can change that (see function
+help).
+
+If you want to get the BibTeX references for a few specific packages:
+
+``` r
+get_pkgs_info(pkgs = c("lme4", "vegan"))
+#>     pkg  version citekeys
+#> 1  lme4 1.1.27.1     lme4
+#> 2 vegan    2.5.7    vegan
+```
 
 ### Using grateful with the tidyverse
 
@@ -147,7 +193,7 @@ external software requirements of our used packages, e.g. using
 `remotes`:
 
 ``` r
-remotes::system_requirements(os = "ubuntu-20.04", package = c("rjags"))
+remotes::system_requirements(package = c("rjags"), os = "ubuntu-20.04")
 #> [1] "apt-get install -y jags"
 ```
 

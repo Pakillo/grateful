@@ -1,3 +1,8 @@
+# grateful 0.1.7
+
+* New option output = "table" to produce a table with package names, version, and citation, 
+to be used within an Rmarkdown document.
+
 # grateful 0.1.5
 
 * Now including package versions, besides package name.

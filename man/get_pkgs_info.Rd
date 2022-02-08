@@ -46,8 +46,9 @@ A data.frame with package info,
 and a file containing package references in BibTeX format.
 }
 \description{
-This function scans the project for R packages used and returns a data frame
-with package names, version, and citation keys.
+This function scans the project for R packages used, saves a BibTeX file with
+package references, and returns a data frame with package names, version,
+and citation keys.
 }
 \examples{
 \dontrun{

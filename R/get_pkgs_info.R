@@ -1,8 +1,9 @@
 
 #' Get information about packages used in a project
 #'
-#' This function scans the project for R packages used and returns a data frame
-#' with package names, version, and citation keys.
+#' This function scans the project for R packages used, saves a BibTeX file with
+#' package references, and returns a data frame with package names, version,
+#' and citation keys.
 #'
 #' @inheritParams scan_packages
 #' @inheritParams get_citations

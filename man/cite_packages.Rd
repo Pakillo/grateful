@@ -5,7 +5,7 @@
 \title{Cite R packages used in a project}
 \usage{
 cite_packages(
-  output = c("file", "paragraph", "citekeys"),
+  output = c("file", "paragraph", "table", "citekeys"),
   out.format = "html",
   citation.style = NULL,
   pkgs = "All",
@@ -23,6 +23,8 @@ cite_packages(
 \item{output}{Either "file" to generate a separate document with formatted citations
 for all packages; "paragraph" to return a paragraph with in-text citations of
 used packages, suitable to be used within an Rmarkdown document;
+"table" to return a table with package name, version, and citations, to be used
+in Rmarkdown;
 or "citekeys" to return a vector with citation keys.
 In all cases, a BibTeX file with package references is saved on disk
 (see \code{bib.file}).}
@@ -65,8 +67,8 @@ references ("grateful-citations" by default).}
 }
 \value{
 A file containing package references in BibTeX format, plus
-a file with formatted citations, or a paragraph with in-text citations of all packages,
-suitable to be used within Rmarkdown documents.
+a file with formatted citations, or a table or paragraph with in-text citations
+of all packages, suitable to be used within Rmarkdown documents.
 }
 \description{
 Find R packages used in a project, create a BibTeX file of citations,
@@ -79,7 +81,7 @@ an Rmarkdown document (see examples).
 and saves their citation information in a BibTeX file
 (using \code{\link{get_pkgs_info}}).
 
-Then, the function is designed to handle three different use cases:
+Then, the function is designed to handle different use cases:
 
 If \code{output = "file"}, \code{cite_packages()} will generate an RMarkdown file
 which includes a paragraph with in-text citations of all packages,
@@ -94,6 +96,10 @@ a paragraph with in-text citations of all packages,
 suitable to be used directly in an Rmarkdown document (see README).
 To do so, include a reference to the generated \code{bib.file}
 bibliography file in the YAML header of the Rmarkdown document.
+
+Alternatively, if \code{output = "table"}, \code{cite_packages()} will return
+a table with package names, versions, and citations. Thus, if using Rmarkdown,
+you can choose between getting a table or a text paragraph citing all packages.
 
 Finally, you can use \code{output = "citekeys"} to obtain a vector of citation keys,
 and then call \code{\link{nocite_references}} within an Rmarkdown document
