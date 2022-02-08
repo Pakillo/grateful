@@ -52,17 +52,22 @@ create_rmd <- function(pkgs.df = NULL,
     "---",
     "")
 
+  table <- knitr::asis_output(knitr::kable(output_table(pkgs.df)))
+
   parag <- write_citation_paragraph(pkgs.df, include.RStudio = include.RStudio)
 
   ## write Rmd to disk
   writeLines(c(yaml.header,
                "## R packages used",
                "",
-               "You can paste this paragraph directly in your report:",
+               table,
+               "",
+               "**You can paste this paragraph directly in your report:**",
                "",
                parag,
                "",
-               "## Package citations"),
+               "## Package citations",
+               ""),
              con = Rmd.file)
 
   if (tolower(out.format) == "rmd") {

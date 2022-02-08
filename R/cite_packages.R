@@ -168,17 +168,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
   }
 
   if (output == "table") {
-    pkgs.df$Citation <- lapply(pkgs.df$citekeys,
-                               function(x) {
-                                 x <- sort(x)
-                                 ck <- paste0("@", x)
-                                 ck <- paste(ck, collapse = "; ")
-                                 ck})
-
-    pkgs.df <- pkgs.df[, c("pkg", "version", "Citation")]
-    names(pkgs.df) <- c("Package", "Version", "Citation")
-    return(pkgs.df)
-
+    return(output_table(pkgs.df))
   }
 
   if (output == "citekeys") {
@@ -186,3 +176,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
   }
 
 }
+
+
+
+
