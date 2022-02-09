@@ -39,7 +39,7 @@ get_pkgs_info <- function(pkgs = "All",
 
   # Group all citations from same package
   pkgs.df$citekeys <- lapply(pkgs.df$pkg, function(x) {
-    citekeys[grep(x, citekeys)]
+    citekeys[grep(paste0("^", x, "(\\d{4}[a-z]?)?$"), citekeys, perl = TRUE)]
   })
 
   pkgs.df
