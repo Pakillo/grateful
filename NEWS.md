@@ -1,3 +1,7 @@
+# grateful 0.1.9
+
+* Fixed potential bug when matching package names with citation keys. Now using more strict regex.
+
 # grateful 0.1.7
 
 * New option output = "table" to produce a table with package names, version, and citation, 

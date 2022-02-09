@@ -38,9 +38,9 @@ remotes::install_github("Pakillo/grateful")
 document listing each package and their citations, or (ii) to build
 citation keys to incorporate into an existing RMarkdown document.
 
-Imagine a project where we are using the packages: *lme4* and *mgcv*. We
-want to collect all the citations listed for these packages, as well as
-a citation for base R (and for RStudio, if applicable).
+Imagine a project where we are using the packages: *ggplot2* and *lme4*.
+We want to collect all the citations listed for these packages, as well
+as a citation for base R (and for RStudio, if applicable).
 
 ### Generate a document with formatted citations
 
@@ -53,7 +53,7 @@ library(grateful)
 ```
 
 ``` r
-cite_packages(output = "file")
+cite_packages()
 ```
 
 ![](man/figures/example-output.png)
@@ -137,7 +137,7 @@ Use `scan_packages`
 scan_packages()
          pkg version
 1       base   4.1.2
-2   grateful   0.1.7
+2   grateful   0.1.9
 3      knitr    1.37
 4    remotes   2.4.2
 5       renv  0.15.2
