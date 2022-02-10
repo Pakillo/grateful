@@ -30,7 +30,7 @@ In all cases, a BibTeX file with package references is saved on disk
 (see \code{bib.file}).}
 
 \item{out.format}{Output format when \code{output = "file"}:
-either "html" (the default), docx" (Word), "pdf", or "md" (markdown).
+either "html" (the default), docx" (Word), "pdf", "Rmd", or "md" (markdown).
 (Note that choosing "pdf" requires a working installation of LaTeX).}
 
 \item{citation.style}{Optional. Citation style to format references for a
