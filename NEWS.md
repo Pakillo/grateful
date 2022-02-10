@@ -1,3 +1,7 @@
+# grateful 0.1.10
+
+* Fixed bug when matching citekeys with package names containing punctuation characters.
+
 # grateful 0.1.9
 
 * Fixed potential bug when matching package names with citation keys. Now using more strict regex.
