@@ -42,18 +42,19 @@ scan_packages <- function(pkgs = "All",
   }
 
 
+
+  # Include dependencies
+  if (dependencies) {
+    pkgnames <- remotes::package_deps(pkgnames)$package
+  }
+
+
   # Collapse tidyverse packages into single citation?
   # tidy.pkgs list provided in grateful pkg
   if (cite.tidyverse && any(pkgnames %in% tidy.pkgs)) {
     pkgnames <- pkgnames[!pkgnames %in% tidy.pkgs]
     pkgnames <- pkgnames[pkgnames != "tidyverse"]
     pkgnames <- c(pkgnames, "tidyverse")
-  }
-
-
-  # Include dependencies
-  if (dependencies) {
-    pkgnames <- remotes::package_deps(pkgnames)$package
   }
 
 
