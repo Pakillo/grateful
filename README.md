@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/Pakillo/grateful/workflows/R-CMD-check/badge.svg)](https://github.com/Pakillo/grateful/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful?branch=master)
 <!-- badges: end -->
 
 The goal of **grateful** is to make it very easy to cite R and the R
@@ -135,15 +137,17 @@ Use `scan_packages`
 
 ``` r
 scan_packages()
-         pkg version
-1       base   4.1.2
-2   grateful   0.1.9
-3      knitr    1.37
-4    remotes   2.4.2
-5       renv  0.15.2
-6  rmarkdown    2.11
-7 rstudioapi    0.13
-8   testthat   3.1.2
+          pkg version
+1        base   4.1.2
+2        covr   3.5.1
+3    grateful  0.1.10
+4       knitr    1.37
+5     pkgdown   2.0.2
+6     remotes   2.4.2
+7        renv  0.15.2
+8   rmarkdown    2.11
+9  rstudioapi    0.13
+10   testthat   3.1.2
 ```
 
 ### Producing a BibTeX file with package references
@@ -158,9 +162,9 @@ If you want to get the BibTeX references for a few specific packages:
 
 ``` r
 get_pkgs_info(pkgs = c("lme4", "vegan"))
-#>     pkg  version citekeys
-#> 1  lme4 1.1.27.1     lme4
-#> 2 vegan    2.5.7    vegan
+#>     pkg version citekeys
+#> 1  lme4  1.1.28     lme4
+#> 2 vegan   2.5.7    vegan
 ```
 
 ### Using grateful with the tidyverse
