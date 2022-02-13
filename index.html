@@ -141,15 +141,17 @@
 </h3>
 <p>Use <code>scan_packages</code></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">scan_packages</span>()</span>
-<span id="cb11-2"><a href="#cb11-2"></a>         pkg version</span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="dv">1</span>       base   <span class="dv">4</span>.<span class="fl">1.2</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="dv">2</span>   grateful   <span class="dv">0</span>.<span class="fl">1.9</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="dv">3</span>      knitr    <span class="fl">1.37</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="dv">4</span>    remotes   <span class="dv">2</span>.<span class="fl">4.2</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="dv">5</span>       renv  <span class="dv">0</span>.<span class="fl">15.2</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="dv">6</span>  rmarkdown    <span class="fl">2.11</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="dv">7</span> rstudioapi    <span class="fl">0.13</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a><span class="dv">8</span>   testthat   <span class="dv">3</span>.<span class="fl">1.2</span></span></code></pre></div>
+<span id="cb11-2"><a href="#cb11-2"></a>          pkg version</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="dv">1</span>        base   <span class="dv">4</span>.<span class="fl">1.2</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="dv">2</span>        covr   <span class="dv">3</span>.<span class="fl">5.1</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="dv">3</span>    grateful  <span class="dv">0</span>.<span class="fl">1.10</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="dv">4</span>       knitr    <span class="fl">1.37</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="dv">5</span>     pkgdown   <span class="dv">2</span>.<span class="fl">0.2</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="dv">6</span>     remotes   <span class="dv">2</span>.<span class="fl">4.2</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="dv">7</span>        renv  <span class="dv">0</span>.<span class="fl">15.2</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="dv">8</span>   rmarkdown    <span class="fl">2.11</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="dv">9</span>  rstudioapi    <span class="fl">0.13</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="dv">10</span>   testthat   <span class="dv">3</span>.<span class="fl">1.2</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="producing-a-bibtex-file-with-package-references">Producing a BibTeX file with package references<a class="anchor" aria-label="anchor" href="#producing-a-bibtex-file-with-package-references"></a>
@@ -158,9 +160,9 @@
 <p>If you want to get the BibTeX references for a few specific packages:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/get_pkgs_info.html">get_pkgs_info</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lme4"</span>, <span class="st">"vegan"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;     pkg  version citekeys</span>
-<span class="co">#&gt; 1  lme4 1.1.27.1     lme4</span>
-<span class="co">#&gt; 2 vegan    2.5.7    vegan</span></code></pre></div>
+<span class="co">#&gt;     pkg version citekeys</span>
+<span class="co">#&gt; 1  lme4  1.1.28     lme4</span>
+<span class="co">#&gt; 2 vegan   2.5.7    vegan</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="using-grateful-with-the-tidyverse">Using grateful with the tidyverse<a class="anchor" aria-label="anchor" href="#using-grateful-with-the-tidyverse"></a>
@@ -254,6 +256,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/Pakillo/grateful/actions" class="external-link"><img src="https://github.com/Pakillo/grateful/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://app.codecov.io/gh/Pakillo/grateful?branch=master" class="external-link"><img src="https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
 
