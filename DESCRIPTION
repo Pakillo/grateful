@@ -22,6 +22,7 @@ Imports:
   rmarkdown,
   utils
 Suggests: 
+    covr,
     rstudioapi,
     testthat (>= 3.0.0)
 URL: https://pakillo.github.io/grateful

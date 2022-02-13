@@ -12,3 +12,4 @@ test_nocite.Rmd
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^codecov\.yml$
