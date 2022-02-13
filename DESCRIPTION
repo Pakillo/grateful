@@ -22,8 +22,9 @@ Imports:
   rmarkdown,
   utils
 Suggests: 
-  rstudioapi,
-  testthat
+    rstudioapi,
+    testthat (>= 3.0.0)
 URL: https://pakillo.github.io/grateful
 BugReports: https://github.com/Pakillo/grateful/issues
 RoxygenNote: 7.1.2
+Config/testthat/edition: 3
