@@ -25,7 +25,7 @@
 #' }
 
 scan_packages <- function(pkgs = "All",
-                          cite.tidyverse = FALSE,
+                          cite.tidyverse = TRUE,
                           dependencies = FALSE,
                           ...) {
 

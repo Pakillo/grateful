@@ -4,7 +4,7 @@
 \alias{scan_packages}
 \title{Scan a project or folder for packages used}
 \usage{
-scan_packages(pkgs = "All", cite.tidyverse = FALSE, dependencies = FALSE, ...)
+scan_packages(pkgs = "All", cite.tidyverse = TRUE, dependencies = FALSE, ...)
 }
 \arguments{
 \item{pkgs}{Character. Either "All" to include all packages used in scripts within

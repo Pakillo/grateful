@@ -9,7 +9,7 @@ cite_packages(
   out.format = "html",
   citation.style = NULL,
   pkgs = "All",
-  cite.tidyverse = FALSE,
+  cite.tidyverse = TRUE,
   dependencies = FALSE,
   include.RStudio = FALSE,
   out.dir = getwd(),

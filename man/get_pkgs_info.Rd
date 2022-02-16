@@ -6,7 +6,7 @@
 \usage{
 get_pkgs_info(
   pkgs = "All",
-  cite.tidyverse = FALSE,
+  cite.tidyverse = TRUE,
   dependencies = FALSE,
   out.dir = getwd(),
   bib.file = "grateful-refs.bib",
