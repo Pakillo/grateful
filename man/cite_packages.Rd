@@ -142,7 +142,7 @@ cite_packages(pkgs = c("lme4", "vegan", "mgcv"))
 
 # include this in YAML header: bibliography: grateful-refs.bib
 
-# then call cite_packages within a chunk with chunk option results = "asis"
+# then call cite_packages within an R chunk:
 cite_packages(output = "paragraph")
 
 

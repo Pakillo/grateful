@@ -5,7 +5,8 @@ Date: 2022-02-09
 Authors@R: c(
     person('Francisco', 'Rodriguez-Sanchez', email = 'f.rodriguez.sanc@gmail.com', 
             role = c('aut', 'cre'), comment = c(ORCID = "0000-0002-7981-1599")),
-    person('Connor P.', 'Jackson', email = 'cpjackson@berkeley.edu', role = 'aut'),
+    person('Connor P.', 'Jackson', email = 'connor@cpjackson.net', role = 'aut',
+           comment = c(ORCID = "0000-0002-4220-5210")),
     person('Shaurita D.', 'Hutchins', role = c('ctb')))
 Description: Facilitates citation of R packages used in analysis projects. 
     Scans project for packages used, gets their citations, and produces 

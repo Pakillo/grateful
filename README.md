@@ -95,11 +95,11 @@ First, include a reference to the BibTeX file in your YAML header.
     - grateful-refs.bib
 
 Then call `cite_packages(output = "paragraph")` within a code chunk
-(specifying chunk option: `results = "asis"`) to automatically include a
-paragraph mentioning all the used packages, and include their references
-in the bibliography list.
+(block or inline) to automatically include a paragraph mentioning all
+the used packages, and include their references in the bibliography
+list.
 
-    ```{r results = 'asis'}
+    ```{r}
     cite_packages(output = "paragraph")
     ```
 
@@ -114,7 +114,7 @@ citations, using `output = 'table'`:
     kable(pkgs)
     ```
 
-<img src="man/figures/table.png" width="1271" />
+![](man/figures/table.png)<!-- -->
 
 If you want the references to appear in a particular format, you can
 specify the citation style in the YAML header:
@@ -137,17 +137,17 @@ Use `scan_packages`
 
 ``` r
 scan_packages()
-          pkg version
-1        base   4.1.2
-2        covr   3.5.1
-3    grateful  0.1.10
-4       knitr    1.37
-5     pkgdown   2.0.2
-6     remotes   2.4.2
-7        renv  0.15.2
-8   rmarkdown    2.11
-9  rstudioapi    0.13
-10   testthat   3.1.2
+         pkg version
+1       base   4.1.2
+2       covr   3.5.1
+3   grateful  0.1.11
+4      knitr    1.37
+5    pkgdown   2.0.2
+6    remotes   2.4.2
+7       renv  0.15.2
+8  rmarkdown    2.11
+9   testthat   3.1.2
+10 tidyverse   1.3.1
 ```
 
 ### Producing a BibTeX file with package references

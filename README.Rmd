@@ -87,10 +87,10 @@ bibliography:
 - grateful-refs.bib
 ```
 
-Then call `cite_packages(output = "paragraph")` within a code chunk (specifying chunk option: `results = "asis"`) to automatically include a paragraph mentioning all the used packages, and include their references in the bibliography list. 
+Then call `cite_packages(output = "paragraph")` within a code chunk (block or inline) to automatically include a paragraph mentioning all the used packages, and include their references in the bibliography list. 
 
 ````
-```{r results = 'asis'}`r ''`
+```{r}`r ''`
 cite_packages(output = "paragraph")
 ```
 ````
