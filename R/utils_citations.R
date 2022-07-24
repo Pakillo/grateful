@@ -1,6 +1,22 @@
+# fix formatting of titles for bibtex
+fix_title <- function(titlestring) {
+  # maintain capitalization of package name at the beginning
+  titlestring <- gsub("^ *title ?= ?\\{([a-zA-Z._]*):", "title = \\{\\{\\1\\}:", titlestring)
+  # always capitalize "R"
+  titlestring <- gsub(" R([^a-zA-Z0-9])", " \\{R\\}\\1", titlestring)
+  # get opening and closing quotation marks right, and preserve capitalization
+  titlestring <- gsub("[`']([^`']*)[`']", "`\\{\\1\\}'", titlestring)
+  titlestring <- gsub('"([^"]*)"', "``\\{\\1\\}''", titlestring)
+  return(titlestring)
+}
+
 # for a name and citation, create unique citekey for each citation
 add_citekey <- function(pkg_name, citation) {
+  # fix the titles with proper bibtex formatting
   citation_bibtex <- utils::toBibtex(citation)
+  title_rows <- (names(citation_bibtex) == "title")
+  citation_bibtex[title_rows] <- fix_title(citation_bibtex[title_rows])
+
   refbeginnings <- grep(pattern = "\\{,$", x = citation_bibtex)
   for (i in 1:length(refbeginnings)) {
     if (length(refbeginnings) == 1) {
