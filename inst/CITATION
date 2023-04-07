@@ -6,12 +6,12 @@ citEntry(entry = "Manual",
                 as.person("Francisco Rodríguez-Sánchez"),
                 as.person("Connor P. Jackson"),
                 as.person("Shaurita D. Hutchins")),
-  note = "R package version 0.1.5",
-  year         = "2022",
+  note = "R package version 0.1.12",
+  year         = "2023",
   url          = "https://github.com/Pakillo/grateful",
   textVersion  =
-  paste("Francisco Rodríguez-Sánchez, Connor P. Jackson, Shaurita D. Hutchins (2022).",
+  paste("Francisco Rodríguez-Sánchez, Connor P. Jackson, Shaurita D. Hutchins (2023).",
         "grateful: Facilitate citation of R packages.",
-        "R package version 0.1.5.",
+        "R package version 0.1.12",
         "Available at https://github.com/Pakillo/grateful.")
 )
