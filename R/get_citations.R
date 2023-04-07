@@ -1,25 +1,20 @@
 #' Get citations for packages
 #'
-#' @param pkgs Character vector of package names, e.g. as produced by
-#'   `scan_packages`.
-#' @param out.dir Directory to save the BibTeX file with the references.
-#'   Defaults to working directory.
-#' @param bib.file Name of the file to save the BibTeX references.
-#' @param include.RStudio Logical. If TRUE, adds a citation for the current
-#'   version of RStudio.
+#' @param pkgs Character vector of package names, e.g. obtained by [scan_packages()].
+#' @inheritParams cite_packages
 #'
-#' @return A file on the specified `out.dir` containing the package references in BibTeX
-#'   format. If assigned a name, `get_citations` will also return a list with citation keys for
-#'   each citation (without @@).
+#' @return A file on the specified `out.dir` containing the package references
+#' in BibTeX format. If assigned a name, `get_citations` will also return a list
+#'  with citation keys for each citation (without @@).
+#'
 #' @export
 #'
-#' @examples
-#' \dontrun{
-#' citekeys <- get_citations(c("lme4", "mgcv"))
+#' @examplesIf interactive()
+#' citekeys <- get_citations(c("knitr", "renv"))
 #'
 #' pkgs <- scan_packages()
 #' citekeys <- get_citations(pkgs$pkg)
-#' }
+
 get_citations <- function(pkgs,
                           out.dir = getwd(),
                           bib.file = "grateful-refs.bib",
