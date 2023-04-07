@@ -67,6 +67,10 @@
 #'
 #' @param citation.style Optional. Citation style to format references for a
 #' particular journal. See <https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html>.
+#' If the CSL is not available in the working directory, it will be downloaded
+#' automatically from the official
+#' [GitHub repository](https://github.com/citation-style-language/styles)
+#' using [get_csl()].
 #'
 #' @param pkgs Character. Either "All" to include all packages used in scripts within
 #' the project/folder (the default), or "Session" to include only packages
@@ -114,16 +118,16 @@
 #' # To build a standalone document for citations
 #' cite_packages()
 #'
-#' # Formatting for a particular journal:
-#' cite_packages(citation_style = "peerj")
+#' # Format references for a particular journal:
+#' cite_packages(citation.style = "peerj")
 #'
-#' # Choosing different output format:
+#' # Choose different output format:
 #' cite_packages(out.format = "docx")
 #'
-#' # Citing only packages currently loaded
+#' # Cite only packages currently loaded:
 #' cite_packages(pkgs = "Session")
 #'
-#' # Citing only user-provided packages
+#' # Citing only user-provided packages:
 #' cite_packages(pkgs = c("lme4", "vegan", "mgcv"))
 #'
 #'

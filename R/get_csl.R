@@ -1,14 +1,14 @@
 #' Get a journal citation style from internet repository
 #'
-#' @param name Name of the journal, exactly as in <https://github.com/citation-style-language/styles>.
+#' @param name Name of the journal,
+#' exactly as in <https://github.com/citation-style-language/styles>.
 #'
 #' @return The CSL file is saved in the working directory
 #' @export
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' get_csl("peerj")
-#' }
+
 get_csl <- function(name) {
   styles.repo <- "https://raw.githubusercontent.com/citation-style-language/styles/master/"
 
