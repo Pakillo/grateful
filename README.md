@@ -4,10 +4,9 @@
 # grateful: Facilitate citation of R packages
 
 <!-- badges: start -->
+<!-- [![Codecov test coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful?branch=master) -->
 
-[![R-CMD-check](https://github.com/Pakillo/grateful/workflows/R-CMD-check/badge.svg)](https://github.com/Pakillo/grateful/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful?branch=master)
+[![R-CMD-check](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of **grateful** is to make it very easy to cite R and the R
@@ -114,7 +113,7 @@ citations, using `output = 'table'`:
     kable(pkgs)
     ```
 
-![](man/figures/table.png)<!-- -->
+<img src="man/figures/table.png" width="1271" />
 
 If you want the references to appear in a particular format, you can
 specify the citation style in the YAML header:
@@ -138,15 +137,15 @@ Use `scan_packages`
 ``` r
 scan_packages()
         pkg version
-1      base   4.2.1
+1      base   4.2.3
 2  grateful  0.1.11
-3     knitr    1.39
-4   pkgdown   2.0.6
+3     knitr    1.42
+4   pkgdown   2.0.7
 5   remotes   2.4.2
-6      renv  0.15.5
-7 rmarkdown    2.14
-8  testthat   3.1.4
-9 tidyverse   1.3.1
+6      renv  0.17.3
+7 rmarkdown    2.21
+8  testthat   3.1.7
+9 tidyverse   2.0.0
 ```
 
 ### Producing a BibTeX file with package references
@@ -162,8 +161,8 @@ If you want to get the BibTeX references for a few specific packages:
 ``` r
 get_pkgs_info(pkgs = c("lme4", "vegan"))
 #>     pkg version citekeys
-#> 1  lme4  1.1.30     lme4
-#> 2 vegan   2.6.2    vegan
+#> 1  lme4  1.1.32     lme4
+#> 2 vegan   2.6.4    vegan
 ```
 
 ### Using grateful with the tidyverse
