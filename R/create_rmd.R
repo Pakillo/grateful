@@ -1,16 +1,16 @@
 #' Create template Rmarkdown file with package citations
 #'
 #' @param pkgs.df Data.frame with package names, versions, and citation keys,
-#' as produced by \code{\link{get_pkgs_info()}}.
+#' as produced by [get_pkgs_info()()].
 #' @param bib.file Name of the file containing references in BibTeX format,
-#' as produced by \code{\link{get_pkgs_info()}}.
+#' as produced by [get_pkgs_info()()].
 #' @param csl Optional. Citation style to format references.
-#' See \url{https://www.zotero.org/styles}.
+#' See <https://www.zotero.org/styles>.
 #' @param out.format Output format. One of: "docx" (Word), "pdf", "html", "Rmd", or "md" (markdown).
 #' @param Rmd.file Name of the Rmarkdown file to be created.
 #' @param out.dir Directory to save the output document. Default is the working directory.
 #' @param include.RStudio Include RStudio?
-#' @param ... Further arguments for \code{\link{render_citations}}.
+#' @param ... Further arguments for [render_citations()].
 #'
 #' @return An Rmarkdown file, if out.format = "Rmd", or a rendered document otherwise.
 #' @noRd

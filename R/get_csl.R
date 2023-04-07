@@ -1,6 +1,6 @@
 #' Get a journal citation style from internet repository
 #'
-#' @param name Name of the journal, exactly as in \url{https://github.com/citation-style-language/styles}.
+#' @param name Name of the journal, exactly as in <https://github.com/citation-style-language/styles>.
 #'
 #' @return The CSL file is saved in the working directory
 #' @export

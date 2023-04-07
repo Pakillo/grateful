@@ -20,12 +20,17 @@ cite_packages(
 )
 }
 \arguments{
-\item{output}{Either "file" to generate a separate document with formatted citations
-for all packages; "paragraph" to return a paragraph with in-text citations of
-used packages, suitable to be used within an Rmarkdown document;
-"table" to return a table with package name, version, and citations, to be used
+\item{output}{Either
+\itemize{
+\item "file" to generate a separate document with formatted citations
+for all packages;
+\item "paragraph" to return a paragraph with in-text citations of used packages,
+suitable to be used within an Rmarkdown document;
+\item "table" to return a table with package name, version, and citations, to be used
 in Rmarkdown;
-or "citekeys" to return a vector with citation keys.
+\item "citekeys" to return a vector with citation keys.
+}
+
 In all cases, a BibTeX file with package references is saved on disk
 (see \code{bib.file}).}
 
@@ -63,7 +68,7 @@ the references. Default is the working directory.}
 \item{out.name}{Desired name of the output file containing the formatted
 references ("grateful-citations" by default).}
 
-\item{...}{Other parameters passed to \code{\link[renv]{dependencies}}.}
+\item{...}{Other parameters passed to \code{\link[renv:dependencies]{renv::dependencies()}}.}
 }
 \value{
 A file containing package references in BibTeX format, plus
@@ -72,14 +77,15 @@ of all packages, suitable to be used within Rmarkdown documents.
 }
 \description{
 Find R packages used in a project, create a BibTeX file of citations,
-and generate a document with formatted package references,
-or a paragraph citing all packages used to be used directly within
-an Rmarkdown document (see examples).
+and generate a document with formatted package references. Alternatively,
+\code{cite_packages} can be run directly within an Rmarkdown document,
+automatically including a paragraph citing all used packages
+(see README and examples).
 }
 \details{
 \code{cite_packages} is a wrapper function that collects package names and versions
 and saves their citation information in a BibTeX file
-(using \code{\link{get_pkgs_info}}).
+(using \code{\link[=get_pkgs_info]{get_pkgs_info()}}).
 
 Then, the function is designed to handle different use cases:
 
@@ -93,31 +99,32 @@ to just cut and paste citations.
 
 If \code{output = "paragraph"}, \code{cite_packages()} will return
 a paragraph with in-text citations of all packages,
-suitable to be used directly in an Rmarkdown document (see README).
+suitable to be used directly in an Rmarkdown document.
 To do so, include a reference to the generated \code{bib.file}
-bibliography file in the YAML header of the Rmarkdown document.
+bibliography file in the YAML header of the Rmarkdown document
+(see \url{https://pakillo.github.io/grateful/index.html#using-grateful-within-rmarkdown}).
 
 Alternatively, if \code{output = "table"}, \code{cite_packages()} will return
 a table with package names, versions, and citations. Thus, if using Rmarkdown,
 you can choose between getting a table or a text paragraph citing all packages.
 
 Finally, you can use \code{output = "citekeys"} to obtain a vector of citation keys,
-and then call \code{\link{nocite_references}} within an Rmarkdown document
+and then call \code{\link[=nocite_references]{nocite_references()}} within an Rmarkdown document
 to cite these packages in the reference list without mentioning them in the text.
 }
 \note{
 Before running \code{grateful} you might want to run
-\code{\link[funchir]{stale_package_check}} on your scripts to check for unused packages
+\code{\link[funchir:funchir-utils]{funchir::stale_package_check()}} on your scripts to check for unused packages
 before citing them.
 }
 \section{Limitations}{
 
 
-  Citation keys are not guaranteed to be preserved when regenerated,
-  particularly when packages are updated. This instability is not an issue
-  when citations are used programmatically, as in the example below. But if
-  references are put into the text manually, they may need to be updated
-  periodically.
+Citation keys are not guaranteed to be preserved when regenerated,
+particularly when packages are updated. This instability is not an issue
+when citations are used programmatically, as in the example below. But if
+references are put into the text manually, they may need to be updated
+periodically.
 }
 
 \examples{

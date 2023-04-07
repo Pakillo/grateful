@@ -1,15 +1,15 @@
 #' Get citations for packages
 #'
 #' @param pkgs Character vector of package names, e.g. as produced by
-#'   \code{scan_packages}.
+#'   `scan_packages`.
 #' @param out.dir Directory to save the BibTeX file with the references.
 #'   Defaults to working directory.
 #' @param bib.file Name of the file to save the BibTeX references.
 #' @param include.RStudio Logical. If TRUE, adds a citation for the current
 #'   version of RStudio.
 #'
-#' @return A file on the specified \code{out.dir} containing the package references in BibTeX
-#'   format. If assigned a name, \code{get_citations} will also return a list with citation keys for
+#' @return A file on the specified `out.dir` containing the package references in BibTeX
+#'   format. If assigned a name, `get_citations` will also return a list with citation keys for
 #'   each citation (without @@).
 #' @export
 #'

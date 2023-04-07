@@ -5,16 +5,16 @@
 #'
 #' When passed a list of citation keys, adds the @@ to each, then builds the
 #' nocite metadata field, returning via "as-is" output. Run this function either
-#' inline or within a code chunk (with \code{echo = FALSE}) to include this
+#' inline or within a code chunk (with `echo = FALSE`) to include this
 #' metadata block within an RMarkdown document. The code chunk need not
-#' explicitly state \code{results = 'asis'}.
+#' explicitly state `results = 'asis'`.
 #'
-#' Call \code{nocite_references} with either \code{style = 'pandoc'} or
-#' \code{style = 'latex'} depending on whether you are processing citations with
+#' Call `nocite_references` with either `style = 'pandoc'` or
+#' `style = 'latex'` depending on whether you are processing citations with
 #' pandoc-citeproc or a LaTeX citation processor such as biblatex or natbib.
 #'
 #' This function is intended to cite R packages with citation keys passed from
-#' \code{\link{get_citations}} or \code{cite_packages(output = "citekeys")},
+#' [get_citations()] or `cite_packages(output = "citekeys")`,
 #' but can accept an arbitrary vector of citation keys (without @@)
 #' found in a BibTeX file referenced in the YAML header.
 #'

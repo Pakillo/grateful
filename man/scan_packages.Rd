@@ -19,7 +19,7 @@ will be collapsed into a single citation of the 'tidyverse'.}
 \item{dependencies}{Logical. Include the dependencies of your used packages?
 If \code{TRUE}, will include all the packages that your used packages depend on.}
 
-\item{...}{Other parameters passed to \code{\link[renv]{dependencies}}.}
+\item{...}{Other parameters passed to \code{\link[renv:dependencies]{renv::dependencies()}}.}
 }
 \value{
 a data.frame with package names and versions

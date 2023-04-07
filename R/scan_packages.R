@@ -3,16 +3,16 @@
 #' @param pkgs Character. Either "All" to include all packages used in scripts within
 #' the project/folder (the default), or "Session" to include only packages
 #' used in the current session.
-#' \code{pkgs} can also be a character vector of package names to get citations for
+#' `pkgs` can also be a character vector of package names to get citations for
 #' (see examples).
 #'
-#' @param cite.tidyverse Logical. If \code{TRUE}, all tidyverse packages (dplyr, ggplot2, etc)
+#' @param cite.tidyverse Logical. If `TRUE`, all tidyverse packages (dplyr, ggplot2, etc)
 #' will be collapsed into a single citation of the 'tidyverse'.
 #'
 #' @param dependencies Logical. Include the dependencies of your used packages?
-#' If \code{TRUE}, will include all the packages that your used packages depend on.
+#' If `TRUE`, will include all the packages that your used packages depend on.
 #'
-#' @param ... Other parameters passed to \code{\link[renv]{dependencies}}.
+#' @param ... Other parameters passed to [renv::dependencies()].
 #'
 #' @return a data.frame with package names and versions
 #' @export

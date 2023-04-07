@@ -20,7 +20,7 @@ ignored, and a pandoc-citeproc style block is used.}
 }
 \value{
 "As is" text of metadata block, with comma-separated list of citation
-  keys.
+keys.
 }
 \description{
 Include a metadata block of citation keys for including citations in
@@ -38,7 +38,7 @@ Call \code{nocite_references} with either \code{style = 'pandoc'} or
 pandoc-citeproc or a LaTeX citation processor such as biblatex or natbib.
 
 This function is intended to cite R packages with citation keys passed from
-\code{\link{get_citations}} or \code{cite_packages(output = "citekeys")},
+\code{\link[=get_citations]{get_citations()}} or \code{cite_packages(output = "citekeys")},
 but can accept an arbitrary vector of citation keys (without @)
 found in a BibTeX file referenced in the YAML header.
 }

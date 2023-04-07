@@ -1,36 +1,38 @@
 #' Cite R packages used in a project
 #'
 #' Find R packages used in a project, create a BibTeX file of citations,
-#' and generate a document with formatted package references,
-#' or a paragraph citing all packages used to be used directly within
-#' an Rmarkdown document (see examples).
+#' and generate a document with formatted package references. Alternatively,
+#' `cite_packages` can be run directly within an Rmarkdown document to
+#' automatically include a paragraph citing all used packages and generate
+#' a bibliography.
 #'
-#' \code{cite_packages} is a wrapper function that collects package names and versions
+#' `cite_packages` is a wrapper function that collects package names and versions
 #' and saves their citation information in a BibTeX file
-#' (using \code{\link{get_pkgs_info}}).
+#' (using [get_pkgs_info()]).
 #'
 #' Then, the function is designed to handle different use cases:
 #'
-#' If \code{output = "file"}, \code{cite_packages()} will generate an RMarkdown file
+#' If `output = "file"`, `cite_packages()` will generate an RMarkdown file
 #' which includes a paragraph with in-text citations of all packages,
 #' as well as a references list.
-#' This document can be knitted to various formats via \code{out.format}.
-#' References can be formatted for a particular journal using \code{citation.style}.
-#' Thus, \code{output = "file"} is best for obtaining a document separate from R,
+#' This document can be knitted to various formats via `out.format`.
+#' References can be formatted for a particular journal using `citation.style`.
+#' Thus, `output = "file"` is best for obtaining a document separate from R,
 #' to just cut and paste citations.
 #'
-#' If \code{output = "paragraph"}, \code{cite_packages()} will return
+#' If `output = "paragraph"`, `cite_packages()` will return
 #' a paragraph with in-text citations of all packages,
-#' suitable to be used directly in an Rmarkdown document (see README).
-#' To do so, include a reference to the generated \code{bib.file}
-#' bibliography file in the YAML header of the Rmarkdown document.
+#' suitable to be used directly in an Rmarkdown document.
+#' To do so, include a reference to the generated `bib.file`
+#' bibliography file in the YAML header of the Rmarkdown document
+#' (see <https://pakillo.github.io/grateful/index.html#using-grateful-within-rmarkdown>).
 #'
-#' Alternatively, if \code{output = "table"}, \code{cite_packages()} will return
+#' Alternatively, if `output = "table"`, `cite_packages()` will return
 #' a table with package names, versions, and citations. Thus, if using Rmarkdown,
 #' you can choose between getting a table or a text paragraph citing all packages.
 #'
-#' Finally, you can use \code{output = "citekeys"} to obtain a vector of citation keys,
-#' and then call \code{\link{nocite_references}} within an Rmarkdown document
+#' Finally, you can use `output = "citekeys"` to obtain a vector of citation keys,
+#' and then call [nocite_references()] within an Rmarkdown document
 #' to cite these packages in the reference list without mentioning them in the text.
 #'
 #'
@@ -42,35 +44,42 @@
 #'   references are put into the text manually, they may need to be updated
 #'   periodically.
 #'
-#' @param output Either "file" to generate a separate document with formatted citations
-#' for all packages; "paragraph" to return a paragraph with in-text citations of
-#' used packages, suitable to be used within an Rmarkdown document;
-#' "table" to return a table with package name, version, and citations, to be used
-#' in Rmarkdown;
-#' or "citekeys" to return a vector with citation keys.
-#' In all cases, a BibTeX file with package references is saved on disk
-#' (see \code{bib.file}).
+#' @param output Either
 #'
-#' @param out.format Output format when \code{output = "file"}:
+#' - "file" to generate a separate document with formatted citations
+#' for all packages;
+#'
+#' - "paragraph" to return a paragraph with in-text citations of used packages,
+#' suitable to be used within an Rmarkdown document;
+#'
+#' - "table" to return a table with package name, version, and citations, to be used
+#' in Rmarkdown;
+#'
+#' - "citekeys" to return a vector with citation keys.
+#'
+#' In all cases, a BibTeX file with package references is saved on disk
+#' (see `bib.file`).
+#'
+#' @param out.format Output format when `output = "file"`:
 #' either "html" (the default), docx" (Word), "pdf", "Rmd", or "md" (markdown).
 #' (Note that choosing "pdf" requires a working installation of LaTeX).
 #'
 #' @param citation.style Optional. Citation style to format references for a
-#' particular journal. See \url{https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html}.
+#' particular journal. See <https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html>.
 #'
 #' @param pkgs Character. Either "All" to include all packages used in scripts within
 #' the project/folder (the default), or "Session" to include only packages
 #' used in the current session.
-#' \code{pkgs} can also be a character vector of package names to get citations for
+#' `pkgs` can also be a character vector of package names to get citations for
 #' (see examples).
 #'
-#' @param cite.tidyverse Logical. If \code{TRUE}, all tidyverse packages (dplyr, ggplot2, etc)
+#' @param cite.tidyverse Logical. If `TRUE`, all tidyverse packages (dplyr, ggplot2, etc)
 #' will be collapsed into a single citation of the 'tidyverse'.
 #'
 #' @param dependencies Logical. Include the dependencies of your used packages?
-#' If \code{TRUE}, will include all the packages that your used packages depend on.
+#' If `TRUE`, will include all the packages that your used packages depend on.
 #'
-#' @param include.RStudio Logical. If \code{TRUE}, adds a citation for the
+#' @param include.RStudio Logical. If `TRUE`, adds a citation for the
 #'   current version of RStudio.
 #'
 #' @param out.dir Directory to save the output document and a BibTeX file with
@@ -80,19 +89,19 @@
 #' ("grateful-refs.bib" by default).
 #'
 #' @param Rmd.file Desired name of the Rmarkdown document to be created if
-#' \code{output = "file"}. Default is "grateful-report.Rmd".
+#' `output = "file"`. Default is "grateful-report.Rmd".
 #'
 #' @param out.name Desired name of the output file containing the formatted
 #' references ("grateful-citations" by default).
 #'
-#' @param ... Other parameters passed to \code{\link[renv]{dependencies}}.
+#' @param ... Other parameters passed to [renv::dependencies()].
 #'
 #' @return A file containing package references in BibTeX format, plus
 #' a file with formatted citations, or a table or paragraph with in-text citations
 #' of all packages, suitable to be used within Rmarkdown documents.
 #'
-#' @note Before running \code{grateful} you might want to run
-#' \code{\link[funchir]{stale_package_check}} on your scripts to check for unused packages
+#' @note Before running `grateful` you might want to run
+#' [funchir::stale_package_check()] on your scripts to check for unused packages
 #' before citing them.
 #'
 #' @export
