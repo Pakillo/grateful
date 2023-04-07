@@ -5,19 +5,17 @@
 #' package references, and returns a data frame with package names, version,
 #' and citation keys.
 #'
-#' @inheritParams scan_packages
-#' @inheritParams get_citations
-#' @inheritDotParams scan_packages
+#' @inheritParams cite_packages
+#' @inheritDotParams cite_packages
 #'
 #' @return A data.frame with package info,
 #' and a file containing package references in BibTeX format.
 #' @export
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' get_pkgs_info()
 #' get_pkgs_info(pkgs = c("lme4", "mgcv"))
-#' }
+
 
 get_pkgs_info <- function(pkgs = "All",
                           cite.tidyverse = TRUE,
