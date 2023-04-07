@@ -54,10 +54,10 @@ nocite_references <- function(citekeys, citation_processor = c('pandoc', 'latex'
 
   if (tolower(citation_processor) == 'pandoc') {
     nocites <- paste0("@", citekeys, collapse = ", ")
-    nocite_command <- c("---\nnocite: |\n\t", nocites, "\n...")
+    nocite_command <- paste("---\nnocite: |\n\t", nocites, "\n...")
   } else if (tolower(citation_processor) == 'latex') {
     nocites <- paste0(citekeys, collapse = ", ")
-    nocite_command <- c("\\nocite{", nocites, "}")
+    nocite_command <- paste0("\\nocite{", nocites, "}")
   } else stop("Invalid citation processing style.")
   knitr::asis_output(nocite_command)
 }

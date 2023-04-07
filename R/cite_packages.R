@@ -119,7 +119,7 @@
 #'
 #' # include this in YAML header: bibliography: grateful-refs.bib
 #'
-#' # then call cite_packages within a chunk with chunk option results = "asis"
+#' # then call cite_packages within an R chunk:
 #' cite_packages(output = "paragraph")
 #'
 #'
@@ -164,7 +164,9 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
   }
 
   if (output == "paragraph") {
-    cat(write_citation_paragraph(pkgs.df, include.RStudio = include.RStudio))
+    paragraph <- write_citation_paragraph(pkgs.df,
+                                          include.RStudio = include.RStudio)
+    return(knitr::asis_output(paragraph))
   }
 
   if (output == "table") {
