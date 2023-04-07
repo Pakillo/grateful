@@ -61,8 +61,9 @@
 #' (see `bib.file`).
 #'
 #' @param out.format Output format when `output = "file"`:
-#' either "html" (the default), docx" (Word), "pdf", "Rmd", or "md" (markdown).
-#' (Note that choosing "pdf" requires a working installation of LaTeX).
+#' either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
+#' (Note that choosing "pdf" requires a working installation of LaTeX,
+#' see https://yihui.org/tinytex/).
 #'
 #' @param citation.style Optional. Citation style to format references for a
 #' particular journal. See <https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html>.
@@ -138,7 +139,7 @@
 #' }
 
 cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
-                          out.format = "html",
+                          out.format = c("html", "docx", "pdf", "Rmd", "md"),
                           citation.style = NULL,
                           pkgs = "All",
                           cite.tidyverse = TRUE,
@@ -151,6 +152,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           ...) {
 
   output <- match.arg(output)
+  out.format <- match.arg(out.format)
 
   pkgs.df <- get_pkgs_info(pkgs = pkgs,
                            cite.tidyverse = cite.tidyverse,
