@@ -82,10 +82,10 @@ scan_packages <- function(pkgs = "All",
   versions <- unlist(lapply(versions, as.character))
 
   # Then add 'tidyverse' version
-  # If not installed, assume version "1.3.1" (last in CRAN)
+  # If not installed, assume version "2.0.0" (last in CRAN)
   if ("tidyverse" %in% pkgnames) {
     tidy.version <- tryCatch(as.character(utils::packageVersion("tidyverse")),
-                             error = function(e) {'1.3.1'})
+                             error = function(e) {'2.0.0'})
     names(tidy.version) <- "tidyverse"
     versions <- c(versions, tidy.version)
     versions <- versions[sort(names(versions))]

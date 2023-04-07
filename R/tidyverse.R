@@ -4,12 +4,13 @@
 #               destfile = "tidyverse_DESCRIPTION")
 # tidy.pkgs <- desc::desc_get_deps("tidyverse_DESCRIPTION")
 # tidy.pkgs <- tidy.pkgs[tidy.pkgs$type == "Imports", "package"]
+# dput(tidy.pkgs)
 
-tidy.pkgs <- c("broom", "cli", "crayon", "dbplyr", "dplyr", "dtplyr", "forcats",
-               "ggplot2", "googledrive", "googlesheets4", "haven", "hms", "httr",
-               "jsonlite", "lubridate", "magrittr", "modelr", "pillar", "purrr",
-               "readr", "readxl", "reprex", "rlang", "rstudioapi", "rvest",
-               "stringr", "tibble", "tidyr", "xml2")
+tidy.pkgs <- c("broom", "conflicted", "cli", "dbplyr", "dplyr", "dtplyr",
+               "forcats", "ggplot2", "googledrive", "googlesheets4", "haven",
+               "hms", "httr", "jsonlite", "lubridate", "magrittr", "modelr",
+               "pillar", "purrr", "ragg", "readr", "readxl", "reprex", "rlang",
+               "rstudioapi", "rvest", "stringr", "tibble", "tidyr", "xml2")
 
 # dput(citation("tidyverse"))
 tidyverse.citation <-
