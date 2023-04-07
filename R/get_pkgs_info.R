@@ -21,6 +21,7 @@
 
 get_pkgs_info <- function(pkgs = "All",
                           cite.tidyverse = TRUE,
+                          cite.grateful = FALSE,
                           dependencies = FALSE,
                           out.dir = getwd(),
                           bib.file = "grateful-refs.bib",
@@ -29,6 +30,7 @@ get_pkgs_info <- function(pkgs = "All",
 
   pkgs.df <- scan_packages(pkgs = pkgs,
                            cite.tidyverse = cite.tidyverse,
+                           cite.grateful = cite.grateful,
                            dependencies = dependencies,
                            ...)
 

@@ -71,11 +71,13 @@
 #' @param pkgs Character. Either "All" to include all packages used in scripts within
 #' the project/folder (the default), or "Session" to include only packages
 #' used in the current session.
-#' `pkgs` can also be a character vector of package names to get citations for
-#' (see examples).
+#' Alternatively, `pkgs` can also be a character vector of package names to
+#' get citations for (see examples).
 #'
 #' @param cite.tidyverse Logical. If `TRUE`, all tidyverse packages (dplyr, ggplot2, etc)
 #' will be collapsed into a single citation of the 'tidyverse'.
+#'
+#' @param cite.grateful Logical. Cite `grateful` package? Default is FALSE.
 #'
 #' @param dependencies Logical. Include the dependencies of your used packages?
 #' If `TRUE`, will include all the packages that your used packages depend on.
@@ -143,6 +145,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           citation.style = NULL,
                           pkgs = "All",
                           cite.tidyverse = TRUE,
+                          cite.grateful = FALSE,
                           dependencies = FALSE,
                           include.RStudio = FALSE,
                           out.dir = getwd(),
@@ -156,6 +159,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
 
   pkgs.df <- get_pkgs_info(pkgs = pkgs,
                            cite.tidyverse = cite.tidyverse,
+                           cite.grateful = cite.grateful,
                            dependencies = dependencies,
                            out.dir = out.dir,
                            bib.file = bib.file,

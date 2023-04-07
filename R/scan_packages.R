@@ -9,6 +9,8 @@
 #' @param cite.tidyverse Logical. If `TRUE`, all tidyverse packages (dplyr, ggplot2, etc)
 #' will be collapsed into a single citation of the 'tidyverse'.
 #'
+#' @param cite.grateful Logical. Cite `grateful` package? Default is FALSE.
+#'
 #' @param dependencies Logical. Include the dependencies of your used packages?
 #' If `TRUE`, will include all the packages that your used packages depend on.
 #'
@@ -26,6 +28,7 @@
 
 scan_packages <- function(pkgs = "All",
                           cite.tidyverse = TRUE,
+                          cite.grateful = FALSE,
                           dependencies = FALSE,
                           ...) {
 
@@ -66,9 +69,15 @@ scan_packages <- function(pkgs = "All",
       base_pkgs <- utils::sessionInfo()$basePkgs
       pkgnames <- c("base", setdiff(pkgnames, base_pkgs))
 
-      # add grateful
-      if (!"grateful" %in% pkgnames) {
-        pkgnames <- c(pkgnames, "grateful")
+      # add/remove grateful
+      if (isTRUE(cite.grateful)) {
+        if (!"grateful" %in% pkgnames) {
+          pkgnames <- c(pkgnames, "grateful")
+        }
+      } else {
+        if ("grateful" %in% pkgnames) {
+          pkgnames <- pkgnames[pkgnames != "grateful"]
+        }
       }
     }
   }
