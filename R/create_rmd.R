@@ -1,12 +1,12 @@
 #' Create template Rmarkdown file with package citations
 #'
 #' @param pkgs.df Data.frame with package names, versions, and citation keys,
-#' as produced by [get_pkgs_info()()].
+#' as produced by [get_pkgs_info()].
 #' @param bib.file Name of the file containing references in BibTeX format,
-#' as produced by [get_pkgs_info()()].
+#' as produced by [get_pkgs_info()].
 #' @param csl Optional. Citation style to format references.
 #' See <https://www.zotero.org/styles>.
-#' @param out.format Output format. One of: "docx" (Word), "pdf", "html", "Rmd", or "md" (markdown).
+#' @param out.format Output format. One of: "html", docx" (Word), "pdf", "Rmd", or "md" (markdown).
 #' @param Rmd.file Name of the Rmarkdown file to be created.
 #' @param out.dir Directory to save the output document. Default is the working directory.
 #' @param include.RStudio Include RStudio?
@@ -15,19 +15,20 @@
 #' @return An Rmarkdown file, if out.format = "Rmd", or a rendered document otherwise.
 #' @noRd
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' pkgs <- get_pkgs_info()
 #' rmd <- create_rmd(pkgs)
-#' }
+
 create_rmd <- function(pkgs.df = NULL,
                        bib.file = "grateful-refs.bib",
                        csl = NULL,
                        Rmd.file = "grateful-report.Rmd",
-                       out.format = "html",
+                       out.format = c("html", "docx", "pdf", "Rmd", "md"),
                        out.dir = getwd(),
                        include.RStudio = FALSE,
                        ...) {
+
+  out.format <- match.arg(out.format)
 
   use.csl <- ifelse(is.null(csl), "#csl: null", "csl: ")
 
