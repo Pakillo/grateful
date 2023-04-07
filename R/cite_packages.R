@@ -109,9 +109,9 @@
 #'
 #' @export
 #'
-#' @examples
-#' \dontrun{
-#' #### To build a standalone document for citations
+#' @examplesIf interactive()
+#'
+#' # To build a standalone document for citations
 #' cite_packages()
 #'
 #' # Formatting for a particular journal:
@@ -127,18 +127,18 @@
 #' cite_packages(pkgs = c("lme4", "vegan", "mgcv"))
 #'
 #'
-#' #### To include citations in an RMarkdown file
+#' # To include citations in an RMarkdown file
 #'
-#' # include this in YAML header: bibliography: grateful-refs.bib
+#' # include this in YAML header:
+#' # bibliography: grateful-refs.bib
 #'
 #' # then call cite_packages within an R chunk:
 #' cite_packages(output = "paragraph")
 #'
-#'
 #' # To include package citations in the reference list of an Rmarkdown document
-#' without citing them in the text, include this in a chunk:
+#' # without citing them in the text, include this in a chunk:
 #' nocite_references(cite_packages(output = "citekeys"))
-#' }
+
 
 cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           out.format = c("html", "docx", "pdf", "Rmd", "md"),
