@@ -12,7 +12,7 @@ references file without in-text citations."><!-- mathjax --><script src="https:/
     
     <a class="navbar-brand me-2" href="../index.html">grateful</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.11</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.12</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +79,7 @@ ignored, and a pandoc-citeproc style block is used.</p></dd>
     
 
 <p>"As is" text of metadata block, with comma-separated list of citation
-  keys.</p>
+keys.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -92,7 +92,7 @@ explicitly state <code>results = 'asis'</code>.</p>
 <code>style = 'latex'</code> depending on whether you are processing citations with
 pandoc-citeproc or a LaTeX citation processor such as biblatex or natbib.</p>
 <p>This function is intended to cite R packages with citation keys passed from
-<code><a href="get_citations.html">get_citations</a></code> or <code>cite_packages(output = "citekeys")</code>,
+<code><a href="get_citations.html">get_citations()</a></code> or <code>cite_packages(output = "citekeys")</code>,
 but can accept an arbitrary vector of citation keys (without @)
 found in a BibTeX file referenced in the YAML header.</p>
     </div>
@@ -103,18 +103,16 @@ found in a BibTeX file referenced in the YAML header.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pakillo.github.io/grateful">grateful</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
 <span class="r-in"><span><span class="co"># include in YAML header:</span></span></span>
-<span class="r-in"><span><span class="va">bibliography</span><span class="op">:</span> <span class="va">grateful</span><span class="op">-</span><span class="va">refs.bib</span></span></span>
+<span class="r-in"><span><span class="co"># bibliography: grateful-refs.bib</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get citation keys for the current RMarkdown document</span></span></span>
 <span class="r-in"><span><span class="co"># (run after all packages have been loaded).</span></span></span>
-<span class="r-in"><span><span class="va">citekeys</span> <span class="op">&lt;-</span> <span class="fu"><a href="cite_packages.html">cite_packages</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"citekeys"</span>, all.pkgs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">citekeys</span> <span class="op">&lt;-</span> <span class="fu"><a href="cite_packages.html">cite_packages</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"citekeys"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Include in RMarkdown body for use with pandoc-citeproc:</span></span></span>
-<span class="r-in"><span><span class="va">`r nocite_references(citekeys, citation_processor = 'pandoc')`</span></span></span>
+<span class="r-in"><span><span class="co"># `r nocite_references(citekeys, citation_processor = 'pandoc')`</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

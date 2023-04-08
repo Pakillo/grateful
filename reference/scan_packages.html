@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">grateful</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.11</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.12</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">scan_packages</span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"All"</span>, cite.tidyverse <span class="op">=</span> <span class="cn">TRUE</span>, dependencies <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">scan_packages</span><span class="op">(</span></span>
+<span>  pkgs <span class="op">=</span> <span class="st">"All"</span>,</span>
+<span>  cite.tidyverse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  cite.grateful <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  dependencies <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -60,13 +66,17 @@
 <dd><p>Character. Either "All" to include all packages used in scripts within
 the project/folder (the default), or "Session" to include only packages
 used in the current session.
-<code>pkgs</code> can also be a character vector of package names to get citations for
-(see examples).</p></dd>
+Alternatively, <code>pkgs</code> can also be a character vector of package names to
+get citations for (see examples).</p></dd>
 
 
 <dt>cite.tidyverse</dt>
 <dd><p>Logical. If <code>TRUE</code>, all tidyverse packages (dplyr, ggplot2, etc)
 will be collapsed into a single citation of the 'tidyverse'.</p></dd>
+
+
+<dt>cite.grateful</dt>
+<dd><p>Logical. Cite <code>grateful</code> package? Default is FALSE.</p></dd>
 
 
 <dt>dependencies</dt>
@@ -75,7 +85,7 @@ If <code>TRUE</code>, will include all the packages that your used packages depe
 
 
 <dt>...</dt>
-<dd><p>Other parameters passed to <code><a href="https://rstudio.github.io/renv/reference/dependencies.html" class="external-link">dependencies</a></code>.</p></dd>
+<dd><p>Other parameters passed to <code><a href="https://rstudio.github.io/renv/reference/dependencies.html" class="external-link">renv::dependencies()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -87,7 +97,7 @@ If <code>TRUE</code>, will include all the packages that your used packages depe
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
 <span class="r-in"><span><span class="fu">scan_packages</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">scan_packages</span><span class="op">(</span>pkgs <span class="op">=</span> <span class="st">"Session"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">scan_packages</span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lme4"</span>, <span class="st">"vegan"</span>, <span class="st">"mgcv"</span><span class="op">)</span><span class="op">)</span></span></span>
