@@ -6,7 +6,7 @@ test_that("scan_packages return correct output", {
                     version = as.character(
                       c(utils::packageVersion("grateful"),
                         utils::packageVersion("renv"),
-                        "1.3.1",
+                        "2.0.0",
                         utils::packageVersion("utils"))),
                     row.names = NULL)
 
