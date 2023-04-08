@@ -43,19 +43,17 @@ but can accept an arbitrary vector of citation keys (without @)
 found in a BibTeX file referenced in the YAML header.
 }
 \examples{
-\dontrun{
-library(grateful)
-
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # include in YAML header:
-bibliography: grateful-refs.bib
+# bibliography: grateful-refs.bib
 
 # Get citation keys for the current RMarkdown document
 # (run after all packages have been loaded).
-citekeys <- cite_packages(output = "citekeys", all.pkgs = FALSE)
+citekeys <- cite_packages(output = "citekeys")
 
 # Include in RMarkdown body for use with pandoc-citeproc:
-`r nocite_references(citekeys, citation_processor = 'pandoc')`
-}
+# `r nocite_references(citekeys, citation_processor = 'pandoc')`
+\dontshow{\}) # examplesIf}
 }
 \author{
 Connor P. Jackson

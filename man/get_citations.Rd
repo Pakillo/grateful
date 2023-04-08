@@ -12,30 +12,30 @@ get_citations(
 )
 }
 \arguments{
-\item{pkgs}{Character vector of package names, e.g. as produced by
-\code{scan_packages}.}
+\item{pkgs}{Character vector of package names, e.g. obtained by \code{\link[=scan_packages]{scan_packages()}}.}
 
-\item{out.dir}{Directory to save the BibTeX file with the references.
-Defaults to working directory.}
+\item{out.dir}{Directory to save the output document and a BibTeX file with
+the references. Default is the working directory.}
 
-\item{bib.file}{Name of the file to save the BibTeX references.}
+\item{bib.file}{Desired name for the BibTeX file containing packages references
+("grateful-refs.bib" by default).}
 
-\item{include.RStudio}{Logical. If TRUE, adds a citation for the current
-version of RStudio.}
+\item{include.RStudio}{Logical. If \code{TRUE}, adds a citation for the
+current version of RStudio.}
 }
 \value{
-A file on the specified \code{out.dir} containing the package references in BibTeX
-format. If assigned a name, \code{get_citations} will also return a list with citation keys for
-each citation (without @).
+A file on the specified \code{out.dir} containing the package references
+in BibTeX format. If assigned a name, \code{get_citations} will also return a list
+with citation keys for each citation (without @).
 }
 \description{
 Get citations for packages
 }
 \examples{
-\dontrun{
-citekeys <- get_citations(c("lme4", "mgcv"))
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+citekeys <- get_citations(c("knitr", "renv"))
 
 pkgs <- scan_packages()
 citekeys <- get_citations(pkgs$pkg)
-}
+\dontshow{\}) # examplesIf}
 }

@@ -1,7 +1,7 @@
 #' Scan a project or folder for packages used
 #'
 #' @inheritParams cite_packages
-#' @inheritDotParams cite_packages
+#' @param ... Other parameters passed to [renv::dependencies()].
 #'
 #' @return a data.frame with package names and versions
 #' @export

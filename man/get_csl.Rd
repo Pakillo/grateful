@@ -7,7 +7,8 @@
 get_csl(name)
 }
 \arguments{
-\item{name}{Name of the journal, exactly as in \url{https://github.com/citation-style-language/styles}.}
+\item{name}{Name of the journal,
+exactly as in \url{https://github.com/citation-style-language/styles}.}
 }
 \value{
 The CSL file is saved in the working directory
@@ -16,7 +17,7 @@ The CSL file is saved in the working directory
 Get a journal citation style from internet repository
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 get_csl("peerj")
-}
+\dontshow{\}) # examplesIf}
 }

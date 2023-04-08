@@ -6,10 +6,11 @@
 \usage{
 cite_packages(
   output = c("file", "paragraph", "table", "citekeys"),
-  out.format = "html",
+  out.format = c("html", "docx", "pdf", "Rmd", "md"),
   citation.style = NULL,
   pkgs = "All",
   cite.tidyverse = TRUE,
+  cite.grateful = FALSE,
   dependencies = FALSE,
   include.RStudio = FALSE,
   out.dir = getwd(),
@@ -35,20 +36,27 @@ In all cases, a BibTeX file with package references is saved on disk
 (see \code{bib.file}).}
 
 \item{out.format}{Output format when \code{output = "file"}:
-either "html" (the default), docx" (Word), "pdf", "Rmd", or "md" (markdown).
-(Note that choosing "pdf" requires a working installation of LaTeX).}
+either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
+(Note that choosing "pdf" requires a working installation of LaTeX,
+see https://yihui.org/tinytex/).}
 
 \item{citation.style}{Optional. Citation style to format references for a
-particular journal. See \url{https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html}.}
+particular journal. See \url{https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html}.
+If the CSL is not available in the working directory, it will be downloaded
+automatically from the official
+\href{https://github.com/citation-style-language/styles}{GitHub repository}
+using \code{\link[=get_csl]{get_csl()}}.}
 
 \item{pkgs}{Character. Either "All" to include all packages used in scripts within
 the project/folder (the default), or "Session" to include only packages
 used in the current session.
-\code{pkgs} can also be a character vector of package names to get citations for
-(see examples).}
+Alternatively, \code{pkgs} can also be a character vector of package names to
+get citations for (see examples).}
 
 \item{cite.tidyverse}{Logical. If \code{TRUE}, all tidyverse packages (dplyr, ggplot2, etc)
 will be collapsed into a single citation of the 'tidyverse'.}
+
+\item{cite.grateful}{Logical. Cite \code{grateful} package? Default is FALSE.}
 
 \item{dependencies}{Logical. Include the dependencies of your used packages?
 If \code{TRUE}, will include all the packages that your used packages depend on.}
@@ -78,9 +86,9 @@ of all packages, suitable to be used within Rmarkdown documents.
 \description{
 Find R packages used in a project, create a BibTeX file of citations,
 and generate a document with formatted package references. Alternatively,
-\code{cite_packages} can be run directly within an Rmarkdown document,
-automatically including a paragraph citing all used packages
-(see README and examples).
+\code{cite_packages} can be run directly within an Rmarkdown document to
+automatically include a paragraph citing all used packages and generate
+a bibliography.
 }
 \details{
 \code{cite_packages} is a wrapper function that collects package names and versions
@@ -128,33 +136,34 @@ periodically.
 }
 
 \examples{
-\dontrun{
-#### To build a standalone document for citations
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+# To build a standalone document for citations
 cite_packages()
 
-# Formatting for a particular journal:
-cite_packages(citation_style = "peerj")
+# Format references for a particular journal:
+cite_packages(citation.style = "peerj")
 
-# Choosing different output format:
+# Choose different output format:
 cite_packages(out.format = "docx")
 
-# Citing only packages currently loaded
+# Cite only packages currently loaded:
 cite_packages(pkgs = "Session")
 
-# Citing only user-provided packages
+# Citing only user-provided packages:
 cite_packages(pkgs = c("lme4", "vegan", "mgcv"))
 
 
-#### To include citations in an RMarkdown file
+# To include citations in an RMarkdown file
 
-# include this in YAML header: bibliography: grateful-refs.bib
+# include this in YAML header:
+# bibliography: grateful-refs.bib
 
 # then call cite_packages within an R chunk:
 cite_packages(output = "paragraph")
 
-
 # To include package citations in the reference list of an Rmarkdown document
-without citing them in the text, include this in a chunk:
+# without citing them in the text, include this in a chunk:
 nocite_references(cite_packages(output = "citekeys"))
-}
+\dontshow{\}) # examplesIf}
 }

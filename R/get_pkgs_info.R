@@ -6,7 +6,7 @@
 #' and citation keys.
 #'
 #' @inheritParams cite_packages
-#' @inheritDotParams cite_packages
+#' @param ... Other parameters passed to [renv::dependencies()].
 #'
 #' @return A data.frame with package info,
 #' and a file containing package references in BibTeX format.

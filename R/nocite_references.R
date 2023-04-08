@@ -33,20 +33,17 @@
 #' @export
 #' @author Connor P. Jackson
 #'
-#' @examples
-#' \dontrun{
-#' library(grateful)
-#'
+#' @examplesIf interactive()
 #' # include in YAML header:
-#' bibliography: grateful-refs.bib
+#' # bibliography: grateful-refs.bib
 #'
 #' # Get citation keys for the current RMarkdown document
 #' # (run after all packages have been loaded).
-#' citekeys <- cite_packages(output = "citekeys", all.pkgs = FALSE)
+#' citekeys <- cite_packages(output = "citekeys")
 #'
 #' # Include in RMarkdown body for use with pandoc-citeproc:
-#' `r nocite_references(citekeys, citation_processor = 'pandoc')`
-#' }
+#' # `r nocite_references(citekeys, citation_processor = 'pandoc')`
+
 nocite_references <- function(citekeys, citation_processor = c('pandoc', 'latex')) {
   # The citation processor only matters if LaTeX might be processing the
   # citations. Otherwise, just use pandoc-citeproc style nocite block
