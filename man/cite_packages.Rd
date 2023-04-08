@@ -26,9 +26,9 @@ cite_packages(
 \item "file" to generate a separate document with formatted citations
 for all packages;
 \item "paragraph" to return a paragraph with in-text citations of used packages,
-suitable to be used within an Rmarkdown document;
+suitable to be used within an Rmarkdown or Quarto document;
 \item "table" to return a table with package name, version, and citations, to be used
-in Rmarkdown;
+in Rmarkdown or Quarto;
 \item "citekeys" to return a vector with citation keys.
 }
 
@@ -79,14 +79,14 @@ references ("grateful-citations" by default).}
 \item{...}{Other parameters passed to \code{\link[renv:dependencies]{renv::dependencies()}}.}
 }
 \value{
-A file containing package references in BibTeX format, plus
+A file containing package references in BibTeX format plus
 a file with formatted citations, or a table or paragraph with in-text citations
-of all packages, suitable to be used within Rmarkdown documents.
+of packages suitable to be used within Rmarkdown or Quarto documents.
 }
 \description{
 Find R packages used in a project, create a BibTeX file of citations,
 and generate a document with formatted package references. Alternatively,
-\code{cite_packages} can be run directly within an Rmarkdown document to
+\code{cite_packages} can be run directly within an Rmarkdown or Quarto document to
 automatically include a paragraph citing all used packages and generate
 a bibliography.
 }
@@ -107,17 +107,17 @@ to just cut and paste citations.
 
 If \code{output = "paragraph"}, \code{cite_packages()} will return
 a paragraph with in-text citations of all packages,
-suitable to be used directly in an Rmarkdown document.
+suitable to be used directly in an Rmarkdown or Quarto document.
 To do so, include a reference to the generated \code{bib.file}
-bibliography file in the YAML header of the Rmarkdown document
+bibliography file in the YAML header of the document
 (see \url{https://pakillo.github.io/grateful/index.html#using-grateful-within-rmarkdown}).
 
 Alternatively, if \code{output = "table"}, \code{cite_packages()} will return
-a table with package names, versions, and citations. Thus, if using Rmarkdown,
-you can choose between getting a table or a text paragraph citing all packages.
+a table with package names, versions, and citations. Thus, if using Rmarkdown
+or Quarto, you can choose between getting a table or a text paragraph citing all packages.
 
 Finally, you can use \code{output = "citekeys"} to obtain a vector of citation keys,
-and then call \code{\link[=nocite_references]{nocite_references()}} within an Rmarkdown document
+and then call \code{\link[=nocite_references]{nocite_references()}} within an Rmarkdown or Quarto document
 to cite these packages in the reference list without mentioning them in the text.
 }
 \note{
@@ -154,7 +154,7 @@ cite_packages(pkgs = "Session")
 cite_packages(pkgs = c("lme4", "vegan", "mgcv"))
 
 
-# To include citations in an RMarkdown file
+# To include citations in an RMarkdown or Quarto file
 
 # include this in YAML header:
 # bibliography: grateful-refs.bib
