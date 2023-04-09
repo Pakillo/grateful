@@ -1,0 +1,35 @@
+---
+title: "Using {grateful} with Rmarkdown"
+output: html_document
+bibliography: grateful-refs.bib
+---
+
+Load packages
+
+```{r message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(visreg)
+```
+
+Run some analysis
+
+```{r}
+iris |> 
+  group_by(Species) |> 
+  summarise(mean(Petal.Length))
+
+ggplot(iris) +
+  geom_jitter(aes(Species, Petal.Length, colour = Species))
+
+model <- lm(Petal.Length ~ Species, data = iris)
+visreg(model)
+```
+
+Software used
+
+```{r echo=FALSE}
+grateful::cite_packages(output = "paragraph", pkgs = "Session")
+```
+
+## References

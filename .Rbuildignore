@@ -13,3 +13,5 @@ test_nocite.Rmd
 ^docs$
 ^pkgdown$
 ^codecov\.yml$
+Rmd_Quarto
+
