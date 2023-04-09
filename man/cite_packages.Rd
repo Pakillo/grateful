@@ -38,7 +38,7 @@ In all cases, a BibTeX file with package references is saved on disk
 \item{out.format}{Output format when \code{output = "file"}:
 either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
 (Note that choosing "pdf" requires a working installation of LaTeX,
-see https://yihui.org/tinytex/).}
+see \url{https://yihui.org/tinytex/}).}
 
 \item{citation.style}{Optional. Citation style to format references for a
 particular journal. See \url{https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html}.

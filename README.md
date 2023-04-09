@@ -4,9 +4,14 @@
 # grateful: Facilitate citation of R packages
 
 <!-- badges: start -->
-<!-- [![Codecov test coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful?branch=master) -->
 
 [![R-CMD-check](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful?branch=master)
+[![](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
 The goal of **grateful** is to make it very easy to cite R and the R
@@ -20,11 +25,12 @@ desired output format (Word, PDF, HTML, Markdown). These references can
 be formatted for a specific journal, so that we can just paste them
 directly into our manuscript or report.
 
-Alternatively, we can use **grateful** directly within an Rmarkdown
-document. In this case, a paragraph containing in-text citations of all
-used R packages will (optionally) be inserted into the Rmarkdown
-document, and these packages will be included in the reference list when
-rendering.
+Alternatively, we can use **grateful** directly within an
+[Rmarkdown](https://rmarkdown.rstudio.com/) or
+[Quarto](https://quarto.org/) document. In this case, a paragraph
+containing in-text citations of all used R packages will (optionally) be
+inserted into the Rmarkdown/Quarto document, and these packages will be
+included in the reference list when rendering.
 
 ## Installation
 
@@ -37,7 +43,7 @@ remotes::install_github("Pakillo/grateful")
 
 **grateful** can be used in one of two ways: (i) to generate a new
 document listing each package and their citations, or (ii) to build
-citation keys to incorporate into an existing RMarkdown document.
+citation keys to incorporate into an existing RMarkdown/Quarto document.
 
 Imagine a project where we are using the packages: *ggplot2* and *lme4*.
 We want to collect all the citations listed for these packages, as well
@@ -76,18 +82,23 @@ cite_packages(citation.style = "peerj")
 In all cases a BibTeX (.bib) file with all package citations will be
 saved to disk.
 
-### Using grateful within Rmarkdown
+### Using grateful with Rmarkdown or Quarto
 
 If you are building a document in
-[RMarkdown](https://rmarkdown.rstudio.com/) and want to cite R packages,
-**grateful** can automatically generate a BibTeX file and ensure these
-packages are cited in the appropriate format.
+[RMarkdown](https://rmarkdown.rstudio.com/) or
+[Quarto](https://quarto.org/) and want to cite R packages, **grateful**
+can automatically generate a BibTeX file and ensure these packages are
+cited in the appropriate format (see template
+[Rmarkdown](https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/example.Rmd)
+and
+[Quarto](https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/example.qmd)
+documents).
 
 First, include a reference to the BibTeX file in your YAML header.
 
     bibliography: grateful-refs.bib
 
-(Note: RMarkdown lets you reference multiple BibTeX files, if needed)
+(Note: You can reference multiple BibTeX files, if needed)
 
     bibliography: 
     - document_citations.bib
@@ -136,16 +147,17 @@ Use `scan_packages`
 
 ``` r
 scan_packages()
-        pkg version
-1      base   4.2.3
-2  grateful  0.1.11
-3     knitr    1.42
-4   pkgdown   2.0.7
-5   remotes   2.4.2
-6      renv  0.17.3
-7 rmarkdown    2.21
-8  testthat   3.1.7
-9 tidyverse   2.0.0
+         pkg version
+1     badger   0.2.3
+2       base   4.2.3
+3      knitr    1.42
+4    pkgdown   2.0.7
+5    remotes   2.4.2
+6       renv  0.17.3
+7  rmarkdown    2.21
+8   testthat   3.1.7
+9  tidyverse   2.0.0
+10    visreg   2.7.0
 ```
 
 ### Producing a BibTeX file with package references
@@ -159,10 +171,10 @@ help).
 If you want to get the BibTeX references for a few specific packages:
 
 ``` r
-get_pkgs_info(pkgs = c("lme4", "vegan"))
-#>     pkg version citekeys
-#> 1  lme4  1.1.32     lme4
-#> 2 vegan   2.6.4    vegan
+get_pkgs_info(pkgs = c("remotes", "renv"))
+#>       pkg version citekeys
+#> 1 remotes   2.4.2  remotes
+#> 2    renv  0.17.3     renv
 ```
 
 ### Using grateful with the tidyverse
