@@ -1,6 +1,7 @@
-citHeader("To cite grateful in publications use:")
 
-citEntry(entry = "Manual",
+bibentry(
+  bibtype = "Manual",
+  textVersion = "Francisco Rodríguez-Sánchez, Connor P. Jackson, Shaurita D. Hutchins (2023) grateful: Facilitate citation of R packages. R package version 0.1.12. Available at https://github.com/Pakillo/grateful",
   title        = "grateful: Facilitate citation of R packages",
   author       = c(
                 person("Francisco Rodríguez-Sánchez"),
@@ -9,9 +10,5 @@ citEntry(entry = "Manual",
   note = "R package version 0.1.12",
   year         = "2023",
   url          = "https://github.com/Pakillo/grateful",
-  textVersion  =
-  paste("Francisco Rodríguez-Sánchez, Connor P. Jackson, Shaurita D. Hutchins (2023).",
-        "grateful: Facilitate citation of R packages.",
-        "R package version 0.1.12",
-        "Available at https://github.com/Pakillo/grateful.")
 )
+
