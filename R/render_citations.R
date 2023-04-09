@@ -8,10 +8,6 @@
 #'
 #' @noRd
 #'
-#' @examplesIf interactive()
-#' pkgs <- get_pkgs_info()
-#' rmd <- create_rmd(pkgs, out.format = "Rmd")
-#' render_citations(rmd, out.format = "html")
 
 render_citations <- function(Rmd.file,
                              out.format = "html",

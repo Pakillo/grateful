@@ -15,9 +15,6 @@
 #' @return An Rmarkdown file, if out.format = "Rmd", or a rendered document otherwise.
 #' @noRd
 #'
-#' @examplesIf interactive()
-#' pkgs <- get_pkgs_info()
-#' rmd <- create_rmd(pkgs)
 
 create_rmd <- function(pkgs.df = NULL,
                        bib.file = "grateful-refs.bib",
