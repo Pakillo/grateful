@@ -1,3 +1,14 @@
+
+# grateful 0.1.12
+
+* Fully revised documentation and README, including examples of running grateful with Quarto.
+
+* Added many tests
+
+* When using grateful within Rmarkdown, it is no longer necessary to specify 
+chunk option `results = "asis"` (thanks to @connorp)
+
+
 # grateful 0.1.10
 
 * Fixed bug when matching citekeys with package names containing punctuation characters.
