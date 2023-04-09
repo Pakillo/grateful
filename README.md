@@ -34,6 +34,14 @@ included in the reference list when rendering.
 
 ## Installation
 
+You can install {grateful} from CRAN:
+
+``` r
+install.packages("grateful")
+```
+
+Or from GitHub:
+
 ``` r
 # install.packages("remotes")
 remotes::install_github("Pakillo/grateful")
@@ -271,6 +279,13 @@ Apart from citing the software most relevant to the particular
 research/analysis performed, I think it is good idea to record the
 entire computational environment elsewhere, e.g. using `sessionInfo()`
 or `sessioninfo::session_info()`.
+
+### Removing unused packages
+
+Before running `grateful` you might want to run
+[`funchir::stale_package_check`](https://cran.r-project.org/package=funchir)
+or [annotater](https://cran.r-project.org/package=annotater) to check
+for unused packages before citing them.
 
 ## Limitations
 

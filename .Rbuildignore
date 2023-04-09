@@ -14,4 +14,7 @@ test_nocite.Rmd
 ^pkgdown$
 ^codecov\.yml$
 Rmd_Quarto
-
+grateful-refs.bib
+grateful-citations.html
+grateful-citations.docx
+peerj.csl

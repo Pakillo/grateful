@@ -107,9 +107,6 @@
 #' a file with formatted citations, or a table or paragraph with in-text citations
 #' of packages suitable to be used within Rmarkdown or Quarto documents.
 #'
-#' @note Before running `grateful` you might want to run
-#' [funchir::stale_package_check()] on your scripts to check for unused packages
-#' before citing them.
 #'
 #' @export
 #'
@@ -122,7 +119,7 @@
 #' cite_packages(citation.style = "peerj")
 #'
 #' # Choose different output format:
-#' cite_packages(out.format = "docx")
+#' # cite_packages(out.format = "docx")
 #'
 #' # Cite only packages currently loaded:
 #' cite_packages(pkgs = "Session")
