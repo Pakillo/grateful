@@ -2,9 +2,19 @@ write_citation_paragraph <- function(df, include.RStudio = FALSE) {
 
   df.pkgs <- df[df$pkg != "base", ]
 
+  if ("base" %in% df$pkg) {
+    rversion <- paste0("R version ",
+                       get_version("base", df), " ",
+                       get_citekeys("base", df),
+                       " and ")
+  } else {
+    rversion <- ""
+  }
+
   parag <- paste0(
-    "We used R version ", get_version("base", df), " ", get_citekeys("base", df),
-    " and the following R packages: ",
+    "We used ",
+    rversion,
+    "the following R packages: ",
     paste(format_pkg_citation(pkgname = df.pkgs$pkg, df), collapse = ", ")
   )
 
