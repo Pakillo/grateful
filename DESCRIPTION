@@ -2,30 +2,34 @@ Package: grateful
 Title: Facilitate Citation of R Packages
 Version: 0.1.12
 Authors@R: c(
-    person('Francisco', 'Rodriguez-Sanchez', email = 'f.rodriguez.sanc@gmail.com', 
-            role = c('aut', 'cre'), comment = c(ORCID = "0000-0002-7981-1599")),
-    person('Connor P.', 'Jackson', email = 'connor@cpjackson.net', role = 'aut',
+    person("Francisco", "Rodriguez-Sanchez", 
+            email = "f.rodriguez.sanc@gmail.com", 
+            role = c("aut", "cre", "cph"),
+            comment = c(ORCID = "0000-0002-7981-1599")),
+    person("Connor P.", "Jackson", email = "connor@cpjackson.net", role = "aut",
            comment = c(ORCID = "0000-0002-4220-5210")),
-    person('Shaurita D.', 'Hutchins', role = c('ctb')))
-Description: Facilitates the citation of R packages used in analysis projects. 
-    Scans project for packages used, gets their citations, and produces 
-    a document with citations in the preferred bibliography format, ready to be 
-    pasted into reports or manuscripts. Alternatively,
+    person("Shaurita D.", "Hutchins", role = "ctb")
+  )
+Description: Facilitates the citation of R packages used in analysis
+    projects. Scans project for packages used, gets their citations, and
+    produces a document with citations in the preferred bibliography
+    format, ready to be pasted into reports or manuscripts. Alternatively,
     grateful can be used directly within an RMarkdown or Quarto document.
-Depends: R (>= 3.0.0)
 License: MIT + file LICENSE
-Encoding: UTF-8
-Imports:
-  knitr,
-  remotes,
-  renv,
-  rmarkdown,
-  utils
-Suggests: 
-  rstudioapi,
-  testthat (>= 3.0.0)
-URL: https://pakillo.github.io/grateful
+URL: https://pakillo.github.io/grateful/
 BugReports: https://github.com/Pakillo/grateful/issues
-RoxygenNote: 7.2.3
+Depends: 
+    R (>= 3.0.0)
+Imports:
+    knitr,
+    remotes,
+    renv,
+    rmarkdown,
+    rstudioapi,
+    utils
+Suggests: 
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
