@@ -140,7 +140,7 @@ cite_packages()
 cite_packages(citation.style = "peerj")
 
 # Choose different output format:
-# cite_packages(out.format = "docx")
+cite_packages(out.format = "docx")
 
 # Cite only packages currently loaded:
 cite_packages(pkgs = "Session")
