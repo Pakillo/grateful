@@ -1,3 +1,6 @@
+# grateful 0.1.13
+
+* CITATION now uses bibentry rather than citEntry
 
 # grateful 0.1.12
 
