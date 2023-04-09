@@ -19,3 +19,4 @@ grateful-citations.html
 grateful-citations.docx
 peerj.csl
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
