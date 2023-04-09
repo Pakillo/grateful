@@ -3,7 +3,7 @@ fix_title <- function(titlestring) {
   # maintain capitalization of package name at the beginning
   titlestring <- gsub("^ *title ?= ?\\{([a-zA-Z._]*):", "title = \\{\\{\\1\\}:", titlestring)
   # always capitalize "R"
-  titlestring <- gsub(" R([^a-zA-Z0-9])", " \\{R\\}\\1", titlestring)
+  titlestring <- gsub(" r([^a-zA-Z0-9])", " \\{R\\}\\1", titlestring)
   # get opening and closing quotation marks right, and preserve capitalization
   titlestring <- gsub("[`']([^`']*)[`']", "`\\{\\1\\}'", titlestring)
   titlestring <- gsub('"([^"]*)"', "``\\{\\1\\}''", titlestring)
