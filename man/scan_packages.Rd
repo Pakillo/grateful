@@ -39,6 +39,6 @@ Scan a project or folder for packages used
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 scan_packages()
 scan_packages(pkgs = "Session")
-scan_packages(pkgs = c("lme4", "vegan", "mgcv"))
+scan_packages(pkgs = c("renv", "remotes", "knitr"))
 \dontshow{\}) # examplesIf}
 }

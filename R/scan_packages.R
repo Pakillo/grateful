@@ -9,7 +9,7 @@
 #' @examplesIf interactive()
 #' scan_packages()
 #' scan_packages(pkgs = "Session")
-#' scan_packages(pkgs = c("lme4", "vegan", "mgcv"))
+#' scan_packages(pkgs = c("renv", "remotes", "knitr"))
 
 
 scan_packages <- function(pkgs = "All",

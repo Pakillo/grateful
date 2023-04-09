@@ -14,7 +14,7 @@
 #'
 #' @examplesIf interactive()
 #' get_pkgs_info()
-#' get_pkgs_info(pkgs = c("lme4", "mgcv"))
+#' get_pkgs_info(pkgs = c("renv", "remotes"))
 
 
 get_pkgs_info <- function(pkgs = "All",

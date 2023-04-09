@@ -53,6 +53,6 @@ and citation keys.
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 get_pkgs_info()
-get_pkgs_info(pkgs = c("lme4", "mgcv"))
+get_pkgs_info(pkgs = c("renv", "remotes"))
 \dontshow{\}) # examplesIf}
 }

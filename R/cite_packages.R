@@ -63,7 +63,7 @@
 #' @param out.format Output format when `output = "file"`:
 #' either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
 #' (Note that choosing "pdf" requires a working installation of LaTeX,
-#' see https://yihui.org/tinytex/).
+#' see <https://yihui.org/tinytex/>).
 #'
 #' @param citation.style Optional. Citation style to format references for a
 #' particular journal. See <https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html>.
@@ -128,7 +128,7 @@
 #' cite_packages(pkgs = "Session")
 #'
 #' # Citing only user-provided packages:
-#' cite_packages(pkgs = c("lme4", "vegan", "mgcv"))
+#' cite_packages(pkgs = c("renv", "remotes", "knitr"))
 #'
 #'
 #' # To include citations in an RMarkdown or Quarto file

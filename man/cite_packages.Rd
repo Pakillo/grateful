@@ -151,7 +151,7 @@ cite_packages(out.format = "docx")
 cite_packages(pkgs = "Session")
 
 # Citing only user-provided packages:
-cite_packages(pkgs = c("lme4", "vegan", "mgcv"))
+cite_packages(pkgs = c("renv", "remotes", "knitr"))
 
 
 # To include citations in an RMarkdown or Quarto file
