@@ -2,7 +2,7 @@
 #'
 #' Find R packages used in a project, create a BibTeX file of citations,
 #' and generate a document with formatted package references. Alternatively,
-#' `cite_packages` can be run directly within an Rmarkdown or Quarto document to
+#' `cite_packages` can be run directly within an 'R Markdown' or 'Quarto' document to
 #' automatically include a paragraph citing all used packages and generate
 #' a bibliography.
 #'

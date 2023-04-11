@@ -14,7 +14,7 @@ Description: Facilitates the citation of R packages used in analysis
     projects. Scans project for packages used, gets their citations, and
     produces a document with citations in the preferred bibliography
     format, ready to be pasted into reports or manuscripts. Alternatively,
-    'grateful' can be used directly within an R Markdown or Quarto document.
+    'grateful' can be used directly within an 'R Markdown' or 'Quarto' document.
 License: MIT + file LICENSE
 URL: https://pakillo.github.io/grateful/
 BugReports: https://github.com/Pakillo/grateful/issues

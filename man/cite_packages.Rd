@@ -86,7 +86,7 @@ of packages suitable to be used within Rmarkdown or Quarto documents.
 \description{
 Find R packages used in a project, create a BibTeX file of citations,
 and generate a document with formatted package references. Alternatively,
-\code{cite_packages} can be run directly within an Rmarkdown or Quarto document to
+\code{cite_packages} can be run directly within an 'R Markdown' or 'Quarto' document to
 automatically include a paragraph citing all used packages and generate
 a bibliography.
 }
