@@ -109,7 +109,7 @@ found in a BibTeX file referenced in the YAML header.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get citation keys for the current RMarkdown document</span></span></span>
 <span class="r-in"><span><span class="co"># (run after all packages have been loaded).</span></span></span>
-<span class="r-in"><span><span class="va">citekeys</span> <span class="op">&lt;-</span> <span class="fu"><a href="cite_packages.html">cite_packages</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"citekeys"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">citekeys</span> <span class="op">&lt;-</span> <span class="fu"><a href="cite_packages.html">cite_packages</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"citekeys"</span>, out.dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Include in RMarkdown body for use with pandoc-citeproc:</span></span></span>
 <span class="r-in"><span><span class="co"># `r nocite_references(citekeys, citation_processor = 'pandoc')`</span></span></span>
