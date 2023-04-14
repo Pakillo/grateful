@@ -32,14 +32,14 @@ scan_packages <- function(pkgs = "All",
 
 
 
-  # Include dependencies?
-  if (dependencies) {
+  # Include recursive dependencies?
+  if (isTRUE(dependencies)) {
     pkgnames <- remotes::package_deps(pkgnames)$package
   }
 
 
   # Collapse tidyverse packages into single citation?
-  # tidy.pkgs list provided in grateful pkg
+  # tidy.pkgs list provided in 'tidyverse.R'
   if (cite.tidyverse && any(pkgnames %in% tidy.pkgs)) {
     pkgnames <- pkgnames[!pkgnames %in% tidy.pkgs]
     pkgnames <- pkgnames[pkgnames != "tidyverse"]
@@ -73,7 +73,7 @@ scan_packages <- function(pkgs = "All",
   pkgnames <- sort(pkgnames)
 
 
-  # Get package versions
+  ## Get package versions
 
   # Some people may not have the 'tidyverse' package installed locally
   # First, get versions for all packages except 'tidyverse'

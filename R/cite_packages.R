@@ -12,7 +12,7 @@
 #'
 #' Then, the function is designed to handle different use cases:
 #'
-#' If `output = "file"`, `cite_packages()` will generate an RMarkdown file
+#' If `output = "file"`, `cite_packages()` will generate an 'R Markdown' file
 #' which includes a paragraph with in-text citations of all packages,
 #' as well as a references list.
 #' This document can be knitted to various formats via `out.format`.
@@ -22,17 +22,17 @@
 #'
 #' If `output = "paragraph"`, `cite_packages()` will return
 #' a paragraph with in-text citations of all packages,
-#' suitable to be used directly in an Rmarkdown or Quarto document.
+#' suitable to be used directly in an 'R Markdown' or 'Quarto' document.
 #' To do so, include a reference to the generated `bib.file`
 #' bibliography file in the YAML header of the document
 #' (see <https://pakillo.github.io/grateful/index.html#using-grateful-within-rmarkdown>).
 #'
 #' Alternatively, if `output = "table"`, `cite_packages()` will return
-#' a table with package names, versions, and citations. Thus, if using Rmarkdown
-#' or Quarto, you can choose between getting a table or a text paragraph citing all packages.
+#' a table with package names, versions, and citations. Thus, if using 'R Markdown'
+#' or 'Quarto', you can choose between getting a table or a text paragraph citing all packages.
 #'
 #' Finally, you can use `output = "citekeys"` to obtain a vector of citation keys,
-#' and then call [nocite_references()] within an Rmarkdown or Quarto document
+#' and then call [nocite_references()] within an 'R Markdown' or 'Quarto' document
 #' to cite these packages in the reference list without mentioning them in the text.
 #'
 #'
@@ -50,38 +50,44 @@
 #' for all packages;
 #'
 #' - "paragraph" to return a paragraph with in-text citations of used packages,
-#' suitable to be used within an Rmarkdown or Quarto document;
+#' suitable to be used within an 'R Markdown' or 'Quarto' document;
 #'
 #' - "table" to return a table with package name, version, and citations, to be used
-#' in Rmarkdown or Quarto;
+#' in 'R Markdown' or 'Quarto';
 #'
 #' - "citekeys" to return a vector with citation keys.
 #'
 #' In all cases, a BibTeX file with package references is saved on disk
 #' (see `bib.file`).
 #'
+#' @param out.dir Directory to save the output document and a BibTeX file with
+#'   the references. It is recommended to set `out.dir = getwd()`.
+#'
 #' @param out.format Output format when `output = "file"`:
 #' either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
 #' (Note that choosing "pdf" requires a working installation of LaTeX,
 #' see <https://yihui.org/tinytex/>).
 #'
-#' @param citation.style Optional. Citation style to format references for a
-#' particular journal. See <https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html>.
-#' If the CSL is not available in the working directory, it will be downloaded
-#' automatically from the official
-#' [GitHub repository](https://github.com/citation-style-language/styles)
-#' using [get_csl()].
-#'
-#' @param pkgs Character. Either "All" to include all packages used in scripts within
-#' the project/folder (the default), or "Session" to include only packages
+#' @param pkgs Character. Either "All" to include all packages used in scripts
+#' within the project/folder (the default), or "Session" to include only packages
 #' used in the current session.
 #' Alternatively, `pkgs` can also be a character vector of package names to
 #' get citations for (see examples).
 #'
-#' @param cite.tidyverse Logical. If `TRUE`, all tidyverse packages (dplyr, ggplot2, etc)
-#' will be collapsed into a single citation of the 'tidyverse'.
+#' @param citation.style Optional. Citation style to format references for a
+#' particular journal
+#' (see <https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html>).
+#' If the CSL is not available in `out.dir`, it will be downloaded
+#' automatically from the official
+#' [GitHub repository](https://github.com/citation-style-language/styles)
+#' using [get_csl()].
 #'
-#' @param cite.grateful Logical. Cite `grateful` package? Default is FALSE.
+#' @param cite.tidyverse Logical. If `TRUE`, all tidyverse packages
+#' (dplyr, ggplot2, etc) will be collapsed into a single citation
+#' of the 'tidyverse', as recommended by the tidyverse team.
+#'
+#' @param cite.grateful Logical. Include a citation to `grateful` package?
+#' Default is FALSE.
 #'
 #' @param dependencies Logical. Include the dependencies of your used packages?
 #' If `TRUE`, will include all the packages that your used packages depend on.
@@ -89,23 +95,17 @@
 #' @param include.RStudio Logical. If `TRUE`, adds a citation for the
 #'   current version of RStudio.
 #'
-#' @param out.dir Directory to save the output document and a BibTeX file with
-#'   the references. Default is the working directory.
+#' @param out.file Desired name of the citation report to be created if
+#' `output = "file"`. Default is "grateful-report" (without extension).
 #'
 #' @param bib.file Desired name for the BibTeX file containing packages references
-#' ("grateful-refs.bib" by default).
-#'
-#' @param Rmd.file Desired name of the Rmarkdown document to be created if
-#' `output = "file"`. Default is "grateful-report.Rmd".
-#'
-#' @param out.name Desired name of the output file containing the formatted
-#' references ("grateful-citations" by default).
+#' ("grateful-refs" by default).
 #'
 #' @param ... Other parameters passed to [renv::dependencies()].
 #'
 #' @return A file containing package references in BibTeX format plus
 #' a file with formatted citations, or a table or paragraph with in-text citations
-#' of packages suitable to be used within Rmarkdown or Quarto documents.
+#' of packages suitable to be used within 'R Markdown' or 'Quarto' documents.
 #'
 #'
 #' @export
@@ -113,47 +113,56 @@
 #' @examplesIf interactive()
 #'
 #' # To build a standalone document for citations
-#' cite_packages()
+#' cite_packages(out.dir = tempdir())
 #'
 #' # Format references for a particular journal:
-#' cite_packages(citation.style = "peerj")
+#' cite_packages(citation.style = "peerj", out.dir = tempdir())
 #'
 #' # Choose different output format:
-#' cite_packages(out.format = "docx")
+#' cite_packages(out.format = "docx", out.dir = tempdir())
 #'
 #' # Cite only packages currently loaded:
-#' cite_packages(pkgs = "Session")
+#' cite_packages(pkgs = "Session", out.dir = tempdir())
 #'
-#' # Citing only user-provided packages:
-#' cite_packages(pkgs = c("renv", "remotes", "knitr"))
+#' # Cite only user-provided packages:
+#' cite_packages(pkgs = c("renv", "remotes", "knitr"), out.dir = tempdir())
 #'
 #'
-#' # To include citations in an RMarkdown or Quarto file
+#' # To include citations in an R Markdown or Quarto file
 #'
 #' # include this in YAML header:
 #' # bibliography: grateful-refs.bib
 #'
 #' # then call cite_packages within an R chunk:
-#' cite_packages(output = "paragraph")
+#' cite_packages(output = "paragraph", out.dir = tempdir())
 #'
 #' # To include package citations in the reference list of an Rmarkdown document
 #' # without citing them in the text, include this in a chunk:
-#' nocite_references(cite_packages(output = "citekeys"))
+#' nocite_references(cite_packages(output = "citekeys", out.dir = tempdir()))
 
 
 cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
+                          out.dir = NULL,
                           out.format = c("html", "docx", "pdf", "Rmd", "md"),
-                          citation.style = NULL,
                           pkgs = "All",
+                          citation.style = NULL,
                           cite.tidyverse = TRUE,
                           cite.grateful = FALSE,
                           dependencies = FALSE,
                           include.RStudio = FALSE,
-                          out.dir = getwd(),
-                          bib.file = "grateful-refs.bib",
-                          Rmd.file = "grateful-report.Rmd",
-                          out.name = "grateful-citations",
+                          out.file = "grateful-report",
+                          bib.file = "grateful-refs",
                           ...) {
+
+  if (is.null(out.dir)) {
+    stop("Please specify where to save the citation report, e.g. out.dir = getwd()")
+  }
+
+  bib.file <- gsub(".bib", "", bib.file)
+
+  if (out.file == bib.file) {
+    stop("Please provide different names for out.file and bib.file")
+  }
 
   output <- match.arg(output)
   out.format <- match.arg(out.format)
@@ -169,25 +178,33 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
 
 
   if (output == "file") {
+
     rmd <- create_rmd(pkgs.df,
                       bib.file = bib.file,
                       csl = citation.style,
-                      Rmd.file = Rmd.file,
+                      Rmd.file = out.file,
                       out.dir = out.dir,
                       out.format = out.format,
-                      out.name = out.name,
                       include.RStudio = include.RStudio)
+
+    return(paste0("Citation report available at ", rmd))
+
   }
 
+
   if (output == "paragraph") {
+
     paragraph <- write_citation_paragraph(pkgs.df,
                                           include.RStudio = include.RStudio)
     return(knitr::asis_output(paragraph))
+
   }
+
 
   if (output == "table") {
     return(output_table(pkgs.df))
   }
+
 
   if (output == "citekeys") {
     return(unlist(pkgs.df$citekeys))

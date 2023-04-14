@@ -1,5 +1,5 @@
 test_that("get_citations works", {
-  citkeys <- get_citations(c("knitr", "tidyverse"))
+  citkeys <- get_citations(c("knitr", "tidyverse"), out.dir = tempdir())
   expect_identical(citkeys, c("knitr2023", "knitr2015", "knitr2014", "tidyverse"))
 })
 

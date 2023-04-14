@@ -6,8 +6,8 @@
 \usage{
 get_citations(
   pkgs,
-  out.dir = getwd(),
-  bib.file = "grateful-refs.bib",
+  out.dir = NULL,
+  bib.file = "grateful-refs",
   include.RStudio = FALSE
 )
 }
@@ -15,10 +15,10 @@ get_citations(
 \item{pkgs}{Character vector of package names, e.g. obtained by \code{\link[=scan_packages]{scan_packages()}}.}
 
 \item{out.dir}{Directory to save the output document and a BibTeX file with
-the references. Default is the working directory.}
+the references. It is recommended to set \code{out.dir = getwd()}.}
 
 \item{bib.file}{Desired name for the BibTeX file containing packages references
-("grateful-refs.bib" by default).}
+("grateful-refs" by default).}
 
 \item{include.RStudio}{Logical. If \code{TRUE}, adds a citation for the
 current version of RStudio.}
@@ -33,9 +33,9 @@ Get citations for packages
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-citekeys <- get_citations(c("knitr", "renv"))
+citekeys <- get_citations(c("knitr", "renv"), out.dir = tempdir())
 
 pkgs <- scan_packages()
-citekeys <- get_citations(pkgs$pkg)
+citekeys <- get_citations(pkgs$pkg, out.dir = tempdir())
 \dontshow{\}) # examplesIf}
 }

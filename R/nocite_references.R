@@ -39,7 +39,7 @@
 #'
 #' # Get citation keys for the current RMarkdown document
 #' # (run after all packages have been loaded).
-#' citekeys <- cite_packages(output = "citekeys")
+#' citekeys <- cite_packages(output = "citekeys", out.dir = tempdir())
 #'
 #' # Include in RMarkdown body for use with pandoc-citeproc:
 #' # `r nocite_references(citekeys, citation_processor = 'pandoc')`

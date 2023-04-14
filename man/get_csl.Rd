@@ -2,22 +2,25 @@
 % Please edit documentation in R/get_csl.R
 \name{get_csl}
 \alias{get_csl}
-\title{Get a journal citation style from internet repository}
+\title{Get a journal citation style from the official internet repository}
 \usage{
-get_csl(name)
+get_csl(name = NULL, out.dir = NULL)
 }
 \arguments{
 \item{name}{Name of the journal,
-exactly as in \url{https://github.com/citation-style-language/styles}.}
+exactly as found in \url{https://github.com/citation-style-language/styles}.}
+
+\item{out.dir}{Directory to save the CSL file.}
 }
 \value{
-The CSL file is saved in the working directory
+The CSL file is saved in the selected directory, and the path is
+returned invisibly.
 }
 \description{
-Get a journal citation style from internet repository
+Get a journal citation style from the official internet repository
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-get_csl("peerj")
+get_csl("peerj", out.dir = tempdir())
 \dontshow{\}) # examplesIf}
 }

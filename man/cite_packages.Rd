@@ -6,17 +6,16 @@
 \usage{
 cite_packages(
   output = c("file", "paragraph", "table", "citekeys"),
+  out.dir = NULL,
   out.format = c("html", "docx", "pdf", "Rmd", "md"),
-  citation.style = NULL,
   pkgs = "All",
+  citation.style = NULL,
   cite.tidyverse = TRUE,
   cite.grateful = FALSE,
   dependencies = FALSE,
   include.RStudio = FALSE,
-  out.dir = getwd(),
-  bib.file = "grateful-refs.bib",
-  Rmd.file = "grateful-report.Rmd",
-  out.name = "grateful-citations",
+  out.file = "grateful-report",
+  bib.file = "grateful-refs",
   ...
 )
 }
@@ -26,37 +25,43 @@ cite_packages(
 \item "file" to generate a separate document with formatted citations
 for all packages;
 \item "paragraph" to return a paragraph with in-text citations of used packages,
-suitable to be used within an Rmarkdown or Quarto document;
+suitable to be used within an 'R Markdown' or 'Quarto' document;
 \item "table" to return a table with package name, version, and citations, to be used
-in Rmarkdown or Quarto;
+in 'R Markdown' or 'Quarto';
 \item "citekeys" to return a vector with citation keys.
 }
 
 In all cases, a BibTeX file with package references is saved on disk
 (see \code{bib.file}).}
 
+\item{out.dir}{Directory to save the output document and a BibTeX file with
+the references. It is recommended to set \code{out.dir = getwd()}.}
+
 \item{out.format}{Output format when \code{output = "file"}:
 either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
 (Note that choosing "pdf" requires a working installation of LaTeX,
 see \url{https://yihui.org/tinytex/}).}
 
-\item{citation.style}{Optional. Citation style to format references for a
-particular journal. See \url{https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html}.
-If the CSL is not available in the working directory, it will be downloaded
-automatically from the official
-\href{https://github.com/citation-style-language/styles}{GitHub repository}
-using \code{\link[=get_csl]{get_csl()}}.}
-
-\item{pkgs}{Character. Either "All" to include all packages used in scripts within
-the project/folder (the default), or "Session" to include only packages
+\item{pkgs}{Character. Either "All" to include all packages used in scripts
+within the project/folder (the default), or "Session" to include only packages
 used in the current session.
 Alternatively, \code{pkgs} can also be a character vector of package names to
 get citations for (see examples).}
 
-\item{cite.tidyverse}{Logical. If \code{TRUE}, all tidyverse packages (dplyr, ggplot2, etc)
-will be collapsed into a single citation of the 'tidyverse'.}
+\item{citation.style}{Optional. Citation style to format references for a
+particular journal
+(see \url{https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html}).
+If the CSL is not available in \code{out.dir}, it will be downloaded
+automatically from the official
+\href{https://github.com/citation-style-language/styles}{GitHub repository}
+using \code{\link[=get_csl]{get_csl()}}.}
 
-\item{cite.grateful}{Logical. Cite \code{grateful} package? Default is FALSE.}
+\item{cite.tidyverse}{Logical. If \code{TRUE}, all tidyverse packages
+(dplyr, ggplot2, etc) will be collapsed into a single citation
+of the 'tidyverse', as recommended by the tidyverse team.}
+
+\item{cite.grateful}{Logical. Include a citation to \code{grateful} package?
+Default is FALSE.}
 
 \item{dependencies}{Logical. Include the dependencies of your used packages?
 If \code{TRUE}, will include all the packages that your used packages depend on.}
@@ -64,24 +69,18 @@ If \code{TRUE}, will include all the packages that your used packages depend on.
 \item{include.RStudio}{Logical. If \code{TRUE}, adds a citation for the
 current version of RStudio.}
 
-\item{out.dir}{Directory to save the output document and a BibTeX file with
-the references. Default is the working directory.}
+\item{out.file}{Desired name of the citation report to be created if
+\code{output = "file"}. Default is "grateful-report" (without extension).}
 
 \item{bib.file}{Desired name for the BibTeX file containing packages references
-("grateful-refs.bib" by default).}
-
-\item{Rmd.file}{Desired name of the Rmarkdown document to be created if
-\code{output = "file"}. Default is "grateful-report.Rmd".}
-
-\item{out.name}{Desired name of the output file containing the formatted
-references ("grateful-citations" by default).}
+("grateful-refs" by default).}
 
 \item{...}{Other parameters passed to \code{\link[renv:dependencies]{renv::dependencies()}}.}
 }
 \value{
 A file containing package references in BibTeX format plus
 a file with formatted citations, or a table or paragraph with in-text citations
-of packages suitable to be used within Rmarkdown or Quarto documents.
+of packages suitable to be used within 'R Markdown' or 'Quarto' documents.
 }
 \description{
 Find R packages used in a project, create a BibTeX file of citations,
@@ -97,7 +96,7 @@ and saves their citation information in a BibTeX file
 
 Then, the function is designed to handle different use cases:
 
-If \code{output = "file"}, \code{cite_packages()} will generate an RMarkdown file
+If \code{output = "file"}, \code{cite_packages()} will generate an 'R Markdown' file
 which includes a paragraph with in-text citations of all packages,
 as well as a references list.
 This document can be knitted to various formats via \code{out.format}.
@@ -107,17 +106,17 @@ to just cut and paste citations.
 
 If \code{output = "paragraph"}, \code{cite_packages()} will return
 a paragraph with in-text citations of all packages,
-suitable to be used directly in an Rmarkdown or Quarto document.
+suitable to be used directly in an 'R Markdown' or 'Quarto' document.
 To do so, include a reference to the generated \code{bib.file}
 bibliography file in the YAML header of the document
 (see \url{https://pakillo.github.io/grateful/index.html#using-grateful-within-rmarkdown}).
 
 Alternatively, if \code{output = "table"}, \code{cite_packages()} will return
-a table with package names, versions, and citations. Thus, if using Rmarkdown
-or Quarto, you can choose between getting a table or a text paragraph citing all packages.
+a table with package names, versions, and citations. Thus, if using 'R Markdown'
+or 'Quarto', you can choose between getting a table or a text paragraph citing all packages.
 
 Finally, you can use \code{output = "citekeys"} to obtain a vector of citation keys,
-and then call \code{\link[=nocite_references]{nocite_references()}} within an Rmarkdown or Quarto document
+and then call \code{\link[=nocite_references]{nocite_references()}} within an 'R Markdown' or 'Quarto' document
 to cite these packages in the reference list without mentioning them in the text.
 }
 \section{Limitations}{
@@ -134,31 +133,31 @@ periodically.
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 # To build a standalone document for citations
-cite_packages()
+cite_packages(out.dir = tempdir())
 
 # Format references for a particular journal:
-cite_packages(citation.style = "peerj")
+cite_packages(citation.style = "peerj", out.dir = tempdir())
 
 # Choose different output format:
-cite_packages(out.format = "docx")
+cite_packages(out.format = "docx", out.dir = tempdir())
 
 # Cite only packages currently loaded:
-cite_packages(pkgs = "Session")
+cite_packages(pkgs = "Session", out.dir = tempdir())
 
-# Citing only user-provided packages:
-cite_packages(pkgs = c("renv", "remotes", "knitr"))
+# Cite only user-provided packages:
+cite_packages(pkgs = c("renv", "remotes", "knitr"), out.dir = tempdir())
 
 
-# To include citations in an RMarkdown or Quarto file
+# To include citations in an R Markdown or Quarto file
 
 # include this in YAML header:
 # bibliography: grateful-refs.bib
 
 # then call cite_packages within an R chunk:
-cite_packages(output = "paragraph")
+cite_packages(output = "paragraph", out.dir = tempdir())
 
 # To include package citations in the reference list of an Rmarkdown document
 # without citing them in the text, include this in a chunk:
-nocite_references(cite_packages(output = "citekeys"))
+nocite_references(cite_packages(output = "citekeys", out.dir = tempdir()))
 \dontshow{\}) # examplesIf}
 }

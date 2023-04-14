@@ -1,13 +1,12 @@
 
 bibentry(
   bibtype = "Manual",
-  textVersion = "Francisco Rodríguez-Sánchez, Connor P. Jackson, Shaurita D. Hutchins (2023) grateful: Facilitate citation of R packages. R package version 0.1.12. Available at https://github.com/Pakillo/grateful",
+  textVersion = "Rodriguez-Sanchez F, Jackson CP, Hutchins SD (2023) grateful: Facilitate citation of R packages. https://github.com/Pakillo/grateful",
   title        = "grateful: Facilitate citation of R packages",
   author       = c(
                 person("Francisco Rodríguez-Sánchez"),
                 person("Connor P. Jackson"),
                 person("Shaurita D. Hutchins")),
-  note = "R package version 0.1.12",
   year         = "2023",
   url          = "https://github.com/Pakillo/grateful",
 )

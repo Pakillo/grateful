@@ -12,6 +12,8 @@ coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)]
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![](https://www.r-pkg.org/badges/version/grateful)](https://cran.r-project.org/package=grateful)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/grateful)](https://cran.r-project.org/package=grateful)
 <!-- badges: end -->
 
 The goal of **grateful** is to make it very easy to cite R and the R
@@ -51,7 +53,8 @@ remotes::install_github("Pakillo/grateful")
 
 **grateful** can be used in one of two ways: (i) to generate a new
 document listing each package and their citations, or (ii) to build
-citation keys to incorporate into an existing RMarkdown/Quarto document.
+citation keys to incorporate into an existing R Markdown or Quarto
+document.
 
 Imagine a project where we are using the packages: *ggplot2* and *lme4*.
 We want to collect all the citations listed for these packages, as well
@@ -59,32 +62,33 @@ as a citation for base R (and for RStudio, if applicable).
 
 ### Generate a document with formatted citations
 
-Calling `cite_packages(output = "file")`, or simply `cite_packages()`,
-will scan the project, find these packages, and generate a document with
-formatted citations.
+Calling `cite_packages()` will scan the project, find these packages,
+and generate a document with formatted citations.
 
 ``` r
 library(grateful)
 ```
 
 ``` r
-cite_packages()
+cite_packages(out.dir = getwd())    # save report to working directory
 ```
 
 ![](man/figures/example-output.png)
+
+<br>
 
 This document can also be a Word document, PDF file, markdown file, or
 left as the source Rmarkdown file using `out.format`:
 
 ``` r
-cite_packages(out.format = "docx")
+cite_packages(out.format = "docx", out.dir = getwd())
 ```
 
 We can specify the citation style for a particular journal using
 `citation.style`.
 
 ``` r
-cite_packages(citation.style = "peerj")
+cite_packages(citation.style = "peerj", out.dir = getwd())
 ```
 
 In all cases a BibTeX (.bib) file with all package citations will be
@@ -118,7 +122,7 @@ the used packages, and include their references in the bibliography
 list.
 
     ```{r}
-    cite_packages(output = "paragraph")
+    cite_packages(output = "paragraph", out.dir = getwd())
     ```
 
 `We used R version 4.1.2 [@base] and the following R packages: lme4 v. 1.1.27.1 [@lme4], mgcv v. 1.8.38 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017].`
@@ -128,7 +132,7 @@ citations, using `output = 'table'`:
 
     ```{r }
     library(knitr)
-    pkgs <- cite_packages(output = "table")
+    pkgs <- cite_packages(output = "table", out.dir = getwd())
     kable(pkgs)
     ```
 
@@ -179,7 +183,7 @@ help).
 If you want to get the BibTeX references for a few specific packages:
 
 ``` r
-get_pkgs_info(pkgs = c("remotes", "renv"))
+get_pkgs_info(pkgs = c("remotes", "renv"), out.dir = getwd())
 #>       pkg version citekeys
 #> 1 remotes   2.4.2  remotes
 #> 2    renv  0.17.3     renv
@@ -286,6 +290,27 @@ Before running `grateful` you might want to run
 [`funchir::stale_package_check`](https://cran.r-project.org/package=funchir)
 or [annotater](https://cran.r-project.org/package=annotater) to check
 for unused packages before citing them.
+
+### Citing ‘grateful’
+
+``` r
+citation("grateful")
+
+To cite package 'grateful' in publications use:
+
+  Rodriguez-Sanchez F, Jackson CP, Hutchins SD (2023) grateful:
+  Facilitate citation of R packages.
+  https://github.com/Pakillo/grateful
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {grateful: Facilitate citation of R packages},
+    author = {{Francisco Rodríguez-Sánchez} and {Connor P. Jackson} and {Shaurita D. Hutchins}},
+    year = {2023},
+    url = {https://github.com/Pakillo/grateful},
+  }
+```
 
 ## Limitations
 

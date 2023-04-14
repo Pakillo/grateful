@@ -10,15 +10,19 @@
 #' @export
 #'
 #' @examplesIf interactive()
-#' citekeys <- get_citations(c("knitr", "renv"))
+#' citekeys <- get_citations(c("knitr", "renv"), out.dir = tempdir())
 #'
 #' pkgs <- scan_packages()
-#' citekeys <- get_citations(pkgs$pkg)
+#' citekeys <- get_citations(pkgs$pkg, out.dir = tempdir())
 
 get_citations <- function(pkgs,
-                          out.dir = getwd(),
-                          bib.file = "grateful-refs.bib",
+                          out.dir = NULL,
+                          bib.file = "grateful-refs",
                           include.RStudio = FALSE) {
+
+  if (is.null(out.dir)) {
+    stop("Please specify where to save the BibTeX references, e.g. out.dir = getwd()")
+  }
 
   # Some people may not have the tidyverse pkg installed locally,
   # so giving tidyverse citation directly
@@ -45,7 +49,8 @@ get_citations <- function(pkgs,
   }
 
   ## write bibtex references to file
-  writeLines(enc2utf8(unlist(cites.bib)), con = file.path(out.dir, bib.file),
+  writeLines(enc2utf8(unlist(cites.bib)),
+             con = file.path(out.dir, paste0(bib.file, ".bib")),
              useBytes = TRUE)
 
   # get the citekeys and format them appropriately before returning them

@@ -1,12 +1,13 @@
 ---
-title: "Using {grateful} with Rmarkdown"
-output: html_document
+title: "Using {grateful} with Quarto"
+format: html
 bibliography: grateful-refs.bib
 ---
 
 Load packages
 
-```{r message=FALSE}
+```{r}
+#| message: false
 library(dplyr)
 library(ggplot2)
 library(visreg)
@@ -26,10 +27,12 @@ model <- lm(Petal.Length ~ Species, data = iris)
 visreg(model)
 ```
 
-Software used
+### Software used
 
-```{r echo=FALSE}
-grateful::cite_packages(output = "paragraph", pkgs = "Session")
+```{r}
+#| echo: false
+grateful::cite_packages(output = "paragraph", pkgs = "Session", out.dir = getwd())
 ```
 
 ## References
+

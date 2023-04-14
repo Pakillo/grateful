@@ -1,6 +1,12 @@
 # grateful 0.1.13
 
-* CITATION now uses bibentry rather than citEntry
+* `out.dir` must now be provided by the user (`out.dir = getwd()` not allowed per CRAN policy)
+
+* `Rmd.file` and `out.name` arguments to `cite_packages` have been fused into a single `out.file` argument
+
+* CITATION now uses bibentry rather than citEntry.
+
+
 
 # grateful 0.1.12
 

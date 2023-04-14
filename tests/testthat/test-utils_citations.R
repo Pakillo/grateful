@@ -48,7 +48,6 @@ test_that("Test get_citation_and_citekey function", {
                    structure(c("@Manual{grateful,",
                                title = "title = {{grateful}: Facilitate citation of R packages},",
                                author = "  author = {{Francisco Rodríguez-Sánchez} and {Connor P. Jackson} and {Shaurita D. Hutchins}},",
-                               note = "  note = {R package version 0.1.12},",
                                year = "  year = {2023},",
                                url = "  url = {https://github.com/Pakillo/grateful},",
                                "}"),

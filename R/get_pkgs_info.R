@@ -5,6 +5,8 @@
 #' package references, and returns a data frame with package names, version,
 #' and citation keys.
 #'
+#' @param out.dir Directory to save the BibTeX file with references.
+#' It is recommended to set `out.dir = getwd()`.
 #' @inheritParams cite_packages
 #' @param ... Other parameters passed to [renv::dependencies()].
 #'
@@ -13,16 +15,16 @@
 #' @export
 #'
 #' @examplesIf interactive()
-#' get_pkgs_info()
-#' get_pkgs_info(pkgs = c("renv", "remotes"))
+#' get_pkgs_info(out.dir = tempdir())
+#' get_pkgs_info(pkgs = c("renv", "remotes"), out.dir = tempdir())
 
 
 get_pkgs_info <- function(pkgs = "All",
+                          out.dir = NULL,
                           cite.tidyverse = TRUE,
                           cite.grateful = FALSE,
                           dependencies = FALSE,
-                          out.dir = getwd(),
-                          bib.file = "grateful-refs.bib",
+                          bib.file = "grateful-refs",
                           include.RStudio = FALSE,
                           ...) {
 
