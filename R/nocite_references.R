@@ -18,7 +18,7 @@
 #' but can accept an arbitrary vector of citation keys (without @@)
 #' found in a BibTeX file referenced in the YAML header.
 #'
-#' @param citekeys Vector of citation keys in reference to a relevant BibTex
+#' @param citekeys Vector of citation keys in reference to a relevant BibTeX
 #'   file.
 #' @param citation_processor Mechanism for citation processing when knitting to
 #'   PDF or otherwise using LaTeX. Selects the appropriate formatting of the

@@ -12,8 +12,8 @@ coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)]
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![](https://www.r-pkg.org/badges/version/grateful)](https://cran.r-project.org/package=grateful)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/grateful)](https://cran.r-project.org/package=grateful)
+<!-- [![](https://www.r-pkg.org/badges/version/grateful)](https://cran.r-project.org/package=grateful) -->
+<!-- [![](http://cranlogs.r-pkg.org/badges/grand-total/grateful)](https://cran.r-project.org/package=grateful) -->
 <!-- badges: end -->
 
 The goal of **grateful** is to make it very easy to cite R and the R
@@ -101,9 +101,9 @@ If you are building a document in
 [Quarto](https://quarto.org/) and want to cite R packages, **grateful**
 can automatically generate a BibTeX file and ensure these packages are
 cited in the appropriate format (see template
-[Rmarkdown](https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/example.Rmd)
+[Rmarkdown](https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/grateful-Rmarkdown.Rmd)
 and
-[Quarto](https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/example.qmd)
+[Quarto](https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/grateful-Quarto.qmd)
 documents).
 
 First, include a reference to the BibTeX file in your YAML header.
@@ -174,7 +174,7 @@ scan_packages()
 
 ### Producing a BibTeX file with package references
 
-If you just want to get all package references in a BiBTeX file, you can
+If you just want to get all package references in a BibTeX file, you can
 call `get_pkgs_info()`. Besides printing a table with package info, it
 will also save a BibTeX file with references. By default, the file will
 be called `grateful-refs.bib`, but you can change that (see function

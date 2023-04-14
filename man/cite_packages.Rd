@@ -54,7 +54,11 @@ particular journal
 If the CSL is not available in \code{out.dir}, it will be downloaded
 automatically from the official
 \href{https://github.com/citation-style-language/styles}{GitHub repository}
-using \code{\link[=get_csl]{get_csl()}}.}
+using \code{\link[=get_csl]{get_csl()}}.
+If using \code{\link[=cite_packages]{cite_packages()}} within an R Markdown or Quarto
+document, \code{citation.style} should be \code{NULL} (the default). The citation style
+should instead be defined in the YAML metadata of the document
+(see \url{https://pakillo.github.io/grateful/#using-grateful-with-rmarkdown-or-quarto}).}
 
 \item{cite.tidyverse}{Logical. If \code{TRUE}, all tidyverse packages
 (dplyr, ggplot2, etc) will be collapsed into a single citation

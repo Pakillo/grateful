@@ -7,7 +7,7 @@
 nocite_references(citekeys, citation_processor = c("pandoc", "latex"))
 }
 \arguments{
-\item{citekeys}{Vector of citation keys in reference to a relevant BibTex
+\item{citekeys}{Vector of citation keys in reference to a relevant BibTeX
 file.}
 
 \item{citation_processor}{Mechanism for citation processing when knitting to

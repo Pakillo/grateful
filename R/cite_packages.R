@@ -81,6 +81,10 @@
 #' automatically from the official
 #' [GitHub repository](https://github.com/citation-style-language/styles)
 #' using [get_csl()].
+#' If using [cite_packages()] within an R Markdown or Quarto
+#' document, `citation.style` should be `NULL` (the default). The citation style
+#' should instead be defined in the YAML metadata of the document
+#' (see <https://pakillo.github.io/grateful/#using-grateful-with-rmarkdown-or-quarto>).
 #'
 #' @param cite.tidyverse Logical. If `TRUE`, all tidyverse packages
 #' (dplyr, ggplot2, etc) will be collapsed into a single citation
