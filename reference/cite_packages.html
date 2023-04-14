@@ -120,7 +120,11 @@ particular journal
 If the CSL is not available in <code>out.dir</code>, it will be downloaded
 automatically from the official
 <a href="https://github.com/citation-style-language/styles" class="external-link">GitHub repository</a>
-using <code><a href="get_csl.html">get_csl()</a></code>.</p></dd>
+using <code><a href="get_csl.html">get_csl()</a></code>.
+If using <code>cite_packages()</code> within an R Markdown or Quarto
+document, <code>citation.style</code> should be <code>NULL</code> (the default). The citation style
+should instead be defined in the YAML metadata of the document
+(see <a href="https://pakillo.github.io/grateful/#using-grateful-with-rmarkdown-or-quarto">https://pakillo.github.io/grateful/#using-grateful-with-rmarkdown-or-quarto</a>).</p></dd>
 
 
 <dt>cite.tidyverse</dt>
