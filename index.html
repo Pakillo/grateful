@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="index.html">grateful</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.13</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.14</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -221,6 +221,11 @@
 <h3 id="removing-unused-packages">Removing unused packages<a class="anchor" aria-label="anchor" href="#removing-unused-packages"></a>
 </h3>
 <p>Before running <code>grateful</code> you might want to run <a href="https://cran.r-project.org/package=funchir" class="external-link"><code>funchir::stale_package_check</code></a> or <a href="https://cran.r-project.org/package=annotater" class="external-link">annotater</a> to check for unused packages before citing them.</p>
+</div>
+<div class="section level3">
+<h3 id="error-there-is-no-package-called">Error: there is no package called…<a class="anchor" aria-label="anchor" href="#error-there-is-no-package-called"></a>
+</h3>
+<p>If getting an error like “Error in (function (pkg, lib.loc = NULL): there is no package called…”, that means that some of your scripts is loading a package that is no longer available in your computer, so {grateful} cannot grab its citation. To fix this, try checking if that package is still needed for your project and you want to cite it, otherwise remove or comment that line where the package is loaded. If you still use and want to cite that package, install it, and then run <code>cite_packages</code> again.</p>
 </div>
 <div class="section level3">
 <h3 id="citing-grateful">Citing ‘grateful’<a class="anchor" aria-label="anchor" href="#citing-grateful"></a>

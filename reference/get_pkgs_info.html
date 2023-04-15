@@ -14,7 +14,7 @@ and citation keys."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aj
     
     <a class="navbar-brand me-2" href="../index.html">grateful</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.13</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.14</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,6 +60,7 @@ and citation keys.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_pkgs_info</span><span class="op">(</span></span>
 <span>  pkgs <span class="op">=</span> <span class="st">"All"</span>,</span>
 <span>  out.dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  omit <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cite.tidyverse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  cite.grateful <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  dependencies <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -82,6 +83,11 @@ get citations for (see examples).</p></dd>
 <dt>out.dir</dt>
 <dd><p>Directory to save the BibTeX file with references.
 It is recommended to set <code>out.dir = getwd()</code>.</p></dd>
+
+
+<dt>omit</dt>
+<dd><p>Character vector of package names to be omitted from the citation
+report.</p></dd>
 
 
 <dt>cite.tidyverse</dt>
