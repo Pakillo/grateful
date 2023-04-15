@@ -9,6 +9,7 @@ cite_packages(
   out.dir = NULL,
   out.format = c("html", "docx", "pdf", "Rmd", "md"),
   pkgs = "All",
+  omit = NULL,
   citation.style = NULL,
   cite.tidyverse = TRUE,
   cite.grateful = FALSE,
@@ -47,6 +48,9 @@ within the project/folder (the default), or "Session" to include only packages
 used in the current session.
 Alternatively, \code{pkgs} can also be a character vector of package names to
 get citations for (see examples).}
+
+\item{omit}{Character vector of package names to be omitted from the citation
+report.}
 
 \item{citation.style}{Optional. Citation style to format references for a
 particular journal

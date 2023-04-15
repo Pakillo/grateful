@@ -7,6 +7,7 @@
 get_pkgs_info(
   pkgs = "All",
   out.dir = NULL,
+  omit = NULL,
   cite.tidyverse = TRUE,
   cite.grateful = FALSE,
   dependencies = FALSE,
@@ -24,6 +25,9 @@ get citations for (see examples).}
 
 \item{out.dir}{Directory to save the BibTeX file with references.
 It is recommended to set \code{out.dir = getwd()}.}
+
+\item{omit}{Character vector of package names to be omitted from the citation
+report.}
 
 \item{cite.tidyverse}{Logical. If \code{TRUE}, all tidyverse packages
 (dplyr, ggplot2, etc) will be collapsed into a single citation

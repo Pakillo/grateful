@@ -21,6 +21,7 @@
 
 get_pkgs_info <- function(pkgs = "All",
                           out.dir = NULL,
+                          omit = NULL,
                           cite.tidyverse = TRUE,
                           cite.grateful = FALSE,
                           dependencies = FALSE,
@@ -29,6 +30,7 @@ get_pkgs_info <- function(pkgs = "All",
                           ...) {
 
   pkgs.df <- scan_packages(pkgs = pkgs,
+                           omit = omit,
                            cite.tidyverse = cite.tidyverse,
                            cite.grateful = cite.grateful,
                            dependencies = dependencies,

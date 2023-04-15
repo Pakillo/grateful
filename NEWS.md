@@ -1,3 +1,8 @@
+# grateful 0.1.14
+
+* Added `omit` argument to be able to exclude some packages from the citation report.
+
+
 # grateful 0.1.13
 
 * `out.dir` must now be provided by the user (`out.dir = getwd()` not allowed per CRAN policy)

@@ -13,6 +13,7 @@
 
 
 scan_packages <- function(pkgs = "All",
+                          omit = NULL,
                           cite.tidyverse = TRUE,
                           cite.grateful = FALSE,
                           dependencies = FALSE,
@@ -54,6 +55,12 @@ scan_packages <- function(pkgs = "All",
       # Only cite base R once
       base_pkgs <- utils::sessionInfo()$basePkgs
       pkgnames <- c("base", setdiff(pkgnames, base_pkgs))
+
+      # Omit packages
+      if (!is.null(omit)) {
+        stopifnot(is.character(omit))  # omit must be a character vector of pkg names
+        pkgnames <- pkgnames[!pkgnames %in% omit]
+      }
 
       # add/remove grateful
       if (isTRUE(cite.grateful)) {

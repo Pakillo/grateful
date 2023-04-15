@@ -74,6 +74,9 @@
 #' Alternatively, `pkgs` can also be a character vector of package names to
 #' get citations for (see examples).
 #'
+#' @param omit Character vector of package names to be omitted from the citation
+#' report.
+#'
 #' @param citation.style Optional. Citation style to format references for a
 #' particular journal
 #' (see <https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html>).
@@ -149,6 +152,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           out.dir = NULL,
                           out.format = c("html", "docx", "pdf", "Rmd", "md"),
                           pkgs = "All",
+                          omit = NULL,
                           citation.style = NULL,
                           cite.tidyverse = TRUE,
                           cite.grateful = FALSE,
@@ -172,10 +176,11 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
   out.format <- match.arg(out.format)
 
   pkgs.df <- get_pkgs_info(pkgs = pkgs,
+                           out.dir = out.dir,
+                           omit = omit,
                            cite.tidyverse = cite.tidyverse,
                            cite.grateful = cite.grateful,
                            dependencies = dependencies,
-                           out.dir = out.dir,
                            bib.file = bib.file,
                            include.RStudio = include.RStudio,
                            ...)

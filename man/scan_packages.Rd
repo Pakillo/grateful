@@ -6,6 +6,7 @@
 \usage{
 scan_packages(
   pkgs = "All",
+  omit = NULL,
   cite.tidyverse = TRUE,
   cite.grateful = FALSE,
   dependencies = FALSE,
@@ -18,6 +19,9 @@ within the project/folder (the default), or "Session" to include only packages
 used in the current session.
 Alternatively, \code{pkgs} can also be a character vector of package names to
 get citations for (see examples).}
+
+\item{omit}{Character vector of package names to be omitted from the citation
+report.}
 
 \item{cite.tidyverse}{Logical. If \code{TRUE}, all tidyverse packages
 (dplyr, ggplot2, etc) will be collapsed into a single citation
