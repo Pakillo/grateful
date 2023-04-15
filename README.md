@@ -291,6 +291,17 @@ Before running `grateful` you might want to run
 or [annotater](https://cran.r-project.org/package=annotater) to check
 for unused packages before citing them.
 
+### Error: there is no package called…
+
+If getting an error like “Error in (function (pkg, lib.loc = NULL):
+there is no package called…”, that means that some of your scripts is
+loading a package that is no longer available in your computer, so
+{grateful} cannot grab its citation. To fix this, try checking if that
+package is still needed for your project and you want to cite it,
+otherwise remove or comment that line where the package is loaded. If
+you still use and want to cite that package, install it, and then run
+`cite_packages` again.
+
 ### Citing ‘grateful’
 
 ``` r
