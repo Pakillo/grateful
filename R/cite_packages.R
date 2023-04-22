@@ -108,9 +108,12 @@
 #'
 #' @param ... Other parameters passed to [renv::dependencies()].
 #'
-#' @return A file containing package references in BibTeX format plus
-#' a file with formatted citations, or a table or paragraph with in-text citations
-#' of packages suitable to be used within 'R Markdown' or 'Quarto' documents.
+#' @return If `output = "file"`, `cite_packages` will save two files in `out.dir`:
+#' a BibTeX file containing package references and a citation report with formatted
+#' citations. `cite_packages` will return the path to the citation report invisibly.
+#' If `output = "table"` or `output = "paragraph"`, `cite_packages` will return
+#' a table or paragraph with package citations suitable to be used
+#' within 'R Markdown' or 'Quarto' documents.
 #'
 #'
 #' @export
@@ -192,7 +195,8 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                       out.format = out.format,
                       include.RStudio = include.RStudio)
 
-    return(paste0("Citation report available at ", rmd))
+    message(paste0("\nCitation report available at ", rmd))
+    return(rmd)  # return path to file
 
   }
 

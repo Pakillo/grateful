@@ -83,9 +83,12 @@ current version of RStudio.}
 \item{...}{Other parameters passed to \code{\link[renv:dependencies]{renv::dependencies()}}.}
 }
 \value{
-A file containing package references in BibTeX format plus
-a file with formatted citations, or a table or paragraph with in-text citations
-of packages suitable to be used within 'R Markdown' or 'Quarto' documents.
+If \code{output = "file"}, \code{cite_packages} will save two files in \code{out.dir}:
+a BibTeX file containing package references and a citation report with formatted
+citations. \code{cite_packages} will return the path to the citation report invisibly.
+If \code{output = "table"} or \code{output = "paragraph"}, \code{cite_packages} will return
+a table or paragraph with package citations suitable to be used
+within 'R Markdown' or 'Quarto' documents.
 }
 \description{
 Find R packages used in a project, create a BibTeX file of references,
