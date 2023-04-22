@@ -1,8 +1,7 @@
 ---
 title: "Using {grateful} with Rmarkdown"
-output:
-  html_document: default
-bibliography: "grateful-refs.bib"
+output: html_document
+bibliography: grateful-refs.bib
 ---
 
 Load packages
@@ -30,7 +29,8 @@ visreg(model)
 ### Software used
 
 ```{r echo=FALSE}
-grateful::cite_packages(output = "paragraph", pkgs = "Session", out.dir = getwd())
+grateful::cite_packages(output = "paragraph", pkgs = "Session", out.dir = ".")
 ```
+
 
 ## References

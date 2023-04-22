@@ -31,7 +31,7 @@ visreg(model)
 
 ```{r}
 #| echo: false
-grateful::cite_packages(output = "paragraph", pkgs = "Session", out.dir = getwd())
+grateful::cite_packages(output = "paragraph", pkgs = "Session", out.dir = ".")
 ```
 
 ## References
