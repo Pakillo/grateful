@@ -9,10 +9,9 @@ cite_packages(
   out.dir = NULL,
   out.format = c("html", "docx", "pdf", "Rmd", "md"),
   pkgs = "All",
-  omit = NULL,
+  omit = c("grateful"),
   citation.style = NULL,
   cite.tidyverse = TRUE,
-  cite.grateful = FALSE,
   dependencies = FALSE,
   include.RStudio = FALSE,
   out.file = "grateful-report",
@@ -50,7 +49,8 @@ Alternatively, \code{pkgs} can also be a character vector of package names to
 get citations for (see examples).}
 
 \item{omit}{Character vector of package names to be omitted from the citation
-report.}
+report. \code{grateful} is omitted by default. Use \code{omit = NULL} to include all
+packages.}
 
 \item{citation.style}{Optional. Citation style to format references for a
 particular journal
@@ -67,9 +67,6 @@ should instead be defined in the YAML metadata of the document
 \item{cite.tidyverse}{Logical. If \code{TRUE}, all tidyverse packages
 (dplyr, ggplot2, etc) will be collapsed into a single citation
 of the 'tidyverse', as recommended by the tidyverse team.}
-
-\item{cite.grateful}{Logical. Include a citation to \code{grateful} package?
-Default is FALSE.}
 
 \item{dependencies}{Logical. Include the dependencies of your used packages?
 If \code{TRUE}, will include all the packages that your used packages depend on.}
@@ -91,8 +88,8 @@ a file with formatted citations, or a table or paragraph with in-text citations
 of packages suitable to be used within 'R Markdown' or 'Quarto' documents.
 }
 \description{
-Find R packages used in a project, create a BibTeX file of citations,
-and generate a document with formatted package references. Alternatively,
+Find R packages used in a project, create a BibTeX file of references,
+and generate a document with formatted package citations. Alternatively,
 \code{cite_packages} can be run directly within an 'R Markdown' or 'Quarto' document to
 automatically include a paragraph citing all used packages and generate
 a bibliography.

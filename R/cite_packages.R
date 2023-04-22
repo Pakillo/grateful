@@ -75,7 +75,8 @@
 #' get citations for (see examples).
 #'
 #' @param omit Character vector of package names to be omitted from the citation
-#' report.
+#' report. `grateful` is omitted by default. Use `omit = NULL` to include all
+#' packages.
 #'
 #' @param citation.style Optional. Citation style to format references for a
 #' particular journal
@@ -92,9 +93,6 @@
 #' @param cite.tidyverse Logical. If `TRUE`, all tidyverse packages
 #' (dplyr, ggplot2, etc) will be collapsed into a single citation
 #' of the 'tidyverse', as recommended by the tidyverse team.
-#'
-#' @param cite.grateful Logical. Include a citation to `grateful` package?
-#' Default is FALSE.
 #'
 #' @param dependencies Logical. Include the dependencies of your used packages?
 #' If `TRUE`, will include all the packages that your used packages depend on.
@@ -152,10 +150,9 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           out.dir = NULL,
                           out.format = c("html", "docx", "pdf", "Rmd", "md"),
                           pkgs = "All",
-                          omit = NULL,
+                          omit = c("grateful"),
                           citation.style = NULL,
                           cite.tidyverse = TRUE,
-                          cite.grateful = FALSE,
                           dependencies = FALSE,
                           include.RStudio = FALSE,
                           out.file = "grateful-report",
@@ -179,7 +176,6 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                            out.dir = out.dir,
                            omit = omit,
                            cite.tidyverse = cite.tidyverse,
-                           cite.grateful = cite.grateful,
                            dependencies = dependencies,
                            bib.file = bib.file,
                            include.RStudio = include.RStudio,
