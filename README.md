@@ -51,14 +51,20 @@ remotes::install_github("Pakillo/grateful")
 
 ## Usage
 
-**grateful** can be used in one of two ways: (i) to generate a new
-document listing each package and their citations, or (ii) to build
-citation keys to incorporate into an existing R Markdown or Quarto
-document.
+**grateful** can be used in one of two ways:
 
-Imagine a project where we are using the packages: *ggplot2* and *lme4*.
-We want to collect all the citations listed for these packages, as well
-as a citation for base R (and for RStudio, if applicable).
+1.  to generate a ‘citation report’ listing each package and their
+    citations
+
+2.  to build citation keys to incorporate into an existing R Markdown or
+    Quarto document.
+
+### Example
+
+Imagine a project where we are using the packages: *dplyr*, *ggplot2*,
+*vegan* and *lme4*. We want to collect all the citations listed for
+these packages, as well as a citation for base R (and for RStudio, if
+applicable).
 
 ### Generate a document with formatted citations
 
@@ -70,7 +76,7 @@ library(grateful)
 ```
 
 ``` r
-cite_packages(out.dir = getwd())    # save report to working directory
+cite_packages(out.dir = ".")            # save report to working directory
 ```
 
 ![](man/figures/example-output.png)
@@ -81,18 +87,20 @@ This document can also be a Word document, PDF file, markdown file, or
 left as the source Rmarkdown file using `out.format`:
 
 ``` r
-cite_packages(out.format = "docx", out.dir = getwd())
+cite_packages(out.format = "docx", out.dir = ".")
 ```
 
 We can specify the citation style for a particular journal using
 `citation.style`.
 
 ``` r
-cite_packages(citation.style = "peerj", out.dir = getwd())
+cite_packages(citation.style = "peerj", out.dir = ".")
 ```
 
 In all cases a BibTeX (.bib) file with all package citations will be
 saved to disk.
+
+<br>
 
 ### Using grateful with Rmarkdown or Quarto
 
@@ -113,8 +121,8 @@ First, include a reference to the BibTeX file in your YAML header.
 (Note: You can reference multiple BibTeX files, if needed)
 
     bibliography: 
-    - document_citations.bib
-    - grateful-refs.bib
+      - document_citations.bib
+      - grateful-refs.bib
 
 Then call `cite_packages(output = "paragraph")` within a code chunk
 (block or inline) to automatically include a paragraph mentioning all
@@ -122,21 +130,20 @@ the used packages, and include their references in the bibliography
 list.
 
     ```{r}
-    cite_packages(output = "paragraph", out.dir = getwd())
+    cite_packages(output = "paragraph", out.dir = ".")
     ```
 
-`We used R version 4.1.2 [@base] and the following R packages: lme4 v. 1.1.27.1 [@lme4], mgcv v. 1.8.38 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017].`
+`We used R version 4.2.3 [@base] and the following R packages: lme4 v. 1.1.32 [@lme4], tidyverse v. 2.0.0 [@tidyverse], vegan v. 2.6.4 [@vegan].`
 
 Alternatively, you can get a table with package name, version, and
 citations, using `output = 'table'`:
 
     ```{r }
-    library(knitr)
-    pkgs <- cite_packages(output = "table", out.dir = getwd())
-    kable(pkgs)
+    pkgs <- cite_packages(output = "table", out.dir = ".")
+    knitr::kable(pkgs)
     ```
 
-<img src="man/figures/table.png" width="1271" />
+<img src="man/figures/table.png" width="814" />
 
 If you want the references to appear in a particular format, you can
 specify the citation style in the YAML header:
