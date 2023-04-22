@@ -25,6 +25,10 @@ create_rmd <- function(pkgs.df = NULL,
                        include.RStudio = FALSE,
                        ...) {
 
+  if (is.null(pkgs.df)) {
+    stop("pkgs.df must be provided")
+  }
+
   if (is.null(out.dir)) {
     stop("Please specify where to save the citation report, e.g. out.dir = getwd()")
   }

@@ -13,6 +13,10 @@
 
 get_csl <- function(name = NULL, out.dir = NULL) {
 
+  if (is.null(name)) {
+    stop("Please specify the journal name")
+  }
+
   if (is.null(out.dir)) {
     stop("Please specify where you would like to save the CSL file, e.g. out.dir = getwd()")
   }

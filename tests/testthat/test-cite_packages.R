@@ -1,3 +1,10 @@
+test_that("providing wrong arguments return error", {
+
+  expect_error(cite_packages(out.dir = NULL))
+  expect_error(cite_packages(out.dir = tempdir(), out.file = "test", bib.file = "test"))
+
+})
+
 test_that("cite_packages returns correct citekeys", {
 
   expect_identical(cite_packages(output = "citekeys",
@@ -23,16 +30,17 @@ test_that("cite_packages returns correct table", {
 test_that("cite_packages returns correct paragraph", {
 
   skip_on_cran()
-  skip_on_ci()
 
   para <- cite_packages(output = "paragraph",
-                        pkgs = c("remotes", "renv"),
+                        pkgs = c("grateful"),
                         out.dir = tempdir())
   expect_identical(para,
-                   structure("We used the following R packages: remotes v. 2.4.2 [@remotes], renv v. 0.17.3 [@renv].",
+                   structure("We used the following R packages: grateful v. 0.1.14 [@grateful].",
                              class = "knit_asis",
                              knit_cacheable = NA))
 
+
+  skip_on_ci()
 
   para <- cite_packages(output = "paragraph",
                         pkgs = "Session",
@@ -45,4 +53,42 @@ test_that("cite_packages returns correct paragraph", {
 })
 
 
+test_that("cite_packages returns correct Rmd", {
 
+  skip_on_cran()
+
+  cite <- cite_packages(
+    output = "file",
+    out.dir = tempdir(),
+    out.format = "Rmd",
+    pkgs = "grateful")
+
+  rmd.file <- readLines(cite)
+  #dput(rmd.file)
+
+  expect_equal(cite, file.path(tempdir(), "grateful-report.Rmd"))
+
+  expect_equal(rmd.file,
+               c("---",
+                 "title: \"`grateful` citation report\"",
+                 "bibliography: grateful-refs.bib",
+                 "#csl: null.csl",
+                 "---",
+                 "",
+                 "## R packages used",
+                 "",
+                 "|Package  |Version |Citation  |",
+                 "|:--------|:-------|:---------|",
+                 "|grateful |0.1.14  |@grateful |",
+                 "",
+                 "**You can paste this paragraph directly in your report:**",
+                 "",
+                 "We used the following R packages: grateful v. 0.1.14 [@grateful].",
+                 "",
+                 "## Package citations",
+                 ""))
+
+
+
+
+})
