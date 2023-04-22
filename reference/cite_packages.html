@@ -167,9 +167,12 @@ current version of RStudio.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A file containing package references in BibTeX format plus
-a file with formatted citations, or a table or paragraph with in-text citations
-of packages suitable to be used within 'R Markdown' or 'Quarto' documents.</p>
+<p>If <code>output = "file"</code>, <code>cite_packages</code> will save two files in <code>out.dir</code>:
+a BibTeX file containing package references and a citation report with formatted
+citations. <code>cite_packages</code> will return the path to the citation report invisibly.
+If <code>output = "table"</code> or <code>output = "paragraph"</code>, <code>cite_packages</code> will return
+a table or paragraph with package citations suitable to be used
+within 'R Markdown' or 'Quarto' documents.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
