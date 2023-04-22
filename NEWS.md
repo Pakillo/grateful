@@ -1,6 +1,9 @@
 # grateful 0.1.14
 
-* Added `omit` argument to be able to exclude some packages from the citation report.
+* Added `omit` argument to exclude some packages from the citation report. 
+
+* Argument `cite.grateful` has been removed, use `omit = c("grateful")` instead. 
+Citation to 'grateful' is omitted by default, use `omit = NULL` to cite all packages.
 
 
 # grateful 0.1.13
