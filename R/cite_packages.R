@@ -1,7 +1,7 @@
 #' Cite R packages used in a project
 #'
-#' Find R packages used in a project, create a BibTeX file of citations,
-#' and generate a document with formatted package references. Alternatively,
+#' Find R packages used in a project, create a BibTeX file of references,
+#' and generate a document with formatted package citations. Alternatively,
 #' `cite_packages` can be run directly within an 'R Markdown' or 'Quarto' document to
 #' automatically include a paragraph citing all used packages and generate
 #' a bibliography.
