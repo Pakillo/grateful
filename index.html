@@ -90,8 +90,16 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p><strong>grateful</strong> can be used in one of two ways: (i) to generate a new document listing each package and their citations, or (ii) to build citation keys to incorporate into an existing R Markdown or Quarto document.</p>
-<p>Imagine a project where we are using the packages: <em>ggplot2</em> and <em>lme4</em>. We want to collect all the citations listed for these packages, as well as a citation for base R (and for RStudio, if applicable).</p>
+<p><strong>grateful</strong> can be used in one of two ways:</p>
+<ol style="list-style-type: decimal">
+<li><p>to generate a ‘citation report’ listing each package and their citations</p></li>
+<li><p>to build citation keys to incorporate into an existing R Markdown or Quarto document.</p></li>
+</ol>
+<div class="section level3">
+<h3 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h3>
+<p>Imagine a project where we are using the packages: <em>dplyr</em>, <em>ggplot2</em>, <em>vegan</em> and <em>lme4</em>. We want to collect all the citations listed for these packages, as well as a citation for base R (and for RStudio, if applicable).</p>
+</div>
 <div class="section level3">
 <h3 id="generate-a-document-with-formatted-citations">Generate a document with formatted citations<a class="anchor" aria-label="anchor" href="#generate-a-document-with-formatted-citations"></a>
 </h3>
@@ -99,16 +107,17 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pakillo.github.io/grateful/">grateful</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>out.dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>    <span class="co"># save report to working directory</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>out.dir <span class="op">=</span> <span class="st">"."</span><span class="op">)</span>            <span class="co"># save report to working directory</span></span></code></pre></div>
 <p><img src="reference/figures/example-output.png"></p>
 <p><br></p>
 <p>This document can also be a Word document, PDF file, markdown file, or left as the source Rmarkdown file using <code>out.format</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>out.format <span class="op">=</span> <span class="st">"docx"</span>, out.dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>out.format <span class="op">=</span> <span class="st">"docx"</span>, out.dir <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></code></pre></div>
 <p>We can specify the citation style for a particular journal using <code>citation.style</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>citation.style <span class="op">=</span> <span class="st">"peerj"</span>, out.dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>citation.style <span class="op">=</span> <span class="st">"peerj"</span>, out.dir <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></code></pre></div>
 <p>In all cases a BibTeX (.bib) file with all package citations will be saved to disk.</p>
+<p><br></p>
 </div>
 <div class="section level3">
 <h3 id="using-grateful-with-rmarkdown-or-quarto">Using grateful with Rmarkdown or Quarto<a class="anchor" aria-label="anchor" href="#using-grateful-with-rmarkdown-or-quarto"></a>
@@ -118,20 +127,19 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bibliography<span class="sc">:</span> grateful<span class="sc">-</span>refs.bib</span></code></pre></div>
 <p>(Note: You can reference multiple BibTeX files, if needed)</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bibliography<span class="sc">:</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> document_citations.bib</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> grateful<span class="sc">-</span>refs.bib</span></code></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> document_citations.bib</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> grateful<span class="sc">-</span>refs.bib</span></code></pre></div>
 <p>Then call <code>cite_packages(output = "paragraph")</code> within a code chunk (block or inline) to automatically include a paragraph mentioning all the used packages, and include their references in the bibliography list.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">cite_packages(output = "paragraph", out.dir = getwd())</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">cite_packages(output = "paragraph", out.dir = ".")</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
-<p><code>We used R version 4.1.2 [@base] and the following R packages: lme4 v. 1.1.27.1 [@lme4], mgcv v. 1.8.38 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017].</code></p>
+<p><code>We used R version 4.2.3 [@base] and the following R packages: lme4 v. 1.1.32 [@lme4], tidyverse v. 2.0.0 [@tidyverse], vegan v. 2.6.4 [@vegan].</code></p>
 <p>Alternatively, you can get a table with package name, version, and citations, using <code>output = 'table'</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r }</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">library(knitr)</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">pkgs &lt;- cite_packages(output = "table", out.dir = getwd())</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">kable(pkgs)</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
-<p><img src="reference/figures/table.png" width="1271"></p>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">pkgs &lt;- cite_packages(output = "table", out.dir = ".")</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">knitr::kable(pkgs)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p><img src="reference/figures/table.png" width="814"></p>
 <p>If you want the references to appear in a particular format, you can specify the citation style in the YAML header:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bibliography<span class="sc">:</span> grateful<span class="sc">-</span>refs.bib</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>csl<span class="sc">:</span> peerj.csl</span></code></pre></div>
