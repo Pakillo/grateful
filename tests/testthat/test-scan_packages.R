@@ -17,7 +17,6 @@ test_that("scan_packages return correct output", {
 
 #chatGPT
 
-# setup the environment
 pkgs <- c("knitr", "remotes", "renv", "grateful")
 
 # run the function
@@ -61,7 +60,7 @@ test_that("returns all package dependencies when dependencies = TRUE", {
 test_that("returns session package names when argument pkgs is 'Session'", {
 
   # run the function
-  pkgs.df <- scan_packages(pkgs = "Session", cite.grateful = TRUE)
+  pkgs.df <- scan_packages(pkgs = "Session", omit = NULL)
 
   # check the result
   expect_true(all(names(utils::sessionInfo()$otherPkgs) %in% pkgs.df$pkg))

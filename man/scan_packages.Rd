@@ -6,9 +6,8 @@
 \usage{
 scan_packages(
   pkgs = "All",
-  omit = NULL,
+  omit = c("grateful"),
   cite.tidyverse = TRUE,
-  cite.grateful = FALSE,
   dependencies = FALSE,
   ...
 )
@@ -21,14 +20,12 @@ Alternatively, \code{pkgs} can also be a character vector of package names to
 get citations for (see examples).}
 
 \item{omit}{Character vector of package names to be omitted from the citation
-report.}
+report. \code{grateful} is omitted by default. Use \code{omit = NULL} to include all
+packages.}
 
 \item{cite.tidyverse}{Logical. If \code{TRUE}, all tidyverse packages
 (dplyr, ggplot2, etc) will be collapsed into a single citation
 of the 'tidyverse', as recommended by the tidyverse team.}
-
-\item{cite.grateful}{Logical. Include a citation to \code{grateful} package?
-Default is FALSE.}
 
 \item{dependencies}{Logical. Include the dependencies of your used packages?
 If \code{TRUE}, will include all the packages that your used packages depend on.}

@@ -13,9 +13,8 @@
 
 
 scan_packages <- function(pkgs = "All",
-                          omit = NULL,
+                          omit = c("grateful"),
                           cite.tidyverse = TRUE,
-                          cite.grateful = FALSE,
                           dependencies = FALSE,
                           ...) {
 
@@ -60,17 +59,6 @@ scan_packages <- function(pkgs = "All",
       if (!is.null(omit)) {
         stopifnot(is.character(omit))  # omit must be a character vector of pkg names
         pkgnames <- pkgnames[!pkgnames %in% omit]
-      }
-
-      # add/remove grateful
-      if (isTRUE(cite.grateful)) {
-        if (!"grateful" %in% pkgnames) {
-          pkgnames <- c(pkgnames, "grateful")
-        }
-      } else {
-        if ("grateful" %in% pkgnames) {
-          pkgnames <- pkgnames[pkgnames != "grateful"]
-        }
       }
     }
   }
