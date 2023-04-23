@@ -1,6 +1,9 @@
 
-test_that("out.dir is provided", {
+test_that("get_citations returns error if wrong arguments provided", {
+  expect_error(get_citations(pkgs = NULL, out.dir = tempdir()))
   expect_error(get_citations(pkgs = "renv"))
+  expect_error(get_citations(pkgs = "renv", out.dir = tempdir(), bib.file = NA))
+  expect_error(get_citations(pkgs = NULL, out.dir = tempdir(), include.RStudio = NULL))
 
 })
 

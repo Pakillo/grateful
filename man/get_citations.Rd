@@ -5,7 +5,7 @@
 \title{Get citations for packages}
 \usage{
 get_citations(
-  pkgs,
+  pkgs = NULL,
   out.dir = NULL,
   bib.file = "grateful-refs",
   include.RStudio = FALSE

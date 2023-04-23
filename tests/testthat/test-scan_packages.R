@@ -1,3 +1,14 @@
+
+test_that("scan_packages returns error if wrong arguments provided", {
+
+  expect_error(scan_packages(pkgs = NULL))
+  expect_error(scan_packages(pkgs = TRUE))
+  expect_error(scan_packages(pkgs = "renv", omit = FALSE))
+  expect_error(scan_packages(pkgs = "renv", cite.tidyverse = NULL))
+  expect_error(scan_packages(pkgs = "renv", dependencies = NULL))
+
+})
+
 test_that("scan_packages return correct output", {
 
   out <- scan_packages(pkgs = c("grateful", "renv", "utils", "dplyr", "tidyverse"))

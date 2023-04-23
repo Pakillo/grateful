@@ -18,6 +18,11 @@ scan_packages <- function(pkgs = "All",
                           dependencies = FALSE,
                           ...) {
 
+  stopifnot(is.character(pkgs))
+  stopifnot(is.null(omit) | is.character(omit))
+  stopifnot(is.logical(cite.tidyverse))
+  stopifnot(is.logical(dependencies))
+
   # If pkgs != "All" nor "Session", use them directly as vector of pkg names
   pkgnames <- pkgs
 
