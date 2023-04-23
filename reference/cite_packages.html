@@ -18,7 +18,7 @@ a bibliography."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     
     <a class="navbar-brand me-2" href="../index.html">grateful</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.14</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,9 +67,9 @@ a bibliography.</p>
 <span>  output <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"file"</span>, <span class="st">"paragraph"</span>, <span class="st">"table"</span>, <span class="st">"citekeys"</span><span class="op">)</span>,</span>
 <span>  out.dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  out.format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"html"</span>, <span class="st">"docx"</span>, <span class="st">"pdf"</span>, <span class="st">"Rmd"</span>, <span class="st">"md"</span><span class="op">)</span>,</span>
+<span>  citation.style <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pkgs <span class="op">=</span> <span class="st">"All"</span>,</span>
 <span>  omit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grateful"</span><span class="op">)</span>,</span>
-<span>  citation.style <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cite.tidyverse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  dependencies <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  include.RStudio <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -105,20 +105,6 @@ either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
 see <a href="https://yihui.org/tinytex/" class="external-link">https://yihui.org/tinytex/</a>).</p></dd>
 
 
-<dt>pkgs</dt>
-<dd><p>Character. Either "All" to include all packages used in scripts
-within the project/folder (the default), or "Session" to include only packages
-used in the current session.
-Alternatively, <code>pkgs</code> can also be a character vector of package names to
-get citations for (see examples).</p></dd>
-
-
-<dt>omit</dt>
-<dd><p>Character vector of package names to be omitted from the citation
-report. <code>grateful</code> is omitted by default. Use <code>omit = NULL</code> to include all
-packages.</p></dd>
-
-
 <dt>citation.style</dt>
 <dd><p>Optional. Citation style to format references for a
 particular journal
@@ -131,6 +117,20 @@ If using <code>cite_packages()</code> within an R Markdown or Quarto
 document, <code>citation.style</code> should be <code>NULL</code> (the default). The citation style
 should instead be defined in the YAML metadata of the document
 (see <a href="https://pakillo.github.io/grateful/#using-grateful-with-rmarkdown-or-quarto">https://pakillo.github.io/grateful/#using-grateful-with-rmarkdown-or-quarto</a>).</p></dd>
+
+
+<dt>pkgs</dt>
+<dd><p>Character. Either "All" to include all packages used in scripts
+within the project/folder (the default), or "Session" to include only packages
+used in the current session.
+Alternatively, <code>pkgs</code> can also be a character vector of package names to
+get citations for (see examples).</p></dd>
+
+
+<dt>omit</dt>
+<dd><p>Character vector of package names to be omitted from the citation
+report. <code>grateful</code> is omitted by default. Use <code>omit = NULL</code> to include all
+packages.</p></dd>
 
 
 <dt>cite.tidyverse</dt>
