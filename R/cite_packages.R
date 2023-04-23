@@ -68,16 +68,6 @@
 #' (Note that choosing "pdf" requires a working installation of LaTeX,
 #' see <https://yihui.org/tinytex/>).
 #'
-#' @param pkgs Character. Either "All" to include all packages used in scripts
-#' within the project/folder (the default), or "Session" to include only packages
-#' used in the current session.
-#' Alternatively, `pkgs` can also be a character vector of package names to
-#' get citations for (see examples).
-#'
-#' @param omit Character vector of package names to be omitted from the citation
-#' report. `grateful` is omitted by default. Use `omit = NULL` to include all
-#' packages.
-#'
 #' @param citation.style Optional. Citation style to format references for a
 #' particular journal
 #' (see <https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html>).
@@ -89,6 +79,16 @@
 #' document, `citation.style` should be `NULL` (the default). The citation style
 #' should instead be defined in the YAML metadata of the document
 #' (see <https://pakillo.github.io/grateful/#using-grateful-with-rmarkdown-or-quarto>).
+#'
+#' @param pkgs Character. Either "All" to include all packages used in scripts
+#' within the project/folder (the default), or "Session" to include only packages
+#' used in the current session.
+#' Alternatively, `pkgs` can also be a character vector of package names to
+#' get citations for (see examples).
+#'
+#' @param omit Character vector of package names to be omitted from the citation
+#' report. `grateful` is omitted by default. Use `omit = NULL` to include all
+#' packages.
 #'
 #' @param cite.tidyverse Logical. If `TRUE`, all tidyverse packages
 #' (dplyr, ggplot2, etc) will be collapsed into a single citation
@@ -152,9 +152,9 @@
 cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           out.dir = NULL,
                           out.format = c("html", "docx", "pdf", "Rmd", "md"),
+                          citation.style = NULL,
                           pkgs = "All",
                           omit = c("grateful"),
-                          citation.style = NULL,
                           cite.tidyverse = TRUE,
                           dependencies = FALSE,
                           include.RStudio = FALSE,

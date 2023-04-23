@@ -8,9 +8,9 @@ cite_packages(
   output = c("file", "paragraph", "table", "citekeys"),
   out.dir = NULL,
   out.format = c("html", "docx", "pdf", "Rmd", "md"),
+  citation.style = NULL,
   pkgs = "All",
   omit = c("grateful"),
-  citation.style = NULL,
   cite.tidyverse = TRUE,
   dependencies = FALSE,
   include.RStudio = FALSE,
@@ -42,16 +42,6 @@ either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
 (Note that choosing "pdf" requires a working installation of LaTeX,
 see \url{https://yihui.org/tinytex/}).}
 
-\item{pkgs}{Character. Either "All" to include all packages used in scripts
-within the project/folder (the default), or "Session" to include only packages
-used in the current session.
-Alternatively, \code{pkgs} can also be a character vector of package names to
-get citations for (see examples).}
-
-\item{omit}{Character vector of package names to be omitted from the citation
-report. \code{grateful} is omitted by default. Use \code{omit = NULL} to include all
-packages.}
-
 \item{citation.style}{Optional. Citation style to format references for a
 particular journal
 (see \url{https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html}).
@@ -63,6 +53,16 @@ If using \code{\link[=cite_packages]{cite_packages()}} within an R Markdown or Q
 document, \code{citation.style} should be \code{NULL} (the default). The citation style
 should instead be defined in the YAML metadata of the document
 (see \url{https://pakillo.github.io/grateful/#using-grateful-with-rmarkdown-or-quarto}).}
+
+\item{pkgs}{Character. Either "All" to include all packages used in scripts
+within the project/folder (the default), or "Session" to include only packages
+used in the current session.
+Alternatively, \code{pkgs} can also be a character vector of package names to
+get citations for (see examples).}
+
+\item{omit}{Character vector of package names to be omitted from the citation
+report. \code{grateful} is omitted by default. Use \code{omit = NULL} to include all
+packages.}
 
 \item{cite.tidyverse}{Logical. If \code{TRUE}, all tidyverse packages
 (dplyr, ggplot2, etc) will be collapsed into a single citation
