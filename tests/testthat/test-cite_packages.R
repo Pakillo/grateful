@@ -35,7 +35,7 @@ test_that("cite_packages returns correct paragraph", {
                         pkgs = c("grateful"),
                         out.dir = tempdir())
   expect_identical(para,
-                   structure("We used the following R packages: grateful v. 0.1.14 [@grateful].",
+                   structure("We used the following R packages: grateful v. 0.2.0 [@grateful].",
                              class = "knit_asis",
                              knit_cacheable = NA))
 
@@ -79,11 +79,11 @@ test_that("cite_packages returns correct Rmd", {
                  "",
                  "|Package  |Version |Citation  |",
                  "|:--------|:-------|:---------|",
-                 "|grateful |0.1.14  |@grateful |",
+                 paste0("|grateful |", utils::packageVersion("grateful"),"   |@grateful |"),
                  "",
                  "**You can paste this paragraph directly in your report:**",
                  "",
-                 "We used the following R packages: grateful v. 0.1.14 [@grateful].",
+                 paste0("We used the following R packages: grateful v. ", utils::packageVersion("grateful"), " [@grateful]."),
                  "",
                  "## Package citations",
                  ""))

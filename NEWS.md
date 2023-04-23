@@ -1,4 +1,4 @@
-# grateful 0.1.14
+# grateful 0.2.0
 
 * Added `omit` argument to exclude some packages from the citation report. 
 

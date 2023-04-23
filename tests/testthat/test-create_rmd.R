@@ -26,11 +26,11 @@ test_that("create_rmd produces correct Rmd", {
                  "",
                  "|Package  |Version |Citation  |",
                  "|:--------|:-------|:---------|",
-                 "|grateful |0.1.14  |@grateful |",
+                 paste0("|grateful |", utils::packageVersion("grateful"),"   |@grateful |"),
                  "",
                  "**You can paste this paragraph directly in your report:**",
                  "",
-                 "We used the following R packages: grateful v. 0.1.14 [@grateful].",
+                 paste0("We used the following R packages: grateful v. ", utils::packageVersion("grateful"), " [@grateful]."),
                  "",
                  "## Package citations",
                  ""))
