@@ -30,7 +30,8 @@ test_that("create_rmd produces correct Rmd", {
                  "",
                  "**You can paste this paragraph directly in your report:**",
                  "",
-                 paste0("We used the following R packages: grateful v. ", utils::packageVersion("grateful"), " [@grateful]."),
+                 paste0("We used the following R packages: grateful v. ",
+                        utils::packageVersion("grateful"), " [@grateful]."),
                  "",
                  "## Package citations",
                  ""))

@@ -1,7 +1,8 @@
 test_that("providing wrong arguments return error", {
 
   expect_error(cite_packages(out.dir = NULL))
-  expect_error(cite_packages(out.dir = tempdir(), out.file = "test", bib.file = "test"))
+  expect_error(cite_packages(out.dir = tempdir(), out.file = "test",
+                             bib.file = "test"))
 
 })
 
@@ -35,18 +36,20 @@ test_that("cite_packages returns correct paragraph", {
                         pkgs = c("grateful"),
                         out.dir = tempdir())
   expect_identical(para,
-                   structure("We used the following R packages: grateful v. 0.2.0 [@grateful].",
+                   structure(paste0("We used the following R packages: grateful v. ",
+                                    utils::packageVersion("grateful"), " [@grateful]."),
                              class = "knit_asis",
                              knit_cacheable = NA))
 
-
-  skip_on_ci()
 
   para <- cite_packages(output = "paragraph",
                         pkgs = "Session",
                         out.dir = tempdir())
   expect_identical(para,
-                   structure("We used R version 4.2.3 [@base] and the following R packages: testthat v. 3.1.7 [@testthat].",
+                   structure(paste0("We used R version ",
+                                    R.version$major, ".", R.version$minor,
+                                    " [@base] and the following R packages: testthat v. ",
+                                    utils::packageVersion("testthat"), " [@testthat]."),
                              class = "knit_asis",
                              knit_cacheable = NA))
 
@@ -83,7 +86,8 @@ test_that("cite_packages returns correct Rmd", {
                  "",
                  "**You can paste this paragraph directly in your report:**",
                  "",
-                 paste0("We used the following R packages: grateful v. ", utils::packageVersion("grateful"), " [@grateful]."),
+                 paste0("We used the following R packages: grateful v. ",
+                        utils::packageVersion("grateful"), " [@grateful]."),
                  "",
                  "## Package citations",
                  ""))

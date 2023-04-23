@@ -59,7 +59,7 @@ test_that("Test get_citation_and_citekey function", {
                                title = "title = {{knitr}: A General-Purpose Package for Dynamic Report Generation in R},",
                                author = "  author = {Yihui Xie},",
                                year = "  year = {2023},",
-                               note = "  note = {R package version 1.42},",
+                               note = paste0("  note = {R package version ", utils::packageVersion("knitr"), "},"),
                                url = "  url = {https://yihui.org/knitr/},",
                                "}",
                                "",
