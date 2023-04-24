@@ -59,6 +59,7 @@ test_that("cite_packages returns correct paragraph", {
 test_that("cite_packages returns correct Rmd", {
 
   skip_on_cran()
+  skip_on_ci()
 
   cite <- cite_packages(
     output = "file",

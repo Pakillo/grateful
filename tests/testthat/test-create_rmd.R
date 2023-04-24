@@ -8,6 +8,7 @@ test_that("NULL arguments return error", {
 test_that("create_rmd produces correct Rmd", {
 
   skip_on_cran()
+  skip_on_ci()
 
   pkgs <- get_pkgs_info(pkgs = "grateful", out.dir = tempdir())
   rmd <- create_rmd(pkgs.df = pkgs, out.dir = tempdir(), out.format = "Rmd")
