@@ -100,6 +100,9 @@
 #' @param include.RStudio Logical. If `TRUE`, adds a citation for the
 #'   current version of RStudio.
 #'
+#' @param passive.voice Logical. If `TRUE`, uses passive voice in any paragraph  
+#'   generated for citations.
+#'
 #' @param out.file Desired name of the citation report to be created if
 #' `output = "file"`. Default is "grateful-report" (without extension).
 #'
@@ -158,6 +161,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           cite.tidyverse = TRUE,
                           dependencies = FALSE,
                           include.RStudio = FALSE,
+                          passive.voice = FALSE,
                           out.file = "grateful-report",
                           bib.file = "grateful-refs",
                           ...) {
@@ -204,7 +208,8 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
   if (output == "paragraph") {
 
     paragraph <- write_citation_paragraph(pkgs.df,
-                                          include.RStudio = include.RStudio)
+                                          include.RStudio = include.RStudio,
+                                          passive.voice = passive.voice)
     return(knitr::asis_output(paragraph))
 
   }
