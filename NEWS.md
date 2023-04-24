@@ -1,4 +1,3 @@
-# grateful (development version)
 
 # grateful 0.2.0
 
