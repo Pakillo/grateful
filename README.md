@@ -12,8 +12,8 @@ coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)]
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-<!-- [![](https://www.r-pkg.org/badges/version/grateful)](https://cran.r-project.org/package=grateful) -->
-<!-- [![](http://cranlogs.r-pkg.org/badges/grand-total/grateful)](https://cran.r-project.org/package=grateful) -->
+[![](https://www.r-pkg.org/badges/version/grateful)](https://cran.r-project.org/package=grateful)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/grateful)](https://cran.r-project.org/package=grateful)
 <!-- badges: end -->
 
 The goal of **grateful** is to make it very easy to cite R and the R
@@ -168,7 +168,7 @@ Use `scan_packages`
 scan_packages()
          pkg version
 1     badger   0.2.3
-2       base   4.2.3
+2       base   4.3.0
 3      knitr    1.42
 4    pkgdown   2.0.7
 5    remotes   2.4.2
@@ -313,7 +313,6 @@ you still use and want to cite that package, install it, and then run
 
 ``` r
 citation("grateful")
-
 To cite package 'grateful' in publications use:
 
   Rodriguez-Sanchez F, Jackson CP, Hutchins SD (2023) grateful:
