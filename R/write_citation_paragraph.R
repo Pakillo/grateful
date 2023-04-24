@@ -1,4 +1,4 @@
-write_citation_paragraph <- function(df, include.RStudio = FALSE) {
+write_citation_paragraph <- function(df, include.RStudio = FALSE, passive.voice = FALSE) {
 
   df.pkgs <- df[df$pkg != "base", ]
 
@@ -6,17 +6,26 @@ write_citation_paragraph <- function(df, include.RStudio = FALSE) {
     rversion <- paste0("R version ",
                        get_version("base", df), " ",
                        get_citekeys("base", df),
-                       " and ")
+                       " ")
   } else {
     rversion <- ""
   }
 
-  parag <- paste0(
-    "We used ",
+  if (passive.voice) {
+    parag <- paste0(
+    "This work was completed using ",
     rversion,
-    "the following R packages: ",
+    "with the following R packages: ",
     paste(format_pkg_citation(pkgname = df.pkgs$pkg, df), collapse = ", ")
   )
+  } else {
+    parag <- paste0(
+    "We used ",
+    rversion,
+    "and the following R packages: ",
+    paste(format_pkg_citation(pkgname = df.pkgs$pkg, df), collapse = ", ")
+  )
+  }
 
   if (include.RStudio) {
     parag <- paste0(parag, ", running in RStudio v. ", rstudioapi::versionInfo()$version,
