@@ -1,4 +1,9 @@
 
+# grateful 0.2.1
+
+* Citation paragraph can now be written in passive voice, thanks to @jmclawson
+
+
 # grateful 0.2.0
 
 * Added `omit` argument to exclude some packages from the citation report. 
