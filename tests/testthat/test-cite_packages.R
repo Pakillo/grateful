@@ -53,6 +53,32 @@ test_that("cite_packages returns correct paragraph", {
                              class = "knit_asis",
                              knit_cacheable = NA))
 
+  ### passive voice
+
+  para <- cite_packages(output = "paragraph",
+                        pkgs = c("grateful"),
+                        out.dir = tempdir(),
+                        passive.voice = TRUE)
+
+  expect_identical(para,
+                   structure(paste0("This work was completed with the following R packages: grateful v. ",
+                                    utils::packageVersion("grateful"), " [@grateful]."),
+                             class = "knit_asis",
+                             knit_cacheable = NA))
+
+  para <- cite_packages(output = "paragraph",
+                        pkgs = "Session",
+                        out.dir = tempdir(),
+                        passive.voice = TRUE)
+
+  expect_identical(para,
+                   structure(paste0("This work was completed using R version ",
+                                    R.version$major, ".", R.version$minor,
+                                    " [@base] with the following R packages: testthat v. ",
+                                    utils::packageVersion("testthat"), " [@testthat]."),
+                             class = "knit_asis",
+                             knit_cacheable = NA))
+
 })
 
 

@@ -14,6 +14,7 @@ cite_packages(
   cite.tidyverse = TRUE,
   dependencies = FALSE,
   include.RStudio = FALSE,
+  passive.voice = FALSE,
   out.file = "grateful-report",
   bib.file = "grateful-refs",
   ...
@@ -73,6 +74,9 @@ If \code{TRUE}, will include all the packages that your used packages depend on.
 
 \item{include.RStudio}{Logical. If \code{TRUE}, adds a citation for the
 current version of RStudio.}
+
+\item{passive.voice}{Logical. If \code{TRUE}, uses passive voice in any paragraph
+generated for citations.}
 
 \item{out.file}{Desired name of the citation report to be created if
 \code{output = "file"}. Default is "grateful-report" (without extension).}
