@@ -15,11 +15,12 @@ knitr::opts_chunk$set(
 # grateful: Facilitate citation of R packages
 
 <!-- badges: start -->
+`r badger::badge_cran_release()`
+![](https://img.shields.io/github/r-package/v/Pakillo/grateful)
 [![R-CMD-check](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful?branch=master)
 `r badger::badge_lifecycle("stable")`
 `r badger::badge_repostatus("Active")`
-`r badger::badge_cran_release()`
 [![](https://cranlogs.r-pkg.org/badges/grand-total/grateful)](https://cran.r-project.org/package=grateful)
 <!-- badges: end -->
 

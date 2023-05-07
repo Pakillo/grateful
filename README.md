@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![](https://www.r-pkg.org/badges/version/grateful)](https://cran.r-project.org/package=grateful)
+![](https://img.shields.io/github/r-package/v/Pakillo/grateful)
 [![R-CMD-check](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful?branch=master)
@@ -12,7 +14,6 @@ coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)]
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![](https://www.r-pkg.org/badges/version/grateful)](https://cran.r-project.org/package=grateful)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/grateful)](https://cran.r-project.org/package=grateful)
 <!-- badges: end -->
 
@@ -143,7 +144,7 @@ citations, using `output = 'table'`:
     knitr::kable(pkgs)
     ```
 
-<img src="man/figures/table.png" width="814" />
+<img src="man/figures/table.png" width="842" />
 
 If you want the references to appear in a particular format, you can
 specify the citation style in the YAML header:
