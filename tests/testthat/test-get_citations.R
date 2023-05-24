@@ -9,8 +9,8 @@ test_that("get_citations returns error if wrong arguments provided", {
 
 
 test_that("get_citations works", {
-  citkeys <- get_citations(c("knitr", "tidyverse"), out.dir = tempdir())
-  expect_identical(citkeys, c("knitr2023", "knitr2015", "knitr2014", "tidyverse"))
+  citkeys <- get_citations("grateful", out.dir = tempdir())
+  expect_identical(citkeys, "grateful")
 })
 
 # test_that("get_citations adds Rstudio citation if asked", {

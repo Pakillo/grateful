@@ -1,4 +1,8 @@
 
+# grateful 0.2.2
+
+* Removed some tests that were likely to fail in the future (issue #36)
+
 # grateful 0.2.1
 
 * Citation paragraph can now be written in passive voice, thanks to @jmclawson

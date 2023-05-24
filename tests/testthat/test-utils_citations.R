@@ -53,36 +53,4 @@ test_that("Test get_citation_and_citekey function", {
                                "}"),
                              class = "Bibtex"))
 
-
-  expect_identical(get_citation_and_citekey("knitr"),
-                   structure(c("@Manual{knitr2023,",
-                               title = "title = {{knitr}: A General-Purpose Package for Dynamic Report Generation in R},",
-                               author = "  author = {Yihui Xie},",
-                               year = "  year = {2023},",
-                               note = paste0("  note = {R package version ", utils::packageVersion("knitr"), "},"),
-                               url = "  url = {https://yihui.org/knitr/},",
-                               "}",
-                               "",
-                               "@Book{knitr2015,",
-                               title = "  title = {Dynamic Documents with {R} and knitr},",
-                               author = "  author = {Yihui Xie},",
-                               publisher = "  publisher = {Chapman and Hall/CRC},",
-                               address = "  address = {Boca Raton, Florida},",
-                               year = "  year = {2015},",
-                               edition = "  edition = {2nd},",
-                               note = "  note = {ISBN 978-1498716963},",
-                               url = "  url = {https://yihui.org/knitr/},", "}",
-                               "",
-                               "@InCollection{knitr2014,",
-                               booktitle = "  booktitle = {Implementing Reproducible Computational Research},",
-                               editor = "  editor = {Victoria Stodden and Friedrich Leisch and Roger D. Peng},",
-                               title = "title = {{knitr}: A Comprehensive Tool for Reproducible Research in {R}},",
-                               author = "  author = {Yihui Xie},",
-                               publisher = "  publisher = {Chapman and Hall/CRC},",
-                               year = "  year = {2014},",
-                               note = "  note = {ISBN 978-1466561595},",
-                               "}"),
-                             class = "Bibtex"))
-
-
 })
