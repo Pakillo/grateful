@@ -17,6 +17,8 @@ get_csl <- function(name = NULL, out.dir = NULL) {
     stop("Please specify the journal name")
   }
 
+  gsub("\\.csl", "", name)     # remove .csl from journal name
+
   if (is.null(out.dir)) {
     stop("Please specify where you would like to save the CSL file, e.g. out.dir = getwd()")
   }
@@ -25,8 +27,24 @@ get_csl <- function(name = NULL, out.dir = NULL) {
 
   destfile <- file.path(out.dir, paste0(name, ".csl"))
 
-  utils::download.file(paste0(styles.repo, name, ".csl"), mode = "wb",
-                       destfile = destfile)
+  # First try downloading CSL file from repo root
+  # this will fail for styles hosted in the "dependent" subfolder
+  out <- tryCatch(utils::download.file(paste0(styles.repo, name, ".csl"),
+                                mode = "wb", destfile = destfile, quiet = TRUE),
+           warning = function(w){})
 
-  invisible(destfile)
+  # if the style could not be downloaded, try the "dependent" folder
+  if (is.null(out)) {
+    out <- tryCatch(utils::download.file(paste0(styles.repo, "dependent/", name, ".csl"),
+                                  mode = "wb", destfile = destfile, quiet = TRUE),
+             warning = function(w){})
+  }
+
+  if (is.null(out)) {
+    file.remove(destfile)
+    stop("The citation style '", name, "' could not be downloaded. Please check the style name and your internet connection.")
+  } else {
+    destfile
+  }
+
 }

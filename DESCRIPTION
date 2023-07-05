@@ -1,6 +1,6 @@
 Package: grateful
 Title: Facilitate Citation of R Packages
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: c(
     person("Francisco", "Rodriguez-Sanchez", 
             email = "f.rodriguez.sanc@gmail.com", 

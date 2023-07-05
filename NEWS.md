@@ -1,4 +1,9 @@
 
+# grateful 0.2.3
+
+* Fixed a bug when downloading 'dependent' citation styles from the official repository.
+
+
 # grateful 0.2.2
 
 * Removed some tests that were likely to fail in the future (issue #36)
