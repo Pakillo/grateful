@@ -170,12 +170,12 @@ scan_packages()
          pkg version
 1     badger   0.2.3
 2       base   4.3.0
-3      knitr    1.42
+3      knitr    1.43
 4    pkgdown   2.0.7
 5    remotes   2.4.2
 6       renv  0.17.3
-7  rmarkdown    2.21
-8   testthat   3.1.7
+7  rmarkdown    2.22
+8   testthat   3.1.9
 9  tidyverse   2.0.0
 10    visreg   2.7.0
 ```
@@ -316,17 +316,17 @@ you still use and want to cite that package, install it, and then run
 citation("grateful")
 To cite package 'grateful' in publications use:
 
-  Rodriguez-Sanchez F, Jackson CP, Hutchins SD (2023) grateful:
-  Facilitate citation of R packages.
-  https://github.com/Pakillo/grateful
+  Francisco Rodriguez-Sanchez, Connor P. Jackson (2023). _grateful:
+  Facilitate citation of R packages_.
+  <https://pakillo.github.io/grateful/>.
 
 A BibTeX entry for LaTeX users is
 
   @Manual{,
     title = {grateful: Facilitate citation of R packages},
-    author = {{Francisco Rodríguez-Sánchez} and {Connor P. Jackson} and {Shaurita D. Hutchins}},
+    author = {{Francisco Rodriguez-Sanchez} and {Connor P. Jackson}},
     year = {2023},
-    url = {https://github.com/Pakillo/grateful},
+    url = {https://pakillo.github.io/grateful/},
   }
 ```
 
