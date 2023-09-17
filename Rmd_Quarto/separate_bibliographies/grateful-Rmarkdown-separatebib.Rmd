@@ -1,0 +1,63 @@
+---
+title: "Using 'grateful' with Rmarkdown: separate software bibliography"
+output: 
+  pdf_document:
+    pandoc_args: ['--lua-filter=multibib.lua']
+bibliography: 
+  main: main-refs.bib
+  software: grateful-refs.bib
+citeproc: false
+---
+
+```{r echo=FALSE}
+# Download pandoc filter if not available
+# https://github.com/pandoc-ext/multibib
+if (!file.exists("multibib.lua")) {
+  download.file(url = "https://raw.githubusercontent.com/pandoc-ext/multibib/main/_extensions/multibib/multibib.lua", 
+                destfile = "multibib.lua", 
+                mode = "wb")
+}
+```
+
+
+Here we cite a paper [@smith_software_2016].
+
+Load packages
+
+```{r message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(visreg)
+```
+
+Run some analysis
+
+```{r}
+iris |> 
+  group_by(Species) |> 
+  summarise(mean(Petal.Length))
+
+ggplot(iris) +
+  geom_jitter(aes(Species, Petal.Length, colour = Species))
+
+model <- lm(Petal.Length ~ Species, data = iris)
+visreg(model)
+```
+
+Now we cite R packages:
+
+```{r echo=FALSE}
+grateful::cite_packages(output = "paragraph", pkgs = "Session", out.dir = ".")
+```
+
+
+# References
+
+::: {#refs-main}
+:::
+
+# Software
+
+::: {#refs-software}
+:::
+

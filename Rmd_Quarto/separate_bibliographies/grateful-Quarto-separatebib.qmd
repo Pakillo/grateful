@@ -1,0 +1,58 @@
+---
+title: "Using 'grateful' with Quarto: separate software bibliography"
+format: pdf
+filters:
+  - multibib    # install from https://github.com/pandoc-ext/multibib
+bibliography: 
+  main: main-refs.bib
+  software: grateful-refs.bib
+validate-yaml: false  # to overcome this issue https://github.com/pandoc-ext/multibib/issues/1
+citeproc: false
+---
+
+Here we cite a paper [@smith_software_2016].
+
+
+Load packages
+
+```{r}
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(visreg)
+```
+
+Run some analysis
+
+```{r}
+iris |> 
+  group_by(Species) |> 
+  summarise(mean(Petal.Length))
+
+ggplot(iris) +
+  geom_jitter(aes(Species, Petal.Length, colour = Species))
+
+model <- lm(Petal.Length ~ Species, data = iris)
+visreg(model)
+```
+
+
+Now we cite R packages:
+
+```{r}
+#| echo: false
+grateful::cite_packages(output = "paragraph", pkgs = "Session", out.dir = ".")
+```
+
+
+
+# References
+
+::: {#refs-main}
+:::
+
+# Software
+
+::: {#refs-software}
+:::
+
