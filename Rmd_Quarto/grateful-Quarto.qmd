@@ -1,6 +1,6 @@
 ---
 title: "Using {grateful} with Quarto"
-format: html
+format: pdf
 bibliography: grateful-refs.bib
 # csl: "`r grateful::get_csl('journal-of-ecology', out.dir = '.')`"
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Using {grateful} with Rmarkdown"
-output: html_document
+output: pdf_document
 bibliography: grateful-refs.bib
 # csl: "`r grateful::get_csl('journal-of-ecology', out.dir = '.')`"
 ---
