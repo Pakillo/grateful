@@ -100,7 +100,7 @@
 #' @param include.RStudio Logical. If `TRUE`, adds a citation for the
 #'   current version of RStudio.
 #'
-#' @param passive.voice Logical. If `TRUE`, uses passive voice in any paragraph  
+#' @param passive.voice Logical. If `TRUE`, uses passive voice in any paragraph
 #'   generated for citations.
 #'
 #' @param out.file Desired name of the citation report to be created if
@@ -197,7 +197,8 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                       Rmd.file = out.file,
                       out.dir = out.dir,
                       out.format = out.format,
-                      include.RStudio = include.RStudio)
+                      include.RStudio = include.RStudio,
+                      passive.voice = passive.voice)
 
     message(paste0("\nCitation report available at ", rmd))
     return(rmd)  # return path to file

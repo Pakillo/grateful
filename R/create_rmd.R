@@ -10,6 +10,8 @@
 #' @param out.format Output format. One of: "html", docx" (Word), "pdf", "Rmd", or "md" (markdown).
 #' @param Rmd.file Name of the Rmarkdown file to be created.
 #' @param include.RStudio Include RStudio?
+#' @param passive.voice Logical. If `TRUE`, uses passive voice in any paragraph
+#'   generated for citations.
 #' @param ... Further arguments for [render_citations()]. Currently not used.
 #'
 #' @return An Rmarkdown file, if out.format = "Rmd", or a rendered document otherwise.
@@ -23,6 +25,7 @@ create_rmd <- function(pkgs.df = NULL,
                        Rmd.file = "grateful-report",
                        out.format = c("html", "docx", "pdf", "Rmd", "md"),
                        include.RStudio = FALSE,
+                       passive.voice = FALSE,
                        ...) {
 
   if (is.null(pkgs.df)) {
@@ -64,7 +67,9 @@ create_rmd <- function(pkgs.df = NULL,
 
   table <- knitr::asis_output(knitr::kable(output_table(pkgs.df)))
 
-  parag <- write_citation_paragraph(pkgs.df, include.RStudio = include.RStudio)
+  parag <- write_citation_paragraph(pkgs.df,
+                                    include.RStudio = include.RStudio,
+                                    passive.voice = passive.voice)
 
   ## write Rmd to disk
   writeLines(c(yaml.header,

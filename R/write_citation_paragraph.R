@@ -1,4 +1,6 @@
-write_citation_paragraph <- function(df, include.RStudio = FALSE, passive.voice = FALSE) {
+write_citation_paragraph <- function(df,
+                                     include.RStudio = FALSE,
+                                     passive.voice = FALSE) {
 
   df.pkgs <- df[df$pkg != "base", ]
 
