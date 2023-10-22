@@ -1,4 +1,8 @@
 
+# grateful 0.2.5
+
+* Fixed a bug in writing passive voice paragraph when generating a citation report (issue #39).
+
 # grateful 0.2.4
 
 * Fixed a bug in package doc (cf. https://github.com/r-lib/roxygen2/issues/1491).
