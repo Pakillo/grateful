@@ -47,9 +47,9 @@ test_that("Test get_citation_and_citekey function", {
   expect_identical(get_citation_and_citekey("grateful"),
                    structure(c("@Manual{grateful,",
                                title = "title = {{grateful}: Facilitate citation of R packages},",
-                               author = "  author = {{Francisco Rodríguez-Sánchez} and {Connor P. Jackson} and {Shaurita D. Hutchins}},",
+                               author = "  author = {{Francisco Rodriguez-Sanchez} and {Connor P. Jackson}},",
                                year = "  year = {2023},",
-                               url = "  url = {https://github.com/Pakillo/grateful},",
+                               url = "  url = {https://pakillo.github.io/grateful/},",
                                "}"),
                              class = "Bibtex"))
 

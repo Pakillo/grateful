@@ -1,4 +1,8 @@
 
+# grateful 0.2.4
+
+* Fixed a bug in package doc (cf. https://github.com/r-lib/roxygen2/issues/1491).
+
 # grateful 0.2.3
 
 * Fixed a bug when downloading 'dependent' citation styles from the official repository.
