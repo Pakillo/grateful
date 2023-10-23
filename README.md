@@ -7,6 +7,7 @@
 
 [![](https://www.r-pkg.org/badges/version/grateful)](https://cran.r-project.org/package=grateful)
 ![](https://img.shields.io/github/r-package/v/Pakillo/grateful)
+<a href="https://diffify.com/R/grateful" target="_blank"><img src="https://diffify.com/diffify-badge.svg" alt="The diffify page for the R package grateful" style="width: 100px; max-width: 100%;"></a>
 [![R-CMD-check](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful?branch=master)

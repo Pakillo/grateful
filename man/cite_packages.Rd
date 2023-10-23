@@ -59,7 +59,8 @@ should instead be defined in the YAML metadata of the document
 within the project/folder (the default), or "Session" to include only packages
 used in the current session.
 Alternatively, \code{pkgs} can also be a character vector of package names to
-get citations for (see examples).}
+get citations for. To cite R as well as the given packages,
+include "base" in \code{pkgs} (see examples).}
 
 \item{omit}{Character vector of package names to be omitted from the citation
 report. \code{grateful} is omitted by default. Use \code{omit = NULL} to include all
@@ -158,6 +159,9 @@ cite_packages(pkgs = "Session", out.dir = tempdir())
 
 # Cite only user-provided packages:
 cite_packages(pkgs = c("renv", "remotes", "knitr"), out.dir = tempdir())
+
+# Cite R as well as user-provided packages
+cite_packages(pkgs = c("base", "renv", "remotes", "knitr"), out.dir = tempdir())
 
 
 # To include citations in an R Markdown or Quarto file

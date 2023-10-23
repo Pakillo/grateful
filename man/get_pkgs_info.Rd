@@ -20,7 +20,8 @@ get_pkgs_info(
 within the project/folder (the default), or "Session" to include only packages
 used in the current session.
 Alternatively, \code{pkgs} can also be a character vector of package names to
-get citations for (see examples).}
+get citations for. To cite R as well as the given packages,
+include "base" in \code{pkgs} (see examples).}
 
 \item{out.dir}{Directory to save the BibTeX file with references.
 It is recommended to set \code{out.dir = getwd()}.}

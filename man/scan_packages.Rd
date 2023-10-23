@@ -17,7 +17,8 @@ scan_packages(
 within the project/folder (the default), or "Session" to include only packages
 used in the current session.
 Alternatively, \code{pkgs} can also be a character vector of package names to
-get citations for (see examples).}
+get citations for. To cite R as well as the given packages,
+include "base" in \code{pkgs} (see examples).}
 
 \item{omit}{Character vector of package names to be omitted from the citation
 report. \code{grateful} is omitted by default. Use \code{omit = NULL} to include all

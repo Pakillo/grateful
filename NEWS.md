@@ -1,4 +1,8 @@
 
+# grateful 0.2.6
+
+* Explain how to cite R together with a given list of packages (issue #37).
+
 # grateful 0.2.5
 
 * Fixed a bug in writing passive voice paragraph when generating a citation report (issue #39).
