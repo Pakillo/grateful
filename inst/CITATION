@@ -3,8 +3,8 @@ bibentry(
   bibtype = "Manual",
   title        = "grateful: Facilitate citation of R packages",
   author       = c(
-                person("Francisco Rodriguez-Sanchez"),
-                person("Connor P. Jackson")
+                person("Francisco", "Rodriguez-Sanchez"),
+                person("Connor P.", "Jackson")
                 ),
   year         = "2023",
   url          = "https://pakillo.github.io/grateful/",
