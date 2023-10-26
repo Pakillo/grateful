@@ -317,15 +317,14 @@ you still use and want to cite that package, install it, and then run
 citation("grateful")
 To cite package 'grateful' in publications use:
 
-  Francisco Rodriguez-Sanchez, Connor P. Jackson (2023). _grateful:
-  Facilitate citation of R packages_.
-  <https://pakillo.github.io/grateful/>.
+  Rodriguez-Sanchez F, Jackson C (2023). _grateful: Facilitate citation
+  of R packages_. <https://pakillo.github.io/grateful/>.
 
 A BibTeX entry for LaTeX users is
 
   @Manual{,
     title = {grateful: Facilitate citation of R packages},
-    author = {{Francisco Rodriguez-Sanchez} and {Connor P. Jackson}},
+    author = {Francisco Rodriguez-Sanchez and Connor P. Jackson},
     year = {2023},
     url = {https://pakillo.github.io/grateful/},
   }
