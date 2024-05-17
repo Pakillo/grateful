@@ -1,4 +1,8 @@
 
+# grateful 0.2.7
+
+* Enable citing Rstudio with 'table' output format (issue #41).
+
 # grateful 0.2.6
 
 * Explain how to cite R together with a given list of packages (issue #37).

@@ -221,7 +221,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
 
 
   if (output == "table") {
-    return(output_table(pkgs.df))
+    return(output_table(pkgs.df, include.RStudio = include.RStudio))
   }
 
 
