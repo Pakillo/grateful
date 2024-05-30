@@ -148,13 +148,13 @@
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">scan_packages</span>()</span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>         pkg version</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="dv">1</span>     badger   <span class="dv">0</span>.<span class="fl">2.3</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="dv">2</span>       base   <span class="dv">4</span>.<span class="fl">3.1</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="dv">3</span>      knitr    <span class="fl">1.44</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="dv">4</span>    pkgdown   <span class="dv">2</span>.<span class="fl">0.7</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="dv">5</span>    remotes <span class="dv">2</span>.<span class="dv">4</span>.<span class="fl">2.1</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="dv">6</span>       renv   <span class="dv">1</span>.<span class="fl">0.3</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="dv">7</span>  rmarkdown    <span class="fl">2.25</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="dv">8</span>   testthat   <span class="dv">3</span>.<span class="fl">2.0</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="dv">2</span>       base   <span class="dv">4</span>.<span class="fl">4.0</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="dv">3</span>      knitr    <span class="fl">1.47</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="dv">4</span>    pkgdown   <span class="dv">2</span>.<span class="fl">0.9</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="dv">5</span>    remotes   <span class="dv">2</span>.<span class="fl">5.0</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="dv">6</span>       renv   <span class="dv">1</span>.<span class="fl">0.7</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="dv">7</span>  rmarkdown    <span class="fl">2.27</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="dv">8</span>   testthat <span class="dv">3</span>.<span class="dv">2</span>.<span class="fl">1.1</span></span>
 <span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="dv">9</span>  tidyverse   <span class="dv">2</span>.<span class="fl">0.0</span></span>
 <span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="dv">10</span>    visreg   <span class="dv">2</span>.<span class="fl">7.0</span></span></code></pre></div>
 </div>
@@ -166,8 +166,8 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/get_pkgs_info.html">get_pkgs_info</a></span><span class="op">(</span>pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"remotes"</span>, <span class="st">"renv"</span><span class="op">)</span>, out.dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       pkg version citekeys</span></span>
-<span><span class="co">#&gt; 1 remotes 2.4.2.1  remotes</span></span>
-<span><span class="co">#&gt; 2    renv   1.0.3     renv</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 remotes   2.5.0  remotes</span></span>
+<span><span class="co">#&gt; 2    renv   1.0.7     renv</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="using-grateful-with-the-tidyverse">Using grateful with the tidyverse<a class="anchor" aria-label="anchor" href="#using-grateful-with-the-tidyverse"></a>
@@ -225,7 +225,7 @@
 <div class="section level3">
 <h3 id="error-there-is-no-package-called">Error: there is no package called…<a class="anchor" aria-label="anchor" href="#error-there-is-no-package-called"></a>
 </h3>
-<p>If getting an error like “Error in (function (pkg, lib.loc = NULL): there is no package called…”, that means that some of your scripts is loading a package that is no longer available in your computer, so {grateful} cannot grab its citation. To fix this, try checking if that package is still needed for your project and you want to cite it, otherwise remove or comment that line where the package is loaded. If you still use and want to cite that package, install it, and then run <code>cite_packages</code> again.</p>
+<p>If getting an error like “Error in (function (pkg, lib.loc = NULL): there is no package called…”, that means that some of your scripts is loading a package that is no longer available in your computer, so {grateful} cannot grab its citation. To fix this, there are several options. First, you could omit that package (or those packages, if more than one) from {grateful} citations using <code>cite_packages(omit = c("package1", "package2")</code>. Alternatively, try checking if that package is still needed for your project and you want to cite it, otherwise remove or comment that line where the package is loaded. If you still use and want to cite that package, install it, and then run <code>cite_packages</code> again.</p>
 </div>
 <div class="section level3">
 <h3 id="citing-grateful">Citing ‘grateful’<a class="anchor" aria-label="anchor" href="#citing-grateful"></a>
