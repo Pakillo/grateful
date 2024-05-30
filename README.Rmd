@@ -235,7 +235,7 @@ Before running `grateful` you might want to run [`funchir::stale_package_check`]
 
 ### Error: there is no package called...
 
-If getting an error like "Error in (function (pkg, lib.loc = NULL): there is no package called...", that means that some of your scripts is loading a package that is no longer available in your computer, so {grateful} cannot grab its citation. To fix this, try checking if that package is still needed for your project and you want to cite it, otherwise remove or comment that line where the package is loaded. If you still use and want to cite that package, install it, and then run `cite_packages` again.
+If getting an error like "Error in (function (pkg, lib.loc = NULL): there is no package called...", that means that some of your scripts is loading a package that is no longer available in your computer, so {grateful} cannot grab its citation. To fix this, there are several options. First, you could omit that package (or those packages, if more than one) from {grateful} citations using `cite_packages(omit = c("package1", "package2")`. Alternatively, try checking if that package is still needed for your project and you want to cite it, otherwise remove or comment that line where the package is loaded. If you still use and want to cite that package, install it, and then run `cite_packages` again.
 
 
 ### Citing 'grateful'

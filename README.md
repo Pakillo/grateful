@@ -170,13 +170,13 @@ Use `scan_packages`
 scan_packages()
          pkg version
 1     badger   0.2.3
-2       base   4.3.1
-3      knitr    1.44
-4    pkgdown   2.0.7
-5    remotes 2.4.2.1
-6       renv   1.0.3
-7  rmarkdown    2.25
-8   testthat   3.2.0
+2       base   4.4.0
+3      knitr    1.47
+4    pkgdown   2.0.9
+5    remotes   2.5.0
+6       renv   1.0.7
+7  rmarkdown    2.27
+8   testthat 3.2.1.1
 9  tidyverse   2.0.0
 10    visreg   2.7.0
 ```
@@ -194,8 +194,8 @@ If you want to get the BibTeX references for a few specific packages:
 ``` r
 get_pkgs_info(pkgs = c("remotes", "renv"), out.dir = getwd())
 #>       pkg version citekeys
-#> 1 remotes 2.4.2.1  remotes
-#> 2    renv   1.0.3     renv
+#> 1 remotes   2.5.0  remotes
+#> 2    renv   1.0.7     renv
 ```
 
 ### Using grateful with the tidyverse
@@ -305,11 +305,14 @@ for unused packages before citing them.
 If getting an error like “Error in (function (pkg, lib.loc = NULL):
 there is no package called…”, that means that some of your scripts is
 loading a package that is no longer available in your computer, so
-{grateful} cannot grab its citation. To fix this, try checking if that
-package is still needed for your project and you want to cite it,
-otherwise remove or comment that line where the package is loaded. If
-you still use and want to cite that package, install it, and then run
-`cite_packages` again.
+{grateful} cannot grab its citation. To fix this, there are several
+options. First, you could omit that package (or those packages, if more
+than one) from {grateful} citations using
+`cite_packages(omit = c("package1", "package2")`. Alternatively, try
+checking if that package is still needed for your project and you want
+to cite it, otherwise remove or comment that line where the package is
+loaded. If you still use and want to cite that package, install it, and
+then run `cite_packages` again.
 
 ### Citing ‘grateful’
 
