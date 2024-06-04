@@ -43,7 +43,7 @@ get_pkgs_info <- function(pkgs = "All",
     citekeys <- citekeys[names(citekeys) != "rstudio"]
   }
 
-  pkgs.df$citekeys <- citekeys
+  pkgs.df$citekeys <- citekeys[match(pkgs.df$pkg, names(citekeys), nomatch = "")]
 
   pkgs.df
 

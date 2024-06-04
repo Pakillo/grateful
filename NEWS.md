@@ -1,3 +1,7 @@
+# grateful 0.2.9
+
+* Match package names with citation keys explicitly, rather than relying on sorting.
+
 # grateful 0.2.8
 
 * Fix problem with citation keys containing non-alphanumeric characters (-) (issue #44, thanks @jkylearmstrong).
