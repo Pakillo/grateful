@@ -9,21 +9,24 @@ test_that("providing wrong arguments return error", {
 test_that("cite_packages returns correct citekeys", {
 
   expect_identical(cite_packages(output = "citekeys",
-                                 pkgs = c("remotes", "renv"),
+                                 pkgs = c("remotes", "renv", "knitr"),
                                  out.dir = tempdir()),
-                   c("remotes", "renv"))
+                   c("knitr2024", "knitr2015", "knitr2014", "remotes", "renv"))
 })
 
 
 test_that("cite_packages returns correct table", {
 
   tabla <- cite_packages(output = "table",
-                         pkgs = c("remotes", "renv"),
+                         pkgs = c("remotes", "renv", "knitr"),
                          out.dir = tempdir())
-  expect_true(nrow(tabla) == 2)
+  expect_true(nrow(tabla) == 3)
   expect_identical(names(tabla), c("Package", "Version", "Citation"))
-  expect_identical(tabla$Package, c("remotes", "renv"))
-  expect_identical(tabla$Citation, list("@remotes", "@renv"))
+  expect_identical(tabla$Package, c("knitr", "remotes", "renv"))
+  expect_identical(tabla$Citation,
+                   list(knitr = "@knitr2014; @knitr2015; @knitr2024",
+                        remotes = "@remotes",
+                        renv = "@renv"))
 
 })
 

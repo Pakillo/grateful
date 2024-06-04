@@ -5,7 +5,7 @@
 #'
 #' @return A file on the specified `out.dir` containing the package references
 #' in BibTeX format. If assigned a name, `get_citations` will also return a list
-#'  with citation keys for each citation (without @@).
+#'  with citation keys for each package (without @@).
 #'
 #' @export
 #'
@@ -42,9 +42,10 @@ get_citations <- function(pkgs = NULL,
 
   pkgs.notidy <- pkgs[pkgs != "tidyverse"]
   cites.bib <- lapply(pkgs.notidy, get_citation_and_citekey)
+  names(cites.bib) <- pkgs.notidy
 
   if ("tidyverse" %in% pkgs) {
-    cites.bib[[length(cites.bib) + 1]] <- add_citekey("tidyverse", tidyverse.citation)
+    cites.bib$tidyverse <- add_citekey("tidyverse", tidyverse.citation)
   }
 
   if (include.RStudio == TRUE) {
@@ -55,7 +56,7 @@ get_citations <- function(pkgs = NULL,
       rstudio_cit <- tryCatch(rstudioapi::versionInfo()$citation,
                               error = function(e) NULL)
       if (!is.null(rstudio_cit)) {
-        cites.bib[[length(cites.bib) + 1]] <- add_citekey("rstudio", rstudio_cit)
+        cites.bib$rstudio <- add_citekey("rstudio", rstudio_cit)
       }
     }
   }
@@ -65,8 +66,13 @@ get_citations <- function(pkgs = NULL,
              con = file.path(out.dir, paste0(bib.file, ".bib")),
              useBytes = TRUE)
 
-  # get the citekeys and format them appropriately before returning them
-  citekeys <- unname(grep("\\{[[:alnum:]]+,$", unlist(cites.bib), value = TRUE))
-  citekeys <- gsub(".*\\{([[:alnum:]]+),$", "\\1", citekeys)
-  invisible(citekeys)
+  # get the citekeys for each package
+  get_pkg_citekeys <- function(pkg) {
+    citekeys <- unname(grep("\\{[[:alnum:]_-]+,$", pkg, value = TRUE))
+    citekeys <- gsub(".*\\{([[:alnum:]_-]+),$", "\\1", citekeys)
+    return(citekeys)
+  }
+  pkg_citekeys <- lapply(cites.bib, get_pkg_citekeys)
+
+  invisible(pkg_citekeys)
 }
