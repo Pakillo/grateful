@@ -1,3 +1,6 @@
+# grateful 0.2.8
+
+* Fix problem with citation keys containing non-alphanumeric characters (-) (issue #44, thanks @jkylearmstrong).
 
 # grateful 0.2.7
 

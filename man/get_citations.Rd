@@ -26,7 +26,7 @@ current version of RStudio.}
 \value{
 A file on the specified \code{out.dir} containing the package references
 in BibTeX format. If assigned a name, \code{get_citations} will also return a list
-with citation keys for each citation (without @).
+with citation keys for each package (without @).
 }
 \description{
 Get citations for packages

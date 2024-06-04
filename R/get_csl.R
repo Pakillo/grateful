@@ -41,7 +41,7 @@ get_csl <- function(name = NULL, out.dir = NULL) {
   }
 
   if (is.null(out)) {
-    file.remove(destfile)
+    if (file.exists(destfile)) file.remove(destfile)
     stop("The citation style '", name, "' could not be downloaded. Please check the style name and your internet connection.")
   } else {
     destfile

@@ -39,12 +39,11 @@ get_pkgs_info <- function(pkgs = "All",
                             bib.file = bib.file,
                             include.RStudio = include.RStudio)
 
+  if (isTRUE(include.RStudio)) {
+    citekeys <- citekeys[names(citekeys) != "rstudio"]
+  }
 
-  # Group all citations from same package
-  pkgs.df$citekeys <- lapply(pkgs.df$pkg, function(pkg) {
-    pkgname_clean <- gsub("[^[:alnum:]]", "", pkg)
-    citekeys[grep(paste0("^", pkgname_clean, "(\\d{4}[a-z]?)?$"), citekeys, perl = TRUE)]
-  })
+  pkgs.df$citekeys <- citekeys
 
   pkgs.df
 

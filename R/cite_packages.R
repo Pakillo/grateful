@@ -226,7 +226,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
 
 
   if (output == "citekeys") {
-    return(unlist(pkgs.df$citekeys))
+    return(unname(unlist(pkgs.df$citekeys)))
   }
 
 }
