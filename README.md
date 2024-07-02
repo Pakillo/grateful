@@ -15,6 +15,10 @@ coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)]
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![HitCount since
+2024-06-05](https://hits.dwyl.com/Pakillo/grateful.svg?style=flat-square)](https://hits.dwyl.com/Pakillo/grateful)
+[![HitCount since
+2024-06-05](https://hits.dwyl.com/Pakillo/grateful.svg?style=flat-square&show=unique)](https://hits.dwyl.com/Pakillo/grateful)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/grateful)](https://cran.r-project.org/package=grateful)
 <!-- badges: end -->
 
@@ -25,9 +29,9 @@ the project for R packages used and generate a BibTeX file containing
 all citations for those packages.
 
 **grateful** can then generate a new document with citations in the
-desired output format (Word, PDF, HTML, Markdown). These references can
-be formatted for a specific journal, so that we can just paste them
-directly into our manuscript or report.
+desired output format (Word, PDF, LaTeX, HTML, Markdown). These
+references can be formatted for a specific journal, so that we can just
+paste them directly into our manuscript or report.
 
 Alternatively, we can use **grateful** directly within an
 [Rmarkdown](https://rmarkdown.rstudio.com/) or
@@ -85,8 +89,8 @@ cite_packages(out.dir = ".")            # save report to working directory
 
 <br>
 
-This document can also be a Word document, PDF file, markdown file, or
-left as the source Rmarkdown file using `out.format`:
+This document can also be a Word or LaTeX document, PDF file, markdown
+file, or left as the source Rmarkdown file using `out.format`:
 
 ``` r
 cite_packages(out.format = "docx", out.dir = ".")

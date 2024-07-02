@@ -33,4 +33,14 @@ test_that("render_citations returns a report", {
   expect_equal(rendcit, file.path(tempdir(), "grateful-report.md"))
   expect_true(file.exists(file.path(tempdir(), "grateful-report.md")))
 
+  # LaTeX fragment
+  rendcit <- render_citations(Rmd.file = rmd, out.dir = tempdir(), out.format = "tex-fragment")
+  expect_equal(rendcit, file.path(tempdir(), "grateful-report.tex"))
+  expect_true(file.exists(file.path(tempdir(), "grateful-report.tex")))
+
+  # LaTeX document
+  rendcit <- render_citations(Rmd.file = rmd, out.dir = tempdir(), out.format = "tex-document")
+  expect_equal(rendcit, file.path(tempdir(), "grateful-report.tex"))
+  expect_true(file.exists(file.path(tempdir(), "grateful-report.tex")))
+
 })

@@ -8,7 +8,7 @@ test_that("NULL arguments return error", {
 test_that("create_rmd produces correct Rmd", {
 
   skip_on_cran()
-  skip_on_ci()
+  # skip_on_ci()
 
   pkgs <- get_pkgs_info(pkgs = "grateful", out.dir = tempdir())
   rmd <- create_rmd(pkgs.df = pkgs, out.dir = tempdir(), out.format = "Rmd")
@@ -27,7 +27,7 @@ test_that("create_rmd produces correct Rmd", {
                  "",
                  "|Package  |Version |Citation  |",
                  "|:--------|:-------|:---------|",
-                 paste0("|grateful |", utils::packageVersion("grateful"),"   |@grateful |"),
+                 paste0("|grateful |", utils::packageVersion("grateful"),"  |@grateful |"),
                  "",
                  "**You can paste this paragraph directly in your report:**",
                  "",
@@ -37,5 +37,27 @@ test_that("create_rmd produces correct Rmd", {
                  "## Package citations",
                  ""))
 
+
+})
+
+
+
+test_that("csl is downloaded if needed", {
+  skip_on_cran()
+  pkgs <- get_pkgs_info(pkgs = "grateful", out.dir = tempdir())
+  rmd <- create_rmd(pkgs.df = pkgs, out.dir = tempdir(), out.format = "Rmd",
+                    csl = "peerj")
+  expect_true(file.exists(file.path(tempdir(), "peerj.csl")))
+
+})
+
+
+test_that("rendered report is produced", {
+  skip_on_cran()
+  skip_on_ci()
+  pkgs <- get_pkgs_info(pkgs = "grateful", out.dir = tempdir())
+  rmd <- create_rmd(pkgs.df = pkgs, out.dir = tempdir(), out.format = "html")
+  expect_true(file.exists(file.path(tempdir(), "grateful-report.html")))
+  expect_true(!file.exists(file.path(tempdir(), "grateful-report.Rmd")))
 
 })
