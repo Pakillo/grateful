@@ -18,7 +18,7 @@ a bibliography."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     
     <a class="navbar-brand me-2" href="../index.html">grateful</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.10</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +66,7 @@ a bibliography.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cite_packages</span><span class="op">(</span></span>
 <span>  output <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"file"</span>, <span class="st">"paragraph"</span>, <span class="st">"table"</span>, <span class="st">"citekeys"</span><span class="op">)</span>,</span>
 <span>  out.dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  out.format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"html"</span>, <span class="st">"docx"</span>, <span class="st">"pdf"</span>, <span class="st">"Rmd"</span>, <span class="st">"md"</span><span class="op">)</span>,</span>
+<span>  out.format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"html"</span>, <span class="st">"docx"</span>, <span class="st">"pdf"</span>, <span class="st">"Rmd"</span>, <span class="st">"md"</span>, <span class="st">"tex-fragment"</span>, <span class="st">"tex-document"</span><span class="op">)</span>,</span>
 <span>  citation.style <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pkgs <span class="op">=</span> <span class="st">"All"</span>,</span>
 <span>  omit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grateful"</span><span class="op">)</span>,</span>
@@ -101,7 +101,9 @@ the references. It is recommended to set <code>out.dir = getwd()</code>.</p></dd
 
 <dt>out.format</dt>
 <dd><p>Output format when <code>output = "file"</code>:
-either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
+either "html" (the default), "docx" (Word), "pdf",
+"tex-fragment" (LaTeX fragment to be inserted into another LaTeX document),
+"tex-document" (full LaTeX document), "Rmd", or "md" (markdown).
 (Note that choosing "pdf" requires a working installation of LaTeX,
 see <a href="https://yihui.org/tinytex/" class="external-link">https://yihui.org/tinytex/</a>).</p></dd>
 
