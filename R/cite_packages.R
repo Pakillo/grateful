@@ -64,7 +64,9 @@
 #'   the references. It is recommended to set `out.dir = getwd()`.
 #'
 #' @param out.format Output format when `output = "file"`:
-#' either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
+#' either "html" (the default), "docx" (Word), "pdf",
+#' "tex-fragment" (LaTeX fragment to be inserted into another LaTeX document),
+#' "tex-document" (full LaTeX document), "Rmd", or "md" (markdown).
 #' (Note that choosing "pdf" requires a working installation of LaTeX,
 #' see <https://yihui.org/tinytex/>).
 #'
@@ -158,7 +160,8 @@
 
 cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           out.dir = NULL,
-                          out.format = c("html", "docx", "pdf", "Rmd", "md"),
+                          out.format = c("html", "docx", "pdf", "Rmd", "md",
+                                         "tex-fragment", "tex-document"),
                           citation.style = NULL,
                           pkgs = "All",
                           omit = c("grateful"),

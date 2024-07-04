@@ -7,7 +7,7 @@
 cite_packages(
   output = c("file", "paragraph", "table", "citekeys"),
   out.dir = NULL,
-  out.format = c("html", "docx", "pdf", "Rmd", "md"),
+  out.format = c("html", "docx", "pdf", "Rmd", "md", "tex-fragment", "tex-document"),
   citation.style = NULL,
   pkgs = "All",
   omit = c("grateful"),
@@ -39,7 +39,9 @@ In all cases, a BibTeX file with package references is saved on disk
 the references. It is recommended to set \code{out.dir = getwd()}.}
 
 \item{out.format}{Output format when \code{output = "file"}:
-either "html" (the default), "docx" (Word), "pdf", "Rmd", or "md" (markdown).
+either "html" (the default), "docx" (Word), "pdf",
+"tex-fragment" (LaTeX fragment to be inserted into another LaTeX document),
+"tex-document" (full LaTeX document), "Rmd", or "md" (markdown).
 (Note that choosing "pdf" requires a working installation of LaTeX,
 see \url{https://yihui.org/tinytex/}).}
 

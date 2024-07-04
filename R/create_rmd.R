@@ -7,7 +7,9 @@
 #' as produced by [get_pkgs_info()].
 #' @param csl Optional. Citation style to format references.
 #' See <https://www.zotero.org/styles>.
-#' @param out.format Output format. One of: "html", docx" (Word), "pdf", "Rmd", or "md" (markdown).
+#' @param out.format Output format, either "html", docx" (Word), "pdf",
+#' "tex-fragment" (LaTeX fragment to be inserted into another LaTeX document),
+#' "tex-document" (full LaTeX document), "Rmd"(Rmarkdown), or "md" (markdown).
 #' @param Rmd.file Name of the Rmarkdown file to be created.
 #' @param include.RStudio Include RStudio?
 #' @param passive.voice Logical. If `TRUE`, uses passive voice in any paragraph
@@ -23,7 +25,8 @@ create_rmd <- function(pkgs.df = NULL,
                        bib.file = "grateful-refs",
                        csl = NULL,
                        Rmd.file = "grateful-report",
-                       out.format = c("html", "docx", "pdf", "Rmd", "md"),
+                       out.format = c("html", "docx", "pdf", "Rmd", "md",
+                                      "tex-fragment", "tex-document"),
                        include.RStudio = FALSE,
                        passive.voice = FALSE,
                        ...) {
