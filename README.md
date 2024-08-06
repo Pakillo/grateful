@@ -173,10 +173,10 @@ Use `scan_packages`
 ``` r
 scan_packages()
          pkg version
-1     badger   0.2.3
-2       base   4.4.0
-3      knitr    1.47
-4    pkgdown   2.0.9
+1     badger   0.2.4
+2       base   4.4.1
+3      knitr    1.48
+4    pkgdown   2.1.0
 5    remotes   2.5.0
 6       renv   1.0.7
 7  rmarkdown    2.27
@@ -317,6 +317,15 @@ checking if that package is still needed for your project and you want
 to cite it, otherwise remove or comment that line where the package is
 loaded. If you still use and want to cite that package, install it, and
 then run `cite_packages` again.
+
+### Projects with large number of packages or files
+
+When a project includes many used packages (or files), `renv` may issue
+a warning. Use `options(renv.config.dependencies.limit = 10000)` to
+overcome the warning and scan the project for all packages used.
+Alternatively, use `.renvignore` to ignore certain files or folders (see
+`renv`
+[help](https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files)).
 
 ### Citing ‘grateful’
 

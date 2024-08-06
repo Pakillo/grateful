@@ -2,7 +2,7 @@
 title: "Using {grateful} with Rmarkdown"
 output: pdf_document
 bibliography: grateful-refs.bib
-# csl: "`r grateful::get_csl('journal-of-ecology', out.dir = '.')`"
+# csl: https://www.zotero.org/styles/journal-of-ecology
 ---
 
 Load packages
@@ -29,9 +29,23 @@ visreg(model)
 
 ### Software used
 
+**Paragraph output:**
+
 ```{r echo=FALSE}
 grateful::cite_packages(output = "paragraph", pkgs = "Session", out.dir = ".")
 ```
 
 
+**Table output:**
+
+```{r}
+#| echo: false
+pkgs <- grateful::cite_packages(output = "table", pkgs = "Session", out.dir = ".")
+knitr::kable(pkgs)
+```
+
+
+
 ## References
+
+
