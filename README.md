@@ -15,12 +15,11 @@ coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)]
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![HitCount since
-2024-06-05](https://hits.dwyl.com/Pakillo/grateful.svg?style=flat-square)](https://hits.dwyl.com/Pakillo/grateful)
-[![HitCount since
-2024-06-05](https://hits.dwyl.com/Pakillo/grateful.svg?style=flat-square&show=unique)](https://hits.dwyl.com/Pakillo/grateful)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/grateful)](https://cran.r-project.org/package=grateful)
-<!-- badges: end -->
+<!-- 
+[![HitCount since 2024-06-05](https://hits.dwyl.com/Pakillo/grateful.svg?style=flat-square)](https://hits.dwyl.com/Pakillo/grateful)
+[![HitCount since 2024-06-05](https://hits.dwyl.com/Pakillo/grateful.svg?style=flat-square&show=unique)](https://hits.dwyl.com/Pakillo/grateful)
+--> <!-- badges: end -->
 
 The goal of **grateful** is to make it very easy to cite R and the R
 packages used in any analyses, so that package authors receive their
@@ -179,7 +178,7 @@ scan_packages()
 4    pkgdown   2.1.0
 5    remotes   2.5.0
 6       renv   1.0.7
-7  rmarkdown    2.27
+7  rmarkdown    2.28
 8   testthat 3.2.1.1
 9  tidyverse   2.0.0
 10    visreg   2.7.0
