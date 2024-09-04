@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-08-06T12:21Z
+last_built: 2024-09-04T09:24Z
 urls:
   reference: https://pakillo.github.io/grateful/reference
   article: https://pakillo.github.io/grateful/articles
