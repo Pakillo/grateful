@@ -37,10 +37,16 @@ Alternatively, we can use **grateful** directly within an [Rmarkdown](https://rm
 
 ## Installation
 
-You can install {grateful} from CRAN:
+You can install the stable release of {grateful} from CRAN:
 
 ```{r eval=FALSE}
 install.packages("grateful")
+```
+
+Or the latest development version from [R-universe](https://pakillo.r-universe.dev/grateful):
+
+```{r eval=FALSE}
+install.packages("grateful", repos = c("https://pakillo.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 Or from GitHub:
@@ -49,6 +55,7 @@ Or from GitHub:
 # install.packages("remotes")
 remotes::install_github("Pakillo/grateful")
 ```
+
 
 ## Usage
 
