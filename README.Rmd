@@ -239,6 +239,11 @@ And these are the guidelines from the [Software Citation Checklist](https://doi.
 Apart from citing the software most relevant to the particular research/analysis performed, I think it is good idea to record the entire computational environment elsewhere, e.g. using `sessionInfo()` or `sessioninfo::session_info()`.
 
 
+### Some packages include several citations
+
+Some packages include more than one citation (e.g. [knitr](https://cran.r-project.org/web/packages/knitr/citation.html), [mgcv](https://cran.r-project.org/web/packages/mgcv/citation.html)). `grateful` will include all those citations by default, as it is impossible to decide automatically which citations should be included in each case. The user may manually remove citations from the produced reference list after calling `cite_packages`. If using Quarto or Rmarkdown, the unwanted references can be deleted from `grateful-refs.bib` so they will not appear cited.
+
+
 ### Removing unused packages
 
 Before running `grateful` you might want to run [`funchir::stale_package_check`](https://cran.r-project.org/package=funchir) or [annotater](https://cran.r-project.org/package=annotater) to check for unused packages before citing them.

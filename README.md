@@ -41,10 +41,17 @@ included in the reference list when rendering.
 
 ## Installation
 
-You can install {grateful} from CRAN:
+You can install the stable release of {grateful} from CRAN:
 
 ``` r
 install.packages("grateful")
+```
+
+Or the latest development version from
+[R-universe](https://pakillo.r-universe.dev/grateful):
+
+``` r
+install.packages("grateful", repos = c("https://pakillo.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 Or from GitHub:
@@ -296,6 +303,18 @@ research/analysis performed, I think it is good idea to record the
 entire computational environment elsewhere, e.g. using `sessionInfo()`
 or `sessioninfo::session_info()`.
 
+### Some packages include several citations
+
+Some packages include more than one citation
+(e.g. [knitr](https://cran.r-project.org/web/packages/knitr/citation.html),
+[mgcv](https://cran.r-project.org/web/packages/mgcv/citation.html)).
+`grateful` will include all those citations by default, as it is
+impossible to decide automatically which citations should be included in
+each case. The user may manually remove citations from the produced
+reference list after calling `cite_packages`. If using Quarto or
+Rmarkdown, the unwanted references can be deleted from
+`grateful-refs.bib` so they will not appear cited.
+
 ### Removing unused packages
 
 Before running `grateful` you might want to run
@@ -332,7 +351,7 @@ Alternatively, use `.renvignore` to ignore certain files or folders (see
 citation("grateful")
 To cite package 'grateful' in publications use:
 
-  Rodriguez-Sanchez F, Jackson C (2023). _grateful: Facilitate citation
+  Rodriguez-Sanchez F, Jackson C (2024). _grateful: Facilitate citation
   of R packages_. <https://pakillo.github.io/grateful/>.
 
 A BibTeX entry for LaTeX users is
@@ -340,7 +359,7 @@ A BibTeX entry for LaTeX users is
   @Manual{,
     title = {grateful: Facilitate citation of R packages},
     author = {Francisco Rodriguez-Sanchez and Connor P. Jackson},
-    year = {2023},
+    year = {2024},
     url = {https://pakillo.github.io/grateful/},
   }
 ```

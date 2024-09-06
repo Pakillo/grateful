@@ -6,7 +6,7 @@ bibentry(
                 person("Francisco", "Rodriguez-Sanchez"),
                 person("Connor P.", "Jackson")
                 ),
-  year         = "2023",
+  year         = "2024",
   url          = "https://pakillo.github.io/grateful/",
 )
 

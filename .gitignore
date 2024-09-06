@@ -11,3 +11,5 @@ test_nocite.Rmd
 docs
 peerj.csl
 grateful-report.html
+CRAN-SUBMISSION
+tests/testthat/test-installed_pkgs.R
