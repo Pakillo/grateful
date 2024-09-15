@@ -357,7 +357,7 @@ To cite package 'grateful' in publications use:
 A BibTeX entry for LaTeX users is
 
   @Manual{,
-    title = {grateful: Facilitate citation of R packages},
+    title = {grateful: Facilitate citation of {R} packages},
     author = {Francisco Rodriguez-Sanchez and Connor P. Jackson},
     year = {2024},
     url = {https://pakillo.github.io/grateful/},
