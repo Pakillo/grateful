@@ -182,7 +182,7 @@ scan_packages()
 1     badger   0.2.4
 2       base   4.4.1
 3      knitr    1.48
-4    pkgdown   2.1.0
+4    pkgdown   2.1.1
 5    remotes   2.5.0
 6       renv   1.0.7
 7  rmarkdown    2.28
@@ -312,8 +312,31 @@ Some packages include more than one citation
 impossible to decide automatically which citations should be included in
 each case. The user may manually remove citations from the produced
 reference list after calling `cite_packages`. If using Quarto or
-Rmarkdown, the unwanted references can be deleted from
-`grateful-refs.bib` so they will not appear cited.
+Rmarkdown, we can generate the citation paragraph and manually remove
+the unwanted references so they will not appear cited.
+
+For example, `mgcv` package provides multiple references to be cited:
+
+``` r
+citation("mgcv")
+```
+
+To choose just one of them to be cited, we could generate a citation
+paragraph using `cite_packages`
+
+``` r
+cite_packages("paragraph", out.dir = ".")
+```
+
+![](man/figures/paragraph.png)
+
+And then manually remove the unwanted citation keys, leaving just those
+we want to cite:
+
+![](man/figures/paragraph_edited.png)
+
+When rendering the Rmarkdown or Quarto document, only the chosen
+references will be cited.
 
 ### Removing unused packages
 
