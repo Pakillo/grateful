@@ -181,14 +181,18 @@ scan_packages()
          pkg version
 1     badger   0.2.4
 2       base   4.4.1
-3      knitr    1.48
-4    pkgdown   2.1.1
-5    remotes   2.5.0
-6       renv   1.0.7
-7  rmarkdown    2.28
-8   testthat 3.2.1.1
-9  tidyverse   2.0.0
-10    visreg   2.7.0
+3     future  1.34.0
+4       glue   1.8.0
+5       here   1.0.1
+6      knitr    1.49
+7    pkgdown   2.1.1
+8    remotes   2.5.0
+9       renv  1.0.11
+10 rmarkdown    2.29
+11  survival   3.6.4
+12  testthat 3.2.1.1
+13 tidyverse   2.0.0
+14    visreg   2.7.0
 ```
 
 ### Producing a BibTeX file with package references
@@ -205,7 +209,7 @@ If you want to get the BibTeX references for a few specific packages:
 get_pkgs_info(pkgs = c("remotes", "renv"), out.dir = getwd())
 #>       pkg version citekeys
 #> 1 remotes   2.5.0  remotes
-#> 2    renv   1.0.7     renv
+#> 2    renv  1.0.11     renv
 ```
 
 ### Using grateful with the tidyverse
@@ -353,11 +357,15 @@ loading a package that is no longer available in your computer, so
 {grateful} cannot grab its citation. To fix this, there are several
 options. First, you could omit that package (or those packages, if more
 than one) from {grateful} citations using
-`cite_packages(omit = c("package1", "package2")`. Alternatively, try
-checking if that package is still needed for your project and you want
-to cite it, otherwise remove or comment that line where the package is
-loaded. If you still use and want to cite that package, install it, and
-then run `cite_packages` again.
+`cite_packages(omit = c("package1", "package2")`. Or you could set a
+`.renvignore` file to ignore particular files or folders (see
+instructions
+[here](https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files)).
+Alternatively, try [checking if that package is still
+needed](https://pakillo.github.io/grateful/index.html#removing-unused-packages)
+for your project and you want to cite it; otherwise remove or comment
+that line where the package is loaded. If you still use and want to cite
+that package, install it, and then run `cite_packages` again.
 
 ### Projects with large number of packages or files
 
