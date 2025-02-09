@@ -180,7 +180,7 @@ Use `scan_packages`
 scan_packages()
          pkg version
 1     badger   0.2.4
-2       base   4.4.1
+2       base   4.4.2
 3     future  1.34.0
 4       glue   1.8.0
 5       here   1.0.1
@@ -189,8 +189,8 @@ scan_packages()
 8    remotes   2.5.0
 9       renv  1.0.11
 10 rmarkdown    2.29
-11  survival   3.6.4
-12  testthat 3.2.1.1
+11  survival   3.7.0
+12  testthat   3.2.3
 13 tidyverse   2.0.0
 14    visreg   2.7.0
 ```
@@ -345,6 +345,7 @@ references will be cited.
 ### Removing unused packages
 
 Before running `grateful` you might want to run
+[`lintr::unused_import_linter`](https://lintr.r-lib.org/reference/unused_import_linter.html),
 [`funchir::stale_package_check`](https://cran.r-project.org/package=funchir)
 or [annotater](https://cran.r-project.org/package=annotater) to check
 for unused packages before citing them.
@@ -375,6 +376,17 @@ overcome the warning and scan the project for all packages used.
 Alternatively, use `.renvignore` to ignore certain files or folders (see
 `renv`
 [help](https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files)).
+
+### Separate bibliography for R packages
+
+[Here](https://github.com/Pakillo/grateful/tree/master/Rmd_Quarto/separate_bibliographies)
+are example
+[Quarto](https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/separate_bibliographies/grateful-Quarto-separatebib.qmd)
+and
+[Rmarkdown](https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/separate_bibliographies/grateful-Rmarkdown-separatebib.Rmd)
+documents showing how to generate a separate bibliography for R packages
+(different from the main bibliography). This requires installing the
+[`multibib`](https://github.com/pandoc-ext/multibib) extension first.
 
 ### Citing ‘grateful’
 
