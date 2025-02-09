@@ -8,8 +8,8 @@
 <title>Facilitate Citation of R Packages • grateful</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Facilitate Citation of R Packages">
 <meta name="description" content="Facilitates the citation of R packages used in analysis projects. Scans project for packages used, gets their citations, and produces a document with citations in the preferred bibliography format, ready to be pasted into reports or manuscripts. Alternatively, grateful can be used directly within an R Markdown or Quarto document.">
 <meta property="og:description" content="Facilitates the citation of R packages used in analysis projects. Scans project for packages used, gets their citations, and produces a document with citations in the preferred bibliography format, ready to be pasted into reports or manuscripts. Alternatively, grateful can be used directly within an R Markdown or Quarto document.">
@@ -137,7 +137,7 @@
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">scan_packages</span>()</span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>         pkg version</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="dv">1</span>     badger   <span class="dv">0</span>.<span class="fl">2.4</span></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="dv">2</span>       base   <span class="dv">4</span>.<span class="fl">4.1</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="dv">2</span>       base   <span class="dv">4</span>.<span class="fl">4.2</span></span>
 <span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="dv">3</span>     future  <span class="dv">1</span>.<span class="fl">34.0</span></span>
 <span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="dv">4</span>       glue   <span class="dv">1</span>.<span class="fl">8.0</span></span>
 <span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="dv">5</span>       here   <span class="dv">1</span>.<span class="fl">0.1</span></span>
@@ -146,8 +146,8 @@
 <span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="dv">8</span>    remotes   <span class="dv">2</span>.<span class="fl">5.0</span></span>
 <span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="dv">9</span>       renv  <span class="dv">1</span>.<span class="fl">0.11</span></span>
 <span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="dv">10</span> rmarkdown    <span class="fl">2.29</span></span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="dv">11</span>  survival   <span class="dv">3</span>.<span class="fl">6.4</span></span>
-<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="dv">12</span>  testthat <span class="dv">3</span>.<span class="dv">2</span>.<span class="fl">1.1</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="dv">11</span>  survival   <span class="dv">3</span>.<span class="fl">7.0</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="dv">12</span>  testthat   <span class="dv">3</span>.<span class="fl">2.3</span></span>
 <span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="dv">13</span> tidyverse   <span class="dv">2</span>.<span class="fl">0.0</span></span>
 <span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="dv">14</span>    visreg   <span class="dv">2</span>.<span class="fl">7.0</span></span></code></pre></div>
 </div>
@@ -208,7 +208,7 @@
 <blockquote>
 <p>Software packages or libraries that are not fundamental to your work and that are a normal part of the computational and scientific environment used. These dependencies do not need to be cited outright but should be documented as part of the computational workflow for complete reproducibility. Software that was used during the course of the research but had no impact on research results, e.g. word processing software, backup software.</p>
 </blockquote>
-<p>Apart from citing the software most relevant to the particular research/analysis performed, I think it is good idea to record the entire computational environment elsewhere, e.g. using <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> or <code><a href="https://r-lib.github.io/sessioninfo/reference/session_info.html" class="external-link">sessioninfo::session_info()</a></code>.</p>
+<p>Apart from citing the software most relevant to the particular research/analysis performed, I think it is good idea to record the entire computational environment elsewhere, e.g. using <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> or <code><a href="https://sessioninfo.r-lib.org/reference/session_info.html" class="external-link">sessioninfo::session_info()</a></code>.</p>
 </div>
 <div class="section level3">
 <h3 id="some-packages-include-several-citations">Some packages include several citations<a class="anchor" aria-label="anchor" href="#some-packages-include-several-citations"></a>
@@ -228,7 +228,7 @@
 <div class="section level3">
 <h3 id="removing-unused-packages">Removing unused packages<a class="anchor" aria-label="anchor" href="#removing-unused-packages"></a>
 </h3>
-<p>Before running <code>grateful</code> you might want to run <a href="https://cran.r-project.org/package=funchir" class="external-link"><code>funchir::stale_package_check</code></a> or <a href="https://cran.r-project.org/package=annotater" class="external-link">annotater</a> to check for unused packages before citing them.</p>
+<p>Before running <code>grateful</code> you might want to run <a href="https://lintr.r-lib.org/reference/unused_import_linter.html" class="external-link"><code>lintr::unused_import_linter</code></a>, <a href="https://cran.r-project.org/package=funchir" class="external-link"><code>funchir::stale_package_check</code></a> or <a href="https://cran.r-project.org/package=annotater" class="external-link">annotater</a> to check for unused packages before citing them.</p>
 </div>
 <div class="section level3">
 <h3 id="error-there-is-no-package-called">Error: there is no package called…<a class="anchor" aria-label="anchor" href="#error-there-is-no-package-called"></a>
@@ -239,6 +239,11 @@
 <h3 id="projects-with-large-number-of-packages-or-files">Projects with large number of packages or files<a class="anchor" aria-label="anchor" href="#projects-with-large-number-of-packages-or-files"></a>
 </h3>
 <p>When a project includes many used packages (or files), <code>renv</code> may issue a warning. Use <code>options(renv.config.dependencies.limit = 10000)</code> to overcome the warning and scan the project for all packages used. Alternatively, use <code>.renvignore</code> to ignore certain files or folders (see <code>renv</code> <a href="https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files" class="external-link">help</a>).</p>
+</div>
+<div class="section level3">
+<h3 id="separate-bibliography-for-r-packages">Separate bibliography for R packages<a class="anchor" aria-label="anchor" href="#separate-bibliography-for-r-packages"></a>
+</h3>
+<p><a href="https://github.com/Pakillo/grateful/tree/master/Rmd_Quarto/separate_bibliographies" class="external-link">Here</a> are example <a href="https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/separate_bibliographies/grateful-Quarto-separatebib.qmd" class="external-link">Quarto</a> and <a href="https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/separate_bibliographies/grateful-Rmarkdown-separatebib.Rmd" class="external-link">Rmarkdown</a> documents showing how to generate a separate bibliography for R packages (different from the main bibliography). This requires installing the <a href="https://github.com/pandoc-ext/multibib" class="external-link"><code>multibib</code></a> extension first.</p>
 </div>
 <div class="section level3">
 <h3 id="citing-grateful">Citing ‘grateful’<a class="anchor" aria-label="anchor" href="#citing-grateful"></a>
