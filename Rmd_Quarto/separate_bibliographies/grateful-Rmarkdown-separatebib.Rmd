@@ -22,29 +22,12 @@ if (!file.exists("multibib.lua")) {
 
 Here we cite a paper [@smith_software_2016].
 
-Load packages
-
-```{r message=FALSE}
-library(dplyr)
-library(ggplot2)
-library(visreg)
-```
-
-Run some analysis
+Now we cite R packages:
 
 ```{r}
-iris |> 
-  group_by(Species) |> 
-  summarise(mean(Petal.Length))
-
-ggplot(iris) +
-  geom_jitter(aes(Species, Petal.Length, colour = Species))
-
-model <- lm(Petal.Length ~ Species, data = iris)
-visreg(model)
+library("ggplot2")
+library("visreg")
 ```
-
-Now we cite R packages:
 
 ```{r echo=FALSE}
 grateful::cite_packages(output = "paragraph", pkgs = "Session", out.dir = ".")
