@@ -43,12 +43,12 @@ test_that("Test get_citation_and_citekey function", {
   skip_on_ci()
   skip_on_cran()
 
-  # package version and year may change
+  # note package version and year may change
   expect_identical(get_citation_and_citekey("grateful"),
                    structure(c("@Manual{grateful,",
-                               title = "title = {{grateful}: Facilitate citation of R packages},",
+                               title = "title = {{grateful}: Facilitate citation of {R} packages},",
                                author = "  author = {Francisco Rodriguez-Sanchez and Connor P. Jackson},",
-                               year = "  year = {2023},",
+                               year = "  year = {2024},",
                                url = "  url = {https://pakillo.github.io/grateful/},",
                                "}"),
                              class = "Bibtex"))

@@ -1,3 +1,7 @@
+# grateful 0.2.11
+
+* Revise tests (issue #57).
+
 # grateful 0.2.10
 
 * Add support for LaTeX output (thanks @patrick-weiss for the suggestion). Use `out.format = "tex-document"` to obtain a full LaTeX document, or `out.format = "tex-fragment"` to produce just a fragment citing packages to be copied into another existing LaTeX document.

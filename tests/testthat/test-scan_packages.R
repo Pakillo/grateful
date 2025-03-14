@@ -11,13 +11,12 @@ test_that("scan_packages returns error if wrong arguments provided", {
 
 test_that("scan_packages return correct output", {
 
-  out <- scan_packages(pkgs = c("grateful", "renv", "utils", "dplyr", "tidyverse"))
+  out <- scan_packages(pkgs = c("renv", "utils", "grateful"))
 
-  ref <- data.frame(pkg = c("grateful", "renv", "tidyverse", "utils"),
+  ref <- data.frame(pkg = c("grateful", "renv", "utils"),
                     version = as.character(
                       c(utils::packageVersion("grateful"),
                         utils::packageVersion("renv"),
-                        "2.0.0",
                         utils::packageVersion("utils"))),
                     row.names = NULL)
 
@@ -28,7 +27,7 @@ test_that("scan_packages return correct output", {
 
 #chatGPT
 
-pkgs <- c("knitr", "remotes", "renv", "grateful")
+pkgs <- c("utils", "renv", "grateful")
 
 # run the function
 pkgs.df <- scan_packages(pkgs = pkgs)
@@ -55,15 +54,22 @@ test_that("returns a data frame with package names and versions", {
 
 test_that("returns all package dependencies when dependencies = TRUE", {
 
-  # this test is slow...
+  # this test may be slow...
+  # also note dependencies might change, breaking the test
   skip_on_cran()
   skip_on_ci()
 
   # run the function
-  pkgs.df <- scan_packages(pkgs = "knitr", dependencies = TRUE)
+  pkgs.df <- scan_packages(pkgs = "grateful", dependencies = TRUE)
 
   # check the result
-  expect_identical(pkgs.df$pkg, c("evaluate", "highr", "knitr", "xfun", "yaml"))
+  expect_identical(pkgs.df$pkg,
+                   c("R6", "base64enc", "bslib", "cachem", "digest", "evaluate",
+                     "fastmap", "fontawesome", "fs", "glue", "grateful",
+                     "highr", "htmltools", "jquerylib", "knitr", "lifecycle",
+                     "memoise", "mime", "rappdirs", "remotes", "renv",
+                     "rmarkdown", "sass", "tidyverse", "tinytex", "xfun", "yaml")
+                   )
 
 })
 
