@@ -241,7 +241,7 @@ Apart from citing the software most relevant to the particular research/analysis
 
 ### Some packages include several citations
 
-Some packages include more than one citation (e.g. [knitr](https://cran.r-project.org/web/packages/knitr/citation.html), [mgcv](https://cran.r-project.org/web/packages/mgcv/citation.html)). `grateful` will include all those citations by default, as it is impossible to decide automatically which citations should be included in each case. The user may manually remove citations from the produced reference list after calling `cite_packages`. If using Quarto or Rmarkdown, we can generate the citation paragraph and manually remove the unwanted references so they will not appear cited. 
+Some packages include more than one citation (e.g. [knitr](https://cran.r-project.org/package=knitr/citation.html), [mgcv](https://cran.r-project.org/package=knitr/citation.html)). `grateful` will include all those citations by default, as it is impossible to decide automatically which citations should be included in each case. The user may manually remove citations from the produced reference list after calling `cite_packages`. If using Quarto or Rmarkdown, we can generate the citation paragraph and manually remove the unwanted references so they will not appear cited. 
 
 For example, `mgcv` package provides multiple references to be cited:
 

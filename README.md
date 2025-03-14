@@ -180,19 +180,16 @@ Use `scan_packages`
 scan_packages()
          pkg version
 1     badger   0.2.4
-2       base   4.4.2
-3     future  1.34.0
-4       glue   1.8.0
-5       here   1.0.1
-6      knitr    1.49
-7    pkgdown   2.1.1
-8    remotes   2.5.0
-9       renv  1.0.11
-10 rmarkdown    2.29
-11  survival   3.7.0
-12  testthat   3.2.3
-13 tidyverse   2.0.0
-14    visreg   2.7.0
+2       base   4.4.3
+3      knitr    1.49
+4       mgcv   1.9.1
+5    pkgdown   2.1.1
+6    remotes   2.5.0
+7       renv   1.1.2
+8  rmarkdown    2.29
+9   testthat   3.2.3
+10 tidyverse   2.0.0
+11    visreg   2.7.0
 ```
 
 ### Producing a BibTeX file with package references
@@ -209,7 +206,7 @@ If you want to get the BibTeX references for a few specific packages:
 get_pkgs_info(pkgs = c("remotes", "renv"), out.dir = getwd())
 #>       pkg version citekeys
 #> 1 remotes   2.5.0  remotes
-#> 2    renv  1.0.11     renv
+#> 2    renv   1.1.2     renv
 ```
 
 ### Using grateful with the tidyverse
@@ -310,8 +307,8 @@ or `sessioninfo::session_info()`.
 ### Some packages include several citations
 
 Some packages include more than one citation
-(e.g. [knitr](https://cran.r-project.org/web/packages/knitr/citation.html),
-[mgcv](https://cran.r-project.org/web/packages/mgcv/citation.html)).
+(e.g. [knitr](https://cran.r-project.org/package=knitr/citation.html),
+[mgcv](https://cran.r-project.org/package=knitr/citation.html)).
 `grateful` will include all those citations by default, as it is
 impossible to decide automatically which citations should be included in
 each case. The user may manually remove citations from the produced
