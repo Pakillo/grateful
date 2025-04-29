@@ -1,3 +1,7 @@
+# grateful 0.2.12
+
+* Fix generation of citation keys under R 4.5.0 (issue #59).
+
 # grateful 0.2.11
 
 * Revise tests (issue #57).

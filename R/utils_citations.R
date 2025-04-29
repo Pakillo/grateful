@@ -17,8 +17,8 @@ add_citekey <- function(pkg_name, citation) {
   title_rows <- (names(citation_bibtex) == "title")
   citation_bibtex[title_rows] <- fix_title(citation_bibtex[title_rows])
 
-  refbeginnings <- grep(pattern = "\\{,$", x = citation_bibtex)
-  for (i in 1:length(refbeginnings)) {
+  refbeginnings <- grep(pattern = "\\{[[:alnum:]_-]*,$", x = citation_bibtex)
+  for (i in seq_along(refbeginnings)) {
     if (length(refbeginnings) == 1) {
       # only one citation, citekey = package name
       replace_string <- paste0("{", pkg_name, ",")
@@ -29,7 +29,8 @@ add_citekey <- function(pkg_name, citation) {
       # multiple citations, duplicate years. citekey = packagename + year + letter
       replace_string <- paste0("{", pkg_name, citation[[i]]$year, letters[i], ",")
     }
-    citation_bibtex[refbeginnings[i]] <- sub(pattern = "\\{,$", replacement = replace_string,
+    citation_bibtex[refbeginnings[i]] <- sub(pattern = "\\{[[:alnum:]_-]*,$",
+                                             replacement = replace_string,
                                              x = citation_bibtex[refbeginnings[i]])
   }
   return(citation_bibtex)

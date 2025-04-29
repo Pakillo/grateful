@@ -11,6 +11,22 @@ test_that("get_citations returns error if wrong arguments provided", {
 test_that("get_citations works", {
   citkeys <- get_citations("grateful", out.dir = tempdir())
   expect_identical(citkeys, list(grateful = "grateful"))
+
+
+  # citkeys <- get_citations(c("grateful", "knitr", "remotes", "renv", "rmarkdown",
+  #                            "rstudioapi", "utils"),
+  #                          out.dir = tempdir())
+  # expect_identical(citkeys,
+  #                  list(
+  #                    grateful = "grateful",
+  #                    knitr = c("knitr2025", "knitr2015", "knitr2014"),
+  #                    remotes = "remotes",
+  #                    renv = "renv",
+  #                    rmarkdown = c("rmarkdown2024", "rmarkdown2018", "rmarkdown2020"),
+  #                    rstudioapi = "rstudioapi",
+  #                    utils = "utils"
+  #                  ))
+
 })
 
 # test_that("get_citations adds Rstudio citation if asked", {

@@ -180,12 +180,12 @@ Use `scan_packages`
 scan_packages()
          pkg version
 1     badger   0.2.4
-2       base   4.4.3
-3      knitr    1.49
-4       mgcv   1.9.1
+2       base   4.5.0
+3      knitr    1.50
+4       mgcv   1.9.3
 5    pkgdown   2.1.1
 6    remotes   2.5.0
-7       renv   1.1.2
+7       renv   1.1.4
 8  rmarkdown    2.29
 9   testthat   3.2.3
 10 tidyverse   2.0.0
@@ -206,7 +206,7 @@ If you want to get the BibTeX references for a few specific packages:
 get_pkgs_info(pkgs = c("remotes", "renv"), out.dir = getwd())
 #>       pkg version citekeys
 #> 1 remotes   2.5.0  remotes
-#> 2    renv   1.1.2     renv
+#> 2    renv   1.1.4     renv
 ```
 
 ### Using grateful with the tidyverse
