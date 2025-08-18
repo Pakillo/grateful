@@ -5,10 +5,8 @@
 
 ^\.github$
 ^LICENSE\.md$
-
 test.Rmd
 test_nocite.Rmd
-
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
@@ -21,3 +19,4 @@ peerj.csl
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 grateful_function_map.png
+^CITATION\.cff$

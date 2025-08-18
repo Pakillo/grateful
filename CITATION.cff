@@ -1,0 +1,208 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "grateful" in publications use:'
+type: software
+license: MIT
+title: 'grateful: Facilitate Citation of R Packages'
+version: 0.2.12
+identifiers:
+- type: doi
+  value: 10.32614/CRAN.package.grateful
+abstract: Facilitates the citation of R packages used in analysis projects. Scans
+  project for packages used, gets their citations, and produces a document with citations
+  in the preferred bibliography format, ready to be pasted into reports or manuscripts.
+  Alternatively, 'grateful' can be used directly within an 'R Markdown' or 'Quarto'
+  document.
+authors:
+- family-names: Rodriguez-Sanchez
+  given-names: Francisco
+  email: f.rodriguez.sanc@gmail.com
+  orcid: https://orcid.org/0000-0002-7981-1599
+- family-names: Jackson
+  given-names: Connor P.
+  email: connor@cpjackson.net
+  orcid: https://orcid.org/0000-0002-4220-5210
+preferred-citation:
+  type: manual
+  title: 'grateful: Facilitate citation of R packages'
+  authors:
+  - family-names: Rodriguez-Sanchez
+    given-names: Francisco
+    email: f.rodriguez.sanc@gmail.com
+    orcid: https://orcid.org/0000-0002-7981-1599
+  - family-names: Jackson
+    given-names: Connor P.
+    email: connor@cpjackson.net
+    orcid: https://orcid.org/0000-0002-4220-5210
+  year: '2024'
+  url: https://pakillo.github.io/grateful/
+repository: https://CRAN.R-project.org/package=grateful
+repository-code: https://github.com/Pakillo/grateful
+url: https://pakillo.github.io/grateful/
+contact:
+- family-names: Rodriguez-Sanchez
+  given-names: Francisco
+  email: f.rodriguez.sanc@gmail.com
+  orcid: https://orcid.org/0000-0002-7981-1599
+keywords:
+- citation-generator
+- r
+- r-package
+- software-citation
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+  version: '>= 3.0.0'
+- type: software
+  title: knitr
+  abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  notes: Imports
+  url: https://yihui.org/knitr/
+  repository: https://CRAN.R-project.org/package=knitr
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2025'
+  doi: 10.32614/CRAN.package.knitr
+- type: software
+  title: remotes
+  abstract: 'remotes: R Package Installation from Remote Repositories, Including ''GitHub'''
+  notes: Imports
+  url: https://remotes.r-lib.org
+  repository: https://CRAN.R-project.org/package=remotes
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Wickham
+    given-names: Hadley
+  - family-names: Chang
+    given-names: Winston
+  - family-names: Morgan
+    given-names: Martin
+  - family-names: Tenenbaum
+    given-names: Dan
+  year: '2025'
+  doi: 10.32614/CRAN.package.remotes
+- type: software
+  title: renv
+  abstract: 'renv: Project Environments'
+  notes: Imports
+  url: https://rstudio.github.io/renv/
+  repository: https://CRAN.R-project.org/package=renv
+  authors:
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+    orcid: https://orcid.org/0000-0003-2880-7407
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+    orcid: https://orcid.org/0000-0003-4757-117X
+  year: '2025'
+  doi: 10.32614/CRAN.package.renv
+- type: software
+  title: rmarkdown
+  abstract: 'rmarkdown: Dynamic Documents for R'
+  notes: Imports
+  url: https://pkgs.rstudio.com/rmarkdown/
+  repository: https://CRAN.R-project.org/package=rmarkdown
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@posit.co
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: Dervieux
+    given-names: Christophe
+    email: cderv@posit.co
+    orcid: https://orcid.org/0000-0003-4474-2498
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@posit.co
+  - family-names: Luraschi
+    given-names: Javier
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@posit.co
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@posit.co
+  - family-names: Chang
+    given-names: Winston
+    email: winston@posit.co
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@posit.co
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2025'
+  doi: 10.32614/CRAN.package.rmarkdown
+- type: software
+  title: rstudioapi
+  abstract: 'rstudioapi: Safely Access the RStudio API'
+  notes: Imports
+  url: https://rstudio.github.io/rstudioapi/
+  repository: https://CRAN.R-project.org/package=rstudioapi
+  authors:
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Ritchie
+    given-names: Gary
+    email: gary@posit.co
+  year: '2025'
+  doi: 10.32614/CRAN.package.rstudioapi
+- type: software
+  title: utils
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+- type: software
+  title: testthat
+  abstract: 'testthat: Unit Testing for R'
+  notes: Suggests
+  url: https://testthat.r-lib.org
+  repository: https://CRAN.R-project.org/package=testthat
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2025'
+  doi: 10.32614/CRAN.package.testthat
+  version: '>= 3.0.0'
+
