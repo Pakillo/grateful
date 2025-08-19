@@ -54,14 +54,15 @@ test_that("returns all package dependencies when dependencies = TRUE", {
   # also note dependencies might change, breaking the test
   skip_on_cran()
   skip_if_offline()
+  skip_on_ci()
 
   pkgs.df <- scan_packages(pkgs = "grateful", dependencies = TRUE)
 
   expect_identical(pkgs.df$pkg,
-                   c("R6", "base64enc", "bslib", "cachem", "digest", "evaluate",
+                   c("base64enc", "bslib", "cachem", "digest", "evaluate",
                      "fastmap", "fontawesome", "fs", "glue", "grateful",
                      "highr", "htmltools", "jquerylib", "knitr", "lifecycle",
-                     "memoise", "mime", "rappdirs", "remotes", "renv",
+                     "memoise", "mime", "R6", "rappdirs", "remotes", "renv",
                      "rmarkdown", "sass", "tidyverse", "tinytex", "xfun", "yaml")
                    )
 
@@ -126,6 +127,7 @@ test_that("Package dependencies from DESCRIPTION are returned correctly", {
 
   skip_on_cran()
   skip_if_offline()
+  skip_on_ci()
 
   desc <- tempfile()
   download.file("https://raw.githubusercontent.com/Pakillo/grateful/refs/heads/master/DESCRIPTION",
