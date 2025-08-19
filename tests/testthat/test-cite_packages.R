@@ -87,6 +87,19 @@ test_that("cite_packages returns correct paragraph", {
                              class = "knit_asis",
                              knit_cacheable = NA))
 
+
+  skip_if_offline()
+  desc <- tempfile()
+  download.file("https://raw.githubusercontent.com/Pakillo/grateful/refs/heads/master/DESCRIPTION",
+                        destfile = desc, quiet = TRUE, mode = "wb")
+  para <- cite_packages(output = "paragraph",
+                        pkgs = c("Depends", "Imports", "Suggests"),
+                        desc.path = desc,
+                        out.dir = tempdir())
+  expect_identical(para,
+                   structure("We used R version >= 3.0.0 [@base] and the following R packages: curl [@curl], desc [@desc], knitr [@knitr2014; @knitr2015; @knitr2025], remotes [@remotes], renv [@renv], rmarkdown [@rmarkdown2018; @rmarkdown2020; @rmarkdown2024], rstudioapi [@rstudioapi], testthat v. >= 3.0.0 [@testthat], utils [@utils].", class = "knit_asis", knit_cacheable = NA))
+
+
 })
 
 
@@ -117,7 +130,7 @@ test_that("cite_packages returns correct Rmd", {
                  "",
                  "|Package  |Version |Citation  |",
                  "|:--------|:-------|:---------|",
-                 paste0("|grateful |", utils::packageVersion("grateful"),"  |@grateful |"),
+                 paste0("|grateful |", utils::packageVersion("grateful"),"   |@grateful |"),
                  "",
                  "**You can paste this paragraph directly in your report:**",
                  "",

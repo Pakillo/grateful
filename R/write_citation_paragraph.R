@@ -62,8 +62,16 @@ format_pkg_citation <- Vectorize(
 
   function(pkgname, df) {
 
-    pkginfo <- paste(pkgname,
-                     "v.", get_version(pkgname, df = df),
+    version <- get_version(pkgname, df = df)
+    if (is.na(version)) {
+      version.msg <- " "
+    } else {
+      version.msg <- paste0(" v. ", version, " ")
+    }
+
+    pkginfo <- paste0(pkgname,
+                     # "v.", get_version(pkgname, df = df),
+                     version.msg,
                      get_citekeys(pkgname, df = df))
 
   },

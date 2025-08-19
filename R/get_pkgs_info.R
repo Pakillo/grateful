@@ -26,12 +26,14 @@ get_pkgs_info <- function(pkgs = "All",
                           dependencies = FALSE,
                           bib.file = "grateful-refs",
                           include.RStudio = FALSE,
+                          desc.path = NULL,
                           ...) {
 
   pkgs.df <- scan_packages(pkgs = pkgs,
                            omit = omit,
                            cite.tidyverse = cite.tidyverse,
                            dependencies = dependencies,
+                           desc.path = desc.path,
                            ...)
 
   citekeys <- get_citations(pkgs.df$pkg,

@@ -284,6 +284,24 @@ When a project includes many used packages (or files), `renv` may issue a warnin
 [Here](https://github.com/Pakillo/grateful/tree/master/Rmd_Quarto/separate_bibliographies) are example [Quarto](https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/separate_bibliographies/grateful-Quarto-separatebib.qmd) and [Rmarkdown](https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/separate_bibliographies/grateful-Rmarkdown-separatebib.Rmd) documents showing how to generate a separate bibliography for R packages (different from the main bibliography). This requires installing the [`multibib`](https://github.com/pandoc-ext/multibib) extension first.
 
 
+### Citing the dependencies of an R package
+
+To cite the dependencies of an R package as stated in its DESCRIPTION file, use `pkgs = c("Depends", "Imports", "Suggests", "LinkingTo")` or a combination of them to obtain the desired type of dependencies.
+
+For example, these are {grateful} package 'Imports' and 'Suggests':
+
+```{r eval=TRUE}
+cite_packages(output = "table", out.dir = ".", pkgs = c("Imports", "Suggests"))
+```
+
+To also include the dependencies from those packages, use `dependencies = TRUE`:
+
+```{r eval=TRUE}
+out <- cite_packages(output = "table", out.dir = ".", pkgs = c("Imports", "Suggests"), 
+                     dependencies = TRUE)
+head(out)
+```
+
 
 ### Citing 'grateful'
 

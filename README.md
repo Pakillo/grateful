@@ -179,17 +179,18 @@ Use `scan_packages`
 ``` r
 scan_packages()
          pkg version
-1     badger   0.2.4
-2       base   4.5.0
-3      knitr    1.50
-4       mgcv   1.9.3
-5    pkgdown   2.1.1
-6    remotes   2.5.0
-7       renv   1.1.4
-8  rmarkdown    2.29
-9   testthat   3.2.3
-10 tidyverse   2.0.0
-11    visreg   2.7.0
+1     badger   0.2.5
+2       base   4.5.1
+3       desc   1.4.3
+4      knitr    1.50
+5       mgcv   1.9.3
+6    pkgdown   2.1.3
+7    remotes   2.5.0
+8       renv   1.1.5
+9  rmarkdown    2.29
+10  testthat   3.2.3
+11 tidyverse   2.0.0
+12    visreg   2.7.0
 ```
 
 ### Producing a BibTeX file with package references
@@ -206,7 +207,7 @@ If you want to get the BibTeX references for a few specific packages:
 get_pkgs_info(pkgs = c("remotes", "renv"), out.dir = getwd())
 #>       pkg version citekeys
 #> 1 remotes   2.5.0  remotes
-#> 2    renv   1.1.4     renv
+#> 2    renv   1.1.5     renv
 ```
 
 ### Using grateful with the tidyverse
@@ -384,6 +385,44 @@ and
 documents showing how to generate a separate bibliography for R packages
 (different from the main bibliography). This requires installing the
 [`multibib`](https://github.com/pandoc-ext/multibib) extension first.
+
+### Citing the dependencies of an R package
+
+To cite the dependencies of an R package as stated in its DESCRIPTION
+file, use `pkgs = c("Depends", "Imports", "Suggests", "LinkingTo")` or a
+combination of them to obtain the desired type of dependencies.
+
+For example, these are {grateful} package ‘Imports’ and ‘Suggests’:
+
+``` r
+cite_packages(output = "table", out.dir = ".", pkgs = c("Imports", "Suggests"))
+#>      Package  Version                                       Citation
+#> 1       curl     <NA>                                          @curl
+#> 2       desc     <NA>                                          @desc
+#> 3      knitr     <NA>             @knitr2014; @knitr2015; @knitr2025
+#> 4    remotes     <NA>                                       @remotes
+#> 5       renv     <NA>                                          @renv
+#> 6  rmarkdown     <NA> @rmarkdown2018; @rmarkdown2020; @rmarkdown2024
+#> 7 rstudioapi     <NA>                                    @rstudioapi
+#> 8   testthat >= 3.0.0                                      @testthat
+#> 9      utils     <NA>                                         @utils
+```
+
+To also include the dependencies from those packages, use
+`dependencies = TRUE`:
+
+``` r
+out <- cite_packages(output = "table", out.dir = ".", pkgs = c("Imports", "Suggests"), 
+                     dependencies = TRUE)
+head(out)
+#>     Package Version   Citation
+#> 1 base64enc    <NA> @base64enc
+#> 2      brio    <NA>      @brio
+#> 3     bslib    <NA>     @bslib
+#> 4    cachem    <NA>    @cachem
+#> 5     callr    <NA>     @callr
+#> 6       cli    <NA>       @cli
+```
 
 ### Citing ‘grateful’
 

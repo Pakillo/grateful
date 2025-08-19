@@ -27,7 +27,7 @@ test_that("create_rmd produces correct Rmd", {
                  "",
                  "|Package  |Version |Citation  |",
                  "|:--------|:-------|:---------|",
-                 paste0("|grateful |", utils::packageVersion("grateful"),"  |@grateful |"),
+                 paste0("|grateful |", utils::packageVersion("grateful"),"   |@grateful |"),
                  "",
                  "**You can paste this paragraph directly in your report:**",
                  "",

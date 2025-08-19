@@ -17,6 +17,7 @@ cite_packages(
   passive.voice = FALSE,
   out.file = "grateful-report",
   bib.file = "grateful-refs",
+  desc.path = NULL,
   ...
 )
 }
@@ -62,7 +63,13 @@ within the project/folder (the default), or "Session" to include only packages
 used in the current session.
 Alternatively, \code{pkgs} can also be a character vector of package names to
 get citations for. To cite R as well as the given packages,
-include "base" in \code{pkgs} (see examples).}
+include "base" in \code{pkgs} (see examples).
+Finally, \code{pkgs} can be a character vector of \code{Depends}, \code{Imports}, \code{Suggests},
+\code{LinkingTo} and their combination, to obtain the dependencies of an R package
+as stated in its DESCRIPTION file. Note that in this case, package versions will
+be 'NA' unless required versions are stated in the DESCRIPTION file
+(e.g. 'testthat (>= 3.0.0)'), and package citations will use the information
+from installed versions of those packages in the user computer.}
 
 \item{omit}{Character vector of package names to be omitted from the citation
 report. \code{grateful} is omitted by default. Use \code{omit = NULL} to include all
@@ -87,18 +94,23 @@ generated for citations.}
 \item{bib.file}{Desired name for the BibTeX file containing packages references
 ("grateful-refs" by default).}
 
+\item{desc.path}{Optional. Path to the package DESCRIPTION file from which to
+parse the package dependencies (see \code{pkgs}).
+If NULL, will default to the working directory.}
+
 \item{...}{Other parameters passed to \code{\link[renv:dependencies]{renv::dependencies()}}.}
 }
 \value{
-If \code{output = "file"}, \code{cite_packages} will save two files in \code{out.dir}:
-a BibTeX file containing package references and a citation report with formatted
-citations. \code{cite_packages} will return the path to the citation report invisibly.
+If \code{output = "file"}, \code{cite_packages} will save a citation report
+in \code{out.dir} with formatted citations, and \code{cite_packages} will return the
+path to the citation report invisibly.
 If \code{output = "table"} or \code{output = "paragraph"}, \code{cite_packages} will return
 a table or paragraph with package citations suitable to be used
 within 'R Markdown' or 'Quarto' documents.
+A BibTeX file containing package references is saved in all cases in \code{out.dir}.
 }
 \description{
-Find R packages used in a project, create a BibTeX file of references,
+Find R packages used in a project or package, create a BibTeX file of references,
 and generate a document with formatted package citations. Alternatively,
 \code{cite_packages} can be run directly within an 'R Markdown' or 'Quarto' document to
 automatically include a paragraph citing all used packages and generate

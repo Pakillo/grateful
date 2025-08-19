@@ -16,6 +16,7 @@ scan_packages <- function(pkgs = "All",
                           omit = c("grateful"),
                           cite.tidyverse = TRUE,
                           dependencies = FALSE,
+                          desc.path = NULL,
                           ...) {
 
   stopifnot(is.character(pkgs))
@@ -23,7 +24,11 @@ scan_packages <- function(pkgs = "All",
   stopifnot(is.logical(cite.tidyverse))
   stopifnot(is.logical(dependencies))
 
-  # If pkgs != "All" nor "Session", use them directly as vector of pkg names
+  if (is.null(desc.path)) {
+    desc.path <- getwd()
+  }
+  stopifnot(is.character(desc.path))
+
   pkgnames <- pkgs
 
   if (length(pkgs) == 1 && pkgs == "All") {
@@ -35,6 +40,15 @@ scan_packages <- function(pkgs = "All",
     pkgnames <- names(utils::sessionInfo()$otherPkgs)
   }
 
+  # If reading pkg dependencies from DESCRIPTION file
+  if (any(c("Depends", "Imports", "Suggests", "LinkingTo") %in% pkgs)) {
+    # pkgnames <- remotes::local_package_deps(dependencies = pkgs)
+    pkgdeps <- desc::desc_get_deps(file = desc.path)
+    pkgdeps$package[pkgdeps$package == "R"] <- "base"
+    pkgdeps$version[pkgdeps$version == "*"] <- NA_character_
+    pkgnames <- pkgdeps[pkgdeps$type %in% pkgs, ]$package
+    cite.tidyverse <- FALSE   # do not collapse package names into tidyverse
+  }
 
 
   # Include recursive dependencies?
@@ -52,21 +66,23 @@ scan_packages <- function(pkgs = "All",
   }
 
 
-  # If scanning pkgs (ie. not using provided pkg names):
-  if (length(pkgs) == 1) {
-    if (pkgs == "All" | pkgs == "Session") {
+  ## If 'pkgs' is not a vector of pkg names...
 
-      # Only cite base R once
-      base_pkgs <- utils::sessionInfo()$basePkgs
-      pkgnames <- c("base", setdiff(pkgnames, base_pkgs))
+  if ((length(pkgs) == 1 && pkgs == "All") ||
+      (length(pkgs) == 1 && pkgs == "Session")) {
 
-      # Omit packages
-      if (!is.null(omit)) {
-        stopifnot(is.character(omit))  # omit must be a character vector of pkg names
-        pkgnames <- pkgnames[!pkgnames %in% omit]
-      }
+    # Only cite base R once
+    base_pkgs <- utils::sessionInfo()$basePkgs
+    pkgnames <- c("base", setdiff(pkgnames, base_pkgs))
+
+
+    # Omit packages
+    if (!is.null(omit)) {
+      stopifnot(is.character(omit))  # omit must be a character vector of pkg names
+      pkgnames <- pkgnames[!pkgnames %in% omit]
     }
   }
+
 
 
   # Important to sort pkgnames to match versions later
@@ -92,6 +108,13 @@ scan_packages <- function(pkgs = "All",
   }
 
   pkgs.df <- data.frame(pkg = pkgnames, version = versions, row.names = NULL)
+
+  ## If listing packages from DESCRIPTION, use those versions
+  if (exists("pkgdeps")) {
+    pkgdeps <- data.frame(pkg = pkgdeps$package, version = pkgdeps$version)
+    pkgs.df <- pkgs.df[, "pkg", drop = FALSE]
+    pkgs.df <- merge(pkgs.df, pkgdeps, all.x = TRUE)
+  }
 
   pkgs.df
 

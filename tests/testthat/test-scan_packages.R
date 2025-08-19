@@ -28,14 +28,11 @@ test_that("scan_packages return correct output", {
 #chatGPT
 
 pkgs <- c("utils", "renv", "grateful")
-
-# run the function
 pkgs.df <- scan_packages(pkgs = pkgs)
 
 
 test_that("returns a data frame with two columns", {
 
-  # check the result
   expect_true(is.data.frame(pkgs.df))
   expect_true("pkg" %in% names(pkgs.df))
   expect_true("version" %in% names(pkgs.df))
@@ -45,7 +42,6 @@ test_that("returns a data frame with two columns", {
 
 test_that("returns a data frame with package names and versions", {
 
-  # check the result
   expect_true(all(pkgs %in% pkgs.df$pkg))
   expect_true(length(pkgs.df$version) == length(pkgs))
 
@@ -57,12 +53,10 @@ test_that("returns all package dependencies when dependencies = TRUE", {
   # this test may be slow...
   # also note dependencies might change, breaking the test
   skip_on_cran()
-  skip_on_ci()
+  skip_if_offline()
 
-  # run the function
   pkgs.df <- scan_packages(pkgs = "grateful", dependencies = TRUE)
 
-  # check the result
   expect_identical(pkgs.df$pkg,
                    c("R6", "base64enc", "bslib", "cachem", "digest", "evaluate",
                      "fastmap", "fontawesome", "fs", "glue", "grateful",
@@ -76,31 +70,100 @@ test_that("returns all package dependencies when dependencies = TRUE", {
 
 test_that("returns session package names when argument pkgs is 'Session'", {
 
-  # run the function
   pkgs.df <- scan_packages(pkgs = "Session", omit = NULL)
-
-  # check the result
   expect_true(all(names(utils::sessionInfo()$otherPkgs) %in% pkgs.df$pkg))
 
 })
 
+
+# test_that("returns session package names when argument pkgs is 'All'", {
+#
+#   skip_on_cran()
+#
+#   pkgs.df <- scan_packages(pkgs = "All", omit = NULL)
+#   expect_equal(pkgs.df$pkg,
+#                c("badger", "base", "desc", "grateful", "knitr", "mgcv", "pkgdown",
+#                  "remotes", "renv", "rmarkdown", "testthat", "tidyverse", "visreg"))
+#
+# })
+
+
+test_that("packages are omitted", {
+
+  pkgs.df <- scan_packages(pkgs = "Session", omit = "grateful")
+  expect_equal(pkgs.df$pkg, c("base", "testthat"))
+
+})
+
+
 test_that("removes tidyverse packages when cite.tidyverse = TRUE", {
 
   pkgs <- c("tidyverse", "ggplot2", "dplyr", "dplyr")
-
-  # run the function
   pkgs.df <- scan_packages(pkgs = pkgs)
-
-  # check the result
   expect_true(pkgs.df$pkg == "tidyverse")
 
   # tidyverse not included
   pkgs <- c("ggplot2", "dplyr", "dplyr")
-
-  # run the function
   pkgs.df <- scan_packages(pkgs = pkgs)
-
-  # check the result
   expect_true(pkgs.df$pkg == "tidyverse")
+
+})
+
+
+
+
+test_that("packages are omitted", {
+
+  pkgs.df <- scan_packages(pkgs = "Session", omit = "grateful")
+  expect_equal(pkgs.df$pkg, c("base", "testthat"))
+
+})
+
+
+test_that("Package dependencies from DESCRIPTION are returned correctly", {
+
+  # constructive::construct(pkgs.df)
+
+  skip_on_cran()
+  skip_if_offline()
+
+  desc <- tempfile()
+  download.file("https://raw.githubusercontent.com/Pakillo/grateful/refs/heads/master/DESCRIPTION",
+                destfile = desc, quiet = TRUE, mode = "wb")
+
+  pkgs.df <- scan_packages(pkgs = c("Depends"), desc.path = desc)
+  expect_equal(pkgs.df, data.frame(pkg = "base", version = ">= 3.0.0"))
+
+  pkgs.df <- scan_packages(pkgs = c("Imports"), desc.path = desc)
+  expect_equal(pkgs.df,
+               data.frame(
+                 pkg = c("desc", "knitr", "remotes", "renv", "rmarkdown",
+                         "rstudioapi", "utils"),
+                 version = NA_character_
+               ))
+
+  pkgs.df <- scan_packages(pkgs = c("Suggests"), desc.path = desc)
+  expect_equal(pkgs.df,
+               data.frame(pkg = c("curl", "testthat"), version = c(NA, ">= 3.0.0")))
+
+  pkgs.df <- scan_packages(pkgs = c("LinkingTo"), desc.path = desc)
+  expect_equal(pkgs.df, data.frame(pkg = character(0), version = character(0)))
+
+  pkgs.df <- scan_packages(pkgs = c("Imports", "Suggests"), desc.path = desc)
+  expect_equal(pkgs.df,
+               data.frame(
+                 pkg = c("curl", "desc", "knitr", "remotes", "renv", "rmarkdown",
+                         "rstudioapi", "testthat", "utils"),
+                 version = rep(c(NA, ">= 3.0.0", NA), c(7L, 1L, 1L))
+               ))
+
+  pkgs.df <- scan_packages(pkgs = c("Depends", "Imports", "Suggests", "LinkingTo"),
+                           desc.path = desc)
+  expect_equal(pkgs.df,
+               data.frame(
+                 pkg = c("base", "curl", "desc", "knitr", "remotes", "renv",
+                         "rmarkdown", "rstudioapi", "testthat", "utils"),
+                 version = rep(rep(c(">= 3.0.0", NA), 2), c(1L, 7L, 1L, 1L))
+               ))
 
 })

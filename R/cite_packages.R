@@ -1,6 +1,6 @@
 #' Cite R packages used in a project
 #'
-#' Find R packages used in a project, create a BibTeX file of references,
+#' Find R packages used in a project or package, create a BibTeX file of references,
 #' and generate a document with formatted package citations. Alternatively,
 #' `cite_packages` can be run directly within an 'R Markdown' or 'Quarto' document to
 #' automatically include a paragraph citing all used packages and generate
@@ -88,6 +88,12 @@
 #' Alternatively, `pkgs` can also be a character vector of package names to
 #' get citations for. To cite R as well as the given packages,
 #' include "base" in `pkgs` (see examples).
+#' Finally, `pkgs` can be a character vector of `Depends`, `Imports`, `Suggests`,
+#' `LinkingTo` and their combination, to obtain the dependencies of an R package
+#' as stated in its DESCRIPTION file. Note that in this case, package versions will
+#' be 'NA' unless required versions are stated in the DESCRIPTION file
+#' (e.g. 'testthat (>= 3.0.0)'), and package citations will use the information
+#' from installed versions of those packages in the user computer.
 #'
 #' @param omit Character vector of package names to be omitted from the citation
 #' report. `grateful` is omitted by default. Use `omit = NULL` to include all
@@ -112,14 +118,19 @@
 #' @param bib.file Desired name for the BibTeX file containing packages references
 #' ("grateful-refs" by default).
 #'
+#' @param desc.path Optional. Path to the package DESCRIPTION file from which to
+#' parse the package dependencies (see `pkgs`).
+#' If NULL, will default to the working directory.
+#'
 #' @param ... Other parameters passed to [renv::dependencies()].
 #'
-#' @return If `output = "file"`, `cite_packages` will save two files in `out.dir`:
-#' a BibTeX file containing package references and a citation report with formatted
-#' citations. `cite_packages` will return the path to the citation report invisibly.
+#' @return If `output = "file"`, `cite_packages` will save a citation report
+#' in `out.dir` with formatted citations, and `cite_packages` will return the
+#' path to the citation report invisibly.
 #' If `output = "table"` or `output = "paragraph"`, `cite_packages` will return
 #' a table or paragraph with package citations suitable to be used
 #' within 'R Markdown' or 'Quarto' documents.
+#' A BibTeX file containing package references is saved in all cases in `out.dir`.
 #'
 #'
 #' @export
@@ -171,6 +182,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           passive.voice = FALSE,
                           out.file = "grateful-report",
                           bib.file = "grateful-refs",
+                          desc.path = NULL,
                           ...) {
 
   if (is.null(out.dir)) {
@@ -193,6 +205,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                            dependencies = dependencies,
                            bib.file = bib.file,
                            include.RStudio = include.RStudio,
+                           desc.path = desc.path,
                            ...)
 
 
