@@ -303,6 +303,31 @@ head(out)
 ```
 
 
+### Changing the language of the citation paragraph
+
+`cite_packages` includes a few arguments (`text.start`, `text.pkgs` and `text.RStudio`) to allow the user to customise the language of the citation paragraph. 
+
+For example, to produce a citation paragraph in Spanish:
+
+```{r eval=FALSE}
+cite_packages(output = "paragraph", out.dir = ".", 
+              text.start = "Para desarrollar este trabajo se utilizó",
+              text.pkgs = "y los siguientes paquetes")
+```
+
+`"Para desarrollar este trabajo se utilizó R version 4.5.1 [@base] y los siguientes paquetes: badger v. 0.2.5 [@badger], desc v. 1.4.3 [@desc], knitr v. 1.50 [@knitr2014; @knitr2015; @knitr2025], mgcv v. 1.9.3 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017], pkgdown v. 2.1.3 [@pkgdown], remotes v. 2.5.0 [@remotes], renv v. 1.1.5 [@renv], rmarkdown v. 2.29 [@rmarkdown2018; @rmarkdown2020; @rmarkdown2024], testthat v. 3.2.3 [@testthat], tidyverse v. 2.0.0 [@tidyverse], visreg v. 2.7.0 [@visreg]."`
+
+Or in German: 
+
+```{r eval=FALSE}
+cite_packages(output = "paragraph", out.dir = ".", 
+              text.start = "Wir verwendeten die",
+              text.pkgs = "und die folgenden R-Pakete")
+```
+
+`"Wir verwendeten die R version 4.5.1 [@base] und die folgenden R-Pakete: badger v. 0.2.5 [@badger], desc v. 1.4.3 [@desc], knitr v. 1.50 [@knitr2014; @knitr2015; @knitr2025], mgcv v. 1.9.3 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017], pkgdown v. 2.1.3 [@pkgdown], remotes v. 2.5.0 [@remotes], renv v. 1.1.5 [@renv], rmarkdown v. 2.29 [@rmarkdown2018; @rmarkdown2020; @rmarkdown2024], testthat v. 3.2.3 [@testthat], tidyverse v. 2.0.0 [@tidyverse], visreg v. 2.7.0 [@visreg]."`
+
+
 ### Citing 'grateful'
 
 ```{r eval=TRUE, comment=NA}

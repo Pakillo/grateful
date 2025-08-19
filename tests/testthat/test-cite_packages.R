@@ -54,7 +54,7 @@ test_that("cite_packages returns correct paragraph", {
                         pkgs = "Session",
                         out.dir = tempdir())
   expect_identical(para,
-                   structure(paste0("We used R version ",
+                   structure(paste0("We used R v. ",
                                     R.version$major, ".", R.version$minor,
                                     " [@base] and the following R packages: testthat v. ",
                                     utils::packageVersion("testthat"), " [@testthat]."),
@@ -69,7 +69,7 @@ test_that("cite_packages returns correct paragraph", {
                         passive.voice = TRUE)
 
   expect_identical(para,
-                   structure(paste0("This work was completed with the following R packages: grateful v. ",
+                   structure(paste0("This work was completed using the following R packages: grateful v. ",
                                     utils::packageVersion("grateful"), " [@grateful]."),
                              class = "knit_asis",
                              knit_cacheable = NA))
@@ -80,9 +80,9 @@ test_that("cite_packages returns correct paragraph", {
                         passive.voice = TRUE)
 
   expect_identical(para,
-                   structure(paste0("This work was completed using R version ",
+                   structure(paste0("This work was completed using R v. ",
                                     R.version$major, ".", R.version$minor,
-                                    " [@base] with the following R packages: testthat v. ",
+                                    " [@base] and the following R packages: testthat v. ",
                                     utils::packageVersion("testthat"), " [@testthat]."),
                              class = "knit_asis",
                              knit_cacheable = NA))
@@ -98,8 +98,40 @@ test_that("cite_packages returns correct paragraph", {
                         desc.path = desc,
                         out.dir = tempdir())
   expect_identical(para,
-                   structure("We used R version >= 3.0.0 [@base] and the following R packages: curl [@curl], desc [@desc], knitr [@knitr2014; @knitr2015; @knitr2025], remotes [@remotes], renv [@renv], rmarkdown [@rmarkdown2018; @rmarkdown2020; @rmarkdown2024], rstudioapi [@rstudioapi], testthat v. >= 3.0.0 [@testthat], utils [@utils].", class = "knit_asis", knit_cacheable = NA))
+                   structure("We used R v. >= 3.0.0 [@base] and the following R packages: curl [@curl], desc [@desc], knitr [@knitr2014; @knitr2015; @knitr2025], remotes [@remotes], renv [@renv], rmarkdown [@rmarkdown2018; @rmarkdown2020; @rmarkdown2024], rstudioapi [@rstudioapi], testthat v. >= 3.0.0 [@testthat], utils [@utils].", class = "knit_asis", knit_cacheable = NA))
 
+
+})
+
+
+test_that("cite_packages returns correct paragraph with customised text", {
+
+  skip_on_cran()
+
+  para <- cite_packages(output = "paragraph",
+                        pkgs = c("grateful"),
+                        out.dir = tempdir(),
+                        text.start = "En este trabajo utilizamos",
+                        text.pkgs = "los siguientes paquetes")
+  expect_identical(para,
+                   structure(paste0("En este trabajo utilizamos los siguientes paquetes: grateful v. ",
+                                    utils::packageVersion("grateful"), " [@grateful]."),
+                             class = "knit_asis",
+                             knit_cacheable = NA))
+
+
+  para <- cite_packages(output = "paragraph",
+                        pkgs = "Session",
+                        out.dir = tempdir(),
+                        text.start = "En este trabajo utilizamos",
+                        text.pkgs = "y los siguientes paquetes")
+  expect_identical(para,
+                   structure(paste0("En este trabajo utilizamos R v. ",
+                                    R.version$major, ".", R.version$minor,
+                                    " [@base] y los siguientes paquetes: testthat v. ",
+                                    utils::packageVersion("testthat"), " [@testthat]."),
+                             class = "knit_asis",
+                             knit_cacheable = NA))
 
 })
 

@@ -15,6 +15,9 @@ cite_packages(
   dependencies = FALSE,
   include.RStudio = FALSE,
   passive.voice = FALSE,
+  text.start = NULL,
+  text.pkgs = NULL,
+  text.RStudio = NULL,
   out.file = "grateful-report",
   bib.file = "grateful-refs",
   desc.path = NULL,
@@ -87,6 +90,17 @@ current version of RStudio.}
 
 \item{passive.voice}{Logical. If \code{TRUE}, uses passive voice in any paragraph
 generated for citations.}
+
+\item{text.start}{Optional. Text string to use to start the citation paragraph.
+If NULL (the default), will use "We used" or "This work was completed using"
+if \code{passive.voice = TRUE}.
+Note this allows for customising the language of citation paragraphs.}
+
+\item{text.pkgs}{Optional. Text string to use to introduce the packages used.
+If NULL (the default), will use "(and) the following R packages".}
+
+\item{text.RStudio}{Optional. Text string to use to introduce RStudio.
+If NULL (the default), will use "running in".}
 
 \item{out.file}{Desired name of the citation report to be created if
 \code{output = "file"}. Default is "grateful-report" (without extension).}
@@ -176,6 +190,11 @@ cite_packages(pkgs = c("renv", "remotes", "knitr"), out.dir = tempdir())
 
 # Cite R as well as user-provided packages
 cite_packages(pkgs = c("base", "renv", "remotes", "knitr"), out.dir = tempdir())
+
+# To change the language of the citation paragraph:
+cite_packages(output = "paragraph", out.dir = tempdir(),
+  text.start = "Para desarrollar este trabajo se utilizó",
+  text.pkgs = "y los siguientes paquetes")
 
 
 # To include citations in an R Markdown or Quarto file

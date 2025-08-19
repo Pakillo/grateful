@@ -112,6 +112,17 @@
 #' @param passive.voice Logical. If `TRUE`, uses passive voice in any paragraph
 #'   generated for citations.
 #'
+#' @param text.start Optional. Text string to use to start the citation paragraph.
+#' If NULL (the default), will use "We used" or "This work was completed using"
+#' if `passive.voice = TRUE`.
+#' Note this allows for customising the language of citation paragraphs.
+#'
+#' @param text.pkgs Optional. Text string to use to introduce the packages used.
+#' If NULL (the default), will use "(and) the following R packages".
+#'
+#' @param text.RStudio Optional. Text string to use to introduce RStudio.
+#' If NULL (the default), will use "running in".
+#'
 #' @param out.file Desired name of the citation report to be created if
 #' `output = "file"`. Default is "grateful-report" (without extension).
 #'
@@ -155,6 +166,11 @@
 #' # Cite R as well as user-provided packages
 #' cite_packages(pkgs = c("base", "renv", "remotes", "knitr"), out.dir = tempdir())
 #'
+#' # To change the language of the citation paragraph:
+#' cite_packages(output = "paragraph", out.dir = tempdir(),
+#'   text.start = "Para desarrollar este trabajo se utilizó",
+#'   text.pkgs = "y los siguientes paquetes")
+#'
 #'
 #' # To include citations in an R Markdown or Quarto file
 #'
@@ -180,6 +196,9 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           dependencies = FALSE,
                           include.RStudio = FALSE,
                           passive.voice = FALSE,
+                          text.start = NULL,
+                          text.pkgs = NULL,
+                          text.RStudio = NULL,
                           out.file = "grateful-report",
                           bib.file = "grateful-refs",
                           desc.path = NULL,
@@ -218,7 +237,10 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                       out.dir = out.dir,
                       out.format = out.format,
                       include.RStudio = include.RStudio,
-                      passive.voice = passive.voice)
+                      passive.voice = passive.voice,
+                      text.start = text.start,
+                      text.pkgs = text.pkgs,
+                      text.RStudio = text.RStudio)
 
     message(paste0("\nCitation report available at ", rmd))
     return(rmd)  # return path to file
@@ -230,7 +252,10 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
 
     paragraph <- write_citation_paragraph(pkgs.df,
                                           include.RStudio = include.RStudio,
-                                          passive.voice = passive.voice)
+                                          passive.voice = passive.voice,
+                                          text.start = text.start,
+                                          text.pkgs = text.pkgs,
+                                          text.RStudio = text.RStudio)
     return(knitr::asis_output(paragraph))
 
   }

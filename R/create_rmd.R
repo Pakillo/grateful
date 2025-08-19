@@ -29,6 +29,9 @@ create_rmd <- function(pkgs.df = NULL,
                                       "tex-fragment", "tex-document"),
                        include.RStudio = FALSE,
                        passive.voice = FALSE,
+                       text.start = NULL,
+                       text.pkgs = NULL,
+                       text.RStudio = NULL,
                        ...) {
 
   if (is.null(pkgs.df)) {
@@ -72,7 +75,10 @@ create_rmd <- function(pkgs.df = NULL,
 
   parag <- write_citation_paragraph(pkgs.df,
                                     include.RStudio = include.RStudio,
-                                    passive.voice = passive.voice)
+                                    passive.voice = passive.voice,
+                                    text.start = text.start,
+                                    text.pkgs = text.pkgs,
+                                    text.RStudio = text.RStudio)
 
   ## write Rmd to disk
   writeLines(c(yaml.header,

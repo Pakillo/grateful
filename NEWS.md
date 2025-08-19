@@ -2,6 +2,8 @@
 
 * Now possible to scan and cite dependencies from a package DESCRIPTION file (#62).
 
+* Now possible to customise the language of citation paragraphs (#55).
+
 # grateful 0.2.12
 
 * Fix generation of citation keys under R 4.5.0 (issue #59).

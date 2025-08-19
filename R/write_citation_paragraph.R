@@ -1,44 +1,52 @@
-write_citation_paragraph <- function(df,
+write_citation_paragraph <- function(df = NULL,
                                      include.RStudio = FALSE,
-                                     passive.voice = FALSE) {
+                                     passive.voice = FALSE,
+                                     text.start = NULL,
+                                     text.pkgs = NULL,
+                                     text.RStudio = NULL) {
+
+  if (is.null(text.start)) {
+    if (isTRUE(passive.voice)) {
+      text.start <- "This work was completed using"
+    } else {
+      text.start <- "We used"
+    }
+  }
+  stopifnot(is.character(text.start))
+
+  if (is.null(text.pkgs)) {
+    text.pkgs <- "the following R packages"
+    if ("base" %in% df$pkg) {
+      text.pkgs <- paste("and", text.pkgs)
+    }
+  }
+  stopifnot(is.character(text.pkgs))
+
+  if (is.null(text.RStudio)) {
+    text.RStudio = "running in"
+  }
+  if (!is.null(text.RStudio)) {
+    stopifnot(is.character(text.RStudio))
+  }
 
   df.pkgs <- df[df$pkg != "base", ]
 
   rversion <- ""
 
   if ("base" %in% df$pkg) {
-
-    rversion <- paste0("R version ",
+    rversion <- paste0("R v. ",
                        get_version("base", df), " ",
                        get_citekeys("base", df),
                        " ")
-
-    if (passive.voice) {
-      rversion <- paste0("using ", rversion)
-    } else {
-      rversion <- paste0(rversion, "and ")
-    }
   }
 
-  if (passive.voice) {
-    parag <- paste0(
-      "This work was completed ",
-      rversion,
-      "with the following R packages: ",
-      paste(format_pkg_citation(pkgname = df.pkgs$pkg, df), collapse = ", ")
-    )
-  } else {
-    parag <- paste0(
-      "We used ",
-      rversion,
-      "the following R packages: ",
-      paste(format_pkg_citation(pkgname = df.pkgs$pkg, df), collapse = ", ")
-    )
-  }
+
+  parag <- paste0(text.start, " ", rversion, text.pkgs, ": ",
+                  paste(format_pkg_citation(pkgname = df.pkgs$pkg, df), collapse = ", "))
 
   if (include.RStudio) {
-    parag <- paste0(parag, ", running in RStudio v. ", rstudioapi::versionInfo()$version,
-                    " [@rstudio].")
+    parag <- paste0(parag, ", ", text.RStudio, " RStudio v. ",
+                    rstudioapi::versionInfo()$version, " [@rstudio].")
   } else {
     parag <- paste0(parag, ".")
   }
@@ -70,9 +78,9 @@ format_pkg_citation <- Vectorize(
     }
 
     pkginfo <- paste0(pkgname,
-                     # "v.", get_version(pkgname, df = df),
-                     version.msg,
-                     get_citekeys(pkgname, df = df))
+                      # "v.", get_version(pkgname, df = df),
+                      version.msg,
+                      get_citekeys(pkgname, df = df))
 
   },
 
