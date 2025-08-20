@@ -8,7 +8,8 @@ get_citations(
   pkgs = NULL,
   out.dir = NULL,
   bib.file = "grateful-refs",
-  include.RStudio = FALSE
+  include.RStudio = FALSE,
+  skip.missing = FALSE
 )
 }
 \arguments{
@@ -22,6 +23,12 @@ the references. It is recommended to set \code{out.dir = getwd()}.}
 
 \item{include.RStudio}{Logical. If \code{TRUE}, adds a citation for the
 current version of RStudio.}
+
+\item{skip.missing}{Logical. If FALSE (the default), will return an error if
+some package(s) are used somewhere in the project but they are not currently
+installed. If TRUE, will skip those missing packages, issuing a warning. Note
+such packages will thus not be included in the citation list, even though they
+might have been used in the project.}
 }
 \value{
 A file on the specified \code{out.dir} containing the package references

@@ -15,8 +15,13 @@ cite_packages(
   dependencies = FALSE,
   include.RStudio = FALSE,
   passive.voice = FALSE,
+  text.start = NULL,
+  text.pkgs = NULL,
+  text.RStudio = NULL,
   out.file = "grateful-report",
   bib.file = "grateful-refs",
+  desc.path = NULL,
+  skip.missing = FALSE,
   ...
 )
 }
@@ -62,7 +67,13 @@ within the project/folder (the default), or "Session" to include only packages
 used in the current session.
 Alternatively, \code{pkgs} can also be a character vector of package names to
 get citations for. To cite R as well as the given packages,
-include "base" in \code{pkgs} (see examples).}
+include "base" in \code{pkgs} (see examples).
+Finally, \code{pkgs} can be a character vector of \code{Depends}, \code{Imports}, \code{Suggests},
+\code{LinkingTo} and their combination, to obtain the dependencies of an R package
+as stated in its DESCRIPTION file. Note that in this case, package versions will
+be 'NA' unless required versions are stated in the DESCRIPTION file
+(e.g. 'testthat (>= 3.0.0)'), and package citations will use the information
+from installed versions of those packages in the user computer.}
 
 \item{omit}{Character vector of package names to be omitted from the citation
 report. \code{grateful} is omitted by default. Use \code{omit = NULL} to include all
@@ -81,24 +92,46 @@ current version of RStudio.}
 \item{passive.voice}{Logical. If \code{TRUE}, uses passive voice in any paragraph
 generated for citations.}
 
+\item{text.start}{Optional. Text string to use to start the citation paragraph.
+If NULL (the default), will use "We used" or "This work was completed using"
+if \code{passive.voice = TRUE}.
+Note this allows for customising the language of citation paragraphs.}
+
+\item{text.pkgs}{Optional. Text string to use to introduce the packages used.
+If NULL (the default), will use "(and) the following R packages".}
+
+\item{text.RStudio}{Optional. Text string to use to introduce RStudio.
+If NULL (the default), will use "running in".}
+
 \item{out.file}{Desired name of the citation report to be created if
 \code{output = "file"}. Default is "grateful-report" (without extension).}
 
 \item{bib.file}{Desired name for the BibTeX file containing packages references
 ("grateful-refs" by default).}
 
+\item{desc.path}{Optional. Path to the package DESCRIPTION file from which to
+parse the package dependencies (see \code{pkgs}).
+If NULL, will default to the working directory.}
+
+\item{skip.missing}{Logical. If FALSE (the default), will return an error if
+some package(s) are used somewhere in the project but they are not currently
+installed. If TRUE, will skip those missing packages, issuing a warning. Note
+such packages will thus not be included in the citation list, even though they
+might have been used in the project.}
+
 \item{...}{Other parameters passed to \code{\link[renv:dependencies]{renv::dependencies()}}.}
 }
 \value{
-If \code{output = "file"}, \code{cite_packages} will save two files in \code{out.dir}:
-a BibTeX file containing package references and a citation report with formatted
-citations. \code{cite_packages} will return the path to the citation report invisibly.
+If \code{output = "file"}, \code{cite_packages} will save a citation report
+in \code{out.dir} with formatted citations, and \code{cite_packages} will return the
+path to the citation report invisibly.
 If \code{output = "table"} or \code{output = "paragraph"}, \code{cite_packages} will return
 a table or paragraph with package citations suitable to be used
 within 'R Markdown' or 'Quarto' documents.
+A BibTeX file containing package references is saved in all cases in \code{out.dir}.
 }
 \description{
-Find R packages used in a project, create a BibTeX file of references,
+Find R packages used in a project or package, create a BibTeX file of references,
 and generate a document with formatted package citations. Alternatively,
 \code{cite_packages} can be run directly within an 'R Markdown' or 'Quarto' document to
 automatically include a paragraph citing all used packages and generate
@@ -164,6 +197,11 @@ cite_packages(pkgs = c("renv", "remotes", "knitr"), out.dir = tempdir())
 
 # Cite R as well as user-provided packages
 cite_packages(pkgs = c("base", "renv", "remotes", "knitr"), out.dir = tempdir())
+
+# To change the language of the citation paragraph:
+cite_packages(output = "paragraph", out.dir = tempdir(),
+  text.start = "Para desarrollar este trabajo se utilizó",
+  text.pkgs = "y los siguientes paquetes")
 
 
 # To include citations in an R Markdown or Quarto file

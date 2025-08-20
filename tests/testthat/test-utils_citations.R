@@ -40,11 +40,10 @@ test_that("Test fix_title() function", {
 
 test_that("Test get_citation_and_citekey function", {
 
-  skip_on_ci()
   skip_on_cran()
 
   # note package version and year may change
-  expect_identical(get_citation_and_citekey("grateful"),
+  expect_identical(get_citation_and_citekey("grateful", skip.missing = FALSE),
                    structure(c("@Manual{grateful,",
                                title = "title = {{grateful}: Facilitate citation of {R} packages},",
                                author = "  author = {Francisco Rodriguez-Sanchez and Connor P. Jackson},",
@@ -52,5 +51,25 @@ test_that("Test get_citation_and_citekey function", {
                                url = "  url = {https://pakillo.github.io/grateful/},",
                                "}"),
                              class = "Bibtex"))
+
+})
+
+
+test_that("Test get_citation_and_citekey when skip.missing = TRUE", {
+
+  skip_on_cran()
+
+  # note package version and year may change
+  expect_identical(get_citation_and_citekey("grateful", skip.missing = TRUE),
+                   structure(c("@Manual{grateful,",
+                               title = "title = {{grateful}: Facilitate citation of {R} packages},",
+                               author = "  author = {Francisco Rodriguez-Sanchez and Connor P. Jackson},",
+                               year = "  year = {2024},",
+                               url = "  url = {https://pakillo.github.io/grateful/},",
+                               "}"),
+                             class = "Bibtex"))
+
+  expect_warning(get_citation_and_citekey("fakepkg", skip.missing = TRUE))
+  expect_null(suppressWarnings(get_citation_and_citekey("fakepkg", skip.missing = TRUE)))
 
 })

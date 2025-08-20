@@ -6,7 +6,7 @@ test_that("arguments are provided", {
 })
 
 test_that("get_csl works", {
-  skip_on_ci()
+  skip_if_offline()
   skip_on_cran()
 
   # style available on root folder of the official styles repo

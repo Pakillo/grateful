@@ -18,7 +18,8 @@
 get_citations <- function(pkgs = NULL,
                           out.dir = NULL,
                           bib.file = "grateful-refs",
-                          include.RStudio = FALSE) {
+                          include.RStudio = FALSE,
+                          skip.missing = FALSE) {
 
   if (!is.character(pkgs)) {
     stop("Please provide a character vector of package names")
@@ -34,14 +35,24 @@ get_citations <- function(pkgs = NULL,
 
   stopifnot(is.logical(include.RStudio))
 
+  ## Manage warnings when get_citations is called from get_pkgs_info (skip.missing = "inherited")
+  if (isTRUE(skip.missing)) {
+    warning("Setting 'skip.missing = TRUE': will issue a warning in case some package(s) are used in the project but not currently installed (hence their version/citation cannot be retrieved, and they will not be cited).",
+            call. = FALSE)
+  }
+  if (skip.missing == "inherited") {
+    skip.missing <- TRUE
+  }
+  stopifnot(is.logical(skip.missing))
 
 
-  # Some people may not have the tidyverse pkg installed locally,
+
+  # Some users may not have the tidyverse pkg installed locally,
   # so giving tidyverse citation directly
   # (tidyverse citation included in grateful package)
 
   pkgs.notidy <- pkgs[pkgs != "tidyverse"]
-  cites.bib <- lapply(pkgs.notidy, get_citation_and_citekey)
+  cites.bib <- lapply(pkgs.notidy, get_citation_and_citekey, skip.missing = skip.missing)
   names(cites.bib) <- pkgs.notidy
 
   if ("tidyverse" %in% pkgs) {
@@ -60,6 +71,9 @@ get_citations <- function(pkgs = NULL,
       }
     }
   }
+
+  ## Remove NULL elements
+  cites.bib <- Filter(Negate(is.null), cites.bib)
 
   ## write bibtex references to file
   writeLines(enc2utf8(unlist(cites.bib)),

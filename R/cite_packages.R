@@ -1,6 +1,6 @@
 #' Cite R packages used in a project
 #'
-#' Find R packages used in a project, create a BibTeX file of references,
+#' Find R packages used in a project or package, create a BibTeX file of references,
 #' and generate a document with formatted package citations. Alternatively,
 #' `cite_packages` can be run directly within an 'R Markdown' or 'Quarto' document to
 #' automatically include a paragraph citing all used packages and generate
@@ -88,6 +88,12 @@
 #' Alternatively, `pkgs` can also be a character vector of package names to
 #' get citations for. To cite R as well as the given packages,
 #' include "base" in `pkgs` (see examples).
+#' Finally, `pkgs` can be a character vector of `Depends`, `Imports`, `Suggests`,
+#' `LinkingTo` and their combination, to obtain the dependencies of an R package
+#' as stated in its DESCRIPTION file. Note that in this case, package versions will
+#' be 'NA' unless required versions are stated in the DESCRIPTION file
+#' (e.g. 'testthat (>= 3.0.0)'), and package citations will use the information
+#' from installed versions of those packages in the user computer.
 #'
 #' @param omit Character vector of package names to be omitted from the citation
 #' report. `grateful` is omitted by default. Use `omit = NULL` to include all
@@ -106,20 +112,42 @@
 #' @param passive.voice Logical. If `TRUE`, uses passive voice in any paragraph
 #'   generated for citations.
 #'
+#' @param text.start Optional. Text string to use to start the citation paragraph.
+#' If NULL (the default), will use "We used" or "This work was completed using"
+#' if `passive.voice = TRUE`.
+#' Note this allows for customising the language of citation paragraphs.
+#'
+#' @param text.pkgs Optional. Text string to use to introduce the packages used.
+#' If NULL (the default), will use "(and) the following R packages".
+#'
+#' @param text.RStudio Optional. Text string to use to introduce RStudio.
+#' If NULL (the default), will use "running in".
+#'
 #' @param out.file Desired name of the citation report to be created if
 #' `output = "file"`. Default is "grateful-report" (without extension).
 #'
 #' @param bib.file Desired name for the BibTeX file containing packages references
 #' ("grateful-refs" by default).
 #'
+#' @param desc.path Optional. Path to the package DESCRIPTION file from which to
+#' parse the package dependencies (see `pkgs`).
+#' If NULL, will default to the working directory.
+#'
+#' @param skip.missing Logical. If FALSE (the default), will return an error if
+#' some package(s) are used somewhere in the project but they are not currently
+#' installed. If TRUE, will skip those missing packages, issuing a warning. Note
+#' such packages will thus not be included in the citation list, even though they
+#' might have been used in the project.
+#'
 #' @param ... Other parameters passed to [renv::dependencies()].
 #'
-#' @return If `output = "file"`, `cite_packages` will save two files in `out.dir`:
-#' a BibTeX file containing package references and a citation report with formatted
-#' citations. `cite_packages` will return the path to the citation report invisibly.
+#' @return If `output = "file"`, `cite_packages` will save a citation report
+#' in `out.dir` with formatted citations, and `cite_packages` will return the
+#' path to the citation report invisibly.
 #' If `output = "table"` or `output = "paragraph"`, `cite_packages` will return
 #' a table or paragraph with package citations suitable to be used
 #' within 'R Markdown' or 'Quarto' documents.
+#' A BibTeX file containing package references is saved in all cases in `out.dir`.
 #'
 #'
 #' @export
@@ -143,6 +171,11 @@
 #'
 #' # Cite R as well as user-provided packages
 #' cite_packages(pkgs = c("base", "renv", "remotes", "knitr"), out.dir = tempdir())
+#'
+#' # To change the language of the citation paragraph:
+#' cite_packages(output = "paragraph", out.dir = tempdir(),
+#'   text.start = "Para desarrollar este trabajo se utilizó",
+#'   text.pkgs = "y los siguientes paquetes")
 #'
 #'
 #' # To include citations in an R Markdown or Quarto file
@@ -169,8 +202,13 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           dependencies = FALSE,
                           include.RStudio = FALSE,
                           passive.voice = FALSE,
+                          text.start = NULL,
+                          text.pkgs = NULL,
+                          text.RStudio = NULL,
                           out.file = "grateful-report",
                           bib.file = "grateful-refs",
+                          desc.path = NULL,
+                          skip.missing = FALSE,
                           ...) {
 
   if (is.null(out.dir)) {
@@ -193,6 +231,8 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                            dependencies = dependencies,
                            bib.file = bib.file,
                            include.RStudio = include.RStudio,
+                           desc.path = desc.path,
+                           skip.missing = skip.missing,
                            ...)
 
 
@@ -205,7 +245,10 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                       out.dir = out.dir,
                       out.format = out.format,
                       include.RStudio = include.RStudio,
-                      passive.voice = passive.voice)
+                      passive.voice = passive.voice,
+                      text.start = text.start,
+                      text.pkgs = text.pkgs,
+                      text.RStudio = text.RStudio)
 
     message(paste0("\nCitation report available at ", rmd))
     return(rmd)  # return path to file
@@ -217,7 +260,10 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
 
     paragraph <- write_citation_paragraph(pkgs.df,
                                           include.RStudio = include.RStudio,
-                                          passive.voice = passive.voice)
+                                          passive.voice = passive.voice,
+                                          text.start = text.start,
+                                          text.pkgs = text.pkgs,
+                                          text.RStudio = text.RStudio)
     return(knitr::asis_output(paragraph))
 
   }

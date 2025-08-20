@@ -12,6 +12,8 @@ get_pkgs_info(
   dependencies = FALSE,
   bib.file = "grateful-refs",
   include.RStudio = FALSE,
+  desc.path = NULL,
+  skip.missing = FALSE,
   ...
 )
 }
@@ -21,7 +23,13 @@ within the project/folder (the default), or "Session" to include only packages
 used in the current session.
 Alternatively, \code{pkgs} can also be a character vector of package names to
 get citations for. To cite R as well as the given packages,
-include "base" in \code{pkgs} (see examples).}
+include "base" in \code{pkgs} (see examples).
+Finally, \code{pkgs} can be a character vector of \code{Depends}, \code{Imports}, \code{Suggests},
+\code{LinkingTo} and their combination, to obtain the dependencies of an R package
+as stated in its DESCRIPTION file. Note that in this case, package versions will
+be 'NA' unless required versions are stated in the DESCRIPTION file
+(e.g. 'testthat (>= 3.0.0)'), and package citations will use the information
+from installed versions of those packages in the user computer.}
 
 \item{out.dir}{Directory to save the BibTeX file with references.
 It is recommended to set \code{out.dir = getwd()}.}
@@ -42,6 +50,16 @@ If \code{TRUE}, will include all the packages that your used packages depend on.
 
 \item{include.RStudio}{Logical. If \code{TRUE}, adds a citation for the
 current version of RStudio.}
+
+\item{desc.path}{Optional. Path to the package DESCRIPTION file from which to
+parse the package dependencies (see \code{pkgs}).
+If NULL, will default to the working directory.}
+
+\item{skip.missing}{Logical. If FALSE (the default), will return an error if
+some package(s) are used somewhere in the project but they are not currently
+installed. If TRUE, will skip those missing packages, issuing a warning. Note
+such packages will thus not be included in the citation list, even though they
+might have been used in the project.}
 
 \item{...}{Other parameters passed to \code{\link[renv:dependencies]{renv::dependencies()}}.}
 }

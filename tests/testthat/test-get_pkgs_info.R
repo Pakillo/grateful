@@ -18,3 +18,13 @@ test_that("get_pkgs_info works", {
   expect_identical(info$pkg, c("grateful", "renv", "tidyverse", "utils"))
 
 })
+
+
+test_that("get_pkgs_info produces warning if skip.missing = TRUE", {
+
+  expect_warning(get_pkgs_info(pkgs = c("renv", "grateful", "utils"),
+                               out.dir = tempdir(),
+                               skip.missing = TRUE))
+
+
+})
