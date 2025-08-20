@@ -27,19 +27,29 @@ get_pkgs_info <- function(pkgs = "All",
                           bib.file = "grateful-refs",
                           include.RStudio = FALSE,
                           desc.path = NULL,
+                          skip.missing = FALSE,
                           ...) {
+
+  stopifnot(is.logical(skip.missing))
+  if (isTRUE(skip.missing)) {
+    warning("Setting 'skip.missing = TRUE': will issue a warning in case some package(s) are used in the project but not currently installed (hence their version/citation cannot be retrieved, and they will not be cited).",
+            call. = FALSE)
+    skip.missing <- "inherited"  # useful to manage downstream warnings in scan_packages and get_citations
+  }
 
   pkgs.df <- scan_packages(pkgs = pkgs,
                            omit = omit,
                            cite.tidyverse = cite.tidyverse,
                            dependencies = dependencies,
                            desc.path = desc.path,
+                           skip.missing = skip.missing,
                            ...)
 
   citekeys <- get_citations(pkgs.df$pkg,
                             out.dir = out.dir,
                             bib.file = bib.file,
-                            include.RStudio = include.RStudio)
+                            include.RStudio = include.RStudio,
+                            skip.missing = skip.missing)
 
   if (isTRUE(include.RStudio)) {
     citekeys <- citekeys[names(citekeys) != "rstudio"]

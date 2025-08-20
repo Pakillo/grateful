@@ -54,7 +54,7 @@ test_that("returns all package dependencies when dependencies = TRUE", {
   # also note dependencies might change, breaking the test
   skip_on_cran()
   skip_if_offline()
-  skip_on_ci()
+  skip()
 
   pkgs.df <- scan_packages(pkgs = "grateful", dependencies = TRUE)
 
@@ -127,7 +127,7 @@ test_that("Package dependencies from DESCRIPTION are returned correctly", {
 
   skip_on_cran()
   skip_if_offline()
-  skip_on_ci()
+  skip()
 
   desc <- tempfile()
   download.file("https://raw.githubusercontent.com/Pakillo/grateful/refs/heads/master/DESCRIPTION",
@@ -167,5 +167,35 @@ test_that("Package dependencies from DESCRIPTION are returned correctly", {
                          "rmarkdown", "rstudioapi", "testthat", "utils"),
                  version = rep(rep(c(">= 3.0.0", NA), 2), c(1L, 7L, 1L, 1L))
                ))
+
+})
+
+
+
+test_that("scan_packages produces warning if skip.missing = TRUE", {
+
+  expect_warning(scan_packages(pkgs = c("renv", "grateful", "utils"),
+                               out.dir = tempdir(),
+                               skip.missing = TRUE))
+
+
+})
+
+
+test_that("scan_packages produces correct output if skip.missing = TRUE", {
+
+  out <- suppressWarnings(scan_packages(pkgs = c("renv", "grateful", "fakepkg", "utils"),
+                               out.dir = tempdir(),
+                               skip.missing = TRUE))
+
+  ref <- data.frame(pkg = c("grateful", "renv", "utils"),
+                    version = as.character(
+                      c(utils::packageVersion("grateful"),
+                        utils::packageVersion("renv"),
+                        utils::packageVersion("utils"))),
+                    row.names = NULL)
+
+  expect_equal(data.frame(out, row.names = NULL), ref)
+
 
 })

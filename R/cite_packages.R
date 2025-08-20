@@ -133,6 +133,12 @@
 #' parse the package dependencies (see `pkgs`).
 #' If NULL, will default to the working directory.
 #'
+#' @param skip.missing Logical. If FALSE (the default), will return an error if
+#' some package(s) are used somewhere in the project but they are not currently
+#' installed. If TRUE, will skip those missing packages, issuing a warning. Note
+#' such packages will thus not be included in the citation list, even though they
+#' might have been used in the project.
+#'
 #' @param ... Other parameters passed to [renv::dependencies()].
 #'
 #' @return If `output = "file"`, `cite_packages` will save a citation report
@@ -202,6 +208,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                           out.file = "grateful-report",
                           bib.file = "grateful-refs",
                           desc.path = NULL,
+                          skip.missing = FALSE,
                           ...) {
 
   if (is.null(out.dir)) {
@@ -225,6 +232,7 @@ cite_packages <- function(output = c("file", "paragraph", "table", "citekeys"),
                            bib.file = bib.file,
                            include.RStudio = include.RStudio,
                            desc.path = desc.path,
+                           skip.missing = skip.missing,
                            ...)
 
 

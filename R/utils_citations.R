@@ -38,7 +38,31 @@ add_citekey <- function(pkg_name, citation) {
 
 # For a package, get the citation, remove special characters from the name,
 # then pass along the name and citation
-get_citation_and_citekey <- function(pkg_name) {
+get_citation_and_citekey <- function(pkg_name, skip.missing) {
   pkgname_clean <- gsub("[^[:alnum:]]", "", pkg_name)
-  return(add_citekey(pkgname_clean, utils::citation(pkg_name)))
+
+  if (isFALSE(skip.missing)) {
+    return(add_citekey(pkgname_clean, utils::citation(pkg_name)))
+  }
+
+  if (isTRUE(skip.missing)) {
+    # Use tryCatch to handle potential errors when retrieving citations from missing packages
+    # Will issue a warning (and return NULL) for each missing package
+    citation_obj <- tryCatch(
+      {utils::citation(pkg_name)},
+      error = function(e) {
+        warning(paste0("Could not retrieve citation for package '", pkg_name, "'."), call. = FALSE)
+        # Return NULL so this package is skipped
+        return(NULL)
+      })
+
+    # If a citation object was successfully retrieved
+    if (!is.null(citation_obj)) {
+      return(add_citekey(pkgname_clean, citation_obj))
+    } else {
+      # If citation_obj is NULL, return NULL to the lapply call
+      return(NULL)
+    }
+  }
+
 }

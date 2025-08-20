@@ -1,8 +1,10 @@
 # grateful 0.3.0
 
-* Now possible to scan and cite dependencies from a package DESCRIPTION file (#62).
+* Now possible to scan and cite dependencies from a package DESCRIPTION file (#62). Use `pkgs = c("Depends", "Imports", "Suggests", "LinkingTo")` or combinations of them to choose which dependencies to cite.
 
-* Now possible to customise the language of citation paragraphs (#55).
+* Now possible to customise the language of citation paragraphs (#55), thanks to new arguments to `cite_packages`: `text.start`, `text.pks` and `text.RStudio`.
+
+* New logical argument `skip.missing` allows the user to skip missing packages (those used somewhere in the project but not currently installed) #54.
 
 # grateful 0.2.12
 

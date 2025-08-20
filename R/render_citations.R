@@ -47,7 +47,8 @@ render_citations <- function(Rmd.file = NULL,
     output_format = output,
     output_file = paste0(out.name, ".", out.format),
     output_dir = out.dir,
-    output_options = output.options
+    output_options = output.options,
+    quiet = TRUE
   )
 
   out.file <- file.path(out.dir, paste0(out.name, ".", out.format))

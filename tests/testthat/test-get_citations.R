@@ -8,6 +8,16 @@ test_that("get_citations returns error if wrong arguments provided", {
 })
 
 
+test_that("get_citations produces warning if skip.missing = TRUE", {
+
+  expect_warning(get_citations(pkgs = c("renv", "grateful", "utils"),
+                               out.dir = tempdir(),
+                               skip.missing = TRUE))
+
+
+})
+
+
 test_that("get_citations works", {
   citkeys <- get_citations("grateful", out.dir = tempdir())
   expect_identical(citkeys, list(grateful = "grateful"))
@@ -35,3 +45,7 @@ test_that("get_citations works", {
 #   citkeys <- get_citations(c("renv"), include.RStudio = TRUE, out.dir = tempdir())
 #   expect_identical(citkeys, c("renv", "rstudio"))
 # })
+
+
+
+

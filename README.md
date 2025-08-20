@@ -172,7 +172,7 @@ for more details.
 
 ## Frequently Asked Questions
 
-### Getting just a table with used packages and versions
+### 1. Getting just a table with used packages and versions
 
 Use `scan_packages`
 
@@ -193,7 +193,7 @@ scan_packages()
 12    visreg   2.7.0
 ```
 
-### Producing a BibTeX file with package references
+### 2. Producing a BibTeX file with package references
 
 If you just want to get all package references in a BibTeX file, you can
 call `get_pkgs_info()`. Besides printing a table with package info, it
@@ -210,7 +210,7 @@ get_pkgs_info(pkgs = c("remotes", "renv"), out.dir = getwd())
 #> 2    renv   1.1.5     renv
 ```
 
-### Using grateful with the tidyverse
+### 3. Using grateful with the tidyverse
 
 If you use one or several packages from the
 [tidyverse](https://www.tidyverse.org), you can choose to [cite the
@@ -221,7 +221,7 @@ rather than the individual packages:
 cite_packages(cite.tidyverse = TRUE)
 ```
 
-### Including package dependencies
+### 4. Including package dependencies
 
 Most R packages also depend on other packages. To include those package
 dependencies in your citations, rather than just the packages you called
@@ -231,7 +231,7 @@ directly, use `dependencies = TRUE`:
 cite_packages(dependencies = TRUE)
 ```
 
-### What about external software dependencies?
+### 5. What about external software dependencies?
 
 Some R packages wrap core external software that should perhaps be cited
 too. For example, [`rjags`](https://cran.r-project.org/package=rjags) is
@@ -246,7 +246,7 @@ remotes::system_requirements(package = c("rjags"), os = "ubuntu-20.04")
 #> [1] "apt-get install -y jags"
 ```
 
-### What software to cite?
+### 6. What software to cite?
 
 Citing software is pretty much like citing papers. Authors have to
 decide what to cite in each case, which depends on research context.
@@ -305,7 +305,7 @@ research/analysis performed, I think it is good idea to record the
 entire computational environment elsewhere, e.g. using `sessionInfo()`
 or `sessioninfo::session_info()`.
 
-### Some packages include several citations
+### 7. Some packages include several citations
 
 Some packages include more than one citation
 (e.g. [knitr](https://cran.r-project.org/package=knitr/citation.html),
@@ -340,7 +340,7 @@ we want to cite:
 When rendering the Rmarkdown or Quarto document, only the chosen
 references will be cited.
 
-### Removing unused packages
+### 8. Removing unused packages
 
 Before running `grateful` you might want to run
 [`lintr::unused_import_linter`](https://lintr.r-lib.org/reference/unused_import_linter.html),
@@ -348,25 +348,27 @@ Before running `grateful` you might want to run
 or [annotater](https://cran.r-project.org/package=annotater) to check
 for unused packages before citing them.
 
-### Error: there is no package called…
+### 9. Error: there is no package called…
 
-If getting an error like “Error in (function (pkg, lib.loc = NULL):
-there is no package called…”, that means that some of your scripts is
-loading a package that is no longer available in your computer, so
-{grateful} cannot grab its citation. To fix this, there are several
-options. First, you could omit that package (or those packages, if more
-than one) from {grateful} citations using
-`cite_packages(omit = c("package1", "package2")`. Or you could set a
-`.renvignore` file to ignore particular files or folders (see
-instructions
+If getting an error like
+`Error in (function (pkg, lib.loc = NULL): there is no package called...`,
+that means that some of your scripts is loading a package that is no
+longer available in your computer, so {grateful} cannot grab its
+citation. To fix this, there are several options. First, you could omit
+that package (or those packages, if more than one) from {grateful}
+citations using `cite_packages(omit = c("package1", "package2")`.
+Second, you could set a `.renvignore` file to ignore particular files or
+folders (see instructions
 [here](https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files)).
-Alternatively, try [checking if that package is still
+Third, try [checking if that package is still
 needed](https://pakillo.github.io/grateful/index.html#removing-unused-packages)
 for your project and you want to cite it; otherwise remove or comment
 that line where the package is loaded. If you still use and want to cite
-that package, install it, and then run `cite_packages` again.
+that package, install it, and then run `cite_packages` again. Finally,
+you could use the argument `skip.missing = TRUE` to skip those missing
+packages from the citation list.
 
-### Projects with large number of packages or files
+### 10. Projects with large number of packages or files
 
 When a project includes many used packages (or files), `renv` may issue
 a warning. Use `options(renv.config.dependencies.limit = 10000)` to
@@ -375,7 +377,7 @@ Alternatively, use `.renvignore` to ignore certain files or folders (see
 `renv`
 [help](https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files)).
 
-### Separate bibliography for R packages
+### 11. Separate bibliography for R packages
 
 [Here](https://github.com/Pakillo/grateful/tree/master/Rmd_Quarto/separate_bibliographies)
 are example
@@ -386,7 +388,7 @@ documents showing how to generate a separate bibliography for R packages
 (different from the main bibliography). This requires installing the
 [`multibib`](https://github.com/pandoc-ext/multibib) extension first.
 
-### Citing the dependencies of an R package
+### 12. Citing the dependencies of an R package
 
 To cite the dependencies of an R package as stated in its DESCRIPTION
 file, use `pkgs = c("Depends", "Imports", "Suggests", "LinkingTo")` or a
@@ -424,7 +426,7 @@ head(out)
 #> 6       cli    <NA>       @cli
 ```
 
-### Changing the language of the citation paragraph
+### 13. Changing the language of the citation paragraph
 
 `cite_packages` includes a few arguments (`text.start`, `text.pkgs` and
 `text.RStudio`) to allow the user to customise the language of the
@@ -450,7 +452,7 @@ cite_packages(output = "paragraph", out.dir = ".",
 
 `"Wir verwendeten die R version 4.5.1 [@base] und die folgenden R-Pakete: badger v. 0.2.5 [@badger], desc v. 1.4.3 [@desc], knitr v. 1.50 [@knitr2014; @knitr2015; @knitr2025], mgcv v. 1.9.3 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017], pkgdown v. 2.1.3 [@pkgdown], remotes v. 2.5.0 [@remotes], renv v. 1.1.5 [@renv], rmarkdown v. 2.29 [@rmarkdown2018; @rmarkdown2020; @rmarkdown2024], testthat v. 3.2.3 [@testthat], tidyverse v. 2.0.0 [@tidyverse], visreg v. 2.7.0 [@visreg]."`
 
-### Citing ‘grateful’
+### 14. Citing ‘grateful’
 
 ``` r
 citation("grateful")

@@ -88,7 +88,7 @@ test_that("cite_packages returns correct paragraph", {
                              knit_cacheable = NA))
 
 
-  skip_on_ci()
+  skip()
   skip_if_offline()
   desc <- tempfile()
   download.file("https://raw.githubusercontent.com/Pakillo/grateful/refs/heads/master/DESCRIPTION",

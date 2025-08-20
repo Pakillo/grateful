@@ -17,6 +17,7 @@ scan_packages <- function(pkgs = "All",
                           cite.tidyverse = TRUE,
                           dependencies = FALSE,
                           desc.path = NULL,
+                          skip.missing = FALSE,
                           ...) {
 
   stopifnot(is.character(pkgs))
@@ -28,6 +29,19 @@ scan_packages <- function(pkgs = "All",
     desc.path <- getwd()
   }
   stopifnot(is.character(desc.path))
+
+  ## Manage warnings when scan_packages is called from get_pkgs_info ("inherited")
+  if (isTRUE(skip.missing)) {
+    warning("Setting 'skip.missing = TRUE': will issue a warning in case some package(s) are used in the project but not currently installed (hence their version/citation cannot be retrieved, and they will not be cited).",
+            call. = FALSE)
+  }
+  if (skip.missing == "inherited") {
+    skip.missing <- TRUE
+  }
+  stopifnot(is.logical(skip.missing))
+
+
+
 
   pkgnames <- pkgs
 
@@ -67,7 +81,6 @@ scan_packages <- function(pkgs = "All",
 
 
   ## If 'pkgs' is not a vector of pkg names...
-
   if ((length(pkgs) == 1 && pkgs == "All") ||
       (length(pkgs) == 1 && pkgs == "Session")) {
 
@@ -75,14 +88,12 @@ scan_packages <- function(pkgs = "All",
     base_pkgs <- utils::sessionInfo()$basePkgs
     pkgnames <- c("base", setdiff(pkgnames, base_pkgs))
 
-
     # Omit packages
     if (!is.null(omit)) {
       stopifnot(is.character(omit))  # omit must be a character vector of pkg names
       pkgnames <- pkgnames[!pkgnames %in% omit]
     }
   }
-
 
 
   # Important to sort pkgnames to match versions later
@@ -94,7 +105,7 @@ scan_packages <- function(pkgs = "All",
   # Some people may not have the 'tidyverse' package installed locally
   # First, get versions for all packages except 'tidyverse'
   pkgs.notidy <- pkgnames[pkgnames != "tidyverse"]
-  versions <- pkgVersion(pkgs.notidy)
+  versions <- pkgVersion(pkgs.notidy, skip.missing = skip.missing)
   versions <- unlist(lapply(versions, as.character))
 
   # Then add 'tidyverse' version
@@ -107,7 +118,17 @@ scan_packages <- function(pkgs = "All",
     versions <- versions[sort(names(versions))]
   }
 
-  pkgs.df <- data.frame(pkg = pkgnames, version = versions, row.names = NULL)
+  ## Merge and prepare output
+  pkgnames.df <- data.frame(pkg = pkgnames)
+  versions.df <- data.frame(pkg = names(versions), version = versions, row.names = NULL)
+  pkgs.df <- merge(pkgnames.df, versions.df, all.x = TRUE)
+
+  if (isTRUE(skip.missing)) {
+    # message("Packages ", paste0(pkgs.df$pkg[is.na(pkgs.df$version)], collapse = ", "),
+    #         " have been skipped as they are unavailable.")
+    pkgs.df <- pkgs.df[!is.na(pkgs.df$version), ]
+
+  }
 
   ## If listing packages from DESCRIPTION, use those versions
   if (exists("pkgdeps")) {
@@ -121,4 +142,28 @@ scan_packages <- function(pkgs = "All",
 }
 
 
-pkgVersion <- Vectorize(utils::packageVersion, SIMPLIFY = FALSE)
+
+
+
+# function to return the package version
+pkgVers <- function(pkg_name, skip.missing) {
+
+  if (isFALSE(skip.missing)) {
+    return(utils::packageVersion(pkg_name))
+  }
+
+  if (isTRUE(skip.missing)) {
+    # Use tryCatch to handle potential errors when retrieving versions from missing packages
+    # Will issue a warning (and return NULL) for each missing package
+    # For available packages will return version
+    pkg_version <- tryCatch(
+      {utils::packageVersion(pkg_name)},
+      error = function(e) {
+        warning(paste0("Could not retrieve version for package '", pkg_name, "'."), call. = FALSE)
+        # Return NULL so this package is skipped
+        return(NULL)
+      })
+  }
+}
+
+pkgVersion <- Vectorize({pkgVers}, vectorize.args = "pkg_name", SIMPLIFY = FALSE)

@@ -10,6 +10,7 @@ scan_packages(
   cite.tidyverse = TRUE,
   dependencies = FALSE,
   desc.path = NULL,
+  skip.missing = FALSE,
   ...
 )
 }
@@ -41,6 +42,12 @@ If \code{TRUE}, will include all the packages that your used packages depend on.
 \item{desc.path}{Optional. Path to the package DESCRIPTION file from which to
 parse the package dependencies (see \code{pkgs}).
 If NULL, will default to the working directory.}
+
+\item{skip.missing}{Logical. If FALSE (the default), will return an error if
+some package(s) are used somewhere in the project but they are not currently
+installed. If TRUE, will skip those missing packages, issuing a warning. Note
+such packages will thus not be included in the citation list, even though they
+might have been used in the project.}
 
 \item{...}{Other parameters passed to \code{\link[renv:dependencies]{renv::dependencies()}}.}
 }
