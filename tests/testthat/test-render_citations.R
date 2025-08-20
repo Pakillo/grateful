@@ -23,11 +23,6 @@ test_that("render_citations returns a report", {
   expect_equal(rendcit, file.path(tempdir(), "grateful-report.docx"))
   expect_true(file.exists(file.path(tempdir(), "grateful-report.docx")))
 
-  #pdf
-  rendcit <- render_citations(Rmd.file = rmd, out.dir = tempdir(), out.format = "pdf")
-  expect_equal(rendcit, file.path(tempdir(), "grateful-report.pdf"))
-  expect_true(file.exists(file.path(tempdir(), "grateful-report.pdf")))
-
   #md
   rendcit <- render_citations(Rmd.file = rmd, out.dir = tempdir(), out.format = "md")
   expect_equal(rendcit, file.path(tempdir(), "grateful-report.md"))
@@ -42,5 +37,13 @@ test_that("render_citations returns a report", {
   rendcit <- render_citations(Rmd.file = rmd, out.dir = tempdir(), out.format = "tex-document")
   expect_equal(rendcit, file.path(tempdir(), "grateful-report.tex"))
   expect_true(file.exists(file.path(tempdir(), "grateful-report.tex")))
+
+
+  skip_on_ci()
+
+  #pdf
+  rendcit <- render_citations(Rmd.file = rmd, out.dir = tempdir(), out.format = "pdf")
+  expect_equal(rendcit, file.path(tempdir(), "grateful-report.pdf"))
+  expect_true(file.exists(file.path(tempdir(), "grateful-report.pdf")))
 
 })
