@@ -7,15 +7,20 @@
 
 [![](https://www.r-pkg.org/badges/version/grateful)](https://cran.r-project.org/package=grateful)
 ![](https://img.shields.io/github/r-package/v/Pakillo/grateful)
-<a href="https://diffify.com/R/grateful" target="_blank"><img src="https://diffify.com/diffify-badge.svg" alt="The diffify page for the R package grateful" style="width: 100px; max-width: 100%;"></a>
+[![r-universe
+version](https://pakillo.r-universe.dev/grateful/badges/version)](https://pakillo.r-universe.dev/grateful)
+[![r-universe
+status](https://pakillo.r-universe.dev/grateful/badges/checks)](https://pakillo.r-universe.dev/grateful)
 [![R-CMD-check](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/Pakillo/grateful/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful)
+<a href="https://diffify.com/R/grateful" target="_blank"><img src="https://diffify.com/diffify-badge.svg" alt="The diffify page for the R package grateful" style="width: 100px; max-width: 100%;"></a>
 [![](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/grateful)](https://cran.r-project.org/package=grateful)
+[![](https://cranlogs.r-pkg.org/badges/grateful)](https://cran.r-project.org/package=grateful)
 <!-- 
 [![HitCount since 2024-06-05](https://hits.dwyl.com/Pakillo/grateful.svg?style=flat-square)](https://hits.dwyl.com/Pakillo/grateful)
 [![HitCount since 2024-06-05](https://hits.dwyl.com/Pakillo/grateful.svg?style=flat-square&show=unique)](https://hits.dwyl.com/Pakillo/grateful)
