@@ -8,7 +8,7 @@ message: 'To cite package "grateful" in publications use:'
 type: software
 license: MIT
 title: 'grateful: Facilitate Citation of R Packages'
-version: 0.2.12
+version: 0.3.0
 identifiers:
 - type: doi
   value: 10.32614/CRAN.package.grateful
@@ -65,6 +65,23 @@ references:
     address: Vienna, Austria
   year: '2025'
   version: '>= 3.0.0'
+- type: software
+  title: desc
+  abstract: 'desc: Manipulate DESCRIPTION Files'
+  notes: Imports
+  url: https://desc.r-lib.org/
+  repository: https://CRAN.R-project.org/package=desc
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  - family-names: Müller
+    given-names: Kirill
+  - family-names: Hester
+    given-names: Jim
+    email: james.f.hester@gmail.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.desc
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -192,6 +209,19 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2025'
+- type: software
+  title: curl
+  abstract: 'curl: A Modern and Flexible Web Client for R'
+  notes: Suggests
+  url: https://jeroen.r-universe.dev/curl
+  repository: https://CRAN.R-project.org/package=curl
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroenooms@gmail.com
+    orcid: https://orcid.org/0000-0002-4035-0289
+  year: '2025'
+  doi: 10.32614/CRAN.package.curl
 - type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
