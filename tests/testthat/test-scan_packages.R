@@ -54,7 +54,6 @@ test_that("returns all package dependencies when dependencies = TRUE", {
   # also note dependencies might change, breaking the test
   skip_on_cran()
   skip_if_offline()
-  skip()
 
   pkgs.df <- scan_packages(pkgs = "grateful", dependencies = TRUE)
 
@@ -127,7 +126,6 @@ test_that("Package dependencies from DESCRIPTION are returned correctly", {
 
   skip_on_cran()
   skip_if_offline()
-  skip()
 
   desc <- tempfile()
   download.file("https://raw.githubusercontent.com/Pakillo/grateful/refs/heads/master/DESCRIPTION",
