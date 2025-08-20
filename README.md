@@ -10,7 +10,7 @@
 <a href="https://diffify.com/R/grateful" target="_blank"><img src="https://diffify.com/diffify-badge.svg" alt="The diffify page for the R package grateful" style="width: 100px; max-width: 100%;"></a>
 [![R-CMD-check](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pakillo/grateful/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/Pakillo/grateful/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful?branch=master)
+coverage](https://codecov.io/gh/Pakillo/grateful/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/grateful)
 [![](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
