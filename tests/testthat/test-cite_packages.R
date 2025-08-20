@@ -138,7 +138,7 @@ test_that("cite_packages returns correct paragraph with customised text", {
 test_that("cite_packages returns correct Rmd", {
 
   skip_on_cran()
-  skip_on_ci()
+  # skip_on_ci()
 
   cite <- cite_packages(
     output = "file",
