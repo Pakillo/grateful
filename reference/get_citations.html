@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">grateful</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.12</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,8 @@
 <span>  pkgs <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  out.dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  bib.file <span class="op">=</span> <span class="st">"grateful-refs"</span>,</span>
-<span>  include.RStudio <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  include.RStudio <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  skip.missing <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -68,6 +69,14 @@ the references. It is recommended to set <code>out.dir = getwd()</code>.</p></dd
 <dt id="arg-include-rstudio">include.RStudio<a class="anchor" aria-label="anchor" href="#arg-include-rstudio"></a></dt>
 <dd><p>Logical. If <code>TRUE</code>, adds a citation for the
 current version of RStudio.</p></dd>
+
+
+<dt id="arg-skip-missing">skip.missing<a class="anchor" aria-label="anchor" href="#arg-skip-missing"></a></dt>
+<dd><p>Logical. If FALSE (the default), will return an error if
+some package(s) are used somewhere in the project but they are not currently
+installed. If TRUE, will skip those missing packages, issuing a warning. Note
+such packages will thus not be included in the citation list, even though they
+might have been used in the project.</p></dd>
 
 </dl></div>
     <div class="section level2">

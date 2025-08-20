@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">grateful</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.12</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +32,12 @@
       <small>Source: <a href="https://github.com/Pakillo/grateful/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.0" id="grateful-030">grateful 0.3.0<a class="anchor" aria-label="anchor" href="#grateful-030"></a></h2>
+<ul><li><p>Now possible to scan and cite dependencies from a package DESCRIPTION file (<a href="https://github.com/Pakillo/grateful/issues/62" class="external-link">#62</a>). Use <code>pkgs = c("Depends", "Imports", "Suggests", "LinkingTo")</code> or combinations of them to choose which dependencies to cite.</p></li>
+<li><p>Now possible to customise the language of citation paragraphs (<a href="https://github.com/Pakillo/grateful/issues/55" class="external-link">#55</a>), thanks to new arguments to <code>cite_packages</code>: <code>text.start</code>, <code>text.pks</code> and <code>text.RStudio</code>.</p></li>
+<li><p>New logical argument <code>skip.missing</code> allows the user to skip missing packages (those used somewhere in the project but not currently installed) <a href="https://github.com/Pakillo/grateful/issues/54" class="external-link">#54</a>.</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.12" id="grateful-0212">grateful 0.2.12<a class="anchor" aria-label="anchor" href="#grateful-0212"></a></h2><p class="text-muted">CRAN release: 2025-04-30</p>
 <ul><li>Fix generation of citation keys under R 4.5.0 (issue <a href="https://github.com/Pakillo/grateful/issues/59" class="external-link">#59</a>).</li>

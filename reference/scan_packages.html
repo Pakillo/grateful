@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">grateful</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.12</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,8 @@
 <span>  omit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grateful"</span><span class="op">)</span>,</span>
 <span>  cite.tidyverse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  dependencies <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  desc.path <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  skip.missing <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -58,7 +60,13 @@ within the project/folder (the default), or "Session" to include only packages
 used in the current session.
 Alternatively, <code>pkgs</code> can also be a character vector of package names to
 get citations for. To cite R as well as the given packages,
-include "base" in <code>pkgs</code> (see examples).</p></dd>
+include "base" in <code>pkgs</code> (see examples).
+Finally, <code>pkgs</code> can be a character vector of <code>Depends</code>, <code>Imports</code>, <code>Suggests</code>,
+<code>LinkingTo</code> and their combination, to obtain the dependencies of an R package
+as stated in its DESCRIPTION file. Note that in this case, package versions will
+be 'NA' unless required versions are stated in the DESCRIPTION file
+(e.g. 'testthat (&gt;= 3.0.0)'), and package citations will use the information
+from installed versions of those packages in the user computer.</p></dd>
 
 
 <dt id="arg-omit">omit<a class="anchor" aria-label="anchor" href="#arg-omit"></a></dt>
@@ -76,6 +84,20 @@ of the 'tidyverse', as recommended by the tidyverse team.</p></dd>
 <dt id="arg-dependencies">dependencies<a class="anchor" aria-label="anchor" href="#arg-dependencies"></a></dt>
 <dd><p>Logical. Include the dependencies of your used packages?
 If <code>TRUE</code>, will include all the packages that your used packages depend on.</p></dd>
+
+
+<dt id="arg-desc-path">desc.path<a class="anchor" aria-label="anchor" href="#arg-desc-path"></a></dt>
+<dd><p>Optional. Path to the package DESCRIPTION file from which to
+parse the package dependencies (see <code>pkgs</code>).
+If NULL, will default to the working directory.</p></dd>
+
+
+<dt id="arg-skip-missing">skip.missing<a class="anchor" aria-label="anchor" href="#arg-skip-missing"></a></dt>
+<dd><p>Logical. If FALSE (the default), will return an error if
+some package(s) are used somewhere in the project but they are not currently
+installed. If TRUE, will skip those missing packages, issuing a warning. Note
+such packages will thus not be included in the citation list, even though they
+might have been used in the project.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
