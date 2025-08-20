@@ -127,7 +127,11 @@ scan_packages <- function(pkgs = "All",
     # message("Packages ", paste0(pkgs.df$pkg[is.na(pkgs.df$version)], collapse = ", "),
     #         " have been skipped as they are unavailable.")
     pkgs.df <- pkgs.df[!is.na(pkgs.df$version), ]
+  }
 
+  if (nrow(pkgs.df) == 0) {
+    message("No packages detected.")
+    return(data.frame(pkg = character(0), version = character(0)))
   }
 
   ## If listing packages from DESCRIPTION, use those versions
