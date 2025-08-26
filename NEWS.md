@@ -8,6 +8,8 @@
 
 * New logical argument `skip.missing` allows the user to skip missing packages (those used somewhere in the project but not currently installed) #54.
 
+* Slow down requests when querying dependencies for a large number of packages #61.
+
 
 # grateful 0.2.12
 

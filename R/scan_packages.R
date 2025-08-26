@@ -75,7 +75,22 @@ scan_packages <- function(pkgs = "All",
 
   # Include recursive dependencies?
   if (isTRUE(dependencies)) {
-    pkgnames <- remotes::package_deps(pkgnames)$package
+    if (length(pkgnames) <= 20) {
+      pkgnames <- remotes::package_deps(pkgnames)$package
+    } else {
+      # If more than 20 pkgs, introduce Sys.sleep to avoid github block (#61)
+      message("Obtaining package dependencies...")
+      # https://stackoverflow.com/a/7060331
+      block  <- rep(1:ceiling(length(pkgnames)/20), each = 20)[1:length(pkgnames)]
+      pkg.list <- split(pkgnames, block)
+      dep.list <- lapply(pkg.list,
+                         function(x) {
+                           Sys.sleep(1)
+                           remotes::package_deps(x)$package
+                         }
+      )
+      pkgnames <- unique(unlist(dep.list))
+    }
   }
 
 
