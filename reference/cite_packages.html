@@ -119,14 +119,17 @@ should instead be defined in the YAML metadata of the document
 
 <dt id="arg-pkgs">pkgs<a class="anchor" aria-label="anchor" href="#arg-pkgs"></a></dt>
 <dd><p>Character. Either "All" to include all packages used in scripts
-within the project/folder (the default), or "Session" to include only packages
-used in the current session.
+within the project/folder (the default), "Session" to include only packages
+used in the current session, or the path to an R script (including <code>.R</code> extension),
+'Rmarkdown' (<code>.Rmd</code>) or 'Quarto' document (<code>qmd</code>) to scan only the packages used
+in that single script or document.
 Alternatively, <code>pkgs</code> can also be a character vector of package names to
 get citations for. To cite R as well as the given packages,
 include "base" in <code>pkgs</code> (see examples).
 Finally, <code>pkgs</code> can be a character vector of <code>Depends</code>, <code>Imports</code>, <code>Suggests</code>,
 <code>LinkingTo</code> and their combination, to obtain the dependencies of an R package
-as stated in its DESCRIPTION file. Note that in this case, package versions will
+as stated in its DESCRIPTION file (see <code>desc.path</code>).
+Note that in this case, package versions will
 be 'NA' unless required versions are stated in the DESCRIPTION file
 (e.g. 'testthat (&gt;= 3.0.0)'), and package citations will use the information
 from installed versions of those packages in the user computer.</p></dd>

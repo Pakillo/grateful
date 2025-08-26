@@ -35,6 +35,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="grateful-030">grateful 0.3.0<a class="anchor" aria-label="anchor" href="#grateful-030"></a></h2>
 <ul><li><p>Now possible to scan and cite dependencies from a package DESCRIPTION file (<a href="https://github.com/Pakillo/grateful/issues/62" class="external-link">#62</a>). Use <code>pkgs = c("Depends", "Imports", "Suggests", "LinkingTo")</code> or combinations of them to choose which dependencies to cite.</p></li>
+<li><p>Now possible to scan and cite dependencies from a single R script, ‘Rmarkdown’ or ‘Quarto’ document <a href="https://github.com/Pakillo/grateful/issues/65" class="external-link">#65</a>. Just provide the path to the file to the <code>pkgs</code> argument.</p></li>
 <li><p>Now possible to customise the language of citation paragraphs (<a href="https://github.com/Pakillo/grateful/issues/55" class="external-link">#55</a>), thanks to new arguments to <code>cite_packages</code>: <code>text.start</code>, <code>text.pks</code> and <code>text.RStudio</code>.</p></li>
 <li><p>New logical argument <code>skip.missing</code> allows the user to skip missing packages (those used somewhere in the project but not currently installed) <a href="https://github.com/Pakillo/grateful/issues/54" class="external-link">#54</a>.</p></li>
 </ul></div>
