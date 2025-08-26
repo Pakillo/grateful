@@ -56,13 +56,23 @@ test_that("returns all package dependencies when dependencies = TRUE", {
 
   pkgs.df <- scan_packages(pkgs = "grateful", dependencies = TRUE)
 
-  expect_identical(pkgs.df$pkg,
-                   c("R6", "base64enc", "bslib", "cachem", "digest", "evaluate",
-                     "fastmap", "fontawesome", "fs", "glue", "grateful",
-                     "highr", "htmltools", "jquerylib", "knitr", "lifecycle",
-                     "memoise", "mime", "rappdirs", "remotes", "renv",
-                     "rmarkdown", "sass", "tidyverse", "tinytex", "xfun", "yaml")
-                   )
+  deps <- c("R6", "base64enc", "bslib", "cachem", "digest", "evaluate",
+            "fastmap", "fontawesome", "fs", "glue", "grateful",
+            "highr", "htmltools", "jquerylib", "knitr", "lifecycle",
+            "memoise", "mime", "rappdirs", "remotes", "renv",
+            "rmarkdown", "sass", "tidyverse", "tinytex", "xfun", "yaml")
+
+  expect_identical(pkgs.df$pkg, deps)
+
+
+  ## Test with >20 pkgs
+  pkgs.df <- suppressWarnings(
+    scan_packages(pkgs = deps, dependencies = TRUE, skip.missing = TRUE))
+
+  expect_true(is.data.frame(pkgs.df))
+  expect_equal(names(pkgs.df), c("pkg", "version"))
+  expect_true(nrow(pkgs.df) > 30)
+  expect_true("curl" %in% pkgs.df$pkg)
 
 })
 
