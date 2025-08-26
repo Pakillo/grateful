@@ -54,6 +54,14 @@ scan_packages <- function(pkgs = "All",
     pkgnames <- names(utils::sessionInfo()$otherPkgs)
   }
 
+  # If 'pkgs' is a path to an R script, Rmd or qmd, scan only pkgs there.
+  # In the unfortunate coincidence that the name of a single package coincides with
+  # the name of an existing R/Rmd/qmd file (eg. 'lambda.R'), priority will be given to file
+  if (length(pkgs) == 1 && is_file(pkgs)) {
+    pkgnames <- unique(renv::dependencies(path = pkgs, progress = FALSE, ...)$Package)
+  }
+
+
   # If reading pkg dependencies from DESCRIPTION file
   if (any(c("Depends", "Imports", "Suggests", "LinkingTo") %in% pkgs)) {
     # pkgnames <- remotes::local_package_deps(dependencies = pkgs)
@@ -81,28 +89,30 @@ scan_packages <- function(pkgs = "All",
 
 
   ## If 'pkgs' is not a vector of pkg names...
-  if ((length(pkgs) == 1 && pkgs == "All") ||
-      (length(pkgs) == 1 && pkgs == "Session")) {
+  if (length(pkgs) == 1) {
+    if (pkgs == "All" || pkgs == "Session" || is_file(pkgs)) {
 
-    # Only cite base R once
-    base_pkgs <- utils::sessionInfo()$basePkgs
-    pkgnames <- c("base", setdiff(pkgnames, base_pkgs))
+      # Only cite base R once
+      base_pkgs <- utils::sessionInfo()$basePkgs
+      pkgnames <- c("base", setdiff(pkgnames, base_pkgs))
 
-    # Omit packages
-    if (!is.null(omit)) {
-      stopifnot(is.character(omit))  # omit must be a character vector of pkg names
-      pkgnames <- pkgnames[!pkgnames %in% omit]
+      # Omit packages
+      if (!is.null(omit)) {
+        stopifnot(is.character(omit))  # omit must be a character vector of pkg names
+        pkgnames <- pkgnames[!pkgnames %in% omit]
+
+      }
     }
   }
 
 
-  # Important to sort pkgnames to match versions later
+  # Sort pkgnames
   pkgnames <- sort(pkgnames)
 
 
   ## Get package versions
 
-  # Some people may not have the 'tidyverse' package installed locally
+  # Some users may not have the 'tidyverse' package installed locally
   # First, get versions for all packages except 'tidyverse'
   pkgs.notidy <- pkgnames[pkgnames != "tidyverse"]
   versions <- pkgVersion(pkgs.notidy, skip.missing = skip.missing)
@@ -120,7 +130,7 @@ scan_packages <- function(pkgs = "All",
 
   ## Merge and prepare output
   pkgnames.df <- data.frame(pkg = pkgnames)
-  versions.df <- data.frame(pkg = names(versions), version = versions, row.names = NULL)
+  versions.df <- data.frame(pkg = names(versions), version = versions)
   pkgs.df <- merge(pkgnames.df, versions.df, all.x = TRUE)
 
   if (isTRUE(skip.missing)) {
@@ -146,7 +156,15 @@ scan_packages <- function(pkgs = "All",
 }
 
 
-
+is_file <- function(path) {
+  stopifnot(is.character(path))
+  if (file.exists(path) && grepl("\\.r$|\\.rmd$|\\.qmd$", tolower(basename(path)))) {
+    out <- TRUE
+  } else {
+    out <- FALSE
+  }
+  out
+}
 
 
 # function to return the package version

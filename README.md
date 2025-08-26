@@ -366,7 +366,7 @@ Second, you could set a `.renvignore` file to ignore particular files or
 folders (see instructions
 [here](https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files)).
 Third, try [checking if that package is still
-needed](https://pakillo.github.io/grateful/index.html#removing-unused-packages)
+needed](https://pakillo.github.io/grateful/index.html#id_8-removing-unused-packages)
 for your project and you want to cite it; otherwise remove or comment
 that line where the package is loaded. If you still use and want to cite
 that package, install it, and then run `cite_packages` again. Finally,

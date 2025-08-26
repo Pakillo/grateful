@@ -16,14 +16,17 @@ scan_packages(
 }
 \arguments{
 \item{pkgs}{Character. Either "All" to include all packages used in scripts
-within the project/folder (the default), or "Session" to include only packages
-used in the current session.
+within the project/folder (the default), "Session" to include only packages
+used in the current session, or the path to an R script (including \code{.R} extension),
+'Rmarkdown' (\code{.Rmd}) or 'Quarto' document (\code{qmd}) to scan only the packages used
+in that single script or document.
 Alternatively, \code{pkgs} can also be a character vector of package names to
 get citations for. To cite R as well as the given packages,
 include "base" in \code{pkgs} (see examples).
 Finally, \code{pkgs} can be a character vector of \code{Depends}, \code{Imports}, \code{Suggests},
 \code{LinkingTo} and their combination, to obtain the dependencies of an R package
-as stated in its DESCRIPTION file. Note that in this case, package versions will
+as stated in its DESCRIPTION file (see \code{desc.path}).
+Note that in this case, package versions will
 be 'NA' unless required versions are stated in the DESCRIPTION file
 (e.g. 'testthat (>= 3.0.0)'), and package citations will use the information
 from installed versions of those packages in the user computer.}
