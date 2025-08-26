@@ -17,8 +17,7 @@ test_that("scan_packages return correct output", {
                     version = as.character(
                       c(utils::packageVersion("grateful"),
                         utils::packageVersion("renv"),
-                        utils::packageVersion("utils"))),
-                    row.names = NULL)
+                        utils::packageVersion("utils"))))
 
   expect_equal(out, ref)
 
@@ -190,10 +189,61 @@ test_that("scan_packages produces correct output if skip.missing = TRUE", {
                     version = as.character(
                       c(utils::packageVersion("grateful"),
                         utils::packageVersion("renv"),
-                        utils::packageVersion("utils"))),
-                    row.names = NULL)
+                        utils::packageVersion("utils"))))
 
   expect_equal(data.frame(out, row.names = NULL), ref)
+
+
+})
+
+
+test_that("scan_packages produces correct output when scanning a single file", {
+
+  skip_on_cran()
+  skip_if_offline()
+
+  ## R script
+
+  script <- tempfile(fileext = ".R")
+  download.file("https://raw.githubusercontent.com/Pakillo/grateful/refs/heads/master/R/scan_packages.R",
+                destfile = script, quiet = TRUE, mode = "wb")
+
+  out <- scan_packages(pkgs = script)
+  # out <- scan_packages(pkgs = "R/scan_packages.R")
+
+  ref <- data.frame(pkg = c("base", "desc", "remotes", "renv"),
+                    version = as.character(
+                      c(utils::packageVersion("base"),
+                        utils::packageVersion("desc"),
+                        utils::packageVersion("remotes"),
+                        utils::packageVersion("renv"))))
+
+  expect_equal(out, ref)
+
+
+  ## Rmd
+
+  script <- tempfile(fileext = ".Rmd")
+  download.file("https://raw.githubusercontent.com/Pakillo/grateful/refs/heads/master/README.Rmd",
+                destfile = script, quiet = TRUE, mode = "wb")
+
+  out <- scan_packages(pkgs = script, omit = c("grateful", "badger", "mgcv"))
+  # out <- scan_packages(pkgs = "README.Rmd")
+
+  ref <- data.frame(pkg = c("base", "knitr", "remotes", "rmarkdown"),
+                    version = as.character(
+                      c(utils::packageVersion("base"),
+                        utils::packageVersion("knitr"),
+                        utils::packageVersion("remotes"),
+                        utils::packageVersion("rmarkdown"))))
+
+  expect_equal(out, ref)
+
+
+  ## wrong path
+  expect_error(scan_packages("wrong.R"))
+  ## wrong package name
+  expect_error(scan_packages("ggplot22"))
 
 
 })
