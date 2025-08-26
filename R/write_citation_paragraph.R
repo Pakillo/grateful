@@ -23,7 +23,7 @@ write_citation_paragraph <- function(df = NULL,
   stopifnot(is.character(text.pkgs))
 
   if (is.null(text.RStudio)) {
-    text.RStudio = "running in"
+    text.RStudio <- "running in"
   }
   if (!is.null(text.RStudio)) {
     stopifnot(is.character(text.RStudio))

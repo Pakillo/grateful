@@ -81,7 +81,7 @@ scan_packages <- function(pkgs = "All",
       # If more than 20 pkgs, introduce Sys.sleep to avoid github block (#61)
       message("Obtaining package dependencies...")
       # https://stackoverflow.com/a/7060331
-      block  <- rep(1:ceiling(length(pkgnames)/20), each = 20)[1:length(pkgnames)]
+      block  <- rep(1:ceiling(length(pkgnames)/20), each = 20)[seq_len(length(pkgnames))]
       pkg.list <- split(pkgnames, block)
       dep.list <- lapply(pkg.list,
                          function(x) {
