@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# grateful: Facilitate citation of R packages
+# grateful: Facilitate citation of R packages <a href="https://pakillo.github.io/grateful/"><img src="man/figures/logo.png" align="right" height="120" alt="grateful website" /></a>
 
 <!-- badges: start -->
 
@@ -463,7 +463,7 @@ cite_packages(output = "paragraph", out.dir = ".",
 citation("grateful")
 To cite package 'grateful' in publications use:
 
-  Rodriguez-Sanchez F, Jackson C (2024). _grateful: Facilitate citation
+  Rodriguez-Sanchez F, Jackson C (2025). _grateful: Facilitate citation
   of R packages_. <https://pakillo.github.io/grateful/>.
 
 A BibTeX entry for LaTeX users is
@@ -471,7 +471,7 @@ A BibTeX entry for LaTeX users is
   @Manual{,
     title = {grateful: Facilitate citation of {R} packages},
     author = {Francisco Rodriguez-Sanchez and Connor P. Jackson},
-    year = {2024},
+    year = {2025},
     url = {https://pakillo.github.io/grateful/},
   }
 ```
