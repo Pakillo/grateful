@@ -135,7 +135,7 @@
 <h2 id="frequently-asked-questions">Frequently Asked Questions<a class="anchor" aria-label="anchor" href="#frequently-asked-questions"></a>
 </h2>
 <div class="section level3">
-<h3 id="id_1-getting-just-a-table-with-used-packages-and-versions">1. Getting just a table with used packages and versions<a class="anchor" aria-label="anchor" href="#id_1-getting-just-a-table-with-used-packages-and-versions"></a>
+<h3 id="getting-just-a-table-with-used-packages-and-versions">Getting just a table with used packages and versions<a class="anchor" aria-label="anchor" href="#getting-just-a-table-with-used-packages-and-versions"></a>
 </h3>
 <p>Use <code>scan_packages</code></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">scan_packages</span>()</span>
@@ -154,7 +154,7 @@
 <span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="dv">12</span>    visreg   <span class="dv">2</span>.<span class="fl">7.0</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="id_2-producing-a-bibtex-file-with-package-references">2. Producing a BibTeX file with package references<a class="anchor" aria-label="anchor" href="#id_2-producing-a-bibtex-file-with-package-references"></a>
+<h3 id="producing-a-bibtex-file-with-package-references">Producing a BibTeX file with package references<a class="anchor" aria-label="anchor" href="#producing-a-bibtex-file-with-package-references"></a>
 </h3>
 <p>If you just want to get all package references in a BibTeX file, you can call <code><a href="reference/get_pkgs_info.html">get_pkgs_info()</a></code>. Besides printing a table with package info, it will also save a BibTeX file with references. By default, the file will be called <code>grateful-refs.bib</code>, but you can change that (see function help).</p>
 <p>If you want to get the BibTeX references for a few specific packages:</p>
@@ -165,21 +165,21 @@
 <span><span class="co">#&gt; 2    renv   1.1.5     renv</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="id_3-using-grateful-with-the-tidyverse">3. Using grateful with the tidyverse<a class="anchor" aria-label="anchor" href="#id_3-using-grateful-with-the-tidyverse"></a>
+<h3 id="using-grateful-with-the-tidyverse">Using grateful with the tidyverse<a class="anchor" aria-label="anchor" href="#using-grateful-with-the-tidyverse"></a>
 </h3>
 <p>If you use one or several packages from the <a href="https://www.tidyverse.org" class="external-link">tidyverse</a>, you can choose to <a href="https://www.tidyverse.org/blog/2019/11/tidyverse-1-3-0/#citing-the-tidyverse" class="external-link">cite the ‘tidyverse’</a> rather than the individual packages:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>cite.tidyverse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="id_4-including-package-dependencies">4. Including package dependencies<a class="anchor" aria-label="anchor" href="#id_4-including-package-dependencies"></a>
+<h3 id="including-package-dependencies">Including package dependencies<a class="anchor" aria-label="anchor" href="#including-package-dependencies"></a>
 </h3>
 <p>Most R packages also depend on other packages. To include those package dependencies in your citations, rather than just the packages you called directly, use <code>dependencies = TRUE</code>:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/cite_packages.html">cite_packages</a></span><span class="op">(</span>dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="id_5-what-about-external-software-dependencies">5. What about external software dependencies?<a class="anchor" aria-label="anchor" href="#id_5-what-about-external-software-dependencies"></a>
+<h3 id="what-about-external-software-dependencies">What about external software dependencies?<a class="anchor" aria-label="anchor" href="#what-about-external-software-dependencies"></a>
 </h3>
 <p>Some R packages wrap core external software that should perhaps be cited too. For example, <a href="https://cran.r-project.org/package=rjags" class="external-link"><code>rjags</code></a> is an R wrapper to the <a href="https://mcmc-jags.sourceforge.io/" class="external-link">JAGS</a> software written in C++. Ideally, R packages wrapping core external software will include them in their CITATION file. But otherwise, we can investigate external software requirements of our used packages, e.g. using <code>remotes</code>:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
@@ -187,7 +187,7 @@
 <span><span class="co">#&gt; [1] "apt-get install -y jags"</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="id_6-what-software-to-cite">6. What software to cite?<a class="anchor" aria-label="anchor" href="#id_6-what-software-to-cite"></a>
+<h3 id="what-software-to-cite">What software to cite?<a class="anchor" aria-label="anchor" href="#what-software-to-cite"></a>
 </h3>
 <p>Citing software is pretty much like citing papers. Authors have to decide what to cite in each case, which depends on research context.</p>
 <p>As written in the Software Citation Principles paper (<a href="https://doi.org/10.7717/peerj-cs.86" class="external-link">Smith et al. 2016)</a>:</p>
@@ -213,7 +213,7 @@
 <p>Apart from citing the software most relevant to the particular research/analysis performed, I think it is good idea to record the entire computational environment elsewhere, e.g. using <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> or <code><a href="https://sessioninfo.r-lib.org/reference/session_info.html" class="external-link">sessioninfo::session_info()</a></code>.</p>
 </div>
 <div class="section level3">
-<h3 id="id_7-some-packages-include-several-citations">7. Some packages include several citations<a class="anchor" aria-label="anchor" href="#id_7-some-packages-include-several-citations"></a>
+<h3 id="some-packages-include-several-citations">Some packages include several citations<a class="anchor" aria-label="anchor" href="#some-packages-include-several-citations"></a>
 </h3>
 <p>Some packages include more than one citation (e.g. <a href="https://cran.r-project.org/package=knitr/citation.html" class="external-link">knitr</a>, <a href="https://cran.r-project.org/package=knitr/citation.html" class="external-link">mgcv</a>). <code>grateful</code> will include all those citations by default, as it is impossible to decide automatically which citations should be included in each case. The user may manually remove citations from the produced reference list after calling <code>cite_packages</code>. If using Quarto or Rmarkdown, we can generate the citation paragraph and manually remove the unwanted references so they will not appear cited.</p>
 <p>For example, <code>mgcv</code> package provides multiple references to be cited:</p>
@@ -228,27 +228,32 @@
 <p>When rendering the Rmarkdown or Quarto document, only the chosen references will be cited.</p>
 </div>
 <div class="section level3">
-<h3 id="id_8-removing-unused-packages">8. Removing unused packages<a class="anchor" aria-label="anchor" href="#id_8-removing-unused-packages"></a>
+<h3 id="removing-unused-packages">Removing unused packages<a class="anchor" aria-label="anchor" href="#removing-unused-packages"></a>
 </h3>
 <p>Before running <code>grateful</code> you might want to run <a href="https://lintr.r-lib.org/reference/unused_import_linter.html" class="external-link"><code>lintr::unused_import_linter</code></a>, <a href="https://cran.r-project.org/package=funchir" class="external-link"><code>funchir::stale_package_check</code></a> or <a href="https://cran.r-project.org/package=annotater" class="external-link">annotater</a> to check for unused packages before citing them.</p>
 </div>
 <div class="section level3">
-<h3 id="id_9-error-there-is-no-package-called">9. Error: there is no package called…<a class="anchor" aria-label="anchor" href="#id_9-error-there-is-no-package-called"></a>
+<h3 id="error-there-is-no-package-called">Error: there is no package called…<a class="anchor" aria-label="anchor" href="#error-there-is-no-package-called"></a>
 </h3>
-<p>If getting an error like <code>Error in (function (pkg, lib.loc = NULL): there is no package called...</code>, that means that some of your scripts is loading a package that is no longer available in your computer, so {grateful} cannot grab its citation. To fix this, there are several options. First, you could omit that package (or those packages, if more than one) from {grateful} citations using <code>cite_packages(omit = c("package1", "package2")</code>. Second, you could set a <code>.renvignore</code> file to ignore particular files or folders (see instructions <a href="https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files" class="external-link">here</a>). Third, try <a href="https://pakillo.github.io/grateful/index.html#id_8-removing-unused-packages">checking if that package is still needed</a> for your project and you want to cite it; otherwise remove or comment that line where the package is loaded. If you still use and want to cite that package, install it, and then run <code>cite_packages</code> again. Finally, you could use the argument <code>skip.missing = TRUE</code> to skip those missing packages from the citation list.</p>
+<p>If getting an error like <code>Error in (function (pkg, lib.loc = NULL): there is no package called...</code>, that means that some of your scripts is loading a package that is no longer available in your computer, so {grateful} cannot grab its citation. To fix this, there are several options. First, you could omit that package (or those packages, if more than one) from {grateful} citations using <code>cite_packages(omit = c("package1", "package2")</code>. Second, you could set a <code>.renvignore</code> file to ignore particular files or folders (see instructions <a href="https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files" class="external-link">here</a>). Third, try <a href="https://pakillo.github.io/grateful/index.html#removing-unused-packages">checking if that package is still needed</a> for your project and you want to cite it; otherwise remove or comment that line where the package is loaded. If you still use and want to cite that package, install it, and then run <code>cite_packages</code> again. Finally, you could use the argument <code>skip.missing = TRUE</code> to skip those missing packages from the citation list.</p>
 </div>
 <div class="section level3">
-<h3 id="id_10-projects-with-large-number-of-packages-or-files">10. Projects with large number of packages or files<a class="anchor" aria-label="anchor" href="#id_10-projects-with-large-number-of-packages-or-files"></a>
+<h3 id="projects-with-large-number-of-packages-or-files">Projects with large number of packages or files<a class="anchor" aria-label="anchor" href="#projects-with-large-number-of-packages-or-files"></a>
 </h3>
 <p>When a project includes many used packages (or files), <code>renv</code> may issue a warning. Use <code>options(renv.config.dependencies.limit = 10000)</code> to overcome the warning and scan the project for all packages used. Alternatively, use <code>.renvignore</code> to ignore certain files or folders (see <code>renv</code> <a href="https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files" class="external-link">help</a>).</p>
 </div>
 <div class="section level3">
-<h3 id="id_11-separate-bibliography-for-r-packages">11. Separate bibliography for R packages<a class="anchor" aria-label="anchor" href="#id_11-separate-bibliography-for-r-packages"></a>
+<h3 id="ignoring-folders-or-files">Ignoring folders or files<a class="anchor" aria-label="anchor" href="#ignoring-folders-or-files"></a>
+</h3>
+<p>Use a <code>.renvignore</code> file to ignore certain files or folders (see <code>renv</code> <a href="https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files" class="external-link">help</a>).</p>
+</div>
+<div class="section level3">
+<h3 id="separate-bibliography-for-r-packages">Separate bibliography for R packages<a class="anchor" aria-label="anchor" href="#separate-bibliography-for-r-packages"></a>
 </h3>
 <p><a href="https://github.com/Pakillo/grateful/tree/master/Rmd_Quarto/separate_bibliographies" class="external-link">Here</a> are example <a href="https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/separate_bibliographies/grateful-Quarto-separatebib.qmd" class="external-link">Quarto</a> and <a href="https://github.com/Pakillo/grateful/blob/master/Rmd_Quarto/separate_bibliographies/grateful-Rmarkdown-separatebib.Rmd" class="external-link">Rmarkdown</a> documents showing how to generate a separate bibliography for R packages (different from the main bibliography). This requires installing the <a href="https://github.com/pandoc-ext/multibib" class="external-link"><code>multibib</code></a> extension first.</p>
 </div>
 <div class="section level3">
-<h3 id="id_12-citing-the-dependencies-of-an-r-package">12. Citing the dependencies of an R package<a class="anchor" aria-label="anchor" href="#id_12-citing-the-dependencies-of-an-r-package"></a>
+<h3 id="citing-the-dependencies-of-an-r-package">Citing the dependencies of an R package<a class="anchor" aria-label="anchor" href="#citing-the-dependencies-of-an-r-package"></a>
 </h3>
 <p>To cite the dependencies of an R package as stated in its DESCRIPTION file, use <code>pkgs = c("Depends", "Imports", "Suggests", "LinkingTo")</code> or a combination of them to obtain the desired type of dependencies.</p>
 <p>For example, these are {grateful} package ‘Imports’ and ‘Suggests’:</p>
@@ -278,7 +283,7 @@
 <span><span class="co">#&gt; 6       cli    &lt;NA&gt;       @cli</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="id_13-changing-the-language-of-the-citation-paragraph">13. Changing the language of the citation paragraph<a class="anchor" aria-label="anchor" href="#id_13-changing-the-language-of-the-citation-paragraph"></a>
+<h3 id="changing-the-language-of-the-citation-paragraph">Changing the language of the citation paragraph<a class="anchor" aria-label="anchor" href="#changing-the-language-of-the-citation-paragraph"></a>
 </h3>
 <p><code>cite_packages</code> includes a few arguments (<code>text.start</code>, <code>text.pkgs</code> and <code>text.RStudio</code>) to allow the user to customise the language of the citation paragraph.</p>
 <p>For example, to produce a citation paragraph in Spanish:</p>
@@ -295,7 +300,7 @@
 <p><code>"Wir verwendeten die R version 4.5.1 [@base] und die folgenden R-Pakete: badger v. 0.2.5 [@badger], desc v. 1.4.3 [@desc], knitr v. 1.50 [@knitr2014; @knitr2015; @knitr2025], mgcv v. 1.9.3 [@mgcv2003; @mgcv2004; @mgcv2011; @mgcv2016; @mgcv2017], pkgdown v. 2.1.3 [@pkgdown], remotes v. 2.5.0 [@remotes], renv v. 1.1.5 [@renv], rmarkdown v. 2.29 [@rmarkdown2018; @rmarkdown2020; @rmarkdown2024], testthat v. 3.2.3 [@testthat], tidyverse v. 2.0.0 [@tidyverse], visreg v. 2.7.0 [@visreg]."</code></p>
 </div>
 <div class="section level3">
-<h3 id="id_14-citing-grateful">14. Citing ‘grateful’<a class="anchor" aria-label="anchor" href="#id_14-citing-grateful"></a>
+<h3 id="citing-grateful">Citing ‘grateful’<a class="anchor" aria-label="anchor" href="#citing-grateful"></a>
 </h3>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"grateful"</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>To cite package <span class="st">'grateful'</span> <span class="cf">in</span> publications use<span class="sc">:</span></span>
