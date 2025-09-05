@@ -20,3 +20,4 @@ peerj.csl
 ^CRAN-SUBMISSION$
 grateful_function_map.png
 ^CITATION\.cff$
+^codemeta\.json$
