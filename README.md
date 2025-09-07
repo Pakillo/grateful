@@ -488,3 +488,10 @@ particularly when packages are updated. This instability is not an issue
 when citations are used programmatically, as in the example above. But
 if references are put into the text manually, they may need to be
 updated periodically.
+
+## Code of Conduct
+
+Please note that the grateful project is released with a [Contributor
+Code of
+Conduct](https://pakillo.github.io/grateful/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.

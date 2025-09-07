@@ -22,3 +22,4 @@ grateful_function_map.png
 ^CITATION\.cff$
 ^codemeta\.json$
 ^pkgdown/
+^CODE_OF_CONDUCT\.md$
