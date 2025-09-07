@@ -56,7 +56,7 @@ test_that("returns all package dependencies when dependencies = TRUE", {
 
   pkgs.df <- scan_packages(pkgs = "grateful", dependencies = TRUE)
 
-  deps <- c("R6", "base64enc", "bslib", "cachem", "digest", "evaluate",
+  deps <- c("R6", "base64enc", "bslib", "cachem", "desc", "digest", "evaluate",
             "fastmap", "fontawesome", "fs", "glue", "grateful",
             "highr", "htmltools", "jquerylib", "knitr", "lifecycle",
             "memoise", "mime", "rappdirs", "remotes", "renv",
