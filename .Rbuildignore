@@ -21,3 +21,4 @@ peerj.csl
 grateful_function_map.png
 ^CITATION\.cff$
 ^codemeta\.json$
+^pkgdown/
