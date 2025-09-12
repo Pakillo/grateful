@@ -353,6 +353,11 @@ Before running `grateful` you might want to run
 or [annotater](https://cran.r-project.org/package=annotater) to check
 for unused packages before citing them.
 
+### I’d like to know the functions used from each package
+
+For that, you could use packages like
+[usedthese](https://cran.r-project.org/package=usedthese).
+
 ### Error: there is no package called…
 
 If getting an error like

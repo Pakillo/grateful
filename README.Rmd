@@ -273,6 +273,11 @@ When rendering the Rmarkdown or Quarto document, only the chosen references will
 Before running `grateful` you might want to run [`lintr::unused_import_linter`](https://lintr.r-lib.org/reference/unused_import_linter.html), [`funchir::stale_package_check`](https://cran.r-project.org/package=funchir) or [annotater](https://cran.r-project.org/package=annotater) to check for unused packages before citing them.
 
 
+### I'd like to know the functions used from each package
+
+For that, you could use packages like [usedthese](https://cran.r-project.org/package=usedthese).
+
+
 ### Error: there is no package called...
 
 If getting an error like `Error in (function (pkg, lib.loc = NULL): there is no package called...`, that means that some of your scripts is loading a package that is no longer available in your computer, so {grateful} cannot grab its citation. To fix this, there are several options. First, you could omit that package (or those packages, if more than one) from {grateful} citations using `cite_packages(omit = c("package1", "package2")`. Second, you could set a `.renvignore` file to ignore particular files or folders (see instructions [here](https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files)). Third, try [checking if that package is still needed](https://pakillo.github.io/grateful/index.html#removing-unused-packages) for your project and you want to cite it; otherwise remove or comment that line where the package is loaded. If you still use and want to cite that package, install it, and then run `cite_packages` again. Finally, you could use the argument `skip.missing = TRUE` to skip those missing packages from the citation list. 
