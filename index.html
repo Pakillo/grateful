@@ -238,6 +238,11 @@
 <p>Before running <code>grateful</code> you might want to run <a href="https://lintr.r-lib.org/reference/unused_import_linter.html" class="external-link"><code>lintr::unused_import_linter</code></a>, <a href="https://cran.r-project.org/package=funchir" class="external-link"><code>funchir::stale_package_check</code></a> or <a href="https://cran.r-project.org/package=annotater" class="external-link">annotater</a> to check for unused packages before citing them.</p>
 </div>
 <div class="section level3">
+<h3 id="id-like-to-know-the-functions-used-from-each-package">I’d like to know the functions used from each package<a class="anchor" aria-label="anchor" href="#id-like-to-know-the-functions-used-from-each-package"></a>
+</h3>
+<p>For that, you could use packages like <a href="https://cran.r-project.org/package=usedthese" class="external-link">usedthese</a>.</p>
+</div>
+<div class="section level3">
 <h3 id="error-there-is-no-package-called">Error: there is no package called…<a class="anchor" aria-label="anchor" href="#error-there-is-no-package-called"></a>
 </h3>
 <p>If getting an error like <code>Error in (function (pkg, lib.loc = NULL): there is no package called...</code>, that means that some of your scripts is loading a package that is no longer available in your computer, so {grateful} cannot grab its citation. To fix this, there are several options. First, you could omit that package (or those packages, if more than one) from {grateful} citations using <code>cite_packages(omit = c("package1", "package2")</code>. Second, you could set a <code>.renvignore</code> file to ignore particular files or folders (see instructions <a href="https://rstudio.github.io/renv/reference/dependencies.html#ignoring-files" class="external-link">here</a>). Third, try <a href="https://pakillo.github.io/grateful/index.html#removing-unused-packages">checking if that package is still needed</a> for your project and you want to cite it; otherwise remove or comment that line where the package is loaded. If you still use and want to cite that package, install it, and then run <code>cite_packages</code> again. Finally, you could use the argument <code>skip.missing = TRUE</code> to skip those missing packages from the citation list.</p>
