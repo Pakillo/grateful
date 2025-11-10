@@ -1,0 +1,179 @@
+# Changelog
+
+## grateful 0.3.0
+
+CRAN release: 2025-09-04
+
+- Now possible to scan and cite dependencies from a package DESCRIPTION
+  file ([\#62](https://github.com/Pakillo/grateful/issues/62)). Use
+  `pkgs = c("Depends", "Imports", "Suggests", "LinkingTo")` or
+  combinations of them to choose which dependencies to cite.
+
+- Now possible to scan and cite dependencies from a single R script,
+  ‘Rmarkdown’ or ‘Quarto’ document
+  [\#65](https://github.com/Pakillo/grateful/issues/65). Just provide
+  the path to the file to the `pkgs` argument.
+
+- Now possible to customise the language of citation paragraphs
+  ([\#55](https://github.com/Pakillo/grateful/issues/55)), thanks to new
+  arguments to `cite_packages`: `text.start`, `text.pks` and
+  `text.RStudio`.
+
+- New logical argument `skip.missing` allows the user to skip missing
+  packages (those used somewhere in the project but not currently
+  installed) [\#54](https://github.com/Pakillo/grateful/issues/54).
+
+- Slow down requests when querying dependencies for a large number of
+  packages [\#61](https://github.com/Pakillo/grateful/issues/61).
+
+## grateful 0.2.12
+
+CRAN release: 2025-04-30
+
+- Fix generation of citation keys under R 4.5.0 (issue
+  [\#59](https://github.com/Pakillo/grateful/issues/59)).
+
+## grateful 0.2.11
+
+CRAN release: 2025-03-14
+
+- Revise tests (issue
+  [\#57](https://github.com/Pakillo/grateful/issues/57)).
+
+## grateful 0.2.10
+
+CRAN release: 2024-09-04
+
+- Add support for LaTeX output (thanks
+  [@patrick-weiss](https://github.com/patrick-weiss) for the
+  suggestion). Use `out.format = "tex-document"` to obtain a full LaTeX
+  document, or `out.format = "tex-fragment"` to produce just a fragment
+  citing packages to be copied into another existing LaTeX document.
+
+## grateful 0.2.9
+
+- Match package names with citation keys explicitly, rather than relying
+  on sorting.
+
+## grateful 0.2.8
+
+- Fix problem with citation keys containing non-alphanumeric characters
+  (-) (issue [\#44](https://github.com/Pakillo/grateful/issues/44),
+  thanks [@jkylearmstrong](https://github.com/jkylearmstrong)).
+
+## grateful 0.2.7
+
+- Enable citing Rstudio with ‘table’ output format (issue
+  [\#41](https://github.com/Pakillo/grateful/issues/41)).
+
+## grateful 0.2.6
+
+- Explain how to cite R together with a given list of packages (issue
+  [\#37](https://github.com/Pakillo/grateful/issues/37)).
+
+## grateful 0.2.5
+
+- Fixed a bug in writing passive voice paragraph when generating a
+  citation report (issue
+  [\#39](https://github.com/Pakillo/grateful/issues/39)).
+
+## grateful 0.2.4
+
+CRAN release: 2023-10-22
+
+- Fixed a bug in package doc
+  (cf. <https://github.com/r-lib/roxygen2/issues/1491>).
+
+## grateful 0.2.3
+
+- Fixed a bug when downloading ‘dependent’ citation styles from the
+  official repository.
+
+## grateful 0.2.2
+
+- Removed some tests that were likely to fail in the future (issue
+  [\#36](https://github.com/Pakillo/grateful/issues/36))
+
+## grateful 0.2.1
+
+- Citation paragraph can now be written in passive voice, thanks to
+  [@jmclawson](https://github.com/jmclawson)
+
+## grateful 0.2.0
+
+CRAN release: 2023-04-24
+
+- Added `omit` argument to exclude some packages from the citation
+  report.
+
+- Argument `cite.grateful` has been removed, use `omit = c("grateful")`
+  instead.
+
+- Increased robustness: more tests and argument checks added.
+
+## grateful 0.1.13
+
+- `out.dir` must now be provided by the user (`out.dir = getwd()` not
+  allowed per CRAN policy)
+
+- `Rmd.file` and `out.name` arguments to `cite_packages` have been fused
+  into a single `out.file` argument
+
+- CITATION now uses bibentry rather than citEntry.
+
+## grateful 0.1.12
+
+- Fully revised documentation and README, including examples of running
+  grateful with Quarto.
+
+- Added many tests
+
+- When using grateful within ‘R Markdown’, it is no longer necessary to
+  specify chunk option `results = "asis"` (thanks to
+  [@connorp](https://github.com/connorp))
+
+## grateful 0.1.10
+
+- Fixed bug when matching citekeys with package names containing
+  punctuation characters.
+
+## grateful 0.1.9
+
+- Fixed potential bug when matching package names with citation keys.
+  Now using more strict regex.
+
+## grateful 0.1.7
+
+- New option output = “table” to produce a table with package names,
+  version, and citation, to be used within an ‘R Markdown’ document.
+
+## grateful 0.1.5
+
+- Now including package versions, besides package name.
+
+- For packages specifying more than one reference in their CITATION
+  file, use all of them.
+
+- Rather than a list of package names, grateful now returns a text
+  paragraph citing R and all the used packages, ready to be pasted in a
+  manuscript or report.
+
+- Now including base R citation in all cases. Can optionally add RStudio
+  too.
+
+- grateful can now be used within ‘R Markdown’. Including a chunk with
+  `cite_packages(output = "paragraph")` will introduce a paragraph with
+  in-text citations of R and the used packages, and their citations will
+  be formatted when rendering the ‘R Markdown’ document.
+
+- It is also possible to cite particular packages using their BibTeX
+  keys generated by grateful. Or include them in the reference list
+  without citing them in-text, using the new
+  [`nocite_references()`](https://pakillo.github.io/grateful/reference/nocite_references.md)
+  function.
+
+- New argument `cite.tidyverse` to collapse citations of all used
+  tidyverse packages into a single citation to ‘tidyverse’.
+
+- New argument `dependencies` to include package dependencies in the
+  citation list.
