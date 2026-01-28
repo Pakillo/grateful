@@ -61,7 +61,7 @@ a data.frame with package names and versions
 Scan a project or folder for packages used
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 scan_packages()
 scan_packages(pkgs = "Session")
 scan_packages(pkgs = c("renv", "remotes", "knitr"))

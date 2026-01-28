@@ -20,7 +20,7 @@ returned invisibly.
 Get a journal citation style from the official internet repository
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 get_csl("peerj", out.dir = tempdir())
 \dontshow{\}) # examplesIf}
 }

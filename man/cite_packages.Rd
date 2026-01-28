@@ -181,7 +181,7 @@ periodically.
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 # To build a standalone document for citations
 cite_packages(out.dir = tempdir())

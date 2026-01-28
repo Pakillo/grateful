@@ -14,7 +14,7 @@
 #' @param include.RStudio Include RStudio?
 #' @param passive.voice Logical. If `TRUE`, uses passive voice in any paragraph
 #'   generated for citations.
-#' @param ... Further arguments for [render_citations()]. Currently not used.
+#' @param ... Further arguments for `render_citations()`. Currently not used.
 #'
 #' @return An Rmarkdown file, if out.format = "Rmd", or a rendered document otherwise.
 #' @noRd

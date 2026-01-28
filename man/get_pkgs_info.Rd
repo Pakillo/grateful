@@ -76,7 +76,7 @@ package references, and returns a data frame with package names, version,
 and citation keys.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 get_pkgs_info(out.dir = tempdir())
 get_pkgs_info(pkgs = c("renv", "remotes"), out.dir = tempdir())
 \dontshow{\}) # examplesIf}

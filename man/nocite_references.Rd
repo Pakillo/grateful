@@ -43,7 +43,7 @@ but can accept an arbitrary vector of citation keys (without @)
 found in a BibTeX file referenced in the YAML header.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # include in YAML header:
 # bibliography: grateful-refs.bib
 
