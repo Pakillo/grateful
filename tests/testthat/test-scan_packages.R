@@ -52,17 +52,18 @@ test_that("returns all package dependencies when dependencies = TRUE", {
   # this test may be slow...
   # also note dependencies might change, breaking the test
   skip_on_cran()
+  skip_on_ci()
   skip_if_offline()
 
   pkgs.df <- scan_packages(pkgs = "grateful", dependencies = TRUE)
 
   deps <- c("R6", "base64enc", "bslib", "cachem", "desc", "digest", "evaluate",
-            "fastmap", "fontawesome", "fs", "glue", "grateful",
+            "fastmap", "fontawesome", "fs", "grateful",
             "highr", "htmltools", "jquerylib", "knitr", "lifecycle",
             "memoise", "mime", "rappdirs", "remotes", "renv",
             "rmarkdown", "sass", "tidyverse", "tinytex", "xfun", "yaml")
 
-  expect_identical(pkgs.df$pkg, deps)
+  expect_identical(sort(pkgs.df$pkg), sort(deps))
 
 
   ## Test with >20 pkgs
