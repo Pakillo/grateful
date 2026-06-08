@@ -23,6 +23,7 @@ included in the reference list when rendering.
 You can install the stable release of {grateful} from CRAN:
 
 ``` r
+
 install.packages("grateful")
 ```
 
@@ -30,12 +31,14 @@ Or the latest development version from
 [R-universe](https://pakillo.r-universe.dev/grateful):
 
 ``` r
+
 install.packages("grateful", repos = c("https://pakillo.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 Or from GitHub:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("Pakillo/grateful")
 ```
@@ -65,10 +68,12 @@ will scan the project, find these packages, and generate a document with
 formatted citations.
 
 ``` r
+
 library(grateful)
 ```
 
 ``` r
+
 cite_packages(out.dir = ".")            # save report to working directory
 ```
 
@@ -80,6 +85,7 @@ This document can also be a Word or LaTeX document, PDF file, markdown
 file, or left as the source Rmarkdown file using `out.format`:
 
 ``` r
+
 cite_packages(out.format = "docx", out.dir = ".")
 ```
 
@@ -87,6 +93,7 @@ We can specify the citation style for a particular journal using
 `citation.style`.
 
 ``` r
+
 cite_packages(citation.style = "peerj", out.dir = ".")
 ```
 
@@ -197,6 +204,7 @@ file with references. By default, the file will be called
 If you want to get the BibTeX references for a few specific packages:
 
 ``` r
+
 get_pkgs_info(pkgs = c("remotes", "renv"), out.dir = getwd())
 #>       pkg version citekeys
 #> 1 remotes   2.5.0  remotes
@@ -211,6 +219,7 @@ If you use one or several packages from the
 rather than the individual packages:
 
 ``` r
+
 cite_packages(cite.tidyverse = TRUE)
 ```
 
@@ -221,6 +230,7 @@ dependencies in your citations, rather than just the packages you called
 directly, use `dependencies = TRUE`:
 
 ``` r
+
 cite_packages(dependencies = TRUE)
 ```
 
@@ -235,6 +245,7 @@ external software requirements of our used packages, e.g. using
 `remotes`:
 
 ``` r
+
 remotes::system_requirements(package = c("rjags"), os = "ubuntu-20.04")
 #> [1] "apt-get install -y jags"
 ```
@@ -314,6 +325,7 @@ the unwanted references so they will not appear cited.
 For example, `mgcv` package provides multiple references to be cited:
 
 ``` r
+
 citation("mgcv")
 ```
 
@@ -321,6 +333,7 @@ To choose just one of them to be cited, we could generate a citation
 paragraph using `cite_packages`
 
 ``` r
+
 cite_packages("paragraph", out.dir = ".")
 ```
 
@@ -401,6 +414,7 @@ combination of them to obtain the desired type of dependencies.
 For example, these are {grateful} package ‘Imports’ and ‘Suggests’:
 
 ``` r
+
 cite_packages(output = "table", out.dir = ".", pkgs = c("Imports", "Suggests"))
 #>      Package  Version                                       Citation
 #> 1       curl     <NA>                                          @curl
@@ -418,6 +432,7 @@ To also include the dependencies from those packages, use
 `dependencies = TRUE`:
 
 ``` r
+
 out <- cite_packages(output = "table", out.dir = ".", pkgs = c("Imports", "Suggests"), 
                      dependencies = TRUE)
 head(out)
@@ -439,6 +454,7 @@ citation paragraph.
 For example, to produce a citation paragraph in Spanish:
 
 ``` r
+
 cite_packages(output = "paragraph", out.dir = ".", 
               text.start = "Para desarrollar este trabajo se utilizó",
               text.pkgs = "y los siguientes paquetes")
@@ -449,6 +465,7 @@ cite_packages(output = "paragraph", out.dir = ".",
 Or in German:
 
 ``` r
+
 cite_packages(output = "paragraph", out.dir = ".", 
               text.start = "Wir verwendeten die",
               text.pkgs = "und die folgenden R-Pakete")
