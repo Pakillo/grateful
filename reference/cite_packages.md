@@ -68,10 +68,9 @@ cite_packages(
 - citation.style:
 
   Optional. Citation style to format references for a particular journal
-  (see
-  <https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html>). If
-  the CSL is not available in `out.dir`, it will be downloaded
-  automatically from the official [GitHub
+  (see <https://pkg.yihui.org/rmarkdown-cookbook/bibliography>). If the
+  CSL is not available in `out.dir`, it will be downloaded automatically
+  from the official [GitHub
   repository](https://github.com/citation-style-language/styles) using
   [`get_csl()`](https://pakillo.github.io/grateful/reference/get_csl.md).
   If using `cite_packages()` within an R Markdown or Quarto document,
