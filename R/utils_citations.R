@@ -39,6 +39,13 @@ add_citekey <- function(pkg_name, citation) {
 # For a package, get the citation, remove special characters from the name,
 # then pass along the name and citation
 get_citation_and_citekey <- function(pkg_name, skip.missing) {
+
+  ## For base R packages, return always R core citation to avoid duplication
+  base_pkgs <- rownames(utils::installed.packages(priority = "base"))  # get base pkgs list
+  if (pkg_name %in% base_pkgs) {
+    pkg_name <- "base"
+  }
+
   pkgname_clean <- gsub("[^[:alnum:]]", "", pkg_name)
 
   if (isFALSE(skip.missing)) {

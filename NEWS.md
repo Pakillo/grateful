@@ -2,7 +2,10 @@
 
 * The list of 'base' packages are now retrieved via `installed.packages(priority = "base")` rather than `sessionInfo()$basePkgs`, which should be more robust since not all base packages are automatically attached in every session (e.g. 'grid'). Fixes #84. Thanks @inigourrestarazu for reporting.
 
+* Avoid duplication of R base citation when base R packages are provided as a vector (e.g. `cite_packages(pkgs = c("grid", "splines"))`) 
+
 * Fixes citation paragraph when there are no packages to cite (only base R).
+
 
 # grateful 0.3.0
 
