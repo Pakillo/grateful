@@ -21,6 +21,9 @@ Useful links:
 
 Authors:
 
+- Francisco Rodriguez-Sanchez <f.rodriguez.sanc@gmail.com>
+  ([ORCID](https://orcid.org/0000-0002-7981-1599)) \[copyright holder\]
+
 - Connor P. Jackson <connor@cpjackson.net>
   ([ORCID](https://orcid.org/0000-0002-4220-5210))
 

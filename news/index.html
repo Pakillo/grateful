@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">grateful</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,12 @@
       <small>Source: <a href="https://github.com/Pakillo/grateful/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.1" id="grateful-031">grateful 0.3.1<a class="anchor" aria-label="anchor" href="#grateful-031"></a></h2>
+<ul><li><p>The list of ‘base’ packages are now retrieved via <code>installed.packages(priority = "base")</code> rather than <code>sessionInfo()$basePkgs</code>, which should be more robust since not all base packages are automatically attached in every session (e.g. ‘grid’). Fixes <a href="https://github.com/Pakillo/grateful/issues/84" class="external-link">#84</a>. Thanks <a href="https://github.com/inigourrestarazu" class="external-link">@inigourrestarazu</a> for reporting.</p></li>
+<li><p>Avoid duplication of R base citation when base R packages are provided as a vector (e.g. <code>cite_packages(pkgs = c("grid", "splines"))</code>)</p></li>
+<li><p>Fixes citation paragraph when there are no packages to cite (only base R).</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="grateful-030">grateful 0.3.0<a class="anchor" aria-label="anchor" href="#grateful-030"></a></h2><p class="text-muted">CRAN release: 2025-09-04</p>
 <ul><li><p>Now possible to scan and cite dependencies from a package DESCRIPTION file (<a href="https://github.com/Pakillo/grateful/issues/62" class="external-link">#62</a>). Use <code>pkgs = c("Depends", "Imports", "Suggests", "LinkingTo")</code> or combinations of them to choose which dependencies to cite.</p></li>
