@@ -76,8 +76,8 @@ get_citations <- function(pkgs = NULL,
   cites.bib <- Filter(Negate(is.null), cites.bib)
 
   ## write bibtex references to file
-  unique.cites.bib <- cites.bib[!duplicated(cites.bib)]
-  writeLines(enc2utf8(unlist(unique.cites.bib)),
+  cites.bib.unique <- cites.bib[!duplicated(cites.bib)]
+  writeLines(enc2utf8(unlist(cites.bib.unique)),
              con = file.path(out.dir, paste0(bib.file, ".bib")),
              useBytes = TRUE)
 
