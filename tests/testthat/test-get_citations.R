@@ -22,6 +22,14 @@ test_that("get_citations works", {
   citkeys <- get_citations("grateful", out.dir = tempdir())
   expect_identical(citkeys, list(grateful = "grateful"))
 
+  bib.file <- paste0("test-", basename(tempfile()))
+  citkeys <- get_citations(c("base", "grid", "splines"),
+                           out.dir = tempdir(),
+                           bib.file = bib.file)
+  bib <- readLines(file.path(tempdir(), paste0(bib.file, ".bib")))
+  expect_length(grep("^@[^\\{]+\\{base,", bib), 1)
+  expect_identical(citkeys,
+                   list(base = "base", grid = "base", splines = "base"))
 
   # citkeys <- get_citations(c("grateful", "knitr", "remotes", "renv", "rmarkdown",
   #                            "rstudioapi", "utils"),
@@ -45,7 +53,6 @@ test_that("get_citations works", {
 #   citkeys <- get_citations(c("renv"), include.RStudio = TRUE, out.dir = tempdir())
 #   expect_identical(citkeys, c("renv", "rstudio"))
 # })
-
 
 
 
