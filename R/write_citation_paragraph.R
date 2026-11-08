@@ -15,9 +15,9 @@ write_citation_paragraph <- function(df = NULL,
   stopifnot(is.character(text.start))
 
   if (is.null(text.pkgs)) {
-    text.pkgs <- " the following R packages"
+    text.pkgs <- "the following R packages"
     if ("base" %in% df$pkg) {
-      text.pkgs <- paste0(" and", text.pkgs)
+      text.pkgs <- paste("and", text.pkgs)
     }
   }
   stopifnot(is.character(text.pkgs))
@@ -46,7 +46,7 @@ write_citation_paragraph <- function(df = NULL,
 
   # cite R packages if any
   if (nrow(df.pkgs) > 0) {
-    parag <- paste0(parag, text.pkgs, ": ",
+    parag <- paste0(parag, " ", text.pkgs, ": ",
                     paste(format_pkg_citation(pkgname = df.pkgs$pkg, df), collapse = ", "))
   }
 
