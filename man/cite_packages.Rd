@@ -52,7 +52,7 @@ see \url{https://yihui.org/tinytex/}).}
 
 \item{citation.style}{Optional. Citation style to format references for a
 particular journal
-(see \url{https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html}).
+(see \url{https://pkg.yihui.org/rmarkdown-cookbook/bibliography}).
 If the CSL is not available in \code{out.dir}, it will be downloaded
 automatically from the official
 \href{https://github.com/citation-style-language/styles}{GitHub repository}
