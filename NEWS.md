@@ -1,6 +1,8 @@
 # grateful 0.3.1
 
-* The list of 'base' packages are now retrieved via `installed.packages(priority = "base")` rather than `sessionInfo()$basePkgs`, which should be more robust since not all base packages are automatically attached in every session (e.g. 'grid'). Fixes #84. Thanks @inigourrestarazu for reporting. 
+* The list of 'base' packages are now retrieved via `installed.packages(priority = "base")` rather than `sessionInfo()$basePkgs`, which should be more robust since not all base packages are automatically attached in every session (e.g. 'grid'). Fixes #84. Thanks @inigourrestarazu for reporting.
+
+* Fixes citation paragraph when there are no packages to cite (only base R).
 
 # grateful 0.3.0
 

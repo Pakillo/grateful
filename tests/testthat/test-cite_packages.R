@@ -112,7 +112,7 @@ test_that("cite_packages returns correct paragraph with customised text", {
                         pkgs = c("grateful"),
                         out.dir = tempdir(),
                         text.start = "En este trabajo utilizamos",
-                        text.pkgs = "los siguientes paquetes")
+                        text.pkgs = " los siguientes paquetes")
   expect_identical(para,
                    structure(paste0("En este trabajo utilizamos los siguientes paquetes: grateful v. ",
                                     utils::packageVersion("grateful"), " [@grateful]."),
@@ -124,7 +124,7 @@ test_that("cite_packages returns correct paragraph with customised text", {
                         pkgs = "Session",
                         out.dir = tempdir(),
                         text.start = "En este trabajo utilizamos",
-                        text.pkgs = "y los siguientes paquetes")
+                        text.pkgs = " y los siguientes paquetes")
   expect_identical(para,
                    structure(paste0("En este trabajo utilizamos R v. ",
                                     R.version$major, ".", R.version$minor,
