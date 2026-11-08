@@ -173,7 +173,49 @@ test_that("cite_packages returns correct Rmd", {
                  "## Package citations",
                  ""))
 
+})
 
 
+test_that("only R is cited if there are no extra packages", {
+
+  para <- cite_packages(output = "paragraph",
+                        pkgs = c("base"),
+                        out.dir = tempdir())
+
+  expect_equal(para,
+               structure(paste0("We used R v. ",
+                                R.version$major, ".", R.version$minor, " [@base]."),
+                         class = "knit_asis", knit_cacheable = NA))
+
+})
+
+
+
+test_that("citation paragraph is well formatted with base R packages included", {
+
+  para <- cite_packages(output = "paragraph",
+                        pkgs = c("base", "grid", "grateful", "splines"),
+                        out.dir = tempdir())
+
+  expect_equal(para,
+               structure(paste0("We used R v. ", R.version$major, ".", R.version$minor, " [@base] ",
+                                "and the following R packages: ",
+                                "grateful v. ", utils::packageVersion("grateful"), " [@grateful], ",
+                                "grid v. ", utils::packageVersion("grid"), " [@base], ",
+                                "splines v. ", utils::packageVersion("splines"), " [@base]."),
+                         class = "knit_asis", knit_cacheable = NA))
+
+
+  ## without R base
+  para <- cite_packages(output = "paragraph",
+                        pkgs = c("splines", "grid", "grateful"),
+                        out.dir = tempdir())
+
+  expect_equal(para,
+               structure(paste0("We used the following R packages: ",
+                                "grateful v. ", utils::packageVersion("grateful"), " [@grateful], ",
+                                "grid v. ", utils::packageVersion("grid"), " [@base], ",
+                                "splines v. ", utils::packageVersion("splines"), " [@base]."),
+                         class = "knit_asis", knit_cacheable = NA))
 
 })

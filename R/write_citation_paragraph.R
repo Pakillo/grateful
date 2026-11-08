@@ -34,15 +34,22 @@ write_citation_paragraph <- function(df = NULL,
   rversion <- ""
 
   if ("base" %in% df$pkg) {
-    rversion <- paste0("R v. ",
+    rversion <- paste0(" R v. ",
                        get_version("base", df), " ",
-                       get_citekeys("base", df),
-                       " ")
+                       get_citekeys("base", df)
+                       )
   }
 
 
-  parag <- paste0(text.start, " ", rversion, text.pkgs, ": ",
-                  paste(format_pkg_citation(pkgname = df.pkgs$pkg, df), collapse = ", "))
+  # cite R
+  parag <- paste0(text.start, rversion)
+
+  # cite R packages if any
+  if (nrow(df.pkgs) > 0) {
+    parag <- paste0(parag, " ", text.pkgs, ": ",
+                    paste(format_pkg_citation(pkgname = df.pkgs$pkg, df), collapse = ", "))
+  }
+
 
   if (include.RStudio) {
     parag <- paste0(parag, ", ", text.RStudio, " RStudio v. ",

@@ -108,7 +108,8 @@ scan_packages <- function(pkgs = "All",
     if (pkgs == "All" || pkgs == "Session" || is_file(pkgs)) {
 
       # Only cite base R once
-      base_pkgs <- utils::sessionInfo()$basePkgs
+      # base_pkgs <- utils::sessionInfo()$basePkgs
+      base_pkgs <- rownames(utils::installed.packages(priority = "base"))  # get base pkgs list
       pkgnames <- c("base", setdiff(pkgnames, base_pkgs))
 
       # Omit packages
