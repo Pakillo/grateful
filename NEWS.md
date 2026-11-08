@@ -1,3 +1,7 @@
+# grateful 0.3.1
+
+* The list of 'base' packages are now retrieved via `installed.packages(priority = "base")` rather than `sessionInfo()$basePkgs`, which should be more robust since not all base packages are automatically attached in every session (e.g. 'grid'). Fixes #84. Thanks @inigourrestarazu for reporting. 
+
 # grateful 0.3.0
 
 * Now possible to scan and cite dependencies from a package DESCRIPTION file (#62). Use `pkgs = c("Depends", "Imports", "Suggests", "LinkingTo")` or combinations of them to choose which dependencies to cite.

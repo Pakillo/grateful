@@ -23,6 +23,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Francisco Rodriguez-Sanchez \email{f.rodriguez.sanc@gmail.com} (\href{https://orcid.org/0000-0002-7981-1599}{ORCID}) [copyright holder]
   \item Connor P. Jackson \email{connor@cpjackson.net} (\href{https://orcid.org/0000-0002-4220-5210}{ORCID})
 }
 
