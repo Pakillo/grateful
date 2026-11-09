@@ -2,6 +2,8 @@
 
 ## grateful 0.3.1
 
+CRAN release: 2026-11-09
+
 - The list of ‘base’ packages are now retrieved via
   `installed.packages(priority = "base")` rather than
   `sessionInfo()$basePkgs`, which should be more robust since not all

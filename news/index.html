@@ -28,11 +28,11 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/Pakillo/grateful/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/Pakillo/grateful/blob/v0.3.1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.3.1" id="grateful-031">grateful 0.3.1<a class="anchor" aria-label="anchor" href="#grateful-031"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.3.1" id="grateful-031">grateful 0.3.1<a class="anchor" aria-label="anchor" href="#grateful-031"></a></h2><p class="text-muted">CRAN release: 2026-11-09</p>
 <ul><li><p>The list of ‘base’ packages are now retrieved via <code>installed.packages(priority = "base")</code> rather than <code>sessionInfo()$basePkgs</code>, which should be more robust since not all base packages are automatically attached in every session (e.g. ‘grid’). Fixes <a href="https://github.com/Pakillo/grateful/issues/84" class="external-link">#84</a>. Thanks <a href="https://github.com/inigourrestarazu" class="external-link">@inigourrestarazu</a> for reporting.</p></li>
 <li><p>Avoid duplication of R base citation when base R packages are provided as a vector (e.g. <code>cite_packages(pkgs = c("grid", "splines"))</code>)</p></li>
 <li><p>Fixes citation paragraph when there are no packages to cite (only base R).</p></li>

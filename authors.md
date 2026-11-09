@@ -15,7 +15,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/Pakillo/grateful/blob/master/inst/CITATION)
+[`inst/CITATION`](https://github.com/Pakillo/grateful/blob/v0.3.1/inst/CITATION)
 
 Rodriguez-Sanchez F, Jackson C (2025). *grateful: Facilitate citation of
 R packages*. <https://pakillo.github.io/grateful/>.
